@@ -6,9 +6,72 @@
 
     <title>DJ D.MARCO</title>
 
-    <meta name="description" content="Um espaço especial criado para o DJ D.MARCO.">
+    <meta
+        name="description"
+        content="Um espaço especial criado para o DJ D.MARCO."
+        id="meta-description"
+    >
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* SELETOR DE IDIOMAS */
+
+        .language-selector {
+            margin-left: 24px;
+        }
+
+        .language-selector select {
+            appearance: none;
+            -webkit-appearance: none;
+
+            background: transparent;
+            color: inherit;
+
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 4px;
+
+            padding: 7px 28px 7px 10px;
+
+            font-family: inherit;
+            font-size: 11px;
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            background-image:
+                linear-gradient(45deg, transparent 50%, currentColor 50%),
+                linear-gradient(135deg, currentColor 50%, transparent 50%);
+
+            background-position:
+                calc(100% - 12px) 50%,
+                calc(100% - 8px) 50%;
+
+            background-size:
+                4px 4px,
+                4px 4px;
+
+            background-repeat: no-repeat;
+        }
+
+        .language-selector select option {
+            background: #111111;
+            color: #ffffff;
+        }
+
+        @media (max-width: 700px) {
+
+            .language-selector {
+                margin-left: 12px;
+            }
+
+            .language-selector select {
+                padding: 6px 24px 6px 8px;
+                font-size: 9px;
+                letter-spacing: 1.5px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -18,6 +81,7 @@
     <!-- NAVEGAÇÃO -->
 
     <nav class="nav">
+
         <div class="nav-inner">
 
             <a href="index.html" class="logo">
@@ -25,11 +89,41 @@
             </a>
 
             <div class="nav-links">
-                <a href="index.html">Início</a>
-                <a href="pagina-2.html">Memórias</a>
+
+                <a href="index.html" data-i18n="navHome">
+                    Início
+                </a>
+
+                <a href="pagina-2.html" data-i18n="navMemories">
+                    Memórias
+                </a>
+
+                <!-- IDIOMAS -->
+
+                <div class="language-selector">
+
+                    <select id="languageSelector" aria-label="Idioma">
+
+                        <option value="pt">
+                            PT
+                        </option>
+
+                        <option value="en">
+                            EN
+                        </option>
+
+                        <option value="kr">
+                            KR
+                        </option>
+
+                    </select>
+
+                </div>
+
             </div>
 
         </div>
+
     </nav>
 
 
@@ -41,6 +135,7 @@
             src="marco-dj-banner.png"
             alt="DJ D.MARCO tocando"
             class="hero-image"
+            data-i18n-alt="heroImageAlt"
         >
 
         <div class="hero-content">
@@ -55,7 +150,7 @@
                     D.MARCO
                 </h1>
 
-                <p class="hero-subtitle">
+                <p class="hero-subtitle" data-i18n="heroSubtitle">
                     Um espaço criado para alegrar sua alma.
                 </p>
 
@@ -72,16 +167,16 @@
 
         <div class="container">
 
-            <div class="section-label">
+            <div class="section-label" data-i18n="welcomeLabel">
                 Welcome
             </div>
 
-            <h2 class="section-title">
+            <h2 class="section-title" data-i18n="welcomeTitle">
                 Um espaço<br>
                 feito com carinho.
             </h2>
 
-            <p class="text">
+            <p class="text" data-i18n="welcomeText">
                 Que as palavras, as imagens e os momentos guardados
                 aqui possam trazer um pouco de alegria para quem passar
                 por este espaço.
@@ -100,6 +195,7 @@
             src="marco-portrait.png"
             alt="DJ D.MARCO"
             class="portrait-image"
+            data-i18n-alt="portraitImageAlt"
         >
 
         <div class="portrait-content">
@@ -108,12 +204,12 @@
                 D.MARCO
             </div>
 
-            <h2 class="section-title">
+            <h2 class="section-title" data-i18n="memoriesTitle">
                 Entre música,<br>
                 momentos e memórias.
             </h2>
 
-            <p class="text">
+            <p class="text" data-i18n="memoriesText">
                 Um pequeno lugar para guardar aquilo que merece
                 continuar sendo lembrado.
             </p>
@@ -133,8 +229,8 @@
                 DJ D.MARCO
             </div>
 
-            <div class="footer-text">
-                A space made with affection.
+            <div class="footer-text" data-i18n="footerText">
+                Um espaço criado com carinho.
             </div>
 
         </div>
@@ -142,6 +238,244 @@
     </footer>
 
 </div>
+
+
+<!-- SISTEMA DE IDIOMAS -->
+
+<script>
+
+const translations = {
+
+    pt: {
+
+        pageTitle:
+            "DJ D.MARCO",
+
+        description:
+            "Um espaço especial criado para o DJ D.MARCO.",
+
+        navHome:
+            "Início",
+
+        navMemories:
+            "Memórias",
+
+        heroSubtitle:
+            "Um espaço criado para alegrar sua alma.",
+
+        welcomeLabel:
+            "Welcome",
+
+        welcomeTitle:
+            "Um espaço<br>feito com carinho.",
+
+        welcomeText:
+            "Que as palavras, as imagens e os momentos guardados aqui possam trazer um pouco de alegria para quem passar por este espaço.",
+
+        memoriesTitle:
+            "Entre música,<br>momentos e memórias.",
+
+        memoriesText:
+            "Um pequeno lugar para guardar aquilo que merece continuar sendo lembrado.",
+
+        footerText:
+            "Um espaço criado com carinho.",
+
+        heroImageAlt:
+            "DJ D.MARCO tocando",
+
+        portraitImageAlt:
+            "DJ D.MARCO"
+    },
+
+
+    en: {
+
+        pageTitle:
+            "DJ D.MARCO",
+
+        description:
+            "A special space created for DJ D.MARCO.",
+
+        navHome:
+            "Home",
+
+        navMemories:
+            "Memories",
+
+        heroSubtitle:
+            "A space created to brighten your soul.",
+
+        welcomeLabel:
+            "Welcome",
+
+        welcomeTitle:
+            "A space<br>made with care.",
+
+        welcomeText:
+            "May the words, images, and moments kept here bring a little joy to everyone who passes through this space.",
+
+        memoriesTitle:
+            "Between music,<br>moments and memories.",
+
+        memoriesText:
+            "A little place to keep what deserves to be remembered.",
+
+        footerText:
+            "A space made with affection.",
+
+        heroImageAlt:
+            "DJ D.MARCO performing",
+
+        portraitImageAlt:
+            "DJ D.MARCO"
+    },
+
+
+    kr: {
+
+        pageTitle:
+            "DJ D.MARCO",
+
+        description:
+            "DJ D.MARCO를 위해 특별히 만들어진 공간입니다.",
+
+        navHome:
+            "홈",
+
+        navMemories:
+            "추억",
+
+        heroSubtitle:
+            "당신의 마음에 작은 기쁨을 전하는 공간.",
+
+        welcomeLabel:
+            "Welcome",
+
+        welcomeTitle:
+            "정성을 담아<br>만든 공간입니다.",
+
+        welcomeText:
+            "이곳에 담긴 말과 사진, 그리고 소중한 순간들이 이 공간을 찾는 모든 분들에게 작은 기쁨이 되기를 바랍니다.",
+
+        memoriesTitle:
+            "음악과<br>순간, 그리고 추억.",
+
+        memoriesText:
+            "오래도록 기억하고 싶은 소중한 순간들을 간직하는 작은 공간입니다.",
+
+        footerText:
+            "정성을 담아 만든 공간.",
+
+        heroImageAlt:
+            "DJ D.MARCO의 공연 모습",
+
+        portraitImageAlt:
+            "DJ D.MARCO"
+    }
+
+};
+
+
+function changeLanguage(language) {
+
+    const selectedLanguage = translations[language];
+
+    document.documentElement.lang =
+        language === "pt"
+            ? "pt-BR"
+            : language === "kr"
+                ? "ko"
+                : "en";
+
+
+    document.title =
+        selectedLanguage.pageTitle;
+
+
+    document
+        .getElementById("meta-description")
+        .setAttribute(
+            "content",
+            selectedLanguage.description
+        );
+
+
+    document
+        .querySelectorAll("[data-i18n]")
+        .forEach(element => {
+
+            const key =
+                element.getAttribute("data-i18n");
+
+            if (selectedLanguage[key]) {
+
+                element.innerHTML =
+                    selectedLanguage[key];
+
+            }
+
+        });
+
+
+    document
+        .querySelectorAll("[data-i18n-alt]")
+        .forEach(element => {
+
+            const key =
+                element.getAttribute("data-i18n-alt");
+
+            if (selectedLanguage[key]) {
+
+                element.setAttribute(
+                    "alt",
+                    selectedLanguage[key]
+                );
+
+            }
+
+        });
+
+
+    localStorage.setItem(
+        "djMarcoLanguage",
+        language
+    );
+
+}
+
+
+const languageSelector =
+    document.getElementById("languageSelector");
+
+
+languageSelector.addEventListener(
+    "change",
+    function () {
+
+        changeLanguage(
+            this.value
+        );
+
+    }
+);
+
+
+const savedLanguage =
+    localStorage.getItem(
+        "djMarcoLanguage"
+    ) || "pt";
+
+
+languageSelector.value =
+    savedLanguage;
+
+
+changeLanguage(
+    savedLanguage
+);
+
+</script>
 
 </body>
 </html>
