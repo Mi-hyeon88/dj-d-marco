@@ -296,3 +296,282 @@ img {
         padding: 60px 8%;
     }
 }
+/* =========================
+   MURAL DE MENSAGENS
+========================= */
+
+.fan-messages {
+    position: relative;
+    padding: 140px 0 130px;
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(184,154,99,0.08),
+            transparent 38%
+        ),
+        #0a0a0a;
+    overflow: hidden;
+}
+
+.fan-messages-intro {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.fan-messages-intro .text {
+    margin: 0 auto;
+}
+
+
+/* MURAL */
+
+.message-card {
+    position: relative;
+    width: min(760px, 88%);
+    margin: 70px auto 35px;
+    padding: 75px 80px 70px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.035),
+            rgba(255,255,255,0.012)
+        );
+
+    border: 1px solid rgba(184,154,99,0.28);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.45),
+        inset 0 0 60px rgba(184,154,99,0.025);
+
+    text-align: center;
+}
+
+
+/* DETALHE INTERNO DO MURAL */
+
+.message-card::before {
+    content: "";
+    position: absolute;
+    inset: 12px;
+
+    border: 1px solid rgba(255,255,255,0.06);
+
+    pointer-events: none;
+}
+
+
+/* SELO */
+
+.message-country {
+    position: absolute;
+    top: 30px;
+    right: 35px;
+
+    width: 76px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #111;
+
+    border: 2px dashed rgba(184,154,99,0.7);
+
+    color: var(--white);
+
+    font-size: 12px;
+    letter-spacing: 1px;
+
+    transform: rotate(4deg);
+
+    box-shadow:
+        0 8px 18px rgba(0,0,0,0.35);
+}
+
+
+/* PAÍS */
+
+.message-country {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+
+/* NOME */
+
+.message-name {
+    margin-top: 35px;
+
+    color: var(--gold);
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 30px;
+
+    letter-spacing: 2px;
+}
+
+
+/* MENSAGEM */
+
+.message-text {
+    max-width: 570px;
+    margin: 35px auto 0;
+
+    color: var(--white);
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: clamp(25px, 3vw, 34px);
+
+    line-height: 1.35;
+}
+
+
+/* BOTÃO */
+
+.message-navigation {
+    display: flex;
+    justify-content: center;
+}
+
+.message-button {
+    position: relative;
+
+    padding: 12px 25px;
+
+    background: transparent;
+
+    border: 1px solid rgba(184,154,99,0.45);
+
+    color: var(--soft);
+
+    font-family: 'Inter', sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.message-button:hover {
+    background: rgba(184,154,99,0.08);
+
+    border-color: var(--gold);
+
+    color: var(--white);
+}
+
+
+/* =========================
+   STICKERS DECORATIVOS
+========================= */
+
+.fan-messages::before {
+    content: "🎧";
+    position: absolute;
+
+    top: 90px;
+    left: 10%;
+
+    font-size: 34px;
+
+    transform: rotate(-12deg);
+
+    opacity: 0.75;
+}
+
+.fan-messages::after {
+    content: "🎵";
+    position: absolute;
+
+    bottom: 70px;
+    right: 10%;
+
+    font-size: 32px;
+
+    transform: rotate(10deg);
+
+    opacity: 0.7;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .fan-messages {
+        padding: 95px 0 90px;
+    }
+
+    .message-card {
+        width: 90%;
+
+        margin-top: 50px;
+
+        padding: 70px 28px 55px;
+    }
+
+    .message-card::before {
+        inset: 8px;
+    }
+
+    .message-country {
+        top: 22px;
+        right: 22px;
+
+        width: 64px;
+        height: 50px;
+
+        font-size: 9px;
+    }
+
+    .message-name {
+        margin-top: 30px;
+
+        font-size: 27px;
+    }
+
+    .message-text {
+        margin-top: 28px;
+
+        font-size: 25px;
+
+        line-height: 1.4;
+    }
+
+    .message-button {
+        font-size: 9px;
+
+        padding: 11px 20px;
+    }
+
+    .fan-messages::before {
+        top: 45px;
+        left: 5%;
+
+        font-size: 26px;
+    }
+
+    .fan-messages::after {
+        bottom: 35px;
+        right: 5%;
+
+        font-size: 25px;
+    }
+
+}
