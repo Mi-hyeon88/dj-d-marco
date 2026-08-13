@@ -279,11 +279,11 @@ img {
     }
 
     .hero {
-        min-height: 100svh;
+        min-height: 68svh;
     }
 
     .hero-content {
-        padding-bottom: 55px;
+        padding-bottom: 30px;
     }
 
     .hero-label {
