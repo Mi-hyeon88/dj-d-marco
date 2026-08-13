@@ -80,54 +80,55 @@
 
     <!-- NAVEGAÇÃO -->
 
-    <nav class="nav">
+<nav class="nav">
 
-        <div class="nav-inner">
+    <div class="nav-inner">
 
-            <a href="index.html" class="logo">
-                D.MARCO
+        <a href="index.html" class="logo">
+            D.MARCO
+        </a>
+
+        <div class="nav-links">
+
+            <a href="index.html" data-i18n="navHome">
+                홈
             </a>
 
-            <div class="nav-links">
+            <a href="#fan-messages" data-i18n="navMessages">
+                메시지
+            </a>
 
-                <a href="index.html" data-i18n="navHome">
-                    Início
-                </a>
+            <a href="pagina-2.html" data-i18n="navMusicMemory">
+                음악 & 추억
+            </a>
 
-                <a href="pagina-2.html" data-i18n="navMemories">
-                    Memórias
-                </a>
+            <!-- IDIOMAS -->
 
-                <!-- IDIOMAS -->
+            <div class="language-selector">
 
-                <div class="language-selector">
+                <select id="languageSelector" aria-label="언어">
 
-                    <select id="languageSelector" aria-label="Idioma">
+                    <option value="kr">
+                        한국어
+                    </option>
 
-                        <option value="pt">
-                            PT
-                        </option>
+                    <option value="pt">
+                        Português
+                    </option>
 
-                        <option value="en">
-                            EN
-                        </option>
+                    <option value="en">
+                        English
+                    </option>
 
-                        <option value="kr">
-                            KR
-                        </option>
-
-                    </select>
-
-                </div>
+                </select>
 
             </div>
 
         </div>
 
-    </nav>
+    </div>
 
-
-    <!-- GRANDE BANNER -->
+</nav>
 
     <header class="hero">
 
@@ -225,7 +226,7 @@
 
 <!-- MENSAGENS DOS FÃS -->
 
-<section class="fan-messages">
+<section class="fan-messages" id="fan-messages">
 
     <div class="container fan-messages-intro">
 
