@@ -760,7 +760,7 @@ img {
 }
 
 .language-selector select {
-    min-width: 82px;
+    min-width: 78px;
 
     white-space: nowrap;
 
@@ -796,7 +796,7 @@ img {
 @media (max-width: 700px) {
 
     .nav {
-        height: 54px;
+        height: 48px;
     }
 
     .nav-inner {
@@ -804,7 +804,7 @@ img {
     }
 
     .logo {
-        font-size: 15px;
+        font-size: 14px;
         letter-spacing: 0.08em;
     }
 
