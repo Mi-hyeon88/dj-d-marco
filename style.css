@@ -616,6 +616,11 @@ img {
         min-height: 68svh;
     }
 
+    .hero-image {
+    height: 110%;
+    top: -5%;
+    }
+
     .hero-content {
         padding-bottom: 32px;
     }
