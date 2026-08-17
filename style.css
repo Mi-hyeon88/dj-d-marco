@@ -1274,7 +1274,7 @@ select {
 
         margin: 0 auto;
 
-        font-size: 25px;
+        font-size: 23px;
 
         line-height: 1.25;
     }
@@ -1287,7 +1287,7 @@ select {
             auto
             0;
 
-        font-size: 16px;
+        font-size: 15px;
 
         line-height: 1.45;
     }
@@ -1297,24 +1297,24 @@ select {
     }
 
     .intro-decoration.left {
-        left: 45px;
+        left: 12px;
     }
 
     .intro-decoration.right {
-        right: 45px;
+        right: 12px;
     }
 
 
     /* TÍTULO */
 
     .messages-title {
-        padding-top: 10px;
+        padding-top: 6px;
 
         font-family:
             'Cormorant Garamond',
             serif;
 
-        font-size: 25px;
+        font-size: 21px;
 
         font-style: normal;
 
@@ -1331,7 +1331,7 @@ select {
     .messages-area {
         padding:
             8px
-            48px
+            42px
             15px;
     }
 
@@ -1351,9 +1351,9 @@ select {
         min-height: 275px;
 
         padding:
-            38px
-            32px
-            28px;
+    34px
+    26px
+    28px;
 
         border-radius: 9px;
     }
@@ -1365,14 +1365,14 @@ select {
     .message-text {
         max-width: 225px;
 
-        font-size: 21px;
+        font-size: 20px;
 
         line-height: 1.45;
     }
 
     .message-country {
         top: 22px;
-        right: 22px;
+        right: 16px;
 
         width: 58px;
         height: 62px;
@@ -1386,21 +1386,21 @@ select {
     }
 
     .message-arrow.left {
-        left: -43px;
+        left: -38px;
     }
 
     .message-arrow.right {
-        right: -43px;
+        right: -38px;
     }
 
     .message-dots {
-        gap: 15px;
+        gap: 11px;
 
         margin-top: 10px;
     }
 
     .message-counter {
-        font-size: 19px;
+        font-size: 17px;
     }
 
 
