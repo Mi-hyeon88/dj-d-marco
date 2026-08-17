@@ -1105,7 +1105,7 @@ select {
     }
 
     .nav-links > a {
-        display: none;
+        display: block;
     }
 
     .nav-links > a:first-child {
@@ -1445,7 +1445,10 @@ select {
         right: 8px;
     }
 
-    .decor-flower-4
+    .decor-flower-4 {
+    bottom: 30px;
+    left: 20px;
+    }
 
    /* =========================================================
    DECORAÇÃO MÁGICA DO SITE
