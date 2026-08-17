@@ -2,1194 +2,26 @@
 <html lang="pt-BR">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>D.MARCO</title>
+    <title>D.MARCO</title>
 
-<meta
-    name="description"
-    content="Um espaço especial criado para D.MARCO."
->
+    <meta
+        name="description"
+        content="Um espaço criado para D.MARCO."
+        id="meta-description"
+    >
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap"
-    rel="stylesheet"
->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&family=Parisienne&display=swap"
+        rel="stylesheet"
+    >
 
-<style>
-
-/* =========================================================
-   BASE
-========================================================= */
-
-:root {
-    --black: #050505;
-    --dark: #090909;
-    --cream: #ead7c0;
-    --white: #f4eee8;
-    --soft: #b7aaa0;
-    --gold: #b99a70;
-    --red: #b51f25;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    background: #020202;
-    color: var(--white);
-    font-family: 'Inter', sans-serif;
-    font-weight: 300;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-button,
-select {
-    font-family: inherit;
-}
-
-
-/* =========================================================
-   FUNDO EXTERNO
-========================================================= */
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -2;
-
-    background:
-        radial-gradient(circle at 8% 15%, rgba(184,154,99,.18) 0 1px, transparent 2px),
-        radial-gradient(circle at 92% 12%, rgba(184,154,99,.15) 0 1px, transparent 2px),
-        radial-gradient(circle at 14% 75%, rgba(184,154,99,.12) 0 1px, transparent 2px),
-        radial-gradient(circle at 88% 70%, rgba(184,154,99,.12) 0 1px, transparent 2px),
-        #020202;
-
-    background-size:
-        140px 160px,
-        180px 190px,
-        210px 220px,
-        170px 180px;
-}
-
-
-/* =========================================================
-   PÁGINA PRINCIPAL
-========================================================= */
-
-.page {
-    width: min(1165px, calc(100% - 30px));
-    margin: 24px auto;
-
-    min-height: calc(100vh - 48px);
-
-    background: #050505;
-
-    border: 1px solid rgba(185,154,112,.28);
-
-    box-shadow:
-        0 0 80px rgba(0,0,0,.75);
-
-    overflow: hidden;
-
-    position: relative;
-}
-
-
-/* =========================================================
-   DETALHES DECORATIVOS
-========================================================= */
-
-.decor {
-    position: absolute;
-    z-index: 10;
-
-    color: rgba(185,154,112,.45);
-
-    pointer-events: none;
-}
-
-.decor.one {
-    top: 22px;
-    right: 18px;
-    font-size: 38px;
-}
-
-.decor.two {
-    top: 105px;
-    left: 18px;
-    font-size: 24px;
-}
-
-.decor.three {
-    top: 390px;
-    right: 20px;
-    font-size: 27px;
-}
-
-.decor.four {
-    bottom: 90px;
-    left: 20px;
-    font-size: 32px;
-}
-
-
-/* =========================================================
-   CABEÇALHO
-========================================================= */
-
-.nav {
-    height: 78px;
-
-    display: flex;
-    align-items: center;
-
-    padding: 0 60px;
-
-    background: rgba(5,5,5,.97);
-
-    border-bottom: 1px solid rgba(255,255,255,.04);
-
-    position: relative;
-    z-index: 30;
-}
-
-.nav-inner {
-    width: 100%;
-
-    display: flex;
-    align-items: center;
-}
-
-.logo {
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 24px;
-
-    letter-spacing: .15em;
-
-    white-space: nowrap;
-
-    color: var(--cream);
-}
-
-.nav-links {
-    margin-left: auto;
-
-    display: flex;
-    align-items: center;
-
-    gap: 42px;
-}
-
-.nav-links > a {
-    position: relative;
-
-    font-size: 12px;
-
-    letter-spacing: .04em;
-
-    color: #ded5ce;
-
-    padding: 30px 0;
-}
-
-.nav-links > a.active {
-    color: var(--red);
-}
-
-.nav-links > a.active::after {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    right: 0;
-    bottom: 20px;
-
-    height: 1px;
-
-    background: var(--red);
-}
-
-
-/* =========================================================
-   CORAÇÃO
-========================================================= */
-
-.nav-heart {
-    margin-left: 38px;
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 32px;
-
-    font-weight: 300;
-
-    color: var(--cream);
-}
-
-
-/* =========================================================
-   IDIOMA
-========================================================= */
-
-.language-selector {
-    margin-left: 28px;
-}
-
-.language-selector select {
-    appearance: none;
-    -webkit-appearance: none;
-
-    width: 126px;
-
-    padding: 10px 34px 10px 15px;
-
-    color: var(--cream);
-
-    background:
-        linear-gradient(45deg, transparent 50%, var(--cream) 50%),
-        linear-gradient(135deg, var(--cream) 50%, transparent 50%),
-        transparent;
-
-    background-position:
-        calc(100% - 17px) 50%,
-        calc(100% - 12px) 50%;
-
-    background-size: 5px 5px;
-
-    background-repeat: no-repeat;
-
-    border: 1px solid rgba(185,154,112,.28);
-
-    border-radius: 4px;
-
-    font-size: 11px;
-
-    letter-spacing: .08em;
-}
-
-.language-selector option {
-    background: #111;
-    color: #fff;
-}
-
-
-/* =========================================================
-   MENU
-========================================================= */
-
-.menu-icon {
-    margin-left: 38px;
-
-    width: 24px;
-    height: 20px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.menu-icon span {
-    width: 100%;
-    height: 1px;
-
-    background: var(--cream);
-}
-
-
-/* =========================================================
-   HERO ORIGINAL
-========================================================= */
-
-.hero {
-    position: relative;
-
-    min-height: 425px;
-
-    display: grid;
-
-    grid-template-columns: 42% 58%;
-
-    background: #050505;
-
-    overflow: hidden;
-}
-
-
-/* TEXTO */
-
-.hero-text {
-    position: relative;
-    z-index: 5;
-
-    padding: 68px 30px 55px 70px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    background:
-        radial-gradient(
-            circle at 30% 40%,
-            rgba(184,154,99,.045),
-            transparent 55%
-        ),
-        #050505;
-}
-
-.hero-title {
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: clamp(55px, 5vw, 76px);
-
-    font-weight: 500;
-
-    line-height: .86;
-
-    color: var(--cream);
-}
-
-.hero-line {
-    width: 45px;
-    height: 2px;
-
-    background: var(--red);
-
-    margin: 28px 0 20px;
-}
-
-.hero-subtitle {
-    max-width: 300px;
-
-    color: #d0c2b7;
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 17px;
-
-    line-height: 1.65;
-}
-
-.hero-heart {
-    margin-top: 20px;
-
-    font-family: 'Cormorant Garamond', serif;
-
-    color: var(--red);
-
-    font-size: 34px;
-}
-
-
-/* FOTO */
-
-.hero-photo {
-    position: relative;
-
-    min-height: 425px;
-
-    overflow: hidden;
-}
-
-.hero-photo::after {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    background:
-        linear-gradient(
-            to right,
-            rgba(5,5,5,.25),
-            transparent 25%
-        ),
-        linear-gradient(
-            to bottom,
-            rgba(0,0,0,.05),
-            rgba(0,0,0,.18)
-        );
-}
-
-.hero-photo img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    object-position: center center;
-}
-
-
-/* =========================================================
-   BORDA RASGADA
-========================================================= */
-
-.tear {
-    position: relative;
-
-    height: 28px;
-
-    margin-top: -1px;
-
-    z-index: 8;
-
-    background:
-        linear-gradient(
-            176deg,
-            transparent 0 42%,
-            #d9c2a8 43% 49%,
-            transparent 50%
-        );
-
-    filter: drop-shadow(0 2px 1px rgba(0,0,0,.7));
-}
-
-
-/* =========================================================
-   INTRODUÇÃO DAS MENSAGENS
-========================================================= */
-
-.messages-intro {
-    position: relative;
-
-    padding: 12px 40px 0;
-
-    text-align: center;
-
-    background: #050505;
-}
-
-.messages-intro-title {
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 27px;
-
-    color: var(--cream);
-
-    line-height: 1.2;
-}
-
-.messages-intro-subtitle {
-    margin-top: 3px;
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-style: italic;
-
-    font-size: 16px;
-
-    color: #9f8c7d;
-}
-
-.intro-line {
-    width: 100%;
-
-    height: 1px;
-
-    margin-top: 17px;
-
-    background: linear-gradient(
-        to right,
-        transparent,
-        rgba(185,154,112,.32),
-        transparent
-    );
-}
-
-
-/* =========================================================
-   TÍTULO DAS MENSAGENS
-========================================================= */
-
-.messages-title {
-    padding-top: 5px;
-
-    text-align: center;
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 29px;
-
-    font-style: italic;
-
-    color: var(--cream);
-}
-
-.messages-title::before {
-    content: "✉";
-
-    display: block;
-
-    font-family: serif;
-
-    font-style: normal;
-
-    color: var(--red);
-
-    font-size: 23px;
-
-    margin-bottom: 2px;
-}
-
-
-/* =========================================================
-   MURAL
-========================================================= */
-
-.messages-area {
-    position: relative;
-
-    padding: 12px 75px 20px;
-}
-
-.message-stage {
-    position: relative;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-}
-
-
-/* CARTAS ATRÁS */
-
-.message-stage::before,
-.message-stage::after {
-    content: "";
-
-    position: absolute;
-
-    width: 62%;
-
-    height: 82%;
-
-    border: 1px solid rgba(185,154,112,.18);
-
-    border-radius: 9px;
-
-    background: rgba(255,255,255,.01);
-}
-
-.message-stage::before {
-    transform: translateX(-18px);
-}
-
-.message-stage::after {
-    transform: translateX(18px);
-}
-
-
-/* CARTA PRINCIPAL */
-
-.message-card {
-    position: relative;
-
-    z-index: 3;
-
-    width: 470px;
-
-    min-height: 205px;
-
-    padding: 27px 45px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.035),
-            rgba(255,255,255,.008)
-        );
-
-    border: 1px solid rgba(185,154,112,.42);
-
-    border-radius: 10px;
-
-    box-shadow:
-        0 20px 45px rgba(0,0,0,.5);
-}
-
-.message-name {
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 25px;
-
-    color: var(--cream);
-}
-
-.message-name::after {
-    content: "";
-
-    display: block;
-
-    width: 45px;
-
-    height: 2px;
-
-    margin-top: 7px;
-
-    background: var(--red);
-}
-
-.message-text {
-    max-width: 300px;
-
-    margin-top: 13px;
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 22px;
-
-    line-height: 1.35;
-
-    color: var(--cream);
-}
-
-.message-country {
-    position: absolute;
-
-    top: 20px;
-    right: 30px;
-
-    width: 58px;
-    height: 62px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    background: #ead8c5;
-
-    color: #111;
-
-    font-size: 8px;
-
-    box-shadow: 0 4px 12px rgba(0,0,0,.4);
-
-    transform: rotate(1deg);
-}
-
-.message-country::before {
-    content: "🇧🇷";
-
-    font-size: 25px;
-
-    margin-bottom: 2px;
-}
-
-.message-country span {
-    font-size: 7px;
-}
-
-
-/* CORAÇÃO DA CARTA */
-
-.message-heart {
-    margin-top: 8px;
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 27px;
-
-    color: #a8907e;
-}
-
-
-/* =========================================================
-   SETAS
-========================================================= */
-
-.message-arrow {
-    position: absolute;
-
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    width: 52px;
-    height: 52px;
-
-    border: 1px solid var(--red);
-
-    border-radius: 50%;
-
-    background: transparent;
-
-    color: var(--cream);
-
-    font-size: 28px;
-
-    font-weight: 300;
-
-    cursor: pointer;
-
-    z-index: 6;
-}
-
-.message-arrow.left {
-    left: 0;
-}
-
-.message-arrow.right {
-    right: 0;
-}
-
-
-/* =========================================================
-   INDICADORES
-========================================================= */
-
-.message-dots {
-    display: flex;
-
-    justify-content: center;
-
-    gap: 16px;
-
-    margin-top: 14px;
-}
-
-.message-dot {
-    width: 9px;
-    height: 9px;
-
-    border-radius: 50%;
-
-    background: #4a4a4a;
-}
-
-.message-dot.active {
-    background: #e32930;
-}
-
-.message-counter {
-    margin-top: 8px;
-
-    text-align: center;
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 20px;
-
-    color: var(--cream);
-}
-
-.message-counter .current {
-    color: var(--red);
-}
-
-.message-counter .divider {
-    margin: 0 8px;
-
-    color: #806c5e;
-}
-
-
-/* =========================================================
-   RODAPÉ
-========================================================= */
-
-.footer {
-    margin-top: 2px;
-
-    padding: 14px 40px 15px;
-
-    border-top: 1px solid rgba(185,154,112,.16);
-
-    text-align: center;
-}
-
-.footer::before {
-    content: "♡";
-
-    display: block;
-
-    color: var(--red);
-
-    font-size: 25px;
-
-    margin-bottom: 3px;
-}
-
-.footer-text {
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 15px;
-
-    color: #a99587;
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 700px) {
-
-    body {
-        background: #050505;
-    }
-
-    .page {
-        width: 100%;
-        margin: 0;
-
-        border: 0;
-
-        min-height: 100vh;
-    }
-
-
-    /* CABEÇALHO */
-
-    .nav {
-        height: 62px;
-
-        padding: 0 18px;
-    }
-
-    .nav-inner {
-        justify-content: space-between;
-    }
-
-    .logo {
-        font-size: 19px;
-    }
-
-    .nav-links {
-        margin-left: auto;
-
-        gap: 20px;
-    }
-
-    .nav-links > a {
-        display: none;
-    }
-
-    .nav-links > a:first-child {
-        display: block;
-
-        position: absolute;
-
-        top: 62px;
-        left: 70px;
-    }
-
-    .nav-heart {
-        margin-left: 0;
-
-        font-size: 28px;
-    }
-
-    .language-selector {
-        margin-left: 0;
-    }
-
-    .language-selector select {
-        width: 64px;
-
-        padding: 7px 19px 7px 7px;
-
-        font-size: 9px;
-
-        letter-spacing: .03em;
-    }
-
-    .menu-icon {
-        margin-left: 0;
-
-        width: 23px;
-        height: 18px;
-    }
-
-
-    /* HERO */
-
-    .hero {
-        display: block;
-
-        min-height: 615px;
-    }
-
-    .hero-photo {
-        position: absolute;
-
-        inset: 0;
-
-        min-height: 615px;
-    }
-
-    .hero-photo img {
-        width: 100%;
-        height: 100%;
-
-        object-fit: cover;
-
-        object-position: 58% center;
-    }
-
-    .hero-photo::after {
-        background:
-            linear-gradient(
-                to right,
-                rgba(0,0,0,.92) 0%,
-                rgba(0,0,0,.68) 42%,
-                rgba(0,0,0,.12) 82%
-            ),
-            linear-gradient(
-                to bottom,
-                rgba(0,0,0,.18),
-                rgba(0,0,0,.05) 55%,
-                rgba(0,0,0,.68) 100%
-            );
-    }
-
-    .hero-text {
-        position: relative;
-
-        z-index: 5;
-
-        min-height: 615px;
-
-        padding: 120px 35px 55px;
-
-        display: flex;
-
-        justify-content: flex-start;
-
-        background: transparent;
-    }
-
-    .hero-title {
-        font-size: 54px;
-
-        line-height: .9;
-
-        max-width: 330px;
-    }
-
-    .hero-line {
-        margin: 25px 0 18px;
-    }
-
-    .hero-subtitle {
-        max-width: 300px;
-
-        font-size: 16px;
-
-        line-height: 1.55;
-
-        color: #d8cbc1;
-    }
-
-    .hero-heart {
-        font-size: 32px;
-    }
-
-
-    /* RASGO */
-
-    .tear {
-        height: 22px;
-    }
-
-
-    /* INTRO */
-
-    .messages-intro {
-        padding: 30px 30px 0;
-    }
-
-    .messages-intro-title {
-        font-size: 25px;
-    }
-
-    .messages-intro-subtitle {
-        font-size: 16px;
-
-        max-width: 280px;
-
-        margin: 7px auto 0;
-
-        line-height: 1.45;
-    }
-
-    .intro-line {
-        margin-top: 18px;
-    }
-
-
-    /* TÍTULO */
-
-    .messages-title {
-        padding-top: 10px;
-
-        font-size: 25px;
-
-        font-style: normal;
-
-        letter-spacing: .12em;
-    }
-
-    .messages-title::before {
-        font-size: 21px;
-    }
-
-
-    /* MENSAGENS */
-
-    .messages-area {
-        padding: 8px 48px 15px;
-    }
-
-    .message-stage {
-        min-height: 275px;
-    }
-
-    .message-stage::before,
-    .message-stage::after {
-        width: 80%;
-        height: 78%;
-    }
-
-    .message-card {
-        width: 100%;
-
-        min-height: 275px;
-
-        padding: 38px 32px 28px;
-
-        border-radius: 9px;
-    }
-
-    .message-name {
-        font-size: 24px;
-    }
-
-    .message-text {
-        max-width: 225px;
-
-        font-size: 21px;
-
-        line-height: 1.45;
-    }
-
-    .message-country {
-        top: 22px;
-        right: 22px;
-
-        width: 58px;
-        height: 62px;
-    }
-
-    .message-arrow {
-        width: 48px;
-        height: 48px;
-
-        font-size: 25px;
-    }
-
-    .message-arrow.left {
-        left: -43px;
-    }
-
-    .message-arrow.right {
-        right: -43px;
-    }
-
-    .message-dots {
-        gap: 15px;
-
-        margin-top: 10px;
-    }
-
-    .message-counter {
-        font-size: 19px;
-    }
-
-
-    /* RODAPÉ */
-
-    .footer {
-        padding: 15px 25px 22px;
-    }
-
-    .footer-text {
-        max-width: 330px;
-
-        margin: auto;
-
-        font-size: 15px;
-
-        line-height: 1.4;
-    }
-
-}
-
-
-/* =========================================================
-   CELULARES MUITO PEQUENOS
-========================================================= */
-
-@media (max-width: 390px) {
-
-    .logo {
-        font-size: 17px;
-    }
-
-    .nav {
-        padding: 0 14px;
-    }
-
-    .nav-links {
-        gap: 14px;
-    }
-
-    .hero-text {
-        padding-left: 28px;
-        padding-right: 28px;
-    }
-
-    .hero-title {
-        font-size: 49px;
-    }
-
-    .hero-subtitle {
-        font-size: 15px;
-    }
-
-    .messages-area {
-        padding-left: 43px;
-        padding-right: 43px;
-    }
-
-    .message-card {
-        padding-left: 25px;
-        padding-right: 25px;
-    }
-
-}
-
-</style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 
@@ -1197,17 +29,24 @@ body::before {
 
 <div class="page">
 
-    <!-- DECORAÇÃO -->
+    <!-- =========================
+         DECORAÇÃO
+    ========================== -->
 
-    <div class="decor one">✿</div>
-    <div class="decor two">✧</div>
-    <div class="decor three">✿</div>
-    <div class="decor four">✧</div>
+    <div class="decor decor-star decor-star-1">✦</div>
+    <div class="decor decor-star decor-star-2">✧</div>
+    <div class="decor decor-star decor-star-3">✦</div>
+    <div class="decor decor-star decor-star-4">✧</div>
+
+    <div class="decor decor-flower decor-flower-1">✿</div>
+    <div class="decor decor-flower decor-flower-2">✿</div>
+    <div class="decor decor-flower decor-flower-3">✿</div>
+    <div class="decor decor-flower decor-flower-4">✿</div>
 
 
-    <!-- =====================================================
+    <!-- =========================
          CABEÇALHO
-    ====================================================== -->
+    ========================== -->
 
     <nav class="nav">
 
@@ -1216,6 +55,7 @@ body::before {
             <a href="index.html" class="logo">
                 D.MARCO
             </a>
+
 
             <div class="nav-links">
 
@@ -1243,9 +83,11 @@ body::before {
 
             </div>
 
+
             <div class="nav-heart">
                 ♡
             </div>
+
 
             <div class="language-selector">
 
@@ -1267,10 +109,13 @@ body::before {
 
             </div>
 
-            <div class="menu-icon">
+
+            <div class="menu-icon" aria-label="Menu">
+
                 <span></span>
                 <span></span>
                 <span></span>
+
             </div>
 
         </div>
@@ -1278,15 +123,623 @@ body::before {
     </nav>
 
 
-    <!-- =====================================================
+
+    <!-- =========================
          HERO
-    ====================================================== -->
+    ========================== -->
 
     <header class="hero">
 
         <div class="hero-text">
 
             <h1 class="hero-title">
-                Com carinho,<br>
-                para você.
-          
+                <span data-i18n="heroTitle">
+                    Com carinho,<br>
+                    para você.
+                </span>
+            </h1>
+
+
+            <div class="hero-line"></div>
+
+
+            <p
+                class="hero-subtitle"
+                data-i18n="heroSubtitle"
+            >
+                Este é um espaço criado para você,
+                reunindo tudo aquilo que pessoas de
+                diferentes lugares do mundo quiseram
+                deixar para você.
+            </p>
+
+
+            <div class="hero-heart">
+                ♡
+            </div>
+
+        </div>
+
+
+        <div class="hero-photo">
+
+            <img
+                src="marco-dj-banner.png"
+                alt="DJ D.MARCO tocando"
+                data-i18n-alt="heroImageAlt"
+            >
+
+        </div>
+
+    </header>
+
+
+    <!-- BORDA RASGADA -->
+
+    <div class="tear"></div>
+
+
+
+    <!-- =========================
+         INTRODUÇÃO
+    ========================== -->
+
+    <section class="messages-intro">
+
+        <div class="intro-decoration left">
+            ♧
+        </div>
+
+        <div class="intro-decoration right">
+            ♧
+        </div>
+
+
+        <h2
+            class="messages-intro-title"
+            data-i18n="messagesIntroTitle"
+        >
+            De diferentes lugares, um só carinho.
+        </h2>
+
+
+        <p
+            class="messages-intro-subtitle"
+            data-i18n="messagesIntroSubtitle"
+        >
+            Algumas palavras encontraram o caminho até você.
+        </p>
+
+
+        <div class="intro-line"></div>
+
+    </section>
+
+
+
+    <!-- =========================
+         MENSAGENS
+    ========================== -->
+
+    <section
+        class="messages-section"
+        id="fan-messages"
+    >
+
+        <div class="messages-title">
+
+            <span
+                class="messages-envelope"
+            >
+                ✉
+            </span>
+
+            <span data-i18n="messagesTitle">
+                Mensagens que chegaram até você
+            </span>
+
+        </div>
+
+
+        <div class="messages-area">
+
+            <button
+                class="message-arrow left"
+                id="previousMessage"
+                type="button"
+                aria-label="Mensagem anterior"
+            >
+                ←
+            </button>
+
+
+            <div class="message-stage">
+
+                <div class="message-card">
+
+                    <div class="message-name">
+                        Ana
+                    </div>
+
+
+                    <div class="message-name-line"></div>
+
+
+                    <div class="message-country">
+
+                        <div class="stamp-flag">
+                            🇧🇷
+                        </div>
+
+                        <span>
+                            BRASIL
+                        </span>
+
+                    </div>
+
+
+                    <div class="message-text">
+                        “Que você nunca se esqueça
+                        do quanto sua música pode
+                        tocar o coração das pessoas.”
+                    </div>
+
+
+                    <div class="message-heart">
+                        ♡
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="message-arrow right"
+                id="nextMessage"
+                type="button"
+                aria-label="Próxima mensagem"
+            >
+                →
+            </button>
+
+        </div>
+
+
+        <!-- PONTOS -->
+
+        <div class="message-dots">
+
+            <span class="message-dot active"></span>
+            <span class="message-dot"></span>
+            <span class="message-dot"></span>
+            <span class="message-dot"></span>
+            <span class="message-dot"></span>
+            <span class="message-dot"></span>
+
+        </div>
+
+
+        <!-- CONTADOR -->
+
+        <div class="message-counter">
+
+            <span class="current">
+                01
+            </span>
+
+            <span class="divider">
+                /
+            </span>
+
+            <span>
+                87
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         RODAPÉ
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="footer-line"></div>
+
+        <div
+            class="footer-text"
+            data-i18n="footerText"
+        >
+            Projeto criado e idealizado por Jamila,
+            ADM da fanpage @d.marcoeffect.
+        </div>
+
+
+        <div class="footer-heart">
+            ♡
+        </div>
+
+    </footer>
+
+</div>
+
+
+
+<!-- =========================
+     TRADUÇÕES
+========================== -->
+
+<script>
+
+const translations = {
+
+    pt: {
+
+        pageTitle: "D.MARCO",
+
+        description:
+            "Um espaço criado para D.MARCO.",
+
+
+        navHome:
+            "INÍCIO",
+
+        navMessages:
+            "MENSAGENS",
+
+        navMusicMemory:
+            "MÚSICAS & MOMENTOS",
+
+
+        heroTitle:
+            "Com carinho,<br>para você.",
+
+        heroSubtitle:
+            "Este é um espaço criado para você, reunindo tudo aquilo que pessoas de diferentes lugares do mundo quiseram deixar para você.",
+
+
+        messagesIntroTitle:
+            "De diferentes lugares, um só carinho.",
+
+        messagesIntroSubtitle:
+            "Algumas palavras encontraram o caminho até você.",
+
+
+        messagesTitle:
+            "Mensagens que chegaram até você.",
+
+
+        footerText:
+            "Projeto criado e idealizado por Jamila, ADM da fanpage @d.marcoeffect.",
+
+
+        heroImageAlt:
+            "DJ D.MARCO tocando"
+
+    },
+
+
+    en: {
+
+        pageTitle: "D.MARCO",
+
+        description:
+            "A space created for D.MARCO.",
+
+
+        navHome:
+            "HOME",
+
+        navMessages:
+            "MESSAGES",
+
+        navMusicMemory:
+            "MUSIC & MOMENTS",
+
+
+        heroTitle:
+            "With care,<br>for you.",
+
+        heroSubtitle:
+            "This is a space created for you, bringing together everything that people from different places around the world wanted to leave for you.",
+
+
+        messagesIntroTitle:
+            "From different places, one shared affection.",
+
+        messagesIntroSubtitle:
+            "Some words found their way to you.",
+
+
+        messagesTitle:
+            "Messages that reached you.",
+
+
+        footerText:
+            "Project created and envisioned by Jamila, ADM of the fanpage @d.marcoeffect.",
+
+
+        heroImageAlt:
+            "DJ D.MARCO performing"
+
+    },
+
+
+    kr: {
+
+        pageTitle: "D.MARCO",
+
+        description:
+            "D.MARCO를 위해 만들어진 특별한 공간입니다.",
+
+
+        navHome:
+            "홈",
+
+        navMessages:
+            "메시지",
+
+        navMusicMemory:
+            "음악 & 순간들",
+
+
+        heroTitle:
+            "마음을 담아,<br>당신에게.",
+
+        heroSubtitle:
+            "이 공간은 당신을 위해 만들어졌습니다. 세계 여러 곳의 사람들이 당신에게 남기고 싶었던 모든 것을 한곳에 담았습니다.",
+
+
+        messagesIntroTitle:
+            "서로 다른 곳에서, 하나의 마음으로.",
+
+        messagesIntroSubtitle:
+            "당신에게 닿은 마음의 말들입니다.",
+
+
+        messagesTitle:
+            "당신에게 도착한 메시지.",
+
+
+        footerText:
+            "Jamila가 만들고 기획한 프로젝트, @d.marcoeffect 팬페이지 ADM.",
+
+
+        heroImageAlt:
+            "DJ D.MARCO 공연 모습"
+
+    }
+
+};
+
+
+
+function changeLanguage(language) {
+
+    const selectedLanguage =
+        translations[language];
+
+    if (!selectedLanguage) {
+        return;
+    }
+
+
+    document.documentElement.lang =
+        language === "pt"
+            ? "pt-BR"
+            : language === "kr"
+                ? "ko"
+                : "en";
+
+
+    document.title =
+        selectedLanguage.pageTitle;
+
+
+    const description =
+        document.getElementById(
+            "meta-description"
+        );
+
+
+    if (description) {
+
+        description.setAttribute(
+            "content",
+            selectedLanguage.description
+        );
+
+    }
+
+
+    document
+        .querySelectorAll("[data-i18n]")
+        .forEach(element => {
+
+            const key =
+                element.getAttribute("data-i18n");
+
+
+            if (
+                Object.prototype.hasOwnProperty.call(
+                    selectedLanguage,
+                    key
+                )
+            ) {
+
+                element.innerHTML =
+                    selectedLanguage[key];
+
+            }
+
+        });
+
+
+    document
+        .querySelectorAll("[data-i18n-alt]")
+        .forEach(element => {
+
+            const key =
+                element.getAttribute("data-i18n-alt");
+
+
+            if (
+                Object.prototype.hasOwnProperty.call(
+                    selectedLanguage,
+                    key
+                )
+            ) {
+
+                element.setAttribute(
+                    "alt",
+                    selectedLanguage[key]
+                );
+
+            }
+
+        });
+
+
+    localStorage.setItem(
+        "djMarcoLanguage",
+        language
+    );
+
+}
+
+
+
+const languageSelector =
+    document.getElementById(
+        "languageSelector"
+    );
+
+
+languageSelector.addEventListener(
+    "change",
+    function () {
+
+        changeLanguage(
+            this.value
+        );
+
+    }
+);
+
+
+
+const savedLanguage =
+    localStorage.getItem(
+        "djMarcoLanguage"
+    ) || "pt";
+
+
+languageSelector.value =
+    savedLanguage;
+
+
+changeLanguage(
+    savedLanguage
+);
+
+
+
+/* =========================
+   NAVEGAÇÃO DAS MENSAGENS
+========================= */
+
+const previousButton =
+    document.getElementById(
+        "previousMessage"
+    );
+
+const nextButton =
+    document.getElementById(
+        "nextMessage"
+    );
+
+
+let currentMessage = 1;
+
+const totalMessages = 87;
+
+
+function updateMessageCounter() {
+
+    const current =
+        document.querySelector(
+            ".message-counter .current"
+        );
+
+    if (current) {
+
+        current.textContent =
+            String(currentMessage).padStart(2, "0");
+
+    }
+
+}
+
+
+function updateDots() {
+
+    const dots =
+        document.querySelectorAll(
+            ".message-dot"
+        );
+
+    dots.forEach(
+        (dot, index) => {
+
+            dot.classList.toggle(
+                "active",
+                index ===
+                ((currentMessage - 1) % dots.length)
+            );
+
+        }
+    );
+
+}
+
+
+function changeMessage(direction) {
+
+    currentMessage += direction;
+
+
+    if (currentMessage < 1) {
+        currentMessage = totalMessages;
+    }
+
+
+    if (currentMessage > totalMessages) {
+        currentMessage = 1;
+    }
+
+
+    updateMessageCounter();
+    updateDots();
+
+}
+
+
+previousButton.addEventListener(
+    "click",
+    () => changeMessage(-1)
+);
+
+
+nextButton.addEventListener(
+    "click",
+    () => changeMessage(1)
+);
+
+</script>
+
+</body>
+</html>
