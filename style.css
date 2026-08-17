@@ -1086,78 +1086,62 @@ select {
 
     /* CABEÇALHO */
 
-    .nav {
-        height: 62px;
+/* CABEÇALHO MOBILE */
 
-        padding:
-            0
-            18px;
-    }
+.nav {
+    height: 105px;
+    padding: 12px 18px;
+}
 
-    .logo {
-        font-size: 19px;
-    }
+.logo {
+    font-size: 19px;
+}
 
-    .nav-links {
-        margin-left: auto;
+.nav-inner {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+}
 
-        gap: 0;
-    }
+.nav-links {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 8px;
 
-    .nav-links > a {
-        display: block;
-    }
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+}
 
-    .nav-links > a:first-child {
-        display: block;
+.nav-links a {
+    display: block;
+    position: static;
 
-        position: absolute;
+    font-size: 9px;
+    white-space: nowrap;
+}
 
-        top: 62px;
-        left: 70px;
+.nav-heart {
+    margin-left: auto;
+    font-size: 28px;
+    margin-right: 12px;
+}
 
-        padding: 0;
+.language-selector {
+    margin-left: 0;
+}
 
-        color: var(--red);
+.language-selector select {
+    width: 64px;
+    padding: 7px 4px;
+    font-size: 9px;
+}
 
-        font-size: 11px;
-    }
-
-    .nav-links > a:first-child::after {
-        bottom: -10px;
-    }
-
-    .nav-heart {
-        margin-left: auto;
-
-        font-size: 28px;
-    }
-
-    .language-selector {
-        margin-left: 22px;
-    }
-
-    .language-selector select {
-        width: 64px;
-
-        padding:
-            7px
-            19px
-            7px
-            7px;
-
-        font-size: 9px;
-
-        letter-spacing: .03em;
-    }
-
-    .menu-icon {
-        margin-left: 20px;
-
-        width: 23px;
-        height: 18px;
-    }
-
+.menu-icon {
+    display: none;
+}
 
     /* HERO MOBILE */
 
@@ -1724,4 +1708,23 @@ select {
         width: 140px;
         height: 140px;
     }
+
+   /* AJUSTE DO TEXTO DO HERO — CELULAR */
+
+.hero-text {
+    padding: 75px 28px 60px 35px;
+    justify-content: flex-start;
+}
+
+.hero-title {
+    max-width: 300px;
+    font-size: 48px;
+    line-height: 0.95;
+}
+
+.hero-subtitle {
+    max-width: 285px;
+    font-size: 15px;
+    line-height: 1.5;
+}
 }
