@@ -1,18 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&family=Parisienne&display=swap');
+/* =========================================================
+   D.MARCO
+   STYLE.CSS
+   ========================================================= */
 
 
 /* =========================================================
-   BASE
-========================================================= */
+   01 — BASE
+   ========================================================= */
 
 :root {
     --black: #020202;
-    --page: #050505;
+    --black-soft: #070707;
+
     --cream: #ead7c0;
     --white: #f4eee8;
     --soft: #b7aaa0;
-    --gold: #b99a70;
+
+    --gold: #9a9070;
     --red: #b51f25;
+
+    --line: rgba(234, 215, 192, 0.22);
+    --line-soft: rgba(234, 215, 192, 0.10);
 }
 
 * {
@@ -28,24 +36,19 @@ html {
 body {
     min-height: 100vh;
 
-    background:
-        radial-gradient(
-            circle at 15% 20%,
-            rgba(185,154,112,.12),
-            transparent 2px
-        ),
-        radial-gradient(
-            circle at 85% 35%,
-            rgba(185,154,112,.10),
-            transparent 2px
-        ),
-        #020202;
+    overflow-x: hidden;
+
+    background: var(--black);
 
     color: var(--white);
 
-    font-family: 'Inter', sans-serif;
-
+    font-family: "Inter", sans-serif;
     font-weight: 300;
+}
+
+img {
+    display: block;
+    max-width: 100%;
 }
 
 a {
@@ -55,213 +58,234 @@ a {
 
 button,
 select {
-    font-family: inherit;
+    font: inherit;
 }
-
-
-/* =========================================================
-   PÁGINA
-========================================================= */
 
 .page {
     position: relative;
 
-    width: min(
-        1165px,
-        calc(100% - 30px)
-    );
+    min-height: 100vh;
 
-    min-height: calc(100vh - 48px);
+    overflow: hidden;
+}
 
-    margin: 24px auto;
+
+/* =========================================================
+   02 — DECORAÇÃO MÁGICA
+   ========================================================= */
+
+.magic-decoration {
+    position: fixed;
+
+    inset: 0;
 
     overflow: hidden;
 
-    background: var(--page);
-
-    border: 1px solid rgba(
-        185,
-        154,
-        112,
-        .28
-    );
-
-    box-shadow:
-        0 0 90px rgba(0,0,0,.8);
-}
-
-
-/* =========================================================
-   DECORAÇÃO EXTERNA
-========================================================= */
-
-.decor {
-    position: fixed;
-
-    z-index: -1;
-
     pointer-events: none;
 
-    color: rgba(
-        185,
-        154,
-        112,
-        .35
-    );
+    z-index: 20;
 }
 
-.decor-star {
-    font-size: 20px;
-}
-
-.decor-star-1 {
-    top: 12%;
-    left: 8%;
-}
-
-.decor-star-2 {
-    top: 42%;
-    left: 4%;
-}
-
-.decor-star-3 {
-    top: 20%;
-    right: 8%;
-}
-
-.decor-star-4 {
-    bottom: 18%;
-    right: 5%;
-}
-
-.decor-flower {
+.magic-flower,
+.magic-fairy,
+.magic-dust {
     position: absolute;
 
-    font-size: 50px;
-
-    color: rgba(
-        185,
-        154,
-        112,
-        .20
-    );
+    pointer-events: none;
 }
 
-.decor-flower-1 {
-    top: 28px;
-    right: 22px;
+
+/* MARGARIDAS */
+
+.magic-flower {
+    opacity: 0.13;
 }
 
-.decor-flower-2 {
-    top: 300px;
-    left: 22px;
+.flower-left {
+    left: -58px;
+    top: 38%;
+
+    width: 125px;
+    height: 125px;
 }
 
-.decor-flower-3 {
-    top: 650px;
-    right: 18px;
+.flower-right {
+    right: -58px;
+    top: 70%;
+
+    width: 145px;
+    height: 145px;
 }
 
-.decor-flower-4 {
-    bottom: 30px;
-    left: 20px;
+.flower-top-right {
+    right: -10px;
+    top: 110px;
+
+    width: 85px;
+    height: 85px;
+
+    opacity: 0.10;
+}
+
+
+/* FADAS */
+
+.magic-fairy {
+    width: 125px;
+
+    opacity: 0.025;
+}
+
+.fairy-left {
+    left: -20px;
+    top: 20%;
+}
+
+.fairy-right {
+    right: -20px;
+    top: 48%;
+}
+
+.fairy-bottom {
+    left: -10px;
+    top: 78%;
+
+    width: 105px;
+}
+
+
+/* PÓ MÁGICO */
+
+.magic-dust {
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    opacity: 0.08;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(234, 215, 192, 0.6) 1px,
+            transparent 2px
+        );
+
+    background-size: 18px 18px;
+}
+
+.dust-one {
+    left: 15%;
+    top: 25%;
+}
+
+.dust-two {
+    right: 15%;
+    top: 55%;
+
+    width: 160px;
+    height: 160px;
+}
+
+.dust-three {
+    left: 40%;
+    bottom: 10%;
+
+    width: 140px;
+    height: 140px;
 }
 
 
 /* =========================================================
-   CABEÇALHO
-========================================================= */
+   03 — CABEÇALHO
+   ========================================================= */
 
 .nav {
     position: relative;
 
-    z-index: 30;
+    z-index: 50;
 
-    width: 100%;
+    background: rgba(2, 2, 2, 0.97);
 
-    height: 78px;
-
-    padding: 0 60px;
-
-    background: rgba(
-        5,
-        5,
-        5,
-        .98
-    );
-
-    border-bottom: 1px solid
-        rgba(
-            255,
-            255,
-            255,
-            .04
-        );
+    border-bottom: 1px solid var(--line-soft);
 }
 
 .nav-inner {
-    width: 100%;
-    height: 100%;
+    width: min(1400px, 92%);
+
+    min-height: 86px;
+
+    margin: 0 auto;
 
     display: flex;
 
     align-items: center;
+
+    gap: 28px;
 }
+
+
+/* LOGO */
 
 .logo {
     flex-shrink: 0;
 
-    font-family:
-        'Cormorant Garamond',
-        serif;
-
-    font-size: 24px;
-
-    letter-spacing: .15em;
-
     color: var(--cream);
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 31px;
+    font-weight: 500;
+
+    letter-spacing: 0.18em;
+
+    white-space: nowrap;
 }
 
+
+/* LINKS */
+
 .nav-links {
-    margin-left: auto;
+    flex: 1;
 
     display: flex;
 
     align-items: center;
 
-    gap: 42px;
+    justify-content: center;
+
+    gap: 30px;
 }
 
-.nav-links > a {
+.nav-links a {
     position: relative;
 
-    padding: 30px 0;
+    padding: 10px 0;
 
-    color: #ded5ce;
+    color: var(--soft);
 
-    font-size: 12px;
+    font-size: 13px;
 
-    letter-spacing: .04em;
+    letter-spacing: 0.07em;
 
     white-space: nowrap;
 
-    transition:
-        color .25s ease;
+    transition: color 0.25s ease;
 }
 
-.nav-links > a.active {
+.nav-links a:hover,
+.nav-links a.active {
     color: var(--red);
 }
 
-.nav-links > a.active::after {
+.nav-links a.active::after {
     content: "";
 
     position: absolute;
 
     left: 0;
     right: 0;
-
-    bottom: 20px;
+    bottom: 0;
 
     height: 1px;
 
@@ -269,148 +293,126 @@ select {
 }
 
 
-/* =========================================================
-   CORAÇÃO
-========================================================= */
+/* CORAÇÃO */
 
 .nav-heart {
-    margin-left: 38px;
+    flex-shrink: 0;
 
     color: var(--cream);
 
-    font-family:
-        'Cormorant Garamond',
-        serif;
+    font-family: "Cormorant Garamond", serif;
 
-    font-size: 33px;
+    font-size: 54px;
 
     line-height: 1;
 }
 
 
 /* =========================================================
-   IDIOMA
-========================================================= */
+   04 — IDIOMAS
+   ========================================================= */
+
+/*
+   O HTML atual usa <select>.
+   Portanto esta caixa é clicável e abre as opções
+   nativas do navegador.
+
+   A ordem será definida no HTML/JS:
+   한국어 / PT / EN
+*/
 
 .language-selector {
-    margin-left: 28px;
+    flex-shrink: 0;
 }
 
 .language-selector select {
-    width: 126px;
+    width: 125px;
 
-    appearance: none;
-    -webkit-appearance: none;
+    height: 44px;
 
-    padding: 10px 34px 10px 15px;
+    padding: 8px 30px 8px 13px;
+
+    border: 1px solid rgba(154, 144, 112, 0.60);
+
+    border-radius: 6px;
+
+    outline: none;
+
+    background-color: #050505;
 
     color: var(--cream);
 
-    background-color: transparent;
+    font-family: "Cormorant Garamond", serif;
 
-    background-image:
-        linear-gradient(
-            45deg,
-            transparent 50%,
-            var(--cream) 50%
-        ),
-        linear-gradient(
-            135deg,
-            var(--cream) 50%,
-            transparent 50%
-        );
+    font-size: 15px;
 
-    background-position:
-        calc(100% - 17px) 50%,
-        calc(100% - 12px) 50%;
+    letter-spacing: 0.04em;
 
-    background-size:
-        5px 5px,
-        5px 5px;
+    cursor: pointer;
 
-    background-repeat: no-repeat;
-
-    border:
-        1px solid
-        rgba(
-            185,
-            154,
-            112,
-            .28
-        );
-
-    border-radius: 4px;
-
-    font-size: 11px;
-
-    letter-spacing: .08em;
-
-    outline: none;
+    appearance: auto;
 }
 
-.language-selector option {
-    background: #111;
-    color: #fff;
+.language-selector select:focus {
+    border-color: var(--cream);
+}
+
+.language-selector select option {
+    background: #151219;
+
+    color: var(--cream);
 }
 
 
 /* =========================================================
-   MENU
-========================================================= */
+   05 — MENU
+   ========================================================= */
 
 .menu-icon {
-    width: 24px;
-    height: 20px;
+    display: none;
 
-    margin-left: 38px;
+    width: 38px;
 
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: space-between;
+    cursor: pointer;
 }
 
 .menu-icon span {
+    display: block;
+
     width: 100%;
     height: 1px;
+
+    margin: 7px 0;
 
     background: var(--cream);
 }
 
 
 /* =========================================================
-   HERO
-========================================================= */
+   06 — HERO DESKTOP
+   ========================================================= */
 
 .hero {
     position: relative;
 
-    min-height: 425px;
-
     display: grid;
 
-    grid-template-columns:
-        42% 58%;
+    grid-template-columns: 46% 54%;
+
+    min-height: 720px;
 
     overflow: hidden;
 
-    background: #050505;
+    background: var(--black);
 }
 
 
-/* TEXTO DO HERO */
+/* TEXTO */
 
 .hero-text {
     position: relative;
 
     z-index: 5;
-
-    padding:
-        68px
-        30px
-        55px
-        70px;
 
     display: flex;
 
@@ -418,77 +420,54 @@ select {
 
     justify-content: center;
 
-    background:
-        radial-gradient(
-            circle at 30% 40%,
-            rgba(
-                184,
-                154,
-                99,
-                .045
-            ),
-            transparent 55%
-        ),
-        #050505;
+    padding: 80px 60px 90px 8%;
 }
 
 .hero-title {
-    margin: 0;
+    max-width: 560px;
 
     color: var(--cream);
 
-    font-family:
-        'Cormorant Garamond',
-        serif;
+    font-family: "Cormorant Garamond", serif;
 
-    font-size:
-        clamp(
-            55px,
-            5vw,
-            76px
-        );
+    font-size: clamp(54px, 6vw, 86px);
 
     font-weight: 500;
 
-    line-height: .86;
+    line-height: 0.92;
+
+    letter-spacing: -0.025em;
 }
 
 .hero-line {
-    width: 45px;
+    width: 88px;
     height: 2px;
 
-    margin:
-        28px
-        0
-        20px;
+    margin: 42px 0 30px;
 
     background: var(--red);
 }
 
 .hero-subtitle {
-    max-width: 300px;
+    max-width: 430px;
 
-    color: #d0c2b7;
+    color: var(--soft);
 
-    font-family:
-        'Cormorant Garamond',
-        serif;
+    font-family: "Cormorant Garamond", serif;
 
-    font-size: 17px;
+    font-size: 20px;
 
-    line-height: 1.65;
+    line-height: 1.55;
 }
 
 .hero-heart {
-    margin-top: 20px;
+    margin-top: 42px;
 
     color: var(--red);
 
-    font-family:
-        'Cormorant Garamond',
-        serif;
+    font-family: "Cormorant Garamond", serif;
 
-    font-size: 34px;
+    font-size: 48px;
 }
 
 
@@ -497,7 +476,7 @@ select {
 .hero-photo {
     position: relative;
 
-    min-height: 425px;
+    min-height: 720px;
 
     overflow: hidden;
 }
@@ -506,11 +485,9 @@ select {
     width: 100%;
     height: 100%;
 
-    display: block;
-
     object-fit: cover;
 
-    object-position: center center;
+    object-position: 65% center;
 }
 
 .hero-photo::after {
@@ -525,327 +502,234 @@ select {
     background:
         linear-gradient(
             to right,
-            rgba(5,5,5,.28),
-            transparent 25%
+            rgba(2, 2, 2, 0.98) 0%,
+            rgba(2, 2, 2, 0.72) 16%,
+            rgba(2, 2, 2, 0.20) 48%,
+            rgba(2, 2, 2, 0.08) 100%
         ),
         linear-gradient(
             to bottom,
-            rgba(0,0,0,.03),
-            rgba(0,0,0,.16)
+            rgba(2, 2, 2, 0.08),
+            rgba(2, 2, 2, 0.78)
         );
 }
 
 
 /* =========================================================
-   RASGO
-========================================================= */
+   07 — BORDA RASGADA
+   ========================================================= */
 
 .tear {
     position: relative;
 
-    z-index: 8;
-
-    height: 28px;
+    height: 34px;
 
     margin-top: -1px;
 
-    background:
-        linear-gradient(
-            176deg,
-            transparent 0 42%,
-            #d9c2a8 43% 49%,
-            transparent 50%
-        );
+    background: var(--black-soft);
 
-    filter:
-        drop-shadow(
-            0 2px 1px
-            rgba(0,0,0,.7)
-        );
+    transform: skewY(-1.5deg);
+
+    transform-origin: left center;
+
+    z-index: 4;
+}
+
+.tear::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    top: 0;
+
+    height: 2px;
+
+    background: var(--cream);
+
+    opacity: 0.85;
 }
 
 
 /* =========================================================
-   INTRODUÇÃO
-========================================================= */
+   08 — INTRODUÇÃO DAS MENSAGENS
+   ========================================================= */
 
 .messages-intro {
     position: relative;
 
-    padding:
-        12px
-        40px
-        0;
+    padding: 90px 20px 60px;
 
     text-align: center;
-
-    background: #050505;
 }
 
 .messages-intro-title {
+    max-width: 900px;
+
+    margin: 0 auto;
+
     color: var(--cream);
 
-    font-family:
-        'Cormorant Garamond',
-        serif;
+    font-family: "Cormorant Garamond", serif;
 
-    font-size: 27px;
+    font-size: clamp(34px, 4vw, 55px);
 
-    line-height: 1.2;
+    font-weight: 500;
+
+    line-height: 1.05;
 }
 
 .messages-intro-subtitle {
-    margin-top: 3px;
+    margin-top: 22px;
 
-    color: #9f8c7d;
+    color: var(--soft);
 
-    font-family:
-        'Cormorant Garamond',
-        serif;
+    font-family: "Cormorant Garamond", serif;
 
-    font-size: 16px;
+    font-size: 20px;
 
     font-style: italic;
 }
 
 .intro-line {
-    width: 100%;
-
+    width: 90px;
     height: 1px;
 
-    margin-top: 17px;
+    margin: 34px auto 0;
 
-    background:
-        linear-gradient(
-            to right,
-            transparent,
-            rgba(
-                185,
-                154,
-                112,
-                .32
-            ),
-            transparent
-        );
+    background: var(--line);
 }
 
 .intro-decoration {
     position: absolute;
 
-    top: 20px;
+    color: var(--gold);
 
-    color: rgba(
-        185,
-        154,
-        112,
-        .65
-    );
+    opacity: 0.35;
 
-    font-size: 27px;
+    font-size: 45px;
 }
 
 .intro-decoration.left {
-    left: 135px;
+    left: 7%;
+    top: 45%;
 }
 
 .intro-decoration.right {
-    right: 135px;
+    right: 7%;
+    top: 45%;
 }
 
 
 /* =========================================================
-   TÍTULO DAS MENSAGENS
-========================================================= */
+   09 — MENSAGENS
+   ========================================================= */
+
+.messages-section {
+    position: relative;
+
+    padding: 40px 20px 100px;
+}
 
 .messages-title {
-    padding-top: 5px;
-
-    text-align: center;
-
-    color: var(--cream);
-
-    font-family:
-        'Parisienne',
-        cursive;
-
-    font-size: 29px;
-}
-
-.messages-envelope {
-    display: block;
-
-    margin-bottom: 2px;
-
-    color: var(--red);
-
-    font-family: serif;
-
-    font-size: 23px;
-}
-
-
-/* =========================================================
-   ÁREA DAS MENSAGENS
-========================================================= */
-
-.messages-area {
-    position: relative;
-
-    padding:
-        12px
-        75px
-        20px;
-}
-
-.message-stage {
-    position: relative;
-
-    min-height: 205px;
-
     display: flex;
 
     align-items: center;
 
     justify-content: center;
+
+    gap: 14px;
+
+    color: var(--cream);
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(27px, 3vw, 42px);
+
+    text-align: center;
+}
+
+.messages-envelope {
+    color: var(--red);
+
+    font-size: 27px;
 }
 
 
-/* CARTAS ATRÁS */
+/* ÁREA */
 
-.message-stage::before,
-.message-stage::after {
-    content: "";
+.messages-area {
+    display: grid;
 
-    position: absolute;
+    grid-template-columns:
+        70px
+        minmax(0, 650px)
+        70px;
 
-    width: 62%;
-    height: 82%;
+    align-items: center;
 
-    border:
-        1px solid
-        rgba(
-            185,
-            154,
-            112,
-            .18
-        );
+    justify-content: center;
 
-    border-radius: 9px;
+    gap: 30px;
 
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            .01
-        );
+    margin: 55px auto 0;
 }
 
-.message-stage::before {
-    transform:
-        translateX(-18px);
-}
-
-.message-stage::after {
-    transform:
-        translateX(18px);
+.message-stage {
+    width: 100%;
 }
 
 
-/* CARTA PRINCIPAL */
+/* CARTÃO */
 
 .message-card {
     position: relative;
 
-    z-index: 3;
+    min-height: 390px;
 
-    width: 470px;
+    padding: 55px 55px 50px;
 
-    min-height: 205px;
+    border: 1px solid rgba(234, 215, 192, 0.25);
 
-    padding:
-        27px
-        45px;
+    border-radius: 16px;
 
     background:
         linear-gradient(
-            145deg,
-            rgba(
-                255,
-                255,
-                255,
-                .035
-            ),
-            rgba(
-                255,
-                255,
-                255,
-                .008
-            )
+            135deg,
+            rgba(255, 255, 255, 0.025),
+            rgba(255, 255, 255, 0.005)
         );
-
-    border:
-        1px solid
-        rgba(
-            185,
-            154,
-            112,
-            .42
-        );
-
-    border-radius: 10px;
 
     box-shadow:
-        0 20px 45px
-        rgba(0,0,0,.5);
+        0 0 50px rgba(0, 0, 0, 0.3);
 }
 
 .message-name {
     color: var(--cream);
 
-    font-family:
-        'Cormorant Garamond',
-        serif;
+    font-family: "Cormorant Garamond", serif;
 
-    font-size: 25px;
+    font-size: 34px;
 }
 
 .message-name-line {
-    width: 45px;
+    width: 80px;
     height: 2px;
 
-    margin-top: 7px;
+    margin: 15px 0 20px;
 
     background: var(--red);
 }
 
-.message-text {
-    max-width: 300px;
 
-    margin-top: 13px;
-
-    color: var(--cream);
-
-    font-family:
-        'Cormorant Garamond',
-        serif;
-
-    font-size: 22px;
-
-    line-height: 1.35;
-}
-
-
-/* SELO */
+/* PAÍS */
 
 .message-country {
     position: absolute;
 
-    top: 20px;
-    right: 30px;
-
-    width: 58px;
-    height: 62px;
+    top: 38px;
+    right: 38px;
 
     display: flex;
 
@@ -853,147 +737,123 @@ select {
 
     align-items: center;
 
-    justify-content: center;
+    gap: 5px;
 
-    background: #ead8c5;
+    color: var(--cream);
 
-    color: #111;
-
-    box-shadow:
-        0 4px 12px
-        rgba(0,0,0,.4);
-
-    transform: rotate(1deg);
-
-    font-size: 7px;
-
-    font-weight: 400;
+    font-size: 11px;
 }
 
 .stamp-flag {
-    margin-bottom: 2px;
+    padding: 13px 18px;
+
+    border: 1px solid rgba(234, 215, 192, 0.4);
+
+    background: rgba(234, 215, 192, 0.08);
+
+    font-size: 35px;
+}
+
+
+/* TEXTO */
+
+.message-text {
+    max-width: 510px;
+
+    margin-top: 35px;
+
+    color: var(--cream);
+
+    font-family: "Cormorant Garamond", serif;
 
     font-size: 25px;
 
-    line-height: 1;
+    line-height: 1.5;
 }
-
-
-/* CORAÇÃO */
 
 .message-heart {
-    margin-top: 8px;
+    margin-top: 30px;
 
-    color: #a8907e;
+    color: var(--cream);
 
-    font-family:
-        'Cormorant Garamond',
-        serif;
+    font-family: "Cormorant Garamond", serif;
 
-    font-size: 27px;
+    font-size: 45px;
 }
 
 
-/* =========================================================
-   SETAS
-========================================================= */
+/* SETAS */
 
 .message-arrow {
-    position: absolute;
+    width: 60px;
+    height: 60px;
 
-    top: 50%;
-
-    z-index: 6;
-
-    width: 52px;
-    height: 52px;
-
-    transform:
-        translateY(-50%);
-
-    border:
-        1px solid
-        var(--red);
+    border: 1px solid rgba(181, 31, 37, 0.65);
 
     border-radius: 50%;
 
     background: transparent;
 
-    color: var(--cream);
+    color: var(--red);
 
     font-size: 28px;
-
-    font-weight: 300;
 
     cursor: pointer;
 
     transition:
-        background .2s ease;
+        background 0.25s ease,
+        transform 0.25s ease;
 }
 
 .message-arrow:hover {
-    background:
-        rgba(
-            181,
-            31,
-            37,
-            .08
-        );
-}
+    background: rgba(181, 31, 37, 0.08);
 
-.message-arrow.left {
-    left: 0;
-}
-
-.message-arrow.right {
-    right: 0;
+    transform: scale(1.04);
 }
 
 
-/* =========================================================
-   PONTOS
-========================================================= */
+/* PONTOS */
 
 .message-dots {
     display: flex;
 
     justify-content: center;
 
-    gap: 16px;
+    gap: 9px;
 
-    margin-top: 14px;
+    margin-top: 32px;
 }
 
 .message-dot {
-    width: 9px;
-    height: 9px;
+    width: 7px;
+    height: 7px;
 
     border-radius: 50%;
 
-    background: #4a4a4a;
+    background: rgba(234, 215, 192, 0.25);
 }
 
 .message-dot.active {
-    background: #e32930;
+    background: var(--red);
 }
 
 
-/* =========================================================
-   CONTADOR
-========================================================= */
+/* CONTADOR */
 
 .message-counter {
-    margin-top: 8px;
+    display: flex;
 
-    text-align: center;
+    justify-content: center;
 
-    color: var(--cream);
+    gap: 7px;
 
-    font-family:
-        'Cormorant Garamond',
-        serif;
+    margin-top: 18px;
 
-    font-size: 20px;
+    color: var(--soft);
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 16px;
 }
 
 .message-counter .current {
@@ -1001,184 +861,345 @@ select {
 }
 
 .message-counter .divider {
-    margin: 0 8px;
-
-    color: #806c5e;
+    color: var(--red);
 }
 
 
 /* =========================================================
-   RODAPÉ
-========================================================= */
+   10 — RODAPÉ
+   ========================================================= */
 
 .footer {
-    padding:
-        14px
-        40px
-        15px;
+    padding: 55px 20px 45px;
 
     text-align: center;
-
-    border-top:
-        1px solid
-        rgba(
-            185,
-            154,
-            112,
-            .16
-        );
 }
 
 .footer-line {
-    width: 100%;
+    width: 100px;
     height: 1px;
+
+    margin: 0 auto 25px;
+
+    background: var(--line);
 }
 
 .footer-text {
-    max-width: 800px;
+    max-width: 650px;
 
     margin: 0 auto;
 
-    color: #a99587;
+    color: rgba(183, 170, 160, 0.75);
 
-    font-family:
-        'Cormorant Garamond',
-        serif;
+    font-family: "Cormorant Garamond", serif;
 
-    font-size: 15px;
+    font-size: 16px;
+
+    line-height: 1.5;
 }
 
 .footer-heart {
-    margin-top: 4px;
+    margin-top: 20px;
 
     color: var(--red);
 
-    font-family:
-        'Cormorant Garamond',
-        serif;
+    font-family: "Cormorant Garamond", serif;
 
-    font-size: 26px;
+    font-size: 34px;
 }
 
 
 /* =========================================================
-   MOBILE
-========================================================= */
+   11 — TABLET
+   ========================================================= */
+
+@media (max-width: 950px) {
+
+    .nav-inner {
+        gap: 18px;
+    }
+
+    .logo {
+        font-size: 27px;
+    }
+
+    .nav-links {
+        gap: 18px;
+    }
+
+    .nav-links a {
+        font-size: 11px;
+    }
+
+    .nav-heart {
+        font-size: 48px;
+    }
+
+    .language-selector select {
+        width: 112px;
+    }
+
+    .hero {
+        grid-template-columns: 45% 55%;
+    }
+
+    .hero-text {
+        padding-left: 7%;
+        padding-right: 30px;
+    }
+
+    .hero-title {
+        font-size: 58px;
+    }
+}
+
+
+/* =========================================================
+   12 — MOBILE
+   ========================================================= */
 
 @media (max-width: 700px) {
 
-    body {
-        background: #050505;
-    }
 
-    .page {
+    /* =====================================================
+       CABEÇALHO MOBILE
+       ===================================================== */
+
+    .nav-inner {
         width: 100%;
 
-        margin: 0;
+        min-height: 0;
 
-        min-height: 100vh;
+        padding: 13px 16px 0;
 
-        border: 0;
+        display: grid;
 
-        box-shadow: none;
+        grid-template-columns:
+            1fr
+            auto
+            auto;
+
+        grid-template-areas:
+            "logo heart language"
+            "links links links";
+
+        gap: 7px 12px;
     }
 
 
-    /* CABEÇALHO */
+    /* LOGO */
 
-/* CABEÇALHO MOBILE */
+    .logo {
+        grid-area: logo;
 
-.nav {
-    height: 105px;
-    padding: 12px 18px;
-}
+        align-self: center;
 
-.logo {
-    font-size: 19px;
-}
+        font-size: 23px;
 
-.nav-inner {
-    position: relative;
-    height: 100%;
-    display: flex;
-    align-items: flex-start;
-}
+        letter-spacing: 0.15em;
+    }
 
-.nav-links {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 8px;
 
-    display: flex;
-    justify-content: center;
-    gap: 14px;
-}
+    /* CORAÇÃO */
 
-.nav-links a {
-    display: block;
-    position: static;
+    .nav-heart {
+        grid-area: heart;
 
-    font-size: 9px;
-    white-space: nowrap;
-}
+        align-self: center;
 
-.nav-heart {
-    margin-left: auto;
-    font-size: 28px;
-    margin-right: 12px;
-}
+        font-size: 46px;
 
-.language-selector {
-    margin-left: 0;
-}
+        line-height: 0.8;
+    }
 
-.language-selector select {
-    width: 64px;
-    padding: 7px 4px;
-    font-size: 9px;
-}
 
-.menu-icon {
-    display: none;
-}
+    /* IDIOMAS */
 
-    /* HERO MOBILE */
+    .language-selector {
+        grid-area: language;
+
+        align-self: center;
+    }
+
+    .language-selector select {
+        width: 112px;
+
+        height: 40px;
+
+        padding: 7px 9px;
+
+        border-radius: 6px;
+
+        font-size: 13px;
+
+        letter-spacing: 0.02em;
+    }
+
+
+    /* LINKS */
+
+    .nav-links {
+        grid-area: links;
+
+        width: 100%;
+
+        padding: 3px 0 11px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 20px;
+
+        border-bottom:
+            1px solid
+            rgba(181, 31, 37, 0.70);
+    }
+
+    .nav-links a {
+        padding: 7px 0 4px;
+
+        font-size: 10px;
+
+        letter-spacing: 0.025em;
+    }
+
+    .menu-icon {
+        display: none;
+    }
+
+
+    /* =====================================================
+       HERO MOBILE
+       ===================================================== */
 
     .hero {
-    min-height: 615px;
-}
+        display: flex;
 
-.hero-photo {
-    min-height: 615px;
-}
+        flex-direction: column;
 
-.hero-text {
-    min-height: 615px;
-    padding: 75px 28px 60px 35px;
-    justify-content: flex-start;
-}
+        min-height: 0;
 
-.hero-title {
-    max-width: 300px;
-    font-size: 48px;
-    line-height: 0.95;
-}
+        height: auto;
 
-.hero-subtitle {
-    max-width: 285px;
-    font-size: 15px;
-    line-height: 1.5;
-}
+        background: var(--black);
+    }
 
-    .hero-photo {
-        position: absolute;
 
-        inset: 0;
+    /*
+       O TEXTO FICA NA PARTE SUPERIOR.
+       A FOTO FICA ABAIXO.
 
-        min-height: 615px;
+       Isso impede o texto de ficar sobre
+       o rosto do D.MARCO.
+    */
+
+    .hero-text {
+        order: 1;
 
         width: 100%;
+
+        min-height: 315px;
+
+        padding:
+            47px
+            30px
+            22px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: flex-start;
+
+        align-items: flex-start;
+
+        background: var(--black);
+    }
+
+
+    /* TÍTULO */
+
+    .hero-title {
+        width: 100%;
+
+        max-width: 340px;
+
+        color: var(--cream);
+
+        font-size: 48px;
+
+        font-weight: 500;
+
+        line-height: 0.96;
+
+        letter-spacing: -0.02em;
+    }
+
+
+    /* LINHA VERMELHA */
+
+    .hero-line {
+        width: 82px;
+        height: 2px;
+
+        margin:
+            22px
+            0
+            15px;
+    }
+
+
+    /* TEXTO */
+
+    .hero-subtitle {
+        width: 100%;
+
+        max-width: 335px;
+
+        color:
+            rgba(
+                234,
+                215,
+                192,
+                0.70
+            );
+
+        font-size: 15px;
+
+        line-height: 1.45;
+    }
+
+
+    /* CORAÇÃO */
+
+    .hero-heart {
+        margin-top: 16px;
+
+        color: var(--red);
+
+        font-size: 39px;
+    }
+
+
+    /* =====================================================
+       FOTO MOBILE
+       ===================================================== */
+
+    .hero-photo {
+        order: 2;
+
+        width: 100%;
+
+        height: 335px;
+
+        min-height: 335px;
+
+        position: relative;
+
+        overflow: hidden;
     }
 
     .hero-photo img {
@@ -1187,560 +1208,224 @@ select {
 
         object-fit: cover;
 
-        object-position: 65% center;
+        /*
+           Mantém o rosto visível
+           sem ampliar demais a imagem.
+        */
+
+        object-position: 67% center;
     }
 
     .hero-photo::after {
         background:
             linear-gradient(
-                to right,
-                rgba(0,0,0,.93) 0%,
-                rgba(0,0,0,.70) 38%,
-                rgba(0,0,0,.18) 82%
-            ),
-            linear-gradient(
                 to bottom,
-                rgba(0,0,0,.20),
-                rgba(0,0,0,.06) 50%,
-                rgba(0,0,0,.78) 100%
+                rgba(2, 2, 2, 0.02) 0%,
+                rgba(2, 2, 2, 0.05) 55%,
+                rgba(2, 2, 2, 0.80) 100%
             );
     }
 
-    .hero-text {
-        position: relative;
 
-        z-index: 5;
-
-        min-height: 615px;
-
-        padding:
-            115px
-            35px
-            50px;
-
-        display: flex;
-
-        justify-content: flex-start;
-
-        background: transparent;
-    }
-
-    .hero-title {
-        max-width: 330px;
-
-        font-size: 54px;
-
-        line-height: .9;
-    }
-
-    .hero-line {
-        margin:
-            25px
-            0
-            18px;
-    }
-
-    .hero-subtitle {
-        max-width: 300px;
-
-        color: #d8cbc1;
-
-        font-size: 16px;
-
-        line-height: 1.55;
-    }
-
-    .hero-heart {
-        font-size: 32px;
-    }
-
-
-    /* RASGO */
+    /* =====================================================
+       BORDA RASGADA MOBILE
+       ===================================================== */
 
     .tear {
-        height: 22px;
+        height: 24px;
+
+        margin-top: -1px;
     }
 
 
-    /* INTRO */
+    /* =====================================================
+       INTRODUÇÃO MOBILE
+       ===================================================== */
 
     .messages-intro {
         padding:
-            30px
-            30px
-            0;
+            45px
+            20px
+            34px;
     }
 
     .messages-intro-title {
+        max-width: 335px;
+
+        font-size: 31px;
+
+        line-height: 1.06;
+    }
+
+    .messages-intro-subtitle {
+        max-width: 310px;
+
+        margin:
+            14px
+            auto
+            0;
+
+        font-size: 17px;
+
+        line-height: 1.35;
+    }
+
+    .intro-line {
+        width: 70px;
+
+        margin-top: 22px;
+    }
+
+
+    /* DECORAÇÃO LATERAL */
+
+    .intro-decoration {
+        font-size: 30px;
+
+        opacity: 0.24;
+    }
+
+    .intro-decoration.left {
+        left: -9px;
+
+        top: 42%;
+    }
+
+    .intro-decoration.right {
+        right: -9px;
+
+        top: 42%;
+    }
+
+
+    /* =====================================================
+       MENSAGENS MOBILE
+       ===================================================== */
+
+    .messages-section {
+        padding:
+            25px
+            17px
+            55px;
+    }
+
+    .messages-title {
         max-width: 330px;
 
         margin: 0 auto;
 
-        font-size: 23px;
+        gap: 9px;
 
-        line-height: 1.25;
-    }
+        font-size: 27px;
 
-    .messages-intro-subtitle {
-        max-width: 280px;
-
-        margin:
-            7px
-            auto
-            0;
-
-        font-size: 15px;
-
-        line-height: 1.45;
-    }
-
-    .intro-line {
-        margin-top: 18px;
-    }
-
-    .intro-decoration.left {
-        left: 12px;
-    }
-
-    .intro-decoration.right {
-        right: 12px;
-    }
-
-
-    /* TÍTULO */
-
-    .messages-title {
-        padding-top: 6px;
-
-        font-family:
-            'Cormorant Garamond',
-            serif;
-
-        font-size: 21px;
-
-        font-style: normal;
-
-        letter-spacing: .12em;
+        line-height: 1.08;
     }
 
     .messages-envelope {
-        font-size: 21px;
+        font-size: 22px;
     }
 
 
-    /* MENSAGENS */
+    /* ÁREA */
 
     .messages-area {
-        padding:
-            8px
-            42px
-            15px;
+        position: relative;
+
+        display: block;
+
+        margin-top: 28px;
     }
 
     .message-stage {
-        min-height: 275px;
+        width: 100%;
     }
 
-    .message-stage::before,
-    .message-stage::after {
-        width: 80%;
-        height: 78%;
-    }
+
+    /* CARTÃO */
 
     .message-card {
-        width: 100%;
-
-        min-height: 275px;
+        min-height: 350px;
 
         padding:
-    34px
-    26px
-    28px;
+            39px
+            25px
+            30px;
 
-        border-radius: 9px;
+        border-radius: 12px;
     }
 
     .message-name {
-        font-size: 24px;
+        font-size: 29px;
     }
 
+    .message-name-line {
+        width: 68px;
+
+        margin:
+            11px
+            0
+            16px;
+    }
+
+
+    /* PAÍS */
+
+    .message-country {
+        top: 21px;
+
+        right: 17px;
+    }
+
+    .stamp-flag {
+        padding:
+            7px
+            10px;
+
+        font-size: 26px;
+    }
+
+
+    /* TEXTO */
+
     .message-text {
-        max-width: 225px;
+        width: 100%;
+
+        max-width: none;
+
+        margin-top: 29px;
 
         font-size: 20px;
 
-        line-height: 1.45;
+        line-height: 1.42;
     }
 
-    .message-country {
-        top: 22px;
-        right: 16px;
+    .message-heart {
+        margin-top: 21px;
 
-        width: 58px;
-        height: 62px;
+        font-size: 38px;
     }
+
+
+    /* =====================================================
+       SETAS LATERAIS
+       ===================================================== */
 
     .message-arrow {
-        width: 48px;
-        height: 48px;
+        position: absolute;
 
-        font-size: 25px;
+        top: 50%;
+
+        width: 40px;
+        height: 40px;
+
+        z-index: 5;
+
+        font-size: 19px;
     }
 
     .message-arrow.left {
-        left: -38px;
+        left: -7px;
     }
 
     .message-arrow.right {
-        right: -38px;
-    }
-
-    .message-dots {
-        gap: 11px;
-
-        margin-top: 10px;
-    }
-
-    .message-counter {
-        font-size: 17px;
-    }
-
-
-    /* RODAPÉ */
-
-    .footer {
-        padding:
-            15px
-            25px
-            22px;
-    }
-
-    .footer-text {
-        max-width: 330px;
-
-        margin: auto;
-
-        font-size: 15px;
-
-        line-height: 1.4;
-    }
-
-
-    /* DECORAÇÃO */
-
-    .decor-flower {
-        font-size: 35px;
-    }
-
-    .decor-flower-1 {
-        top: 100px;
-        right: 12px;
-    }
-
-    .decor-flower-2 {
-        top: 540px;
-        left: 12px;
-    }
-
-    .decor-flower-3 {
-        top: 900px;
-        right: 8px;
-    }
-
-    .decor-flower-4 {
-    bottom: 30px;
-    left: 20px;
-    }
-
-   /* =========================================================
-   DECORAÇÃO MÁGICA DO SITE
-========================================================= */
-
-/* CAMADA GERAL DA DECORAÇÃO */
-.magic-decoration {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 4;
-    overflow: hidden;
-}
-
-/* =========================================================
-   MARGARIDAS
-   FICAM PARADAS
-========================================================= */
-
-.magic-flower {
-    position: absolute;
-
-    width: 145px;
-    height: 145px;
-
-    object-fit: contain;
-
-    opacity: 0.22;
-
-    filter:
-        brightness(0.72)
-        contrast(1.05);
-
-    pointer-events: none;
-}
-
-.magic-flower.flower-left {
-    left: -42px;
-    top: 37%;
-}
-
-.magic-flower.flower-right {
-    right: -45px;
-    top: 68%;
-    width: 170px;
-    height: 170px;
-}
-
-.magic-flower.flower-top-right {
-    right: 15px;
-    top: 55px;
-
-    width: 105px;
-    height: 105px;
-
-    opacity: 0.16;
-}
-
-
-/* =========================================================
-   FADAS
-   QUASE FANTASMAS / SILHUETAS
-========================================================= */
-
-.magic-fairy {
-    position: absolute;
-
-    width: 170px;
-
-    opacity: 0.035;
-
-    filter:
-        brightness(0.55)
-        blur(0.45px);
-
-    mix-blend-mode: screen;
-
-    will-change: transform, opacity;
-
-    transition:
-        opacity 0.8s ease;
-
-    pointer-events: none;
-}
-
-/*
-   A fada não deve chamar atenção.
-   Ela começa praticamente invisível.
-*/
-
-.magic-fairy.fairy-left {
-    left: 1%;
-    top: 18%;
-}
-
-.magic-fairy.fairy-right {
-    right: 1%;
-    top: 48%;
-    transform: scaleX(-1);
-}
-
-.magic-fairy.fairy-bottom {
-    left: 5%;
-    top: 76%;
-    width: 135px;
-}
-
-
-/* =========================================================
-   PÓ MÁGICO
-========================================================= */
-
-.magic-dust {
-    position: absolute;
-
-    width: 260px;
-    height: 260px;
-
-    opacity: 0.32;
-
-    background-image: url("poedefada.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-
-    filter:
-        brightness(0.85)
-        blur(0.2px);
-
-    will-change: transform;
-
-    animation:
-        magicDustFloat 12s ease-in-out infinite;
-}
-
-.magic-dust.dust-one {
-    left: 4%;
-    top: 22%;
-}
-
-.magic-dust.dust-two {
-    right: 3%;
-    top: 57%;
-
-    width: 220px;
-    height: 220px;
-
-    animation-delay: -5s;
-}
-
-.magic-dust.dust-three {
-    left: 35%;
-    top: 78%;
-
-    width: 190px;
-    height: 190px;
-
-    opacity: 0.20;
-
-    animation-delay: -8s;
-}
-
-
-/* =========================================================
-   MOVIMENTO SUAVE DO PÓ
-========================================================= */
-
-@keyframes magicDustFloat {
-
-    0% {
-        transform:
-            translate3d(0, 0, 0)
-            rotate(0deg);
-    }
-
-    25% {
-        transform:
-            translate3d(12px, -18px, 0)
-            rotate(2deg);
-    }
-
-    50% {
-        transform:
-            translate3d(-8px, -30px, 0)
-            rotate(-2deg);
-    }
-
-    75% {
-        transform:
-            translate3d(-15px, -12px, 0)
-            rotate(1deg);
-    }
-
-    100% {
-        transform:
-            translate3d(0, 0, 0)
-            rotate(0deg);
-    }
-}
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 700px) {
-
-    .magic-flower {
-        opacity: 0.18;
-    }
-
-    .magic-flower.flower-left {
-        left: -58px;
-        top: 38%;
-        width: 125px;
-        height: 125px;
-    }
-
-    .magic-flower.flower-right {
-        right: -55px;
-        top: 70%;
-        width: 145px;
-        height: 145px;
-    }
-
-    .magic-flower.flower-top-right {
-        right: -10px;
-        top: 110px;
-
-        width: 85px;
-        height: 85px;
-
-        opacity: 0.12;
-    }
-
-    .magic-fairy {
-        width: 125px;
-
-        opacity: 0.025;
-    }
-
-    .magic-fairy.fairy-left {
-        left: -20px;
-        top: 20%;
-    }
-
-    .magic-fairy.fairy-right {
-        right: -20px;
-        top: 48%;
-    }
-
-    .magic-fairy.fairy-bottom {
-        left: -10px;
-        top: 78%;
-        width: 105px;
-    }
-
-
-    .magic-dust {
-        width: 180px;
-        height: 180px;
-
-        opacity: 0.25;
-    }
-
-    .magic-dust.dust-two {
-        width: 160px;
-        height: 160px;
-    }
-
-    .magic-dust.dust-three {
-        width: 140px;
-        height: 140px;
-    }
-
-   /* AJUSTE DO TEXTO DO HERO — CELULAR */
-
-.hero-text {
-    padding: 75px 28px 60px 35px;
-    justify-content: flex-start;
-}
-
-.hero-title {
-    max-width: 300px;
-    font-size: 48px;
-    line-height: 0.95;
-}
-
-.hero-subtitle {
-    max-width: 285px;
-    font-size: 15px;
-    line-height: 1.5;
-}
-}
+        right: -7px
