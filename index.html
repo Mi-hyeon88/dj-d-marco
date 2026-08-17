@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>DJ D.MARCO</title>
 
@@ -15,13 +21,17 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* SELETOR DE IDIOMAS */
+
+        /* =========================
+           SELETOR DE IDIOMAS
+        ========================= */
 
         .language-selector {
             margin-left: 24px;
         }
 
         .language-selector select {
+
             appearance: none;
             -webkit-appearance: none;
 
@@ -40,8 +50,16 @@
             cursor: pointer;
 
             background-image:
-                linear-gradient(45deg, transparent 50%, currentColor 50%),
-                linear-gradient(135deg, currentColor 50%, transparent 50%);
+                linear-gradient(
+                    45deg,
+                    transparent 50%,
+                    currentColor 50%
+                ),
+                linear-gradient(
+                    135deg,
+                    currentColor 50%,
+                    transparent 50%
+                );
 
             background-position:
                 calc(100% - 12px) 50%,
@@ -66,69 +84,102 @@
             }
 
             .language-selector select {
+
                 padding: 6px 24px 6px 8px;
+
                 font-size: 9px;
                 letter-spacing: 1.5px;
             }
         }
+
     </style>
+
 </head>
+
 
 <body>
 
 <div class="page">
 
-    <!-- NAVEGAÇÃO -->
 
-<nav class="nav">
+    <!-- =========================
+         NAVEGAÇÃO
+    ========================= -->
 
-    <div class="nav-inner">
+    <nav class="nav">
 
-        <a href="index.html" class="logo">
-            D.MARCO
-        </a>
+        <div class="nav-inner">
 
-        <div class="nav-links">
-
-            <a href="index.html" data-i18n="navHome">
-                홈
+            <a
+                href="index.html"
+                class="logo"
+            >
+                D.MARCO
             </a>
 
-            <a href="#fan-messages" data-i18n="navMessages">
-                메시지
-            </a>
 
-            <a href="pagina-2.html" data-i18n="navMusicMemory">
-                음악 & 추억
-            </a>
+            <div class="nav-links">
 
-            <!-- IDIOMAS -->
+                <a
+                    href="index.html"
+                    data-i18n="navHome"
+                >
+                    Início
+                </a>
 
-            <div class="language-selector">
 
-                <select id="languageSelector" aria-label="언어">
+                <a
+                    href="#fan-messages"
+                    data-i18n="navMessages"
+                >
+                    Mensagens
+                </a>
 
-                    <option value="kr">
-                        한국어
-                    </option>
 
-                    <option value="pt">
-                        Português
-                    </option>
+                <a
+                    href="pagina-2.html"
+                    data-i18n="navMusicMemory"
+                >
+                    Músicas & Memórias
+                </a>
 
-                    <option value="en">
-                        English
-                    </option>
 
-                </select>
+                <!-- IDIOMAS -->
+
+                <div class="language-selector">
+
+                    <select
+                        id="languageSelector"
+                        aria-label="Idioma"
+                    >
+
+                        <option value="kr">
+                            한국어
+                        </option>
+
+                        <option value="pt">
+                            Português
+                        </option>
+
+                        <option value="en">
+                            English
+                        </option>
+
+                    </select>
+
+                </div>
 
             </div>
 
         </div>
 
-    </div>
+    </nav>
 
-</nav>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
 
     <header class="hero">
 
@@ -139,6 +190,7 @@
             data-i18n-alt="heroImageAlt"
         >
 
+
         <div class="hero-content">
 
             <div class="container">
@@ -147,11 +199,16 @@
                     DJ • D.MARCO
                 </div>
 
+
                 <h1 class="hero-title">
                     D.MARCO
                 </h1>
 
-                <p class="hero-subtitle" data-i18n="heroSubtitle">
+
+                <p
+                    class="hero-subtitle"
+                    data-i18n="heroSubtitle"
+                >
                     Um espaço criado para alegrar sua alma.
                 </p>
 
@@ -161,7 +218,11 @@
 
     </header>
 
-    <!-- BOAS-VINDAS -->
+
+
+    <!-- =========================
+         BOAS-VINDAS
+    ========================= -->
 
     <section class="home-welcome">
 
@@ -169,38 +230,56 @@
 
             <div class="home-welcome-grid">
 
+
                 <!-- INTRODUÇÃO -->
 
                 <div class="home-welcome-content">
 
-                    <div class="section-label" data-i18n="homeWelcomeLabel">
-                        환영합니다
+                    <div
+                        class="section-label"
+                        data-i18n="homeWelcomeLabel"
+                    >
+                        Bem-vindo
                     </div>
 
-                    <h2 class="home-welcome-title" data-i18n="homeWelcomeTitle">
-                        정성을 담아<br>
-                        마음을 전합니다.
+
+                    <h2
+                        class="home-welcome-title"
+                        data-i18n="homeWelcomeTitle"
+                    >
+                        Com carinho,<br>
+                        para você.
                     </h2>
 
-                    <p class="home-welcome-text" data-i18n="homeWelcomeText">
-                        이 공간은 마르코에게 전하고 싶은
-                        팬들의 진심이 모인 곳입니다.
+
+                    <p
+                        class="home-welcome-text"
+                        data-i18n="homeWelcomeText"
+                    >
+                        Este é um espaço criado para você,
+                        reunindo tudo aquilo que pessoas de
+                        diferentes lugares do mundo quiseram
+                        deixar para você.
                     </p>
 
                 </div>
 
 
-                <!-- POST-IT -->
+
+                <!-- ELEMENTO DECORATIVO
+                     Será trabalhado no CSS posteriormente -->
 
                 <div class="home-postit">
 
-                    <div class="home-postit-text" data-i18n="homePostit">
-                        이곳에는 팬들의<br>
-                        응원과 사랑,<br>
-                        그리고 마르코에게<br>
-                        전하고 싶은 모든 마음이<br>
-                        담겨 있습니다.
+                    <div
+                        class="home-postit-text"
+                        data-i18n="homePostit"
+                    >
+                        Um lugar onde diferentes formas
+                        de carinho encontraram seu caminho
+                        até você.
                     </div>
+
 
                     <div class="home-postit-heart">
                         ♡
@@ -211,20 +290,33 @@
             </div>
 
 
-            <!-- MENSAGEM EM DESTAQUE -->
 
-            <div class="home-messages">
+            <!-- =========================
+                 CONTEÚDOS
+            ========================= -->
+
+            <div
+                class="home-messages"
+                id="fan-messages"
+            >
 
                 <div class="home-messages-header">
 
                     <div>
 
-                        <div class="section-label" data-i18n="homeMessagesLabel">
-                            메시지
+                        <div
+                            class="section-label"
+                            data-i18n="homeMessagesLabel"
+                        >
+                            De diferentes lugares
                         </div>
 
-                        <h3 class="home-messages-title" data-i18n="homeMessagesTitle">
-                            팬들의 메시지
+
+                        <h3
+                            class="home-messages-title"
+                            data-i18n="homeMessagesTitle"
+                        >
+                            O que deixamos para você
                         </h3>
 
                     </div>
@@ -232,23 +324,35 @@
                 </div>
 
 
+
+                <!-- CARTÃO -->
+
                 <div class="message-card">
+
 
                     <div class="message-country">
                         🇧🇷 Brasil
                     </div>
 
+
                     <div class="message-name">
                         Ana
                     </div>
 
+
                     <div class="message-text">
-                        “Que você nunca se esqueça do quanto sua música
-                        pode tocar o coração das pessoas.”
+
+                        “Que você nunca se esqueça
+                        do quanto sua música pode
+                        tocar o coração das pessoas.”
+
                     </div>
 
                 </div>
 
+
+
+                <!-- NAVEGAÇÃO -->
 
                 <div class="message-navigation">
 
@@ -257,21 +361,29 @@
                         class="message-button"
                         data-i18n="previousMessage"
                     >
-                        ← 이전
+                        ← Anterior
                     </button>
 
+
                     <div class="message-counter">
+
                         <span>01</span>
-                        <span class="message-counter-divider">/</span>
+
+                        <span class="message-counter-divider">
+                            /
+                        </span>
+
                         <span>01</span>
+
                     </div>
+
 
                     <button
                         type="button"
                         class="message-button"
                         data-i18n="nextMessage"
                     >
-                        다음 →
+                        Próxima →
                     </button>
 
                 </div>
@@ -283,7 +395,11 @@
     </section>
 
 
-<!-- RODAPÉ -->
+
+    <!-- =========================
+         RODAPÉ
+    ========================= -->
+
     <footer class="footer">
 
         <div class="container">
@@ -292,7 +408,11 @@
                 DJ D.MARCO
             </div>
 
-            <div class="footer-text" data-i18n="footerText">
+
+            <div
+                class="footer-text"
+                data-i18n="footerText"
+            >
                 Um espaço criado com carinho.
             </div>
 
@@ -303,7 +423,10 @@
 </div>
 
 
-<!-- SISTEMA DE IDIOMAS -->
+
+<!-- =========================
+     SISTEMA DE IDIOMAS
+========================= -->
 
 <script>
 
@@ -317,65 +440,56 @@ const translations = {
         description:
             "Um espaço especial criado para o DJ D.MARCO.",
 
+
         navHome:
-    "Início",
+            "Início",
 
-navMessages:
-    "Mensagens",
+        navMessages:
+            "Mensagens",
 
-navMusicMemory:
-    "Músicas & Memórias",
+        navMusicMemory:
+            "Músicas & Memórias",
 
-        homeWelcomeLabel:
-    "Bem-vindo",
-
-homeWelcomeTitle:
-    "Com carinho,<br>para você.",
-
-homeWelcomeText:
-    "Este espaço reúne mensagens, palavras e pequenos pedaços de carinho que fãs de diferentes lugares quiseram deixar para você.",
-
-homePostit:
-    "Aqui estão reunidos<br>o carinho, o apoio<br>e todas as palavras<br>que os fãs quiseram<br>deixar para você.",
-
-homeMessagesLabel:
-    "Mensagens",
-
-homeMessagesTitle:
-    "Mensagens dos fãs",
-
-previousMessage:
-    "← Anterior",
-
-nextMessage:
-    "Próxima →",
 
         heroSubtitle:
             "Um espaço criado para alegrar sua alma.",
 
-        welcomeLabel:
+
+        homeWelcomeLabel:
             "Bem-vindo",
 
-        welcomeTitle:
-            "Um espaço<br>feito com carinho.",
+        homeWelcomeTitle:
+            "Com carinho,<br>para você.",
 
-        welcomeText:
-            "Que as palavras, as imagens e os momentos guardados aqui possam trazer um pouco de alegria para quem passar por este espaço.",
+        homeWelcomeText:
+            "Este é um espaço criado para você, reunindo tudo aquilo que pessoas de diferentes lugares do mundo quiseram deixar para você.",
 
-        memoriesTitle:
-            "Entre música,<br>momentos e memórias.",
 
-        memoriesText:
-            "Um pequeno lugar para guardar aquilo que merece continuar sendo lembrado.",
+        homePostit:
+            "Um lugar onde diferentes formas de carinho encontraram seu caminho até você.",
+
+
+        homeMessagesLabel:
+            "De diferentes lugares",
+
+        homeMessagesTitle:
+            "O que deixamos para você",
+
+
+        previousMessage:
+            "← Anterior",
+
+        nextMessage:
+            "Próxima →",
+
 
         footerText:
             "Um espaço criado com carinho.",
 
-        heroImageAlt:
-            "DJ D.MARCO tocando",
 
-        portraitImageAlt:
-            "DJ D.MARCO"
+        heroImageAlt:
+            "DJ D.MARCO tocando"
+
     },
 
 
@@ -387,65 +501,56 @@ nextMessage:
         description:
             "A special space created for DJ D.MARCO.",
 
-       navHome:
-    "Home",
 
-navMessages:
-    "Messages",
+        navHome:
+            "Home",
 
-navMusicMemory:
-    "Music & Memories",
+        navMessages:
+            "Messages",
 
-        homeWelcomeLabel:
-    "Welcome",
+        navMusicMemory:
+            "Music & Memories",
 
-homeWelcomeTitle:
-    "With care,<br>for you.",
-
-homeWelcomeText:
-    "This space brings together messages, words, and little pieces of affection that fans from different places wanted to leave for you.",
-
-homePostit:
-    "Here are gathered<br>the love, support,<br>and all the words<br>that fans wanted<br>to leave for you.",
-
-homeMessagesLabel:
-    "Messages",
-
-homeMessagesTitle:
-    "Messages from fans",
-
-previousMessage:
-    "← Previous",
-
-nextMessage:
-    "Next →",
 
         heroSubtitle:
             "A space created to brighten your soul.",
 
-        welcomeLabel:
+
+        homeWelcomeLabel:
             "Welcome",
 
-        welcomeTitle:
-            "A space<br>made with care.",
+        homeWelcomeTitle:
+            "With care,<br>for you.",
 
-        welcomeText:
-            "May the words, images, and moments kept here bring a little joy to everyone who passes through this space.",
+        homeWelcomeText:
+            "This is a space created for you, bringing together everything that people from different places around the world wanted to leave for you.",
 
-        memoriesTitle:
-            "Between music,<br>moments and memories.",
 
-        memoriesText:
-            "A little place to keep what deserves to be remembered.",
+        homePostit:
+            "A place where different forms of affection found their way to you.",
+
+
+        homeMessagesLabel:
+            "From different places",
+
+        homeMessagesTitle:
+            "What We Left for You",
+
+
+        previousMessage:
+            "← Previous",
+
+        nextMessage:
+            "Next →",
+
 
         footerText:
-            "A space made with affection.",
+            "A space created with care.",
+
 
         heroImageAlt:
-            "DJ D.MARCO performing",
+            "DJ D.MARCO performing"
 
-        portraitImageAlt:
-            "DJ D.MARCO"
     },
 
 
@@ -457,73 +562,67 @@ nextMessage:
         description:
             "DJ D.MARCO를 위해 특별히 만들어진 공간입니다.",
 
+
         navHome:
-    "홈",
+            "홈",
 
-navMessages:
-    "메시지",
+        navMessages:
+            "메시지",
 
-navMusicMemory:
-    "음악 & 추억",
+        navMusicMemory:
+            "음악 & 추억",
 
-        homeWelcomeLabel:
-    "환영합니다",
-
-homeWelcomeTitle:
-    "정성을 담아<br>마음을 전합니다.",
-
-homeWelcomeText:
-    "이 공간에는 여러 곳의 팬들이 마르코에게 전하고 싶었던 메시지와 따뜻한 마음이 담겨 있습니다.",
-
-homePostit:
-    "이곳에는 팬들의<br>응원과 사랑,<br>그리고 마르코에게<br>전하고 싶은 모든 마음이<br>담겨 있습니다.",
-
-homeMessagesLabel:
-    "메시지",
-
-homeMessagesTitle:
-    "팬들의 메시지",
-
-previousMessage:
-    "← 이전",
-
-nextMessage:
-    "다음 →",
 
         heroSubtitle:
             "당신의 마음에 작은 기쁨을 전하는 공간.",
 
-        welcomeLabel:
+
+        homeWelcomeLabel:
             "환영합니다",
 
-        welcomeTitle:
-            "정성을 담아<br>만든 공간입니다.",
+        homeWelcomeTitle:
+            "마음을 담아,<br>당신에게.",
 
-        welcomeText:
-            "이곳에 담긴 말과 사진, 그리고 소중한 순간들이 이 공간을 찾는 모든 분들에게 작은 기쁨이 되기를 바랍니다.",
+        homeWelcomeText:
+            "이 공간은 당신을 위해 만들어졌습니다. 세계 여러 곳의 사람들이 당신에게 남기고 싶었던 모든 것을 이곳에 담았습니다.",
 
-        memoriesTitle:
-            "음악과<br>순간, 그리고 추억.",
 
-        memoriesText:
-            "오래도록 기억하고 싶은 소중한 순간들을 간직하는 작은 공간입니다.",
+        homePostit:
+            "서로 다른 방식의 마음이 당신에게 닿을 수 있도록 만든 작은 공간입니다.",
+
+
+        homeMessagesLabel:
+            "세계 여러 곳에서",
+
+        homeMessagesTitle:
+            "당신에게 남겨진 것들",
+
+
+        previousMessage:
+            "← 이전",
+
+        nextMessage:
+            "다음 →",
+
 
         footerText:
-            "정성을 담아 만든 공간.",
+            "마음을 담아 만든 공간.",
+
 
         heroImageAlt:
-            "DJ D.MARCO의 공연 모습",
+            "DJ D.MARCO의 공연 모습"
 
-        portraitImageAlt:
-            "DJ D.MARCO"
     }
 
 };
 
 
+
 function changeLanguage(language) {
 
-    const selectedLanguage = translations[language];
+    const selectedLanguage =
+        translations[language];
+
 
     document.documentElement.lang =
         language === "pt"
@@ -552,6 +651,7 @@ function changeLanguage(language) {
             const key =
                 element.getAttribute("data-i18n");
 
+
             if (selectedLanguage[key]) {
 
                 element.innerHTML =
@@ -568,6 +668,7 @@ function changeLanguage(language) {
 
             const key =
                 element.getAttribute("data-i18n-alt");
+
 
             if (selectedLanguage[key]) {
 
@@ -589,8 +690,11 @@ function changeLanguage(language) {
 }
 
 
+
 const languageSelector =
-    document.getElementById("languageSelector");
+    document.getElementById(
+        "languageSelector"
+    );
 
 
 languageSelector.addEventListener(
@@ -603,6 +707,7 @@ languageSelector.addEventListener(
 
     }
 );
+
 
 
 const savedLanguage =
@@ -622,4 +727,5 @@ changeLanguage(
 </script>
 
 </body>
+
 </html>
