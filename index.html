@@ -26,23 +26,64 @@
 
 
 <body>
+<!-- =====================================================
+     DECORAÇÃO MÁGICA
+====================================================== -->
 
+<div class="magic-decoration" aria-hidden="true">
+
+    <!-- MARGARIDAS — PARADAS -->
+
+    <img
+        src="Dayse_flower.png"
+        class="magic-flower flower-left"
+        alt=""
+    >
+
+    <img
+        src="Dayse_flower.png"
+        class="magic-flower flower-right"
+        alt=""
+    >
+
+    <img
+        src="Dayse_flower.png"
+        class="magic-flower flower-top-right"
+        alt=""
+    >
+
+
+    <!-- FADAS — QUASE INVISÍVEIS -->
+
+    <img
+        src="Flying-Fairy-Silhouette.svg"
+        class="magic-fairy fairy-left"
+        alt=""
+    >
+
+    <img
+        src="Flying-Fairy-Silhouette.svg"
+        class="magic-fairy fairy-right"
+        alt=""
+    >
+
+    <img
+        src="Flying-Fairy-Silhouette.svg"
+        class="magic-fairy fairy-bottom"
+        alt=""
+    >
+
+
+    <!-- PÓ MÁGICO — EM MOVIMENTO -->
+
+    <div class="magic-dust dust-one"></div>
+
+    <div class="magic-dust dust-two"></div>
+
+    <div class="magic-dust dust-three"></div>
+
+</div>
 <div class="page">
-
-    <!-- =========================
-         DECORAÇÃO
-    ========================== -->
-
-    <div class="decor decor-star decor-star-1">✦</div>
-    <div class="decor decor-star decor-star-2">✧</div>
-    <div class="decor decor-star decor-star-3">✦</div>
-    <div class="decor decor-star decor-star-4">✧</div>
-
-    <div class="decor decor-flower decor-flower-1">✿</div>
-    <div class="decor decor-flower decor-flower-2">✿</div>
-    <div class="decor decor-flower decor-flower-3">✿</div>
-    <div class="decor decor-flower decor-flower-4">✿</div>
-
 
     <!-- =========================
          CABEÇALHO
@@ -741,5 +782,78 @@ nextButton.addEventListener(
 
 </script>
 
+    <script>
+(function () {
+
+    const fairies =
+        document.querySelectorAll('.magic-fairy');
+
+    if (!fairies.length) return;
+
+    let ticking = false;
+
+    function moveFairies() {
+
+        const scrollY = window.scrollY;
+
+        fairies.forEach((fairy, index) => {
+
+            const speed =
+                [0.045, -0.065, 0.035][index] || 0.04;
+
+            const drift =
+                Math.sin(scrollY * 0.008 + index) * 12;
+
+            const vertical =
+                scrollY * speed;
+
+            const rotation =
+                Math.sin(scrollY * 0.004 + index) * 2;
+
+            fairy.style.transform =
+                `translate3d(${drift}px, ${vertical}px, 0)
+                 rotate(${rotation}deg)
+                 ${index === 1 ? 'scaleX(-1)' : ''}`;
+
+            /*
+             * A fada fica ligeiramente mais perceptível
+             * durante o movimento, mas continua discreta.
+             */
+
+            const visibility =
+                Math.min(
+                    0.075,
+                    0.025 +
+                    Math.abs(Math.sin(scrollY * 0.006 + index)) * 0.045
+                );
+
+            fairy.style.opacity = visibility;
+        });
+
+        ticking = false;
+    }
+
+    window.addEventListener(
+        'scroll',
+        function () {
+
+            if (!ticking) {
+
+                window.requestAnimationFrame(
+                    moveFairies
+                );
+
+                ticking = true;
+            }
+
+        },
+        { passive: true }
+    );
+
+    moveFairies();
+
+})();
+    </script>
+    
 </body>
 </html>
