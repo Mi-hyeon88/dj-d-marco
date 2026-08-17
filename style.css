@@ -1446,3 +1446,279 @@ select {
     }
 
     .decor-flower-4
+
+   /* =========================================================
+   DECORAÇÃO MÁGICA DO SITE
+========================================================= */
+
+/* CAMADA GERAL DA DECORAÇÃO */
+.magic-decoration {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 4;
+    overflow: hidden;
+}
+
+/* =========================================================
+   MARGARIDAS
+   FICAM PARADAS
+========================================================= */
+
+.magic-flower {
+    position: absolute;
+
+    width: 145px;
+    height: 145px;
+
+    object-fit: contain;
+
+    opacity: 0.22;
+
+    filter:
+        brightness(0.72)
+        contrast(1.05);
+
+    pointer-events: none;
+}
+
+.magic-flower.flower-left {
+    left: -42px;
+    top: 37%;
+}
+
+.magic-flower.flower-right {
+    right: -45px;
+    top: 68%;
+    width: 170px;
+    height: 170px;
+}
+
+.magic-flower.flower-top-right {
+    right: 15px;
+    top: 55px;
+
+    width: 105px;
+    height: 105px;
+
+    opacity: 0.16;
+}
+
+
+/* =========================================================
+   FADAS
+   QUASE FANTASMAS / SILHUETAS
+========================================================= */
+
+.magic-fairy {
+    position: absolute;
+
+    width: 170px;
+
+    opacity: 0.035;
+
+    filter:
+        brightness(0.55)
+        blur(0.45px);
+
+    mix-blend-mode: screen;
+
+    will-change: transform, opacity;
+
+    transition:
+        opacity 0.8s ease;
+
+    pointer-events: none;
+}
+
+/*
+   A fada não deve chamar atenção.
+   Ela começa praticamente invisível.
+*/
+
+.magic-fairy.fairy-left {
+    left: 1%;
+    top: 18%;
+}
+
+.magic-fairy.fairy-right {
+    right: 1%;
+    top: 48%;
+    transform: scaleX(-1);
+}
+
+.magic-fairy.fairy-bottom {
+    left: 5%;
+    top: 76%;
+    width: 135px;
+}
+
+
+/* =========================================================
+   PÓ MÁGICO
+========================================================= */
+
+.magic-dust {
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    opacity: 0.32;
+
+    background-image: url("poedefada.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    filter:
+        brightness(0.85)
+        blur(0.2px);
+
+    will-change: transform;
+
+    animation:
+        magicDustFloat 12s ease-in-out infinite;
+}
+
+.magic-dust.dust-one {
+    left: 4%;
+    top: 22%;
+}
+
+.magic-dust.dust-two {
+    right: 3%;
+    top: 57%;
+
+    width: 220px;
+    height: 220px;
+
+    animation-delay: -5s;
+}
+
+.magic-dust.dust-three {
+    left: 35%;
+    top: 78%;
+
+    width: 190px;
+    height: 190px;
+
+    opacity: 0.20;
+
+    animation-delay: -8s;
+}
+
+
+/* =========================================================
+   MOVIMENTO SUAVE DO PÓ
+========================================================= */
+
+@keyframes magicDustFloat {
+
+    0% {
+        transform:
+            translate3d(0, 0, 0)
+            rotate(0deg);
+    }
+
+    25% {
+        transform:
+            translate3d(12px, -18px, 0)
+            rotate(2deg);
+    }
+
+    50% {
+        transform:
+            translate3d(-8px, -30px, 0)
+            rotate(-2deg);
+    }
+
+    75% {
+        transform:
+            translate3d(-15px, -12px, 0)
+            rotate(1deg);
+    }
+
+    100% {
+        transform:
+            translate3d(0, 0, 0)
+            rotate(0deg);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .magic-flower {
+        opacity: 0.18;
+    }
+
+    .magic-flower.flower-left {
+        left: -58px;
+        top: 38%;
+        width: 125px;
+        height: 125px;
+    }
+
+    .magic-flower.flower-right {
+        right: -55px;
+        top: 70%;
+        width: 145px;
+        height: 145px;
+    }
+
+    .magic-flower.flower-top-right {
+        right: -10px;
+        top: 110px;
+
+        width: 85px;
+        height: 85px;
+
+        opacity: 0.12;
+    }
+
+
+    .magic-fairy {
+        width: 125px;
+
+        opacity: 0.025;
+    }
+
+    .magic-fairy.fairy-left {
+        left: -20px;
+        top: 20%;
+    }
+
+    .magic-fairy.fairy-right {
+        right: -20px;
+        top: 48%;
+    }
+
+    .magic-fairy.fairy-bottom {
+        left: -10px;
+        top: 78%;
+        width: 105px;
+    }
+
+
+    .magic-dust {
+        width: 180px;
+        height: 180px;
+
+        opacity: 0.25;
+    }
+
+    .magic-dust.dust-two {
+        width: 160px;
+        height: 160px;
+    }
+
+    .magic-dust.dust-three {
+        width: 140px;
+        height: 140px;
+    }
+}
