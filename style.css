@@ -1146,12 +1146,30 @@ select {
     /* HERO MOBILE */
 
     .hero {
-        position: relative;
+    min-height: 615px;
+}
 
-        display: block;
+.hero-photo {
+    min-height: 615px;
+}
 
-        min-height: 615px;
-    }
+.hero-text {
+    min-height: 615px;
+    padding: 75px 28px 60px 35px;
+    justify-content: flex-start;
+}
+
+.hero-title {
+    max-width: 300px;
+    font-size: 48px;
+    line-height: 0.95;
+}
+
+.hero-subtitle {
+    max-width: 285px;
+    font-size: 15px;
+    line-height: 1.5;
+}
 
     .hero-photo {
         position: absolute;
