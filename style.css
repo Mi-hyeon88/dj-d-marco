@@ -617,8 +617,9 @@ img {
     }
 
     .hero-image {
-    height: 110%;
-    top: -5%;
+    height: 100%;
+    top: 0;
+    object-position: center 58%;
     }
 
     .hero-content {
