@@ -617,9 +617,14 @@ img {
     }
 
     .hero-image {
-    height: 100%;
-    top: 0;
-    object-position: center 58%;
+    height: 125%;
+    width: auto;
+    max-width: none;
+    top: -12%;
+    left: 50%;
+    transform: translateX(-50%);
+    object-fit: cover;
+    object-position: center center;
     }
 
     .hero-content {
