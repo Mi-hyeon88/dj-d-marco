@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap');
 
 :root {
     --black: #080808;
-    --dark: #111111;
+    --dark: #101010;
     --white: #f4f1ed;
-    --soft: #b8b3ae;
+    --soft: #aaa49e;
     --gold: #b89a63;
 }
 
@@ -46,618 +46,23 @@ img {
     margin: 0 auto;
 }
 
-/* =========================
-   HEADER / BANNER
-========================= */
-
-.hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: flex-end;
-    background: #050505;
-    overflow: hidden;
-}
-
-.hero-image {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-.hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(
-            to top,
-            rgba(0,0,0,0.95) 0%,
-            rgba(0,0,0,0.55) 38%,
-            rgba(0,0,0,0.12) 75%,
-            rgba(0,0,0,0.35) 100%
-        );
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    padding: 0 0 80px;
-}
-
-.hero-label {
-    color: var(--gold);
-    font-size: 12px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    margin-bottom: 18px;
-}
-
-.hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(58px, 9vw, 110px);
-    font-weight: 500;
-    line-height: 0.9;
-    letter-spacing: 2px;
-}
-
-.hero-subtitle {
-    margin-top: 25px;
-    max-width: 560px;
-    color: rgba(244,241,237,0.75);
-    font-size: 15px;
-}
-
 
 /* =========================
-   SECTIONS
+   CABEÇALHO
 ========================= */
-
-.section {
-    padding: 120px 0;
-}
-
-.section-dark {
-    background: var(--black);
-}
-
-.section-soft {
-    background: var(--dark);
-}
-
-.section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(42px, 6vw, 70px);
-    font-weight: 500;
-    line-height: 1;
-    margin-bottom: 25px;
-}
-
-.section-label {
-    color: var(--gold);
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin-bottom: 18px;
-}
-
-.text {
-    max-width: 650px;
-    color: var(--soft);
-    font-size: 15px;
-}
-
-/* =========================
-   PORTRAIT
-========================= */
-
-.portrait-section {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    min-height: 520px;
-    align-items: center;
-    gap: 20px;
-    padding: 70px 6%;
-    background: #0d0d0d;
-}
-
-.portrait-image {
-    width: min(72%, 390px);
-    height: auto;
-    min-height: 0;
-    justify-self: center;
-
-    padding: 14px 14px 52px;
-    background: #f1eee7;
-
-    box-shadow:
-        0 18px 40px rgba(0,0,0,0.45);
-
-    transform: rotate(-2deg);
-
-    object-fit: cover;
-}
-
-.portrait-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    padding: 50px 7%;
-
-    background: #0d0d0d;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-.footer {
-    padding: 70px 0;
-    text-align: center;
-    border-top: 1px solid rgba(255,255,255,0.08);
-}
-
-.footer-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    letter-spacing: 3px;
-}
-
-.footer-text {
-    margin-top: 12px;
-    color: #777;
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 700px) {
-
-    .nav {
-        padding: 22px 0;
-    }
-
-    .nav-links {
-        gap: 16px;
-    }
-
-    .nav-links a {
-        font-size: 9px;
-        letter-spacing: 1px;
-    }
-
-    .hero {
-        min-height: 68svh;
-    }
-
-    .hero-content {
-        padding-bottom: 30px;
-    }
-
-    .hero-label {
-        font-size: 9px;
-        letter-spacing: 3px;
-    }
-
-    .hero-subtitle {
-        font-size: 13px;
-        max-width: 90%;
-    }
-
-    .section {
-        padding: 80px 0;
-    }
-
-    .portrait-section {
-        grid-template-columns: 1fr;
-    }
-
-    .portrait-image {
-        min-height: 500px;
-    }
-
-    .portrait-content {
-        padding: 60px 8%;
-    }
-}
-/* =========================
-   MURAL DE MENSAGENS
-========================= */
-
-.fan-messages {
-    position: relative;
-    padding: 140px 0 130px;
-    background:
-        radial-gradient(
-            circle at 50% 20%,
-            rgba(184,154,99,0.08),
-            transparent 38%
-        ),
-        #0a0a0a;
-    overflow: hidden;
-}
-
-.fan-messages-intro {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-}
-
-.fan-messages-intro .text {
-    margin: 0 auto;
-}
-
-
-/* MURAL */
-
-.message-card {
-    position: relative;
-    width: min(760px, 88%);
-    margin: 70px auto 35px;
-    padding: 75px 80px 70px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,0.035),
-            rgba(255,255,255,0.012)
-        );
-
-    border: 1px solid rgba(184,154,99,0.28);
-
-    box-shadow:
-        0 25px 80px rgba(0,0,0,0.45),
-        inset 0 0 60px rgba(184,154,99,0.025);
-
-    text-align: center;
-}
-
-
-/* DETALHE INTERNO DO MURAL */
-
-.message-card::before {
-    content: "";
-    position: absolute;
-    inset: 12px;
-
-    border: 1px solid rgba(255,255,255,0.06);
-
-    pointer-events: none;
-}
-
-
-/* SELO */
-
-.message-country {
-    position: absolute;
-    top: 30px;
-    right: 35px;
-
-    width: 76px;
-    height: 58px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #111;
-
-    border: 2px dashed rgba(184,154,99,0.7);
-
-    color: var(--white);
-
-    font-size: 12px;
-    letter-spacing: 1px;
-
-    transform: rotate(4deg);
-
-    box-shadow:
-        0 8px 18px rgba(0,0,0,0.35);
-}
-
-
-/* PAÍS */
-
-.message-country {
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-
-/* NOME */
-
-.message-name {
-    margin-top: 35px;
-
-    color: var(--gold);
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 30px;
-
-    letter-spacing: 2px;
-}
-
-
-/* MENSAGEM */
-
-.message-text {
-    max-width: 570px;
-    margin: 35px auto 0;
-
-    color: var(--white);
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: clamp(25px, 3vw, 34px);
-
-    line-height: 1.35;
-}
-
-
-/* BOTÃO */
-
-.message-navigation {
-    display: flex;
-    justify-content: center;
-}
-
-.message-button {
-    position: relative;
-
-    padding: 12px 25px;
-
-    background: transparent;
-
-    border: 1px solid rgba(184,154,99,0.45);
-
-    color: var(--soft);
-
-    font-family: 'Inter', sans-serif;
-
-    font-size: 10px;
-
-    letter-spacing: 2px;
-
-    text-transform: uppercase;
-
-    cursor: pointer;
-
-    transition:
-        background 0.3s ease,
-        color 0.3s ease,
-        border-color 0.3s ease;
-}
-
-.message-button:hover {
-    background: rgba(184,154,99,0.08);
-
-    border-color: var(--gold);
-
-    color: var(--white);
-}
-
-
-/* =========================
-   STICKERS DECORATIVOS
-========================= */
-
-.fan-messages::before {
-    content: "🎧";
-    position: absolute;
-
-    top: 90px;
-    left: 10%;
-
-    font-size: 34px;
-
-    transform: rotate(-12deg);
-
-    opacity: 0.75;
-}
-
-.fan-messages::after {
-    content: "🎵";
-    position: absolute;
-
-    bottom: 70px;
-    right: 10%;
-
-    font-size: 32px;
-
-    transform: rotate(10deg);
-
-    opacity: 0.7;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 700px) {
-
-    .fan-messages {
-        padding: 95px 0 90px;
-    }
-
-    .message-card {
-        width: 90%;
-
-        margin-top: 50px;
-
-        padding: 70px 28px 55px;
-    }
-
-    .message-card::before {
-        inset: 8px;
-    }
-
-    .message-country {
-        top: 22px;
-        right: 22px;
-
-        width: 64px;
-        height: 50px;
-
-        font-size: 9px;
-    }
-
-    .message-name {
-        margin-top: 30px;
-
-        font-size: 27px;
-    }
-
-    .message-text {
-        margin-top: 28px;
-
-        font-size: 25px;
-
-        line-height: 1.4;
-    }
-
-    .message-button {
-        font-size: 9px;
-
-        padding: 11px 20px;
-    }
-
-    .fan-messages::before {
-        top: 45px;
-        left: 5%;
-
-        font-size: 26px;
-    }
-
-    .fan-messages::after {
-        bottom: 35px;
-        right: 5%;
-
-        font-size: 25px;
-    }
-
-}
-/* =========================
-   DETALHES DO MURAL
-========================= */
-
-.fan-messages {
-    position: relative;
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            rgba(8,8,8,0.88),
-            rgba(12,18,20,0.94)
-        ),
-        url("marco-dj-banner.png");
-
-    background-size: cover;
-    background-position: center bottom;
-
-    box-shadow:
-        inset 0 0 100px rgba(0,0,0,0.65);
-}
-
-
-/* ANIMAÇÃO DOS STICKERS */
-
-.fan-messages::before {
-    animation: headphoneFloat 3.5s ease-in-out infinite;
-    transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.fan-messages::after {
-    animation: musicFloat 3s ease-in-out infinite;
-    transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-
-/* PEQUENO BRILHO AO PASSAR O MOUSE */
-
-.fan-messages:hover::before {
-    transform: scale(1.12) rotate(-5deg);
-    filter: brightness(1.4);
-}
-
-.fan-messages:hover::after {
-    transform: scale(1.12) rotate(5deg);
-    filter: brightness(1.4);
-}
-
-
-@keyframes headphoneFloat {
-
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-7px);
-    }
-
-}
-
-
-@keyframes musicFloat {
-
-    0%, 100% {
-        transform: translateY(0) rotate(0deg);
-    }
-
-    50% {
-        transform: translateY(-8px) rotate(4deg);
-    }
-
-}
-
-
-/* MOBILE */
-
-@media (max-width: 700px) {
-
-    .fan-messages {
-        background-position: center bottom;
-        background-size: auto 100%;
-    }
-
-}
-/* =========================================================
-   CABEÇALHO — INDEPENDENTE DO BANNER
-   ========================================================= */
 
 .nav {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-
     width: 100%;
-    height: 50px;
-
-    padding: 0 !important;
-
-    background: #111111;
-
-    z-index: 1000;
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    height: 54px;
+    background: #111;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+    position: relative;
+    z-index: 20;
 }
 
 .nav-inner {
     width: min(1200px, calc(100% - 48px));
     height: 100%;
-
     margin: 0 auto;
 
     display: flex;
@@ -666,141 +71,170 @@ img {
 }
 
 .logo {
-    flex-shrink: 0;
-
-    color: #ffffff !important;
-    text-decoration: none;
-
-    white-space: nowrap;
-
-    font-family: Georgia, serif;
-    font-size: 17px;
-
-    letter-spacing: 0.12em;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    letter-spacing: 0.14em;
+    color: #fff;
 }
 
 .nav-links {
     display: flex;
     align-items: center;
-
-    gap: 24px;
-
-    white-space: nowrap;
+    gap: 26px;
 }
 
 .nav-links > a {
-    display: block;
-
-    color: #ffffff !important;
-    text-decoration: none;
-
-    white-space: nowrap;
-
-    font-family: "Noto Sans KR", sans-serif;
-    font-size: 13px;
-
-    letter-spacing: 0.05em;
-
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: #fff;
     transition: opacity 0.2s ease;
 }
 
 .nav-links > a:hover {
-    opacity: 0.6;
+    opacity: 0.55;
 }
 
 
-/* =========================================================
-   SELETOR DE IDIOMAS
-   ========================================================= */
+/* =========================
+   IDIOMAS
+========================= */
 
 .language-selector {
-    margin-left: 4px;
-    flex-shrink: 0;
+    margin-left: 2px;
 }
 
 .language-selector select {
+    appearance: none;
+    -webkit-appearance: none;
+
     min-width: 78px;
 
-    white-space: nowrap;
+    padding: 7px 26px 7px 10px;
 
-    background-color: #111111 !important;
-    color: #ffffff !important;
+    background-color: #111;
+    color: #fff;
 
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    border-radius: 5px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 4px;
 
-    padding: 8px 28px 8px 11px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.08em;
 
-    font-family: "Noto Sans KR", sans-serif;
-    font-size: 11px;
+    cursor: pointer;
 
-    letter-spacing: 0.05em;
+    background-image:
+        linear-gradient(45deg, transparent 50%, currentColor 50%),
+        linear-gradient(135deg, currentColor 50%, transparent 50%);
+
+    background-position:
+        calc(100% - 12px) 50%,
+        calc(100% - 8px) 50%;
+
+    background-size: 4px 4px;
+    background-repeat: no-repeat;
+}
+
+.language-selector option {
+    background: #111;
+    color: #fff;
 }
 
 
-/* =========================================================
-   HERO — COMEÇA ABAIXO DO CABEÇALHO
-   ========================================================= */
+/* =========================
+   HERO
+========================= */
 
 .hero {
     position: relative;
-    margin-top: 0 !important;
+    min-height: calc(100vh - 54px);
+
+    display: flex;
+    align-items: flex-end;
+
+    background: #050505;
+    overflow: hidden;
+}
+
+.hero-image {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,0.96) 0%,
+            rgba(0,0,0,0.58) 38%,
+            rgba(0,0,0,0.14) 75%,
+            rgba(0,0,0,0.30) 100%
+        );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+
+    padding-bottom: 78px;
+}
+
+.hero-label {
+    color: var(--gold);
+
+    font-size: 11px;
+    letter-spacing: 5px;
+
+    margin-bottom: 16px;
+}
+
+.hero-title {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: clamp(60px, 9vw, 112px);
+    font-weight: 500;
+
+    line-height: 0.88;
+    letter-spacing: 0.04em;
+}
+
+.hero-subtitle {
+    max-width: 540px;
+
+    margin-top: 24px;
+
+    color: rgba(244,241,237,0.74);
+
+    font-size: 14px;
 }
 
 
-/* =========================================================
-   CELULAR — CABEÇALHO
-   ========================================================= */
-
-@media (max-width: 700px) {
-
-    .nav {
-        height: 48px;
-        padding: 0 !important;
-    }
-
-    .nav-inner {
-        width: calc(100% - 20px);
-    }
-
-    .logo {
-        font-size: 13px;
-        letter-spacing: 0.06em;
-    }
-
-    .nav-links {
-        gap: 7px;
-    }
-
-    .nav-links > a {
-        font-size: 9px;
-        letter-spacing: 0;
-    }
-
-    .language-selector {
-        margin-left: 0;
-    }
-
-    .language-selector select {
-        min-width: 64px;
-
-        padding: 5px 18px 5px 6px;
-
-        font-size: 8px;
-        letter-spacing: 0;
-    }
-}
-
-/* =========================================================
-   NOVA HOME — BOAS-VINDAS + MENSAGENS
-   ========================================================= */
+/* =========================
+   BOAS-VINDAS
+========================= */
 
 .home-welcome {
-    padding: 110px 0 120px;
+    position: relative;
+
+    padding: 115px 0 125px;
+
     background:
         radial-gradient(
-            circle at 75% 15%,
-            rgba(184,154,99,0.07),
+            circle at 75% 10%,
+            rgba(184,154,99,0.055),
             transparent 32%
         ),
         #0a0a0a;
@@ -808,54 +242,76 @@ img {
 
 .home-welcome-grid {
     display: grid;
+
     grid-template-columns: 1.15fr 0.85fr;
+
     align-items: center;
-    gap: 70px;
+
+    gap: 75px;
+
     max-width: 1050px;
+
     margin: 0 auto;
 }
-
-
-/* INTRODUÇÃO */
 
 .home-welcome-content {
     padding-left: 20px;
 }
 
+.section-label {
+    color: var(--gold);
+
+    font-size: 10px;
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 18px;
+}
+
 .home-welcome-title {
     font-family: 'Cormorant Garamond', serif;
+
     font-size: clamp(48px, 6vw, 76px);
     font-weight: 500;
+
     line-height: 0.98;
+
     color: var(--white);
+
     margin-bottom: 28px;
 }
 
 .home-welcome-text {
-    max-width: 480px;
+    max-width: 500px;
+
     color: var(--soft);
-    font-size: 15px;
+
+    font-size: 14px;
+
     line-height: 1.9;
 }
 
 
-/* POST-IT */
+/* =========================
+   CARTÃO DECORATIVO
+========================= */
 
 .home-postit {
     position: relative;
 
     width: min(100%, 300px);
-    min-height: 240px;
+    min-height: 235px;
 
-    padding: 42px 32px 38px;
+    padding: 42px 32px;
 
     justify-self: center;
 
     background:
         linear-gradient(
             145deg,
-            #d8c89f,
-            #c8b783
+            #d4c69d,
+            #c5b57e
         );
 
     color: #29251d;
@@ -868,9 +324,6 @@ img {
     font-family: 'Cormorant Garamond', serif;
 }
 
-
-/* FITA */
-
 .home-postit::before {
     content: "";
 
@@ -880,62 +333,64 @@ img {
     left: 50%;
 
     width: 82px;
-    height: 28px;
+    height: 27px;
 
     transform: translateX(-50%) rotate(-2deg);
 
-    background: rgba(210,198,160,0.72);
-
-    box-shadow:
-        0 2px 5px rgba(0,0,0,0.12);
+    background: rgba(210,198,160,0.68);
 }
 
 .home-postit-text {
-    font-size: 22px;
+    font-size: 21px;
     line-height: 1.45;
 }
 
 .home-postit-heart {
     position: absolute;
 
-    right: 24px;
-    bottom: 18px;
+    right: 23px;
+    bottom: 17px;
 
-    font-size: 30px;
+    font-size: 29px;
 }
 
 
-/* =========================================================
-   MENSAGENS
-   ========================================================= */
+/* =========================
+   CONTEÚDOS
+========================= */
 
 .home-messages {
     width: min(900px, 100%);
-    margin: 105px auto 0;
+
+    margin: 110px auto 0;
 }
 
 .home-messages-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-
-    margin-bottom: 30px;
+    margin-bottom: 32px;
 }
 
 .home-messages-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(38px, 5vw, 58px);
+
+    font-size: clamp(40px, 5vw, 60px);
     font-weight: 500;
+
     line-height: 1;
 }
 
 
-/* CARTÃO */
+/* =========================
+   CARTA / MENSAGEM
+========================= */
 
 .home-messages .message-card {
+    position: relative;
+
     width: 100%;
+
     margin: 0 auto 30px;
-    padding: 55px 65px;
+
+    padding: 65px 70px;
 
     background:
         linear-gradient(
@@ -944,26 +399,126 @@ img {
             rgba(255,255,255,0.012)
         );
 
-    border: 1px solid rgba(184,154,99,0.28);
+    border: 1px solid rgba(184,154,99,0.24);
 
     box-shadow:
-        0 25px 80px rgba(0,0,0,0.4);
+        0 25px 80px rgba(0,0,0,0.42);
 
     text-align: center;
 }
 
+.home-messages .message-card::before {
+    content: "";
 
-/* NAVEGAÇÃO */
+    position: absolute;
 
-.home-messages .message-navigation {
+    inset: 12px;
+
+    border: 1px solid rgba(255,255,255,0.055);
+
+    pointer-events: none;
+}
+
+.message-country {
+    position: absolute;
+
+    top: 27px;
+    right: 32px;
+
+    width: 76px;
+    height: 54px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 28px;
+
+    background: #111;
+
+    border: 1px dashed rgba(184,154,99,0.55);
+
+    color: var(--white);
+
+    font-size: 10px;
+    letter-spacing: 1px;
+
+    transform: rotate(3deg);
+}
+
+.message-name {
+    margin-top: 20px;
+
+    color: var(--gold);
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 29px;
+
+    letter-spacing: 2px;
+}
+
+.message-text {
+    max-width: 570px;
+
+    margin: 30px auto 0;
+
+    color: var(--white);
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: clamp(24px, 3vw, 33px);
+
+    line-height: 1.38;
+}
+
+
+/* =========================
+   NAVEGAÇÃO DAS MENSAGENS
+========================= */
+
+.home-messages .message-navigation {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 26px;
+}
+
+.message-button {
+    padding: 11px 22px;
+
+    background: transparent;
+
+    border: 1px solid rgba(184,154,99,0.38);
+
+    color: var(--soft);
+
+    font-family: 'Inter', sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.message-button:hover {
+    background: rgba(184,154,99,0.07);
+
+    border-color: var(--gold);
+
+    color: var(--white);
 }
 
 .message-counter {
-    min-width: 70px;
+    min-width: 60px;
 
     text-align: center;
 
@@ -971,78 +526,235 @@ img {
 
     font-family: 'Cormorant Garamond', serif;
 
-    font-size: 19px;
+    font-size: 18px;
 
     letter-spacing: 2px;
 }
 
 .message-counter-divider {
     color: var(--gold);
+
     margin: 0 4px;
 }
 
 
-/* =========================================================
+/* =========================
+   RODAPÉ
+========================= */
+
+.footer {
+    padding: 70px 0;
+
+    text-align: center;
+
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-title {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 28px;
+
+    letter-spacing: 3px;
+}
+
+.footer-text {
+    margin-top: 12px;
+
+    color: #777;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================
    MOBILE
-   ========================================================= */
+========================= */
 
 @media (max-width: 700px) {
 
+    .nav {
+        height: 48px;
+    }
+
+    .nav-inner {
+        width: calc(100% - 18px);
+    }
+
+    .logo {
+        font-size: 14px;
+        letter-spacing: 0.08em;
+    }
+
+    .nav-links {
+        gap: 7px;
+    }
+
+    .nav-links > a {
+        font-size: 8px;
+        letter-spacing: 0;
+    }
+
+    .language-selector select {
+        min-width: 62px;
+
+        padding: 5px 18px 5px 6px;
+
+        font-size: 8px;
+
+        letter-spacing: 0;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        min-height: 68svh;
+    }
+
+    .hero-content {
+        padding-bottom: 32px;
+    }
+
+    .hero-label {
+        font-size: 8px;
+        letter-spacing: 3px;
+        margin-bottom: 12px;
+    }
+
+    .hero-title {
+        font-size: clamp(52px, 15vw, 70px);
+    }
+
+    .hero-subtitle {
+        max-width: 90%;
+
+        margin-top: 18px;
+
+        font-size: 12px;
+
+        line-height: 1.6;
+    }
+
+
+    /* BOAS-VINDAS */
+
     .home-welcome {
-        padding: 75px 0 85px;
+        padding: 75px 0 90px;
     }
 
     .home-welcome-grid {
         grid-template-columns: 1fr;
-        gap: 45px;
+
+        gap: 48px;
     }
 
     .home-welcome-content {
         padding-left: 0;
     }
 
+    .section-label {
+        font-size: 9px;
+        letter-spacing: 3px;
+    }
+
     .home-welcome-title {
         font-size: clamp(43px, 12vw, 58px);
+
         margin-bottom: 22px;
     }
 
     .home-welcome-text {
-        font-size: 14px;
+        max-width: 100%;
+
+        font-size: 13px;
+
+        line-height: 1.85;
     }
+
+
+    /* CARTÃO */
 
     .home-postit {
         width: min(82%, 290px);
-        min-height: 225px;
+
+        min-height: 220px;
+
         padding: 38px 28px;
     }
 
     .home-postit-text {
-        font-size: 20px;
+        font-size: 19px;
     }
 
+
+    /* CONTEÚDOS */
+
     .home-messages {
-        margin-top: 75px;
+        margin-top: 78px;
     }
 
     .home-messages-title {
-        font-size: 42px;
+        font-size: 40px;
     }
 
     .home-messages .message-card {
-        padding: 60px 25px 45px;
+        padding: 58px 25px 45px;
     }
 
-    .home-messages .message-text {
-        font-size: 24px;
+    .message-country {
+        top: 21px;
+        right: 20px;
+
+        width: 63px;
+        height: 48px;
+
+        font-size: 8px;
+    }
+
+    .message-name {
+        margin-top: 25px;
+
+        font-size: 26px;
+    }
+
+    .message-text {
+        margin-top: 27px;
+
+        font-size: 23px;
+
+        line-height: 1.42;
     }
 
     .home-messages .message-navigation {
-        gap: 15px;
+        gap: 13px;
+    }
+
+    .message-button {
+        padding: 10px 15px;
+
+        font-size: 8px;
     }
 
     .message-counter {
-        min-width: 55px;
-        font-size: 16px;
+        min-width: 48px;
+
+        font-size: 15px;
+    }
+
+
+    /* RODAPÉ */
+
+    .footer {
+        padding: 55px 0;
+    }
+
+    .footer-title {
+        font-size: 24px;
     }
 
 }
