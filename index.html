@@ -1,38 +1,61 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="ko">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>D.MARCO</title>
 
     <meta
         name="description"
-        content="Um espaço criado para D.MARCO."
+        content="D.MARCO를 위해 만들어진 특별한 공간입니다."
         id="meta-description"
     >
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&family=Parisienne&display=swap"
         rel="stylesheet"
     >
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
 
 
 <body>
+
+
 <!-- =====================================================
-     DECORAÇÃO MÁGICA
+     DECORAÇÃO LATERAL
 ====================================================== -->
 
-<div class="magic-decoration" aria-hidden="true">
+<div
+    class="magic-decoration"
+    aria-hidden="true"
+>
 
-    <!-- MARGARIDAS — PARADAS -->
+
+    <!-- FLORES -->
 
     <img
         src="Dayse_flower.png"
@@ -53,7 +76,7 @@
     >
 
 
-    <!-- FADAS — QUASE INVISÍVEIS -->
+    <!-- FADAS — DISCRETAS NAS LATERAIS -->
 
     <img
         src="Flying-Fairy-Silhouette.svg"
@@ -74,7 +97,7 @@
     >
 
 
-    <!-- PÓ MÁGICO — EM MOVIMENTO -->
+    <!-- PÓ MÁGICO -->
 
     <div class="magic-dust dust-one"></div>
 
@@ -83,67 +106,119 @@
     <div class="magic-dust dust-three"></div>
 
 </div>
+
+
+
 <div class="page">
 
-    <!-- =========================
+
+    <!-- =================================================
          CABEÇALHO
-    ========================== -->
+    ================================================== -->
 
     <nav class="nav">
 
         <div class="nav-inner">
 
-            <a href="index.html" class="logo">
+
+            <!-- LOGO -->
+
+            <a
+                href="index.html"
+                class="logo"
+            >
                 D.MARCO
             </a>
 
 
+            <!-- NAVEGAÇÃO -->
+
             <div class="nav-links">
+
 
                 <a
                     href="index.html"
                     class="active"
                     data-i18n="navHome"
                 >
-                    INÍCIO
+                    홈
                 </a>
+
 
                 <a
                     href="#fan-messages"
                     data-i18n="navMessages"
                 >
-                    MENSAGENS
+                    메시지
                 </a>
+
 
                 <a
                     href="pagina-2.html"
                     data-i18n="navMusicMemory"
                 >
-                    MÚSICAS & MOMENTOS
+                    음악 & 순간들
                 </a>
+
 
             </div>
 
+
+            <!-- CORAÇÃO -->
 
             <div class="nav-heart">
                 ♡
             </div>
 
-<div class="language-selector">
-    <button type="button" data-lang="pt">PT</button>
-    <span>·</span>
-    <button type="button" data-lang="en">EN</button>
-    <span>·</span>
-    <button type="button" data-lang="kr">한국어</button>
-</div>
 
-            <div class="menu-icon" aria-label="Menu">
+            <!-- =================================================
+                 IDIOMA
+                 
+                 한국어 É O IDIOMA PRINCIPAL.
+                 O SELECT É CLICÁVEL E ABRE AS OPÇÕES.
+            ================================================== -->
+
+            <div class="language-selector">
+
+
+                <select
+                    id="languageSelector"
+                    aria-label="언어 선택"
+                >
+
+                    <option value="kr">
+                        한국어
+                    </option>
+
+                    <option value="pt">
+                        PT
+                    </option>
+
+                    <option value="en">
+                        EN
+                    </option>
+
+                </select>
+
+
+            </div>
+
+
+            <!-- MENU MOBILE -->
+
+            <div
+                class="menu-icon"
+                aria-label="Menu"
+            >
 
                 <span></span>
+
                 <span></span>
+
                 <span></span>
 
             </div>
+
 
         </div>
 
@@ -151,19 +226,25 @@
 
 
 
-    <!-- =========================
+    <!-- =================================================
          HERO
-    ========================== -->
+    ================================================== -->
 
     <header class="hero">
 
+
+        <!-- TEXTO -->
+
         <div class="hero-text">
 
+
             <h1 class="hero-title">
+
                 <span data-i18n="heroTitle">
-                    Com carinho,<br>
-                    para você.
+                    마음을 담아,<br>
+                    당신에게.
                 </span>
+
             </h1>
 
 
@@ -174,10 +255,9 @@
                 class="hero-subtitle"
                 data-i18n="heroSubtitle"
             >
-                Este é um espaço criado para você,
-                reunindo tudo aquilo que pessoas de
-                diferentes lugares do mundo quiseram
-                deixar para você.
+                이 공간은 당신을 위해 만들어졌습니다.
+                세계 여러 곳의 사람들이 당신에게 남기고
+                싶었던 모든 것을 한곳에 담았습니다.
             </p>
 
 
@@ -185,48 +265,67 @@
                 ♡
             </div>
 
+
         </div>
 
+
+
+        <!-- FOTO -->
 
         <div class="hero-photo">
 
             <img
                 src="marco-dj-banner.png"
-                alt="DJ D.MARCO tocando"
+                alt="DJ D.MARCO 공연 모습"
                 data-i18n-alt="heroImageAlt"
             >
 
         </div>
 
+
     </header>
 
 
-    <!-- BORDA RASGADA -->
+
+    <!-- =================================================
+         BORDA RASGADA
+    ================================================== -->
 
     <div class="tear"></div>
 
 
 
-    <!-- =========================
+    <!-- =================================================
          INTRODUÇÃO
-    ========================== -->
+    ================================================== -->
 
     <section class="messages-intro">
 
-        <div class="intro-decoration left">
-            ♧
+
+        <!-- SETAS LATERAIS -->
+
+        <div
+            class="intro-decoration left"
+            aria-hidden="true"
+        >
+            ←
         </div>
 
-        <div class="intro-decoration right">
-            ♧
+
+        <div
+            class="intro-decoration right"
+            aria-hidden="true"
+        >
+            →
         </div>
+
 
 
         <h2
             class="messages-intro-title"
             data-i18n="messagesIntroTitle"
         >
-            De diferentes lugares, um só carinho.
+            서로 다른 곳에서, 하나의 마음으로.
         </h2>
 
 
@@ -234,55 +333,70 @@
             class="messages-intro-subtitle"
             data-i18n="messagesIntroSubtitle"
         >
-            Algumas palavras encontraram o caminho até você.
+            당신에게 닿은 마음의 말들입니다.
         </p>
 
 
         <div class="intro-line"></div>
 
+
     </section>
 
 
 
-    <!-- =========================
+    <!-- =================================================
          MENSAGENS
-    ========================== -->
+    ================================================== -->
 
     <section
         class="messages-section"
         id="fan-messages"
     >
 
+
         <div class="messages-title">
+
 
             <span
                 class="messages-envelope"
+                aria-hidden="true"
             >
                 ✉
             </span>
 
+
             <span data-i18n="messagesTitle">
-                Mensagens que chegaram até você
+                당신에게 도착한 메시지
             </span>
+
 
         </div>
 
 
+
         <div class="messages-area">
+
+
+            <!-- SETA ANTERIOR -->
 
             <button
                 class="message-arrow left"
                 id="previousMessage"
                 type="button"
-                aria-label="Mensagem anterior"
+                aria-label="이전 메시지"
             >
                 ←
             </button>
 
 
+
+            <!-- CARTÃO -->
+
             <div class="message-stage">
 
+
                 <div class="message-card">
+
 
                     <div class="message-name">
                         Ana
@@ -292,97 +406,148 @@
                     <div class="message-name-line"></div>
 
 
+
                     <div class="message-country">
+
 
                         <div class="stamp-flag">
                             🇧🇷
                         </div>
 
+
                         <span>
                             BRASIL
                         </span>
 
+
                     </div>
+
 
 
                     <div class="message-text">
+
                         “Que você nunca se esqueça
                         do quanto sua música pode
                         tocar o coração das pessoas.”
+
                     </div>
+
 
 
                     <div class="message-heart">
                         ♡
                     </div>
 
+
                 </div>
+
 
             </div>
 
+
+
+            <!-- SETA PRÓXIMA -->
 
             <button
                 class="message-arrow right"
                 id="nextMessage"
                 type="button"
-                aria-label="Próxima mensagem"
+                aria-label="다음 메시지"
             >
                 →
             </button>
 
+
         </div>
 
 
-        <!-- PONTOS -->
+
+        <!-- =================================================
+             PONTOS
+        ================================================== -->
 
         <div class="message-dots">
 
-            <span class="message-dot active"></span>
-            <span class="message-dot"></span>
-            <span class="message-dot"></span>
-            <span class="message-dot"></span>
-            <span class="message-dot"></span>
-            <span class="message-dot"></span>
+
+            <span
+                class="message-dot active"
+            ></span>
+
+
+            <span
+                class="message-dot"
+            ></span>
+
+
+            <span
+                class="message-dot"
+            ></span>
+
+
+            <span
+                class="message-dot"
+            ></span>
+
+
+            <span
+                class="message-dot"
+            ></span>
+
+
+            <span
+                class="message-dot"
+            ></span>
+
 
         </div>
 
 
-        <!-- CONTADOR -->
+
+        <!-- =================================================
+             CONTADOR
+        ================================================== -->
 
         <div class="message-counter">
+
 
             <span class="current">
                 01
             </span>
 
+
             <span class="divider">
                 /
             </span>
+
 
             <span>
                 87
             </span>
 
+
         </div>
+
 
     </section>
 
 
 
-    <!-- =========================
+    <!-- =================================================
          RODAPÉ
-    ========================== -->
+    ================================================== -->
 
     <footer class="footer">
 
+
         <div class="footer-line"></div>
+
 
         <div
             class="footer-text"
             data-i18n="footerText"
         >
-            Projeto criado e idealizado por Jamila,
-            ADM da fanpage @d.marcoeffect.
+            Jamila가 만들고 기획한 프로젝트,
+            @d.marcoeffect 팬페이지 ADM.
         </div>
 
 
@@ -390,23 +555,89 @@
             ♡
         </div>
 
+
     </footer>
+
 
 </div>
 
 
 
-<!-- =========================
+<!-- =====================================================
      TRADUÇÕES
-========================== -->
+====================================================== -->
 
 <script>
 
 const translations = {
 
+
+    /* =================================================
+       COREANO — IDIOMA PRINCIPAL
+    ================================================= */
+
+    kr: {
+
+        pageTitle:
+            "D.MARCO",
+
+
+        description:
+            "D.MARCO를 위해 만들어진 특별한 공간입니다.",
+
+
+        navHome:
+            "홈",
+
+
+        navMessages:
+            "메시지",
+
+
+        navMusicMemory:
+            "음악 & 순간들",
+
+
+        heroTitle:
+            "마음을 담아,<br>당신에게.",
+
+
+        heroSubtitle:
+            "이 공간은 당신을 위해 만들어졌습니다. 세계 여러 곳의 사람들이 당신에게 남기고 싶었던 모든 것을 한곳에 담았습니다.",
+
+
+        messagesIntroTitle:
+            "서로 다른 곳에서, 하나의 마음으로.",
+
+
+        messagesIntroSubtitle:
+            "당신에게 닿은 마음의 말들입니다.",
+
+
+        messagesTitle:
+            "당신에게 도착한 메시지",
+
+
+        footerText:
+            "Jamila가 만들고 기획한 프로젝트, @d.marcoeffect 팬페이지 ADM.",
+
+
+        heroImageAlt:
+            "DJ D.MARCO 공연 모습"
+
+    },
+
+
+
+    /* =================================================
+       PORTUGUÊS
+    ================================================= */
+
     pt: {
 
-        pageTitle: "D.MARCO",
+        pageTitle:
+            "D.MARCO",
+
 
         description:
             "Um espaço criado para D.MARCO.",
@@ -415,8 +646,10 @@ const translations = {
         navHome:
             "INÍCIO",
 
+
         navMessages:
             "MENSAGENS",
+
 
         navMusicMemory:
             "MÚSICAS & MOMENTOS",
@@ -425,6 +658,7 @@ const translations = {
         heroTitle:
             "Com carinho,<br>para você.",
 
+
         heroSubtitle:
             "Este é um espaço criado para você, reunindo tudo aquilo que pessoas de diferentes lugares do mundo quiseram deixar para você.",
 
@@ -432,12 +666,13 @@ const translations = {
         messagesIntroTitle:
             "De diferentes lugares, um só carinho.",
 
+
         messagesIntroSubtitle:
             "Algumas palavras encontraram o caminho até você.",
 
 
         messagesTitle:
-            "Mensagens que chegaram até você.",
+            "Mensagens que chegaram até você",
 
 
         footerText:
@@ -450,9 +685,16 @@ const translations = {
     },
 
 
+
+    /* =================================================
+       ENGLISH
+    ================================================= */
+
     en: {
 
-        pageTitle: "D.MARCO",
+        pageTitle:
+            "D.MARCO",
+
 
         description:
             "A space created for D.MARCO.",
@@ -461,8 +703,10 @@ const translations = {
         navHome:
             "HOME",
 
+
         navMessages:
             "MESSAGES",
+
 
         navMusicMemory:
             "MUSIC & MOMENTS",
@@ -471,6 +715,7 @@ const translations = {
         heroTitle:
             "With care,<br>for you.",
 
+
         heroSubtitle:
             "This is a space created for you, bringing together everything that people from different places around the world wanted to leave for you.",
 
@@ -478,12 +723,13 @@ const translations = {
         messagesIntroTitle:
             "From different places, one shared affection.",
 
+
         messagesIntroSubtitle:
             "Some words found their way to you.",
 
 
         messagesTitle:
-            "Messages that reached you.",
+            "Messages that reached you",
 
 
         footerText:
@@ -493,79 +739,48 @@ const translations = {
         heroImageAlt:
             "DJ D.MARCO performing"
 
-    },
-
-
-    kr: {
-
-        pageTitle: "D.MARCO",
-
-        description:
-            "D.MARCO를 위해 만들어진 특별한 공간입니다.",
-
-
-        navHome:
-            "홈",
-
-        navMessages:
-            "메시지",
-
-        navMusicMemory:
-            "음악 & 순간들",
-
-
-        heroTitle:
-            "마음을 담아,<br>당신에게.",
-
-        heroSubtitle:
-            "이 공간은 당신을 위해 만들어졌습니다. 세계 여러 곳의 사람들이 당신에게 남기고 싶었던 모든 것을 한곳에 담았습니다.",
-
-
-        messagesIntroTitle:
-            "서로 다른 곳에서, 하나의 마음으로.",
-
-        messagesIntroSubtitle:
-            "당신에게 닿은 마음의 말들입니다.",
-
-
-        messagesTitle:
-            "당신에게 도착한 메시지.",
-
-
-        footerText:
-            "Jamila가 만들고 기획한 프로젝트, @d.marcoeffect 팬페이지 ADM.",
-
-
-        heroImageAlt:
-            "DJ D.MARCO 공연 모습"
-
     }
 
 };
 
 
 
+/* =====================================================
+   ALTERAÇÃO DE IDIOMA
+====================================================== */
+
 function changeLanguage(language) {
+
 
     const selectedLanguage =
         translations[language];
+
 
     if (!selectedLanguage) {
         return;
     }
 
 
+
+    /* IDIOMA DO DOCUMENTO */
+
     document.documentElement.lang =
-        language === "pt"
-            ? "pt-BR"
-            : language === "kr"
-                ? "ko"
+        language === "kr"
+            ? "ko"
+            : language === "pt"
+                ? "pt-BR"
                 : "en";
 
+
+
+    /* TÍTULO */
 
     document.title =
         selectedLanguage.pageTitle;
 
+
+
+    /* DESCRIPTION */
 
     const description =
         document.getElementById(
@@ -583,12 +798,18 @@ function changeLanguage(language) {
     }
 
 
+
+    /* TEXTOS */
+
     document
         .querySelectorAll("[data-i18n]")
         .forEach(element => {
 
+
             const key =
-                element.getAttribute("data-i18n");
+                element.getAttribute(
+                    "data-i18n"
+                );
 
 
             if (
@@ -606,12 +827,18 @@ function changeLanguage(language) {
         });
 
 
+
+    /* ALT DA FOTO */
+
     document
         .querySelectorAll("[data-i18n-alt]")
         .forEach(element => {
 
+
             const key =
-                element.getAttribute("data-i18n-alt");
+                element.getAttribute(
+                    "data-i18n-alt"
+                );
 
 
             if (
@@ -631,6 +858,9 @@ function changeLanguage(language) {
         });
 
 
+
+    /* SALVA O IDIOMA */
+
     localStorage.setItem(
         "djMarcoLanguage",
         language
@@ -640,33 +870,61 @@ function changeLanguage(language) {
 
 
 
+/* =====================================================
+   SELETOR DE IDIOMA
+====================================================== */
+
 const languageSelector =
     document.getElementById(
         "languageSelector"
     );
 
 
-languageSelector.addEventListener(
-    "change",
-    function () {
-
-        changeLanguage(
-            this.value
-        );
-
-    }
-);
+if (languageSelector) {
 
 
+    languageSelector.addEventListener(
+        "change",
+        function () {
+
+
+            changeLanguage(
+                this.value
+            );
+
+
+        }
+    );
+
+
+}
+
+
+
+/* =====================================================
+   IDIOMA INICIAL
+====================================================== */
+
+/*
+   Se já existir uma escolha salva,
+   ela será mantida.
+
+   Caso contrário:
+   COREANO é o idioma principal.
+*/
 
 const savedLanguage =
     localStorage.getItem(
         "djMarcoLanguage"
-    ) || "pt";
+    ) || "kr";
 
 
-languageSelector.value =
-    savedLanguage;
+if (languageSelector) {
+
+    languageSelector.value =
+        savedLanguage;
+
+}
 
 
 changeLanguage(
@@ -675,14 +933,15 @@ changeLanguage(
 
 
 
-/* =========================
+/* =====================================================
    NAVEGAÇÃO DAS MENSAGENS
-========================= */
+====================================================== */
 
 const previousButton =
     document.getElementById(
         "previousMessage"
     );
+
 
 const nextButton =
     document.getElementById(
@@ -692,41 +951,67 @@ const nextButton =
 
 let currentMessage = 1;
 
+
 const totalMessages = 87;
 
 
+
+/* =====================================================
+   CONTADOR
+====================================================== */
+
 function updateMessageCounter() {
+
 
     const current =
         document.querySelector(
             ".message-counter .current"
         );
 
+
     if (current) {
 
         current.textContent =
-            String(currentMessage).padStart(2, "0");
+            String(
+                currentMessage
+            ).padStart(
+                2,
+                "0"
+            );
 
     }
 
 }
 
 
+
+/* =====================================================
+   PONTOS
+====================================================== */
+
 function updateDots() {
+
 
     const dots =
         document.querySelectorAll(
             ".message-dot"
         );
 
+
     dots.forEach(
         (dot, index) => {
+
 
             dot.classList.toggle(
                 "active",
                 index ===
-                ((currentMessage - 1) % dots.length)
+                (
+                    (currentMessage - 1)
+                    %
+                    dots.length
+                )
             );
+
 
         }
     );
@@ -734,112 +1019,230 @@ function updateDots() {
 }
 
 
-function changeMessage(direction) {
 
-    currentMessage += direction;
+/* =====================================================
+   MUDAR MENSAGEM
+====================================================== */
+
+function changeMessage(
+    direction
+) {
 
 
-    if (currentMessage < 1) {
-        currentMessage = totalMessages;
+    currentMessage +=
+        direction;
+
+
+    if (
+        currentMessage < 1
+    ) {
+
+        currentMessage =
+            totalMessages;
+
     }
 
 
-    if (currentMessage > totalMessages) {
+    if (
+        currentMessage >
+        totalMessages
+    ) {
+
         currentMessage = 1;
+
     }
 
 
     updateMessageCounter();
+
     updateDots();
 
 }
 
 
-previousButton.addEventListener(
-    "click",
-    () => changeMessage(-1)
-);
+
+/* =====================================================
+   BOTÃO ANTERIOR
+====================================================== */
+
+if (previousButton) {
+
+    previousButton.addEventListener(
+        "click",
+        () =>
+            changeMessage(-1)
+    );
+
+}
 
 
-nextButton.addEventListener(
-    "click",
-    () => changeMessage(1)
-);
 
-</script>
+/* =====================================================
+   BOTÃO PRÓXIMO
+====================================================== */
 
-    <script>
+if (nextButton) {
+
+    nextButton.addEventListener(
+        "click",
+        () =>
+            changeMessage(1)
+    );
+
+}
+
+
+
+/* =====================================================
+   FADAS — MOVIMENTO SUTIL
+====================================================== */
+
 (function () {
 
-    const fairies =
-        document.querySelectorAll('.magic-fairy');
 
-    if (!fairies.length) return;
+    const fairies =
+        document.querySelectorAll(
+            ".magic-fairy"
+        );
+
+
+    if (!fairies.length) {
+        return;
+    }
+
 
     let ticking = false;
 
+
+
     function moveFairies() {
 
-        const scrollY = window.scrollY;
 
-        fairies.forEach((fairy, index) => {
+        const scrollY =
+            window.scrollY;
 
-            const speed =
-                [0.045, -0.065, 0.035][index] || 0.04;
 
-            const drift =
-                Math.sin(scrollY * 0.008 + index) * 12;
+        fairies.forEach(
+            (fairy, index) => {
 
-            const vertical =
-                scrollY * speed;
 
-            const rotation =
-                Math.sin(scrollY * 0.004 + index) * 2;
+                const speed =
+                    [
+                        0.045,
+                        -0.065,
+                        0.035
+                    ][index]
+                    || 0.04;
 
-            fairy.style.transform =
-                `translate3d(${drift}px, ${vertical}px, 0)
-                 rotate(${rotation}deg)
-                 ${index === 1 ? 'scaleX(-1)' : ''}`;
 
-            /*
-             * A fada fica ligeiramente mais perceptível
-             * durante o movimento, mas continua discreta.
-             */
+                const drift =
+                    Math.sin(
+                        scrollY * 0.008
+                        +
+                        index
+                    )
+                    *
+                    12;
+
+
+                const vertical =
+                    scrollY
+                    *
+                    speed;
+
+
+                const rotation =
+                    Math.sin(
+                        scrollY * 0.004
+                        +
+                        index
+                    )
+                    *
+                    2;
+
+
+                fairy.style.transform =
+                    `translate3d(
+                        ${drift}px,
+                        ${vertical}px,
+                        0
+                    )
+                    rotate(
+                        ${rotation}deg
+                    )
+                    ${
+                        index === 1
+                            ? "scaleX(-1)"
+                            : ""
+                    }`;
+
+
+
+                /*
+                 * As fadas permanecem
+                 * extremamente discretas.
+                           */
 
             const visibility =
                 Math.min(
                     0.075,
-                    0.025 +
-                    Math.abs(Math.sin(scrollY * 0.006 + index)) * 0.045
+                    0.025
+                    +
+                    Math.abs(
+                        Math.sin(
+                            scrollY * 0.006
+                            +
+                            index
+                        )
+                    )
+                    *
+                    0.045
                 );
 
-            fairy.style.opacity = visibility;
-        });
 
-        ticking = false;
-    }
+            fairy.style.opacity =
+                visibility;
 
-    window.addEventListener(
-        'scroll',
-        function () {
 
-            if (!ticking) {
-
-                window.requestAnimationFrame(
-                    moveFairies
-                );
-
-                ticking = true;
-            }
-
-        },
-        { passive: true }
+        }
     );
 
-    moveFairies();
+
+    ticking = false;
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    function () {
+
+        if (!ticking) {
+
+            window.requestAnimationFrame(
+                moveFairies
+            );
+
+            ticking = true;
+
+        }
+
+    },
+    {
+        passive: true
+    }
+);
+
+
+moveFairies();
+
 
 })();
-    </script>
-    
+
+
+</script>
+
+
 </body>
+
 </html>
