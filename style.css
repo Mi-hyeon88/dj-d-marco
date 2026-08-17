@@ -790,3 +790,259 @@ img {
         letter-spacing: 0;
     }
 }
+
+/* =========================================================
+   NOVA HOME — BOAS-VINDAS + MENSAGENS
+   ========================================================= */
+
+.home-welcome {
+    padding: 110px 0 120px;
+    background:
+        radial-gradient(
+            circle at 75% 15%,
+            rgba(184,154,99,0.07),
+            transparent 32%
+        ),
+        #0a0a0a;
+}
+
+.home-welcome-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    gap: 70px;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+
+/* INTRODUÇÃO */
+
+.home-welcome-content {
+    padding-left: 20px;
+}
+
+.home-welcome-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 6vw, 76px);
+    font-weight: 500;
+    line-height: 0.98;
+    color: var(--white);
+    margin-bottom: 28px;
+}
+
+.home-welcome-text {
+    max-width: 480px;
+    color: var(--soft);
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+
+/* POST-IT */
+
+.home-postit {
+    position: relative;
+
+    width: min(100%, 300px);
+    min-height: 240px;
+
+    padding: 42px 32px 38px;
+
+    justify-self: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #d8c89f,
+            #c8b783
+        );
+
+    color: #29251d;
+
+    transform: rotate(2deg);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.45);
+
+    font-family: 'Cormorant Garamond', serif;
+}
+
+
+/* FITA */
+
+.home-postit::before {
+    content: "";
+
+    position: absolute;
+
+    top: -12px;
+    left: 50%;
+
+    width: 82px;
+    height: 28px;
+
+    transform: translateX(-50%) rotate(-2deg);
+
+    background: rgba(210,198,160,0.72);
+
+    box-shadow:
+        0 2px 5px rgba(0,0,0,0.12);
+}
+
+.home-postit-text {
+    font-size: 22px;
+    line-height: 1.45;
+}
+
+.home-postit-heart {
+    position: absolute;
+
+    right: 24px;
+    bottom: 18px;
+
+    font-size: 30px;
+}
+
+
+/* =========================================================
+   MENSAGENS
+   ========================================================= */
+
+.home-messages {
+    width: min(900px, 100%);
+    margin: 105px auto 0;
+}
+
+.home-messages-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    margin-bottom: 30px;
+}
+
+.home-messages-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 5vw, 58px);
+    font-weight: 500;
+    line-height: 1;
+}
+
+
+/* CARTÃO */
+
+.home-messages .message-card {
+    width: 100%;
+    margin: 0 auto 30px;
+    padding: 55px 65px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.035),
+            rgba(255,255,255,0.012)
+        );
+
+    border: 1px solid rgba(184,154,99,0.28);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.4);
+
+    text-align: center;
+}
+
+
+/* NAVEGAÇÃO */
+
+.home-messages .message-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+}
+
+.message-counter {
+    min-width: 70px;
+
+    text-align: center;
+
+    color: var(--white);
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 19px;
+
+    letter-spacing: 2px;
+}
+
+.message-counter-divider {
+    color: var(--gold);
+    margin: 0 4px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .home-welcome {
+        padding: 75px 0 85px;
+    }
+
+    .home-welcome-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .home-welcome-content {
+        padding-left: 0;
+    }
+
+    .home-welcome-title {
+        font-size: clamp(43px, 12vw, 58px);
+        margin-bottom: 22px;
+    }
+
+    .home-welcome-text {
+        font-size: 14px;
+    }
+
+    .home-postit {
+        width: min(82%, 290px);
+        min-height: 225px;
+        padding: 38px 28px;
+    }
+
+    .home-postit-text {
+        font-size: 20px;
+    }
+
+    .home-messages {
+        margin-top: 75px;
+    }
+
+    .home-messages-title {
+        font-size: 42px;
+    }
+
+    .home-messages .message-card {
+        padding: 60px 25px 45px;
+    }
+
+    .home-messages .message-text {
+        font-size: 24px;
+    }
+
+    .home-messages .message-navigation {
+        gap: 15px;
+    }
+
+    .message-counter {
+        min-width: 55px;
+        font-size: 16px;
+    }
+
+}
