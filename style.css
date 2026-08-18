@@ -207,17 +207,27 @@ background-image: none;
     }
 
     .home::before {
-        content: "";
-        position: absolute;
-        inset: 0;
+    content: "";
+    position: absolute;
+    inset: 0;
 
-        background-image: url("home-bg.jpg");
-        background-repeat: no-repeat;
-        background-position: center top;
-        background-size: 100% auto;
+    background-image:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.35),
+            rgba(0, 0, 0, 0.50) 50%,
+            rgba(0, 0, 0, 0.92) 100%
+        ),
+        url("home-bg.jpg");
 
-        z-index: 0;
-    }
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+
+    opacity: 0.62;
+
+    z-index: 0;
+}
 
     .topo,
     .boas-vindas {
