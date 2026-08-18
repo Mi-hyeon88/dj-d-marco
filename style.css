@@ -800,88 +800,70 @@ button {
 
 
     /* =========================
-       HERO — MAIS BAIXO E COMPACTO
-    ========================== */
+   HERO — MOBILE COMPACTO
+========================= */
 
-    .hero {
-        min-height: 380px;
-        height: 380px;
-        display: block;
-        position: relative;
-        overflow: hidden;
-        background: var(--black);
-    }
+.hero {
+    min-height: 315px;
+    height: 315px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    background: var(--black);
+}
 
-    .hero-photo {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 380px;
-        min-height: 380px;
-        z-index: 1;
-    }
+.hero-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 315px;
+    min-height: 315px;
+    z-index: 1;
+}
 
-    .hero-photo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+.hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 66% 30%;
+}
 
-        /* sobe a imagem para mostrar melhor o Marco */
-        object-position: 66% 30%;
-    }
+.hero-text {
+    position: relative;
+    z-index: 8;
+    width: 55%;
+    min-height: 315px;
+    padding: 32px 20px 20px 25px;
 
-    .hero-photo::after {
-        background:
-            linear-gradient(
-                to right,
-                rgba(2,2,2,.93) 0%,
-                rgba(2,2,2,.70) 27%,
-                rgba(2,2,2,.25) 56%,
-                rgba(2,2,2,.04) 100%
-            ),
-            linear-gradient(
-                to bottom,
-                rgba(2,2,2,.02) 35%,
-                rgba(2,2,2,.55) 100%
-            );
-    }
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
 
-    .hero-text {
-        position: relative;
-        z-index: 8;
+.hero-title {
+    max-width: 220px;
+    font-size: 30px;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+}
 
-        width: 55%;
-        min-height: 380px;
+.hero-line {
+    width: 48px;
+    height: 2px;
+    margin: 12px 0 10px;
+}
 
-        padding: 45px 0 20px 25px;
+.hero-subtitle {
+    max-width: 195px;
+    font-size: 11px;
+    line-height: 1.42;
+}
 
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
-
-    .hero-title {
-        max-width: 245px;
-        font-size: 34px;
-        line-height: .99;
-    }
-
-    .hero-line {
-        width: 52px;
-        height: 2px;
-        margin: 15px 0 10px;
-    }
-
-    .hero-subtitle {
-        max-width: 205px;
-        font-size: 11.5px;
-        line-height: 1.45;
-    }
-
-    /* REMOVE O CORAÇÃO DO HERO */
-    .hero-heart {
-        display: none;
-    }
+/* coração do Hero permanece oculto */
+.hero-heart {
+    display: none;
+}
 
 
     /* =========================
