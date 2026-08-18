@@ -1007,8 +1007,8 @@ button {
     .hero,
     .hero-photo,
     .hero-text {
-        min-height: 435px;
-        height: 435px;
+        min-height: 230px;
+        height: 230px;
     }
 
     .hero-text {
