@@ -1,37 +1,36 @@
 const translations = {
     ko: {
-        welcome: "환영합니다",
-        home: "홈",
-        homeText: "이 공간의 이야기와 의미를 만나보세요.",
-        mural: "메시지",
-        muralText: "전 세계 팬들이 남긴 메시지와 마음을 만나보세요.",
-        memories: "추억",
-        memoriesText: "당신을 떠올리게 하는 음악과 소중한 순간들.",
-        language: "언어 / LANGUAGE"
-    },
+    welcome: "환영합니다",
+    home: "홈",
+    homeText: "모든 것은 여기서 시작됩니다. 이 공간의 의미.",
+    mural: "메시지",
+    muralText: "팬들이 당신에게 전하고 싶은 이야기.",
+    memories: "추억",
+    memoriesText: "우리가 다시 떠올리고 싶은 것들: 당신을 떠올리게 하는 순간, 사진, 영상, 그리고 음악.",
+    language: "언어 / LANGUAGE"
+},
 
-    pt: {
-        welcome: "SEJA BEM-VINDO",
-        home: "INÍCIO",
-        homeText: "Conheça o projeto, o propósito e quem idealizou este espaço.",
-        mural: "MURAL",
-        muralText: "Leia mensagens, homenagens e palavras deixadas para você.",
-        memories: "MEMÓRIAS",
-        memoriesText: "Músicas, fotografias e momentos que queremos guardar.",
-        language: "IDIOMA / LANGUAGE"
-    },
+pt: {
+    welcome: "SEJA BEM-VINDO",
+    home: "INÍCIO",
+    homeText: "Tudo começa aqui. O propósito deste espaço.",
+    mural: "MURAL",
+    muralText: "O que os fãs querem te dizer.",
+    memories: "MEMÓRIAS",
+    memoriesText: "O que queremos relembrar: momentos, fotos, vídeos e músicas que nos fazem lembrar de você.",
+    language: "IDIOMA / LANGUAGE"
+},
 
-    en: {
-        welcome: "WELCOME",
-        home: "HOME",
-        homeText: "Discover the project, its purpose and the story behind this space.",
-        mural: "MESSAGES",
-        muralText: "Read messages, tributes and words left especially for you.",
-        memories: "MEMORIES",
-        memoriesText: "Music, photographs and moments we want to keep.",
-        language: "LANGUAGE"
-    }
-};
+en: {
+    welcome: "WELCOME",
+    home: "HOME",
+    homeText: "It all starts here. The purpose of this space.",
+    mural: "MURAL",
+    muralText: "What the fans want to tell you.",
+    memories: "MEMORIES",
+    memoriesText: "What we want to remember: moments, photos, videos and songs that remind us of you.",
+    language: "LANGUAGE"
+}
 
 const welcome = document.querySelector(".boas-vindas h1");
 const cards = document.querySelectorAll(".card");
