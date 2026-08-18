@@ -874,166 +874,91 @@ button {
         height: 13px;
     }
 
+@media (max-width: 700px) {
 
-    /* =========================
-       INTRODUÇÃO — MENOR
-    ========================== */
+  :root {
+    --side-space: 18px;
+  }
 
-    .messages-intro {
-        padding: 27px 8px 19px;
-    }
+  /* CABEÇALHO */
+  .nav-inner {
+    width: calc(100% - 22px);
+    min-height: 0;
+    padding: 4px 0 0;
 
-    .messages-intro-title {
-        max-width: 285px;
-        font-size: 23px;
-        line-height: 1.12;
-    }
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "logo language"
+      "links links";
 
-    .messages-intro-subtitle {
-        max-width: 240px;
-        margin-top: 7px;
-        font-size: 13px;
-        line-height: 1.35;
-    }
+    row-gap: 3px;
+  }
 
-    .intro-line {
-        width: 50px;
-        margin-top: 13px;
-    }
+  .logo {
+    grid-area: logo;
+    font-size: 20px;
+    letter-spacing: .15em;
+    align-self: center;
+  }
 
+  .nav-heart {
+    display: none;
+  }
 
-    /* =========================
-       MENSAGENS
-    ========================== */
+  .language-selector {
+    grid-area: language;
 
-    .messages-section {
-        padding: 14px 4px 32px;
-    }
+    min-height: 30px;
+    padding: 0;
+    gap: 0;
 
-    .messages-title {
-        max-width: 290px;
-        gap: 6px;
-        font-size: 18px;
-        line-height: 1.12;
-        letter-spacing: .045em;
-    }
+    border: 1px solid rgba(234,215,192,.55);
+    border-radius: 6px;
+    background: transparent;
+  }
 
-    .messages-envelope {
-        font-size: 17px;
-    }
+  .language-selector button {
+    border: 0;
+    background: transparent;
+    box-shadow: none;
 
-    .messages-area {
-        max-width: 100%;
-        margin-top: 15px;
+    font-size: 11px;
+    padding: 4px 8px;
+  }
 
-        display: grid;
-        grid-template-columns: 33px minmax(0, 1fr) 33px;
-        gap: 5px;
-        align-items: center;
-    }
+  .nav-links {
+    grid-area: links;
 
-    .message-card {
-        padding: 20px 18px 18px;
-        border-radius: 9px;
-    }
+    width: 100%;
+    padding: 1px 0 4px;
+    gap: 12px;
 
-    .message-name {
-        font-size: 21px;
-    }
+    border-bottom: 1px solid rgba(181,31,37,.55);
+  }
 
-    .message-name-line {
-        width: 50px;
-        margin: 7px 0 10px;
-    }
-
-    .message-country {
-        top: 12px;
-        right: 10px;
-    }
-
-    .stamp-flag {
-        padding: 4px 6px;
-        font-size: 19px;
-    }
-
-    .message-text {
-        margin-top: 14px;
-        font-size: 15.5px;
-        line-height: 1.45;
-    }
-
-    .message-heart {
-        margin-top: 10px;
-        font-size: 27px;
-    }
-
-    .message-arrow {
-        width: 33px;
-        height: 33px;
-        font-size: 15px;
-    }
-
-    .message-dots {
-        gap: 7px;
-        margin-top: 14px;
-    }
-
-    .message-counter {
-        margin-top: 8px;
-        font-size: 14px;
-    }
+  .nav-links a {
+    padding: 3px 0;
+    font-size: 8px;
+  }
 
 
-    /* =========================
-       RODAPÉ — COMPACTO
-    ========================== */
+  /* HERO — MAIS COMPACTO */
+  .hero {
+    min-height: 280px;
+    height: 280px;
+  }
 
-    .footer {
-        padding: 20px 8px 18px;
-        margin-top: 0;
-    }
+  .hero-photo {
+    height: 280px;
+    min-height: 280px;
+  }
 
-    .footer-line {
-        width: 65px;
-        margin-bottom: 12px;
-    }
+  .hero-text {
+    min-height: 280px;
+    padding: 30px 20px 20px;
+  }
 
-    .footer-text {
-        max-width: 280px;
-        font-size: 12px;
-        line-height: 1.35;
-    }
-
-    /* REMOVE O CORAÇÃO DO RODAPÉ */
-    .footer-heart {
-        display: none;
-    }
-
-
-    /* =========================
-       DECORAÇÃO LATERAL
-       Espaço preservado para a fada
-    ========================== */
-
-    .magic-flower.flower-left {
-        width: 62px;
-        height: 62px;
-        left: 1px;
-        top: 69%;
-        opacity: .055;
-    }
-
-    .magic-fairy.fairy-left {
-        width: 58px;
-        left: 2px;
-        top: 25%;
-        opacity: .011;
-        filter: grayscale(1) brightness(.30) contrast(.60);
-    }
-
-    .magic-dust {
-        opacity: .01 !important;
-    }
 }
 
 
