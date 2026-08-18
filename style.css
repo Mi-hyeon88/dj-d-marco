@@ -717,7 +717,7 @@ button {
 
 /* =========================================================
    MOBILE
-   Uma única composição: texto + foto.
+   Mesma composição do desktop, adaptada para tela vertical.
 ========================================================= */
 
 @media (max-width: 700px) {
@@ -726,14 +726,14 @@ button {
         --side-space: 18px;
     }
 
-    /* =========================
-       CABEÇALHO — MAIS COMPACTO
-    ========================== */
+    /* =====================================================
+       CABEÇALHO — COMPACTO
+    ===================================================== */
 
     .nav-inner {
-        width: calc(100% - 22px);
+        width: calc(100% - 24px);
         min-height: 0;
-        padding: 6px 0 0;
+        padding: 5px 0 0;
 
         display: grid;
         grid-template-columns: 1fr auto;
@@ -741,45 +741,86 @@ button {
             "logo language"
             "links links";
 
-        gap: 3px;
+        row-gap: 2px;
     }
 
     .logo {
         grid-area: logo;
-        font-size: 20px;
-        letter-spacing: .15em;
+
+        font-size: 19px;
+        letter-spacing: .14em;
+        line-height: 1;
+        align-self: center;
     }
 
-    /* REMOVE O CORAÇÃO DO CABEÇALHO */
     .nav-heart {
         display: none;
     }
 
+    /* =====================================================
+       IDIOMA — PEQUENO E DISCRETO
+    ===================================================== */
+
     .language-selector {
         grid-area: language;
-        min-height: 34px;
-        padding: 0 8px;
-        gap: 5px;
-        border-radius: 6px;
+
+        min-height: 29px;
+        height: 29px;
+
+        padding: 0 5px;
+        gap: 2px;
+
+        border: 1px solid rgba(234, 215, 192, .45);
+        border-radius: 5px;
+
+        background: #050505;
     }
 
     .language-selector button {
+        padding: 3px 5px;
+
+        color: var(--cream);
+        font-family: "Cormorant Garamond", serif;
         font-size: 11px;
-        padding: 5px 1px;
+        line-height: 1;
+        letter-spacing: .02em;
+
+        background: transparent;
+        border: 0;
     }
+
+    .language-selector span {
+        color: rgba(234, 215, 192, .38);
+        font-size: 9px;
+    }
+
+    /* =====================================================
+       MENU
+    ===================================================== */
 
     .nav-links {
         grid-area: links;
+
         width: 100%;
-        padding: 1px 0 5px;
-        gap: 12px;
-        border-bottom: 1px solid rgba(181,31,37,.55);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        padding: 3px 0 5px;
+
+        gap: 18px;
+
+        border-bottom: 1px solid rgba(181, 31, 37, .55);
     }
 
     .nav-links a {
-        padding: 4px 0 3px;
-        font-size: 8px;
-        letter-spacing: .02em;
+        padding: 3px 0 4px;
+
+        font-size: 8.5px;
+        letter-spacing: .015em;
+
+        white-space: nowrap;
     }
 
     .menu-icon {
@@ -787,9 +828,9 @@ button {
     }
 
 
-    /* =========================
+    /* =====================================================
        LARGURA DO CONTEÚDO
-    ========================== */
+    ===================================================== */
 
     .hero,
     .messages-intro,
@@ -799,171 +840,271 @@ button {
     }
 
 
-    /* =========================
-   HERO — MOBILE COMPACTO
-========================= */
+    /* =====================================================
+       HERO — MOBILE
+       Mantém Marco grande e revela a mesa de DJ.
+    ===================================================== */
 
-.hero {
-    min-height: 315px;
-    height: 315px;
-    display: block;
-    position: relative;
-    overflow: hidden;
-    background: var(--black);
-}
+    .hero {
+        position: relative;
 
-.hero-photo {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 315px;
-    min-height: 315px;
-    z-index: 1;
-}
+        width: calc(100% - 34px);
 
-.hero-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 66% 30%;
-}
+        height: 510px;
+        min-height: 510px;
 
-.hero-text {
-    position: relative;
-    z-index: 8;
-    width: 55%;
-    min-height: 230px;
-    padding: 32px 20px 20px 25px;
+        display: block;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
+        overflow: hidden;
 
-.hero-title {
-    max-width: 220px;
-    font-size: 30px;
-    line-height: 1.02;
-    letter-spacing: -0.02em;
-}
-
-.hero-line {
-    width: 48px;
-    height: 2px;
-    margin: 12px 0 10px;
-}
-
-.hero-subtitle {
-    max-width: 195px;
-    font-size: 11px;
-    line-height: 1.42;
-}
-
-/* coração do Hero permanece oculto */
-.hero-heart {
-    display: none;
-}
-
-
-    /* =========================
-       BORDA
-    ========================== */
-
-    .tear {
-        height: 13px;
+        background: var(--black);
     }
 
-@media (max-width: 700px) {
+    .hero-photo {
+        position: absolute;
+        inset: 0;
 
-  :root {
-    --side-space: 18px;
-  }
+        width: 100%;
+        height: 510px;
+        min-height: 510px;
 
-  /* CABEÇALHO */
-  .nav-inner {
-    width: calc(100% - 22px);
-    min-height: 0;
-    padding: 4px 0 0;
+        overflow: hidden;
 
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      "logo language"
-      "links links";
+        z-index: 1;
+    }
 
-    row-gap: 3px;
-  }
+    .hero-photo img {
+        width: 100%;
+        height: 100%;
 
-  .logo {
-    grid-area: logo;
-    font-size: 20px;
-    letter-spacing: .15em;
-    align-self: center;
-  }
+        object-fit: cover;
 
-  .nav-heart {
-    display: none;
-  }
+        /*
+         * Desloca a imagem para baixo:
+         * Marco continua grande,
+         * mas a controladora/CDJ aparece.
+         */
+        object-position: 64% 57%;
+    }
 
-  .language-selector {
-    grid-area: language;
+    .hero-photo::after {
+        content: "";
 
-    min-height: 30px;
-    padding: 0;
-    gap: 0;
+        position: absolute;
+        inset: 0;
 
-    border: 1px solid rgba(234,215,192,.55);
-    border-radius: 6px;
-    background: transparent;
-  }
+        pointer-events: none;
 
-  .language-selector button {
-    border: 0;
-    background: transparent;
-    box-shadow: none;
-
-    font-size: 11px;
-    padding: 4px 8px;
-  }
-
-  .nav-links {
-    grid-area: links;
-
-    width: 100%;
-    padding: 1px 0 4px;
-    gap: 12px;
-
-    border-bottom: 1px solid rgba(181,31,37,.55);
-  }
-
-  .nav-links a {
-    padding: 3px 0;
-    font-size: 8px;
-  }
+        background:
+            linear-gradient(
+                to right,
+                rgba(2,2,2,.78) 0%,
+                rgba(2,2,2,.46) 35%,
+                rgba(2,2,2,.12) 68%,
+                rgba(2,2,2,.03) 100%
+            ),
+            linear-gradient(
+                to bottom,
+                rgba(2,2,2,.10) 25%,
+                rgba(2,2,2,.20) 52%,
+                rgba(2,2,2,.72) 100%
+            );
+    }
 
 
-/* HERO — MAIS COMPACTO */
-.hero {
-    min-height: 230px;
-    height: 230px;
-}
+    /* =====================================================
+       TEXTO DO HERO
+    ===================================================== */
 
-.hero-photo {
-    height: 230px;
-    min-height: 230px;
-}
+    .hero-text {
+        position: relative;
 
-.hero-text {
-    min-height: 230px;
-    padding: 25px 20px 15px;
-}
+        z-index: 8;
 
-  .hero-text {
-    min-height: 280px;
-    padding: 30px 20px 20px;
-  }
+        width: 58%;
+        min-height: 510px;
 
+        padding: 72px 10px 40px 25px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .hero-title {
+        max-width: 225px;
+
+        font-size: 34px;
+        line-height: 1.03;
+        letter-spacing: -.025em;
+    }
+
+    .hero-line {
+        width: 48px;
+        height: 2px;
+
+        margin: 16px 0 14px;
+    }
+
+    .hero-subtitle {
+        max-width: 220px;
+
+        font-size: 12px;
+        line-height: 1.55;
+    }
+
+    .hero-heart {
+        display: none;
+    }
+
+
+    /* =====================================================
+       BORDA RASGADA
+    ===================================================== */
+
+    .tear {
+        height: 15px;
+        margin-top: -1px;
+    }
+
+
+    /* =====================================================
+       INTRODUÇÃO
+    ===================================================== */
+
+    .messages-intro {
+        padding: 72px 18px 42px;
+    }
+
+    .messages-intro-title {
+        max-width: 330px;
+
+        font-size: 28px;
+        line-height: 1.12;
+    }
+
+    .messages-intro-subtitle {
+        max-width: 310px;
+
+        margin-top: 15px;
+
+        font-size: 15px;
+        line-height: 1.55;
+    }
+
+    .intro-line {
+        width: 58px;
+        margin-top: 25px;
+    }
+
+
+    /* =====================================================
+       MENSAGENS
+    ===================================================== */
+
+    .messages-section {
+        padding: 22px 12px 55px;
+    }
+
+    .messages-title {
+        max-width: 330px;
+
+        gap: 8px;
+
+        font-size: 22px;
+        line-height: 1.2;
+    }
+
+    .messages-envelope {
+        font-size: 19px;
+    }
+
+    .messages-area {
+        width: 100%;
+
+        margin-top: 25px;
+
+        grid-template-columns: 32px minmax(0, 1fr) 32px;
+
+        gap: 5px;
+    }
+
+    .message-card {
+        padding: 23px 18px 21px;
+        border-radius: 10px;
+    }
+
+    .message-name {
+        font-size: 27px;
+    }
+
+    .message-name-line {
+        width: 54px;
+        height: 2px;
+        margin: 8px 0 12px;
+    }
+
+    .message-text {
+        max-width: 100%;
+
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .message-country {
+        top: 14px;
+        right: 14px;
+    }
+
+    .stamp-flag {
+        padding: 5px 7px;
+        font-size: 20px;
+    }
+
+    .message-arrow {
+        width: 32px;
+        height: 32px;
+
+        font-size: 16px;
+    }
+
+
+    /* =====================================================
+       DECORAÇÃO MOBILE
+    ===================================================== */
+
+    .magic-flower.flower-left {
+        width: 58px;
+        height: 58px;
+
+        left: 5px;
+        top: 62%;
+
+        opacity: .05;
+    }
+
+    .magic-fairy.fairy-left {
+        width: 58px;
+
+        left: 4px;
+        top: 29%;
+
+        opacity: .010;
+    }
+
+
+    /* =====================================================
+       RODAPÉ
+    ===================================================== */
+
+    .footer {
+        padding: 30px 15px 28px;
+    }
+
+    .footer-text {
+        font-size: 13px;
+    }
 }
 
 
