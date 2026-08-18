@@ -74,3 +74,5 @@ languageButtons.forEach(button => {
     });
 
 });
+
+changeLanguage("ko");

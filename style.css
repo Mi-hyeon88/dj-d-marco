@@ -198,23 +198,30 @@ body {
 
 @media (max-width: 700px) {
 
+    .home {
+        min-height: 100svh;
+        background-size: auto 100%;
+        background-position: center top;
+    }
+
     .topo {
-        padding: 25px 22px;
+        padding: 24px 22px;
     }
 
     .logo {
         font-size: 23px;
+        letter-spacing: 1.5px;
     }
 
     .boas-vindas {
         width: 94%;
-        margin-top: 5vh;
+        margin-top: 4vh;
     }
 
     .boas-vindas h1 {
-        margin-bottom: 25px;
-
+        margin-bottom: 22px;
         font-size: 30px;
+        letter-spacing: 1px;
     }
 
     .navegacao {
@@ -222,31 +229,31 @@ body {
     }
 
     .card {
-        min-height: 225px;
-
-        padding: 20px 9px;
-
+        min-height: 190px;
+        padding: 17px 8px;
         border-radius: 14px;
+        background: rgba(0, 0, 0, 0.24);
     }
 
     .icone {
-        margin-bottom: 16px;
-
-        font-size: 28px;
+        margin-bottom: 13px;
+        font-size: 27px;
     }
 
     .card h2 {
+        margin-bottom: 10px;
         font-size: 13px;
         letter-spacing: 1px;
     }
 
     .card p {
-        font-size: 9px;
-        line-height: 1.5;
+        font-size: 8.5px;
+        line-height: 1.45;
     }
 
     .idioma {
-        margin-top: 22px;
+        margin-top: 20px;
+        font-size: 10px;
     }
 
     .idiomas button {
