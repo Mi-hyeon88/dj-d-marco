@@ -264,4 +264,15 @@ body {
     .idiomas button {
         padding: 7px 15px;
     }
+
+    .boas-vindas h1 {
+        transform: translateY(-35px);
+    }
+
+    .idioma {
+        margin-top: 35px;
+        position: relative;
+        z-index: 2;
+    }
+
 }
