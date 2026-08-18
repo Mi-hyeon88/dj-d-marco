@@ -726,38 +726,40 @@ button {
         --side-space: 18px;
     }
 
-    /* HEADER */
+    /* =========================
+       CABEÇALHO — MAIS COMPACTO
+    ========================== */
 
     .nav-inner {
         width: calc(100% - 22px);
         min-height: 0;
-        padding: 11px 0 0;
+        padding: 7px 0 0;
+
         display: grid;
-        grid-template-columns: 1fr auto auto;
+        grid-template-columns: 1fr auto;
         grid-template-areas:
-            "logo heart language"
-            "links links links";
-        gap: 5px 9px;
+            "logo language"
+            "links links";
+
+        gap: 3px 8px;
     }
 
     .logo {
         grid-area: logo;
-        align-self: center;
-        font-size: 21px;
+        font-size: 20px;
         letter-spacing: .15em;
     }
 
+    /* REMOVE O CORAÇÃO DO CABEÇALHO */
     .nav-heart {
-        grid-area: heart;
-        align-self: center;
-        font-size: 40px;
+        display: none;
     }
 
     .language-selector {
         grid-area: language;
-        min-height: 35px;
-        padding: 0 7px;
-        gap: 4px;
+        min-height: 34px;
+        padding: 0 8px;
+        gap: 5px;
         border-radius: 6px;
     }
 
@@ -766,37 +768,16 @@ button {
         padding: 5px 1px;
     }
 
-    /* Korean is visually the main language */
-    .language-selector button[data-lang="kr"] {
-        order: 1;
-    }
-
-    .language-selector span:nth-of-type(1) {
-        order: 2;
-    }
-
-    .language-selector button[data-lang="pt"] {
-        order: 3;
-    }
-
-    .language-selector span:nth-of-type(2) {
-        order: 4;
-    }
-
-    .language-selector button[data-lang="en"] {
-        order: 5;
-    }
-
     .nav-links {
         grid-area: links;
         width: 100%;
-        padding: 2px 0 8px;
+        padding: 2px 0 7px;
         gap: 16px;
-        border-bottom: 1px solid rgba(181,31,37,.62);
+        border-bottom: 1px solid rgba(181,31,37,.55);
     }
 
     .nav-links a {
-        padding: 5px 0 3px;
+        padding: 4px 0 3px;
         font-size: 8px;
         letter-spacing: .02em;
     }
@@ -806,7 +787,9 @@ button {
     }
 
 
-    /* CONTENT */
+    /* =========================
+       LARGURA DO CONTEÚDO
+    ========================== */
 
     .hero,
     .messages-intro,
@@ -816,11 +799,13 @@ button {
     }
 
 
-    /* HERO */
+    /* =========================
+       HERO — MAIS BAIXO E COMPACTO
+    ========================== */
 
     .hero {
-        min-height: 455px;
-        height: 455px;
+        min-height: 400px;
+        height: 400px;
         display: block;
         position: relative;
         overflow: hidden;
@@ -831,8 +816,8 @@ button {
         position: absolute;
         inset: 0;
         width: 100%;
-        height: 455px;
-        min-height: 455px;
+        height: 400px;
+        min-height: 400px;
         z-index: 1;
     }
 
@@ -840,31 +825,36 @@ button {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: 66% center;
+
+        /* sobe a imagem para mostrar melhor o Marco */
+        object-position: 66% 30%;
     }
 
     .hero-photo::after {
         background:
             linear-gradient(
                 to right,
-                rgba(2,2,2,.94) 0%,
-                rgba(2,2,2,.73) 25%,
-                rgba(2,2,2,.27) 54%,
+                rgba(2,2,2,.93) 0%,
+                rgba(2,2,2,.70) 27%,
+                rgba(2,2,2,.25) 56%,
                 rgba(2,2,2,.04) 100%
             ),
             linear-gradient(
                 to bottom,
                 rgba(2,2,2,.02) 35%,
-                rgba(2,2,2,.58) 100%
+                rgba(2,2,2,.55) 100%
             );
     }
 
     .hero-text {
         position: relative;
         z-index: 8;
+
         width: 55%;
-        min-height: 455px;
-        padding: 58px 0 25px 25px;
+        min-height: 400px;
+
+        padding: 45px 0 20px 25px;
+
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
@@ -872,177 +862,195 @@ button {
 
     .hero-title {
         max-width: 245px;
-        font-size: 35px;
+        font-size: 34px;
         line-height: .99;
-        letter-spacing: -.02em;
     }
 
     .hero-line {
-        width: 56px;
+        width: 52px;
         height: 2px;
-        margin: 18px 0 12px;
+        margin: 15px 0 10px;
     }
 
     .hero-subtitle {
-        max-width: 215px;
-        font-size: 12px;
-        line-height: 1.48;
+        max-width: 205px;
+        font-size: 11.5px;
+        line-height: 1.45;
     }
 
+    /* REMOVE O CORAÇÃO DO HERO */
     .hero-heart {
-        margin-top: 13px;
-        font-size: 31px;
+        display: none;
     }
+
+
+    /* =========================
+       BORDA
+    ========================== */
 
     .tear {
-        height: 20px;
+        height: 13px;
     }
 
 
-    /* INTRO */
+    /* =========================
+       INTRODUÇÃO — MENOR
+    ========================== */
 
     .messages-intro {
-        padding: 35px 8px 25px;
+        padding: 27px 8px 19px;
     }
 
     .messages-intro-title {
-        max-width: 290px;
-        font-size: 24px;
-        line-height: 1.15;
+        max-width: 285px;
+        font-size: 23px;
+        line-height: 1.12;
     }
 
     .messages-intro-subtitle {
-        max-width: 245px;
-        margin-top: 10px;
-        font-size: 14px;
-        line-height: 1.4;
+        max-width: 240px;
+        margin-top: 7px;
+        font-size: 13px;
+        line-height: 1.35;
     }
 
     .intro-line {
-        width: 55px;
-        margin-top: 16px;
+        width: 50px;
+        margin-top: 13px;
     }
 
 
-    /* MESSAGES */
+    /* =========================
+       MENSAGENS
+    ========================== */
 
     .messages-section {
-        padding: 18px 4px 46px;
+        padding: 14px 4px 32px;
     }
 
     .messages-title {
         max-width: 290px;
-        gap: 7px;
-        font-size: 19px;
-        line-height: 1.15;
-        letter-spacing: .055em;
+        gap: 6px;
+        font-size: 18px;
+        line-height: 1.12;
+        letter-spacing: .045em;
     }
 
     .messages-envelope {
-        font-size: 18px;
+        font-size: 17px;
     }
 
     .messages-area {
         max-width: 100%;
-        margin-top: 18px;
+        margin-top: 15px;
+
         display: grid;
-        grid-template-columns: 34px minmax(0, 1fr) 34px;
-        gap: 6px;
+        grid-template-columns: 33px minmax(0, 1fr) 33px;
+        gap: 5px;
         align-items: center;
     }
 
     .message-card {
-        padding: 23px 20px 21px;
-        border-radius: 10px;
+        padding: 20px 18px 18px;
+        border-radius: 9px;
     }
 
     .message-name {
-        font-size: 22px;
+        font-size: 21px;
     }
 
     .message-name-line {
-        width: 53px;
-        margin: 8px 0 12px;
+        width: 50px;
+        margin: 7px 0 10px;
     }
 
     .message-country {
-        top: 13px;
-        right: 11px;
+        top: 12px;
+        right: 10px;
     }
 
     .stamp-flag {
-        padding: 5px 7px;
-        font-size: 20px;
+        padding: 4px 6px;
+        font-size: 19px;
     }
 
     .message-text {
-        max-width: 100%;
-        margin-top: 16px;
-        font-size: 16px;
-        line-height: 1.48;
+        margin-top: 14px;
+        font-size: 15.5px;
+        line-height: 1.45;
     }
 
     .message-heart {
-        margin-top: 14px;
-        font-size: 29px;
+        margin-top: 10px;
+        font-size: 27px;
     }
 
     .message-arrow {
-        position: relative;
-        top: auto;
-        left: auto !important;
-        right: auto !important;
-        width: 34px;
-        height: 34px;
-        font-size: 16px;
+        width: 33px;
+        height: 33px;
+        font-size: 15px;
     }
 
     .message-dots {
-        gap: 8px;
-        margin-top: 17px;
+        gap: 7px;
+        margin-top: 14px;
     }
 
     .message-counter {
-        margin-top: 10px;
+        margin-top: 8px;
         font-size: 14px;
     }
 
 
-    /* FOOTER */
+    /* =========================
+       RODAPÉ — COMPACTO
+    ========================== */
 
     .footer {
-        padding: 30px 8px 28px;
+        padding: 20px 8px 18px;
+        margin-top: 0;
+    }
+
+    .footer-line {
+        width: 65px;
+        margin-bottom: 12px;
     }
 
     .footer-text {
-        font-size: 13px;
+        max-width: 280px;
+        font-size: 12px;
+        line-height: 1.35;
     }
 
+    /* REMOVE O CORAÇÃO DO RODAPÉ */
     .footer-heart {
-        font-size: 27px;
+        display: none;
     }
 
 
-    /* DECORAÇÃO — uma de cada, sombra */
+    /* =========================
+       DECORAÇÃO LATERAL
+       Espaço preservado para a fada
+    ========================== */
 
     .magic-flower.flower-left {
-        width: 66px;
-        height: 66px;
+        width: 62px;
+        height: 62px;
         left: 1px;
         top: 69%;
-        opacity: .06;
+        opacity: .055;
     }
 
     .magic-fairy.fairy-left {
-        width: 62px;
-        left: 1px;
-        top: 26%;
-        opacity: .012;
+        width: 58px;
+        left: 2px;
+        top: 25%;
+        opacity: .011;
         filter: grayscale(1) brightness(.30) contrast(.60);
     }
 
     .magic-dust {
-        opacity: .012 !important;
+        opacity: .01 !important;
     }
 }
 
