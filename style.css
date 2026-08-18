@@ -1112,3 +1112,601 @@ button {
         opacity: .012;
     }
 }
+
+/* =========================================================
+   AJUSTE FINAL DE PROPORÇÃO — D.MARCO
+   DESKTOP + MOBILE
+========================================================= */
+
+
+/* =========================================================
+   1. ÁREA CENTRAL
+   Mantém espaço nas laterais para a fada
+========================================================= */
+
+.page {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+/* =========================================================
+   2. HERO — DESKTOP
+========================================================= */
+
+.hero {
+    width: min(100% - 180px, 1120px);
+    min-height: 560px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    position: relative;
+    overflow: visible;
+}
+
+
+.hero-text {
+    width: 46%;
+    max-width: 470px;
+
+    position: relative;
+    z-index: 8;
+}
+
+
+.hero-title {
+    max-width: 430px;
+
+    font-size: clamp(42px, 4.2vw, 60px);
+
+    line-height: 1;
+
+    margin: 0;
+}
+
+
+.hero-subtitle {
+    max-width: 370px;
+
+    font-size: 15px;
+
+    line-height: 1.65;
+}
+
+
+.hero-photo {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 55%;
+    height: 100%;
+
+    overflow: hidden;
+
+    z-index: 3;
+}
+
+
+.hero-photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: 58% center;
+}
+
+
+/* =========================================================
+   3. ÁREA LATERAL DA FADA
+========================================================= */
+
+.magic-decoration {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   4. UMA ÚNICA FADA
+   Quase invisível e sem dourado forte
+========================================================= */
+
+.magic-fairy.fairy-right,
+.magic-fairy.fairy-bottom {
+    display: none !important;
+}
+
+
+.magic-fairy.fairy-left {
+    display: block;
+
+    position: fixed;
+
+    width: 105px;
+
+    left: 1.5%;
+    top: 32%;
+
+    opacity: 0.018;
+
+    filter:
+        grayscale(1)
+        brightness(0.35)
+        contrast(0.7);
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   5. MARGARIDAS
+   SOMENTE UMA NO SITE
+========================================================= */
+
+.magic-flower.flower-right,
+.magic-flower.flower-top-right {
+    display: none !important;
+}
+
+
+.magic-flower.flower-left {
+    display: block;
+
+    position: fixed;
+
+    width: 95px;
+    height: 95px;
+
+    left: 0.8%;
+    top: 60%;
+
+    opacity: 0.09;
+
+    object-fit: contain;
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   6. PÓ MÁGICO
+========================================================= */
+
+.magic-dust {
+    opacity: 0.035 !important;
+}
+
+
+/* =========================================================
+   7. INTRODUÇÃO
+========================================================= */
+
+.messages-intro {
+    width: min(100% - 180px, 1000px);
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-top: 45px;
+    padding-bottom: 40px;
+
+    position: relative;
+    z-index: 5;
+}
+
+
+.messages-intro-title {
+    max-width: 600px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: 32px;
+
+    line-height: 1.2;
+}
+
+
+.messages-intro-subtitle {
+    max-width: 430px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: 17px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   8. MURAL
+========================================================= */
+
+.messages-section {
+    width: min(100% - 180px, 1000px);
+
+    margin-left: auto;
+    margin-right: auto;
+
+    position: relative;
+    z-index: 5;
+}
+
+
+.messages-title {
+    font-size: 23px;
+
+    line-height: 1.25;
+
+    text-align: center;
+
+    max-width: 600px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================================
+   9. ÁREA DA MENSAGEM
+========================================================= */
+
+.messages-area {
+    width: 100%;
+    max-width: 800px;
+
+    margin: 28px auto 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 22px;
+}
+
+
+.message-stage {
+    width: min(100%, 530px);
+}
+
+
+.message-card {
+    width: 100%;
+
+    height: auto;
+    min-height: 0;
+
+    padding: 30px 32px;
+
+    box-sizing: border-box;
+}
+
+
+.message-text {
+    max-width: 420px;
+
+    margin-top: 20px;
+
+    font-size: 19px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   10. MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .page {
+        width: 100%;
+        max-width: 100%;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        width: calc(100% - 34px);
+
+        min-height: 475px;
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .hero-text {
+        width: 47%;
+
+        max-width: 250px;
+
+        padding-top: 52px;
+
+        position: relative;
+        z-index: 8;
+    }
+
+
+    .hero-title {
+        max-width: 240px;
+
+        font-size: 34px;
+
+        line-height: 1.02;
+    }
+
+
+    .hero-subtitle {
+        max-width: 215px;
+
+        font-size: 12px;
+
+        line-height: 1.55;
+    }
+
+
+    .hero-photo {
+        width: 62%;
+
+        height: 100%;
+
+        right: -8px;
+    }
+
+
+    .hero-photo img {
+        object-position: 58% center;
+    }
+
+
+    /* FADA */
+
+    .magic-fairy.fairy-left {
+
+        width: 68px;
+
+        left: 0.5%;
+        top: 27%;
+
+        opacity: 0.016;
+
+        filter:
+            grayscale(1)
+            brightness(0.3)
+            contrast(0.65);
+    }
+
+
+    /* MARGARIDA */
+
+    .magic-flower.flower-left {
+
+        width: 72px;
+        height: 72px;
+
+        left: 0.2%;
+        top: 57%;
+
+        opacity: 0.075;
+    }
+
+
+    /* PÓ */
+
+    .magic-dust {
+        opacity: 0.025 !important;
+    }
+
+
+    /* INTRODUÇÃO */
+
+    .messages-intro {
+
+        width: calc(100% - 44px);
+
+        padding-top: 30px;
+        padding-bottom: 26px;
+    }
+
+
+    .messages-intro-title {
+
+        max-width: 300px;
+
+        font-size: 24px;
+
+        line-height: 1.25;
+    }
+
+
+    .messages-intro-subtitle {
+
+        max-width: 260px;
+
+        font-size: 14px;
+
+        line-height: 1.45;
+    }
+
+
+    /* MURAL */
+
+    .messages-section {
+
+        width: calc(100% - 44px);
+    }
+
+
+    .messages-title {
+
+        max-width: 300px;
+
+        margin-left: auto;
+        margin-right: auto;
+
+        font-size: 19px;
+
+        line-height: 1.3;
+    }
+
+
+    .messages-area {
+
+        max-width: 100%;
+
+        margin-top: 20px;
+
+        gap: 7px;
+    }
+
+
+    .message-stage {
+
+        width: calc(100% - 68px);
+
+        max-width: 430px;
+    }
+
+
+    .message-card {
+
+        padding: 24px 22px;
+    }
+
+
+    .message-text {
+
+        margin-top: 17px;
+
+        font-size: 16px;
+
+        line-height: 1.5;
+    }
+
+
+    .message-name {
+        font-size: 19px;
+    }
+
+
+    .message-arrow {
+
+        width: 38px;
+        height: 38px;
+
+        flex-shrink: 0;
+    }
+
+
+    .message-counter {
+        margin-top: 12px;
+    }
+
+}
+
+
+/* =========================================================
+   11. CELULARES PEQUENOS
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .hero {
+        width: calc(100% - 30px);
+
+        min-height: 450px;
+    }
+
+
+    .hero-text {
+        padding-top: 46px;
+    }
+
+
+    .hero-title {
+        font-size: 31px;
+    }
+
+
+    .hero-subtitle {
+        font-size: 11px;
+
+        max-width: 195px;
+    }
+
+
+    .hero-photo {
+        width: 63%;
+
+        right: -6px;
+    }
+
+
+    .messages-intro {
+        width: calc(100% - 36px);
+    }
+
+
+    .messages-intro-title {
+        font-size: 22px;
+    }
+
+
+    .messages-title {
+        font-size: 18px;
+    }
+
+
+    .message-stage {
+        width: calc(100% - 58px);
+    }
+
+
+    .message-card {
+        padding: 21px 18px;
+    }
+
+
+    .message-text {
+        font-size: 15px;
+    }
+
+
+    .magic-fairy.fairy-left {
+        width: 58px;
+
+        opacity: 0.014;
+    }
+
+
+    .magic-flower.flower-left {
+        width: 62px;
+        height: 62px;
+
+        opacity: 0.065;
+    }
+
+}
