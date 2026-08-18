@@ -202,6 +202,7 @@ body {
         position: relative;
         min-height: 100svh;
         background-color: #030303;
+background-image: none;
         overflow: hidden;
     }
 
@@ -265,14 +266,20 @@ body {
         padding: 7px 15px;
     }
 
-    .boas-vindas h1 {
-        transform: translateY(-35px);
-    }
+.boas-vindas h1 {
+    transform: translateY(-75px);
+}
 
-    .idioma {
-        margin-top: 35px;
-        position: relative;
-        z-index: 2;
-    }
+.idioma {
+    margin-top: 45px;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 1px 8px #000;
+}
+
+.idiomas {
+    position: relative;
+    z-index: 2;
+}
 
 }
