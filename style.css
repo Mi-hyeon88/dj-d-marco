@@ -943,16 +943,21 @@ button {
   }
 
 
-  /* HERO — MAIS COMPACTO */
-  .hero {
-    min-height: 280px;
-    height: 280px;
-  }
+/* HERO — MAIS COMPACTO */
+.hero {
+    min-height: 230px;
+    height: 230px;
+}
 
-  .hero-photo {
-    height: 280px;
-    min-height: 280px;
-  }
+.hero-photo {
+    height: 230px;
+    min-height: 230px;
+}
+
+.hero-text {
+    min-height: 230px;
+    padding: 25px 20px 15px;
+}
 
   .hero-text {
     min-height: 280px;
