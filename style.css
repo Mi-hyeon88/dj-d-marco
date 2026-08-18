@@ -1,6 +1,7 @@
-/* =========================================================
+/*  =========================================================
    D.MARCO — STYLE.CSS
-   Base visual system — desktop + mobile
+   Base visual system — clean version
+   Desktop + Mobile
 ========================================================= */
 
 :root {
@@ -11,11 +12,12 @@
     --soft: #b7aaa0;
     --gold: #9a9070;
     --red: #b51f25;
+
     --line: rgba(234, 215, 192, .22);
     --line-soft: rgba(234, 215, 192, .10);
 
-    /* protected side space for the single fairy */
-    --side-space: 96px;
+    /* espaço lateral protegido para a única fada */
+    --side-space: 92px;
 }
 
 * {
@@ -63,9 +65,10 @@ button {
     overflow: visible;
 }
 
+
 /* =========================================================
-   MAGIC DECORATION
-   One flower + one fairy. Everything stays behind content.
+   DECORAÇÃO
+   Uma fada + uma margarida. Extremamente discretas.
 ========================================================= */
 
 .magic-decoration {
@@ -85,7 +88,7 @@ button {
     pointer-events: none;
 }
 
-/* Only one daisy is used */
+/* somente UMA margarida */
 .magic-flower.flower-right,
 .magic-flower.flower-top-right {
     display: none !important;
@@ -93,17 +96,17 @@ button {
 
 .magic-flower.flower-left {
     display: block;
-    width: 112px;
-    height: 112px;
-    left: 18px;
-    top: 58%;
+    width: 92px;
+    height: 92px;
+    left: 12px;
+    top: 61%;
     object-fit: contain;
-    opacity: .11;
-    filter: saturate(.7);
+    opacity: .075;
+    filter: saturate(.55);
     z-index: 1;
 }
 
-/* Only one fairy is used */
+/* somente UMA fada */
 .magic-fairy.fairy-right,
 .magic-fairy.fairy-bottom {
     display: none !important;
@@ -112,49 +115,51 @@ button {
 .magic-fairy.fairy-left {
     display: block;
     width: 105px;
-    left: 18px;
-    top: 30%;
-    opacity: .018;
-    filter: grayscale(1) brightness(.45) contrast(.7);
+    left: 12px;
+    top: 29%;
+    opacity: .014;
+    filter: grayscale(1) brightness(.32) contrast(.62);
     z-index: 2;
+    will-change: transform, opacity;
 }
 
-/* Very subtle dust */
+/* pó muito discreto */
 .magic-dust {
-    width: 150px;
-    height: 150px;
+    width: 125px;
+    height: 125px;
     border-radius: 50%;
-    opacity: .025 !important;
+    opacity: .014 !important;
     background:
         radial-gradient(
             circle,
-            rgba(234, 215, 192, .45) 1px,
+            rgba(234, 215, 192, .30) 1px,
             transparent 2px
         );
-    background-size: 19px 19px;
+    background-size: 21px 21px;
 }
 
 .dust-one {
-    left: 4%;
+    left: 5%;
     top: 24%;
 }
 
 .dust-two {
-    right: 4%;
+    right: 5%;
     top: 54%;
-    width: 125px;
-    height: 125px;
+    width: 110px;
+    height: 110px;
 }
 
 .dust-three {
-    left: 8%;
-    bottom: 9%;
-    width: 105px;
-    height: 105px;
+    left: 7%;
+    bottom: 10%;
+    width: 95px;
+    height: 95px;
 }
 
+
 /* =========================================================
-   HEADER
+   CABEÇALHO
 ========================================================= */
 
 .nav {
@@ -224,7 +229,7 @@ button {
     line-height: 1;
 }
 
-/* Language box — current HTML uses buttons, not <select> */
+/* caixa dos idiomas — compatível com os BUTTONS do HTML atual */
 .language-selector {
     flex: 0 0 auto;
     min-height: 42px;
@@ -256,7 +261,7 @@ button {
 }
 
 .language-selector span {
-    color: rgba(234, 215, 192, .55);
+    color: rgba(234, 215, 192, .50);
 }
 
 .menu-icon {
@@ -273,9 +278,10 @@ button {
     background: var(--cream);
 }
 
+
 /* =========================================================
-   MAIN CONTENT WIDTH
-   The central column leaves visual air at both sides.
+   LARGURA CENTRAL
+   Deixa as laterais livres para a decoração.
 ========================================================= */
 
 .hero,
@@ -287,15 +293,16 @@ button {
     margin-right: auto;
 }
 
+
 /* =========================================================
    HERO — DESKTOP
 ========================================================= */
 
 .hero {
     position: relative;
-    min-height: 650px;
+    min-height: 610px;
     display: grid;
-    grid-template-columns: 46% 54%;
+    grid-template-columns: 48% 52%;
     overflow: hidden;
     background: var(--black);
 }
@@ -307,44 +314,44 @@ button {
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    padding: 72px 45px 80px 8%;
+    padding: 58px 42px 58px 8%;
 }
 
 .hero-title {
-    max-width: 500px;
+    max-width: 440px;
     color: var(--cream);
     font-family: "Cormorant Garamond", serif;
-    font-size: clamp(48px, 5vw, 72px);
+    font-size: clamp(43px, 4.25vw, 62px);
     font-weight: 500;
-    line-height: .96;
+    line-height: .98;
     letter-spacing: -.025em;
 }
 
 .hero-line {
-    width: 70px;
+    width: 62px;
     height: 2px;
-    margin: 30px 0 22px;
+    margin: 23px 0 17px;
     background: var(--red);
 }
 
 .hero-subtitle {
-    max-width: 390px;
+    max-width: 355px;
     color: rgba(234, 215, 192, .72);
     font-family: "Cormorant Garamond", serif;
-    font-size: 17px;
+    font-size: 15px;
     line-height: 1.55;
 }
 
 .hero-heart {
-    margin-top: 27px;
+    margin-top: 18px;
     color: var(--red);
     font-family: "Cormorant Garamond", serif;
-    font-size: 40px;
+    font-size: 35px;
 }
 
 .hero-photo {
     position: relative;
-    min-height: 650px;
+    min-height: 610px;
     overflow: hidden;
     z-index: 3;
 }
@@ -353,7 +360,7 @@ button {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 62% center;
+    object-position: 61% center;
 }
 
 .hero-photo::after {
@@ -364,24 +371,29 @@ button {
     background:
         linear-gradient(
             to right,
-            rgba(2,2,2,.96) 0%,
-            rgba(2,2,2,.62) 17%,
-            rgba(2,2,2,.16) 48%,
-            rgba(2,2,2,.05) 100%
+            rgba(2,2,2,.62) 0%,
+            rgba(2,2,2,.20) 26%,
+            rgba(2,2,2,.04) 58%,
+            rgba(2,2,2,.02) 100%
         ),
         linear-gradient(
             to bottom,
-            rgba(2,2,2,.04),
-            rgba(2,2,2,.72)
+            rgba(2,2,2,.02) 35%,
+            rgba(2,2,2,.62) 100%
         );
 }
 
+
+/* =========================================================
+   BORDA RASGADA
+========================================================= */
+
 .tear {
     position: relative;
-    height: 28px;
+    height: 24px;
     margin-top: -1px;
     background: var(--black-soft);
-    transform: skewY(-1.2deg);
+    transform: skewY(-1deg);
     transform-origin: left center;
     z-index: 4;
 }
@@ -394,97 +406,91 @@ button {
     top: 0;
     height: 2px;
     background: var(--cream);
-    opacity: .75;
+    opacity: .70;
 }
 
+
 /* =========================================================
-   INTRO
+   INTRODUÇÃO
 ========================================================= */
 
 .messages-intro {
     position: relative;
-    padding: 72px 30px 46px;
+    padding: 58px 24px 38px;
     text-align: center;
 }
 
 .messages-intro-title {
-    max-width: 650px;
+    max-width: 600px;
     margin: 0 auto;
     color: var(--cream);
     font-family: "Cormorant Garamond", serif;
-    font-size: clamp(32px, 4vw, 50px);
+    font-size: clamp(29px, 3.3vw, 43px);
     font-weight: 500;
-    line-height: 1.05;
+    line-height: 1.08;
 }
 
 .messages-intro-subtitle {
-    max-width: 500px;
-    margin: 17px auto 0;
+    max-width: 440px;
+    margin: 13px auto 0;
     color: var(--soft);
     font-family: "Cormorant Garamond", serif;
-    font-size: 18px;
+    font-size: 17px;
     font-style: italic;
+    line-height: 1.4;
 }
 
 .intro-line {
-    width: 72px;
+    width: 60px;
     height: 1px;
-    margin: 26px auto 0;
+    margin: 20px auto 0;
     background: var(--line);
 }
 
+/* elementos laterais antigos não devem poluir */
 .intro-decoration {
-    position: absolute;
-    color: var(--gold);
-    opacity: .20;
-    font-size: 35px;
+    display: none !important;
 }
 
-.intro-decoration.left {
-    left: 5%;
-    top: 48%;
-}
-
-.intro-decoration.right {
-    right: 5%;
-    top: 48%;
-}
 
 /* =========================================================
-   MESSAGES
+   MENSAGENS
 ========================================================= */
 
 .messages-section {
     position: relative;
-    padding: 28px 30px 78px;
+    padding: 22px 24px 66px;
 }
 
 .messages-title {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 11px;
+    gap: 9px;
+    max-width: 600px;
+    margin: 0 auto;
     color: var(--cream);
     font-family: "Cormorant Garamond", serif;
-    font-size: clamp(25px, 3vw, 38px);
-    letter-spacing: .08em;
+    font-size: clamp(22px, 2.5vw, 32px);
+    line-height: 1.15;
+    letter-spacing: .07em;
     text-align: center;
 }
 
 .messages-envelope {
     color: var(--red);
-    font-size: 24px;
+    font-size: 21px;
 }
 
 .messages-area {
     width: 100%;
-    max-width: 850px;
-    margin: 40px auto 0;
+    max-width: 780px;
+    margin: 27px auto 0;
     display: grid;
-    grid-template-columns: 54px minmax(0, 600px) 54px;
+    grid-template-columns: 48px minmax(0, 560px) 48px;
     align-items: center;
     justify-content: center;
-    gap: 22px;
+    gap: 17px;
 }
 
 .message-stage {
@@ -495,96 +501,96 @@ button {
     width: 100%;
     min-height: 0;
     height: auto;
-    padding: 34px 38px;
+    padding: 28px 32px 25px;
     position: relative;
-    border: 1px solid rgba(234, 215, 192, .25);
-    border-radius: 12px;
+    border: 1px solid rgba(234, 215, 192, .22);
+    border-radius: 11px;
     background: linear-gradient(
         135deg,
         rgba(255,255,255,.025),
         rgba(255,255,255,.005)
     );
-    box-shadow: 0 0 38px rgba(0,0,0,.28);
+    box-shadow: 0 0 30px rgba(0,0,0,.25);
 }
 
 .message-name {
     color: var(--cream);
     font-family: "Cormorant Garamond", serif;
-    font-size: 29px;
+    font-size: 25px;
 }
 
 .message-name-line {
-    width: 68px;
+    width: 58px;
     height: 2px;
-    margin: 11px 0 16px;
+    margin: 8px 0 13px;
     background: var(--red);
 }
 
 .message-country {
     position: absolute;
-    top: 24px;
-    right: 24px;
+    top: 17px;
+    right: 18px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 3px;
     color: var(--cream);
-    font-size: 10px;
+    font-size: 9px;
 }
 
 .stamp-flag {
-    padding: 9px 12px;
-    border: 1px solid rgba(234,215,192,.35);
-    background: rgba(234,215,192,.06);
-    font-size: 29px;
+    padding: 6px 8px;
+    border: 1px solid rgba(234,215,192,.30);
+    background: rgba(234,215,192,.05);
+    font-size: 22px;
 }
 
 .message-text {
-    max-width: 470px;
-    margin-top: 22px;
+    max-width: 440px;
+    margin-top: 18px;
     color: var(--cream);
     font-family: "Cormorant Garamond", serif;
-    font-size: 22px;
-    line-height: 1.5;
+    font-size: 19px;
+    line-height: 1.48;
 }
 
 .message-heart {
-    margin-top: 21px;
+    margin-top: 15px;
     color: var(--cream);
     font-family: "Cormorant Garamond", serif;
-    font-size: 37px;
+    font-size: 31px;
 }
 
 .message-arrow {
-    width: 54px;
-    height: 54px;
+    width: 48px;
+    height: 48px;
     flex-shrink: 0;
-    border: 1px solid rgba(181,31,37,.65);
+    border: 1px solid rgba(181,31,37,.62);
     border-radius: 50%;
     background: transparent;
     color: var(--red);
-    font-size: 25px;
+    font-size: 22px;
     cursor: pointer;
     transition: background .25s ease, transform .25s ease;
 }
 
 .message-arrow:hover {
     background: rgba(181,31,37,.08);
-    transform: scale(1.04);
+    transform: scale(1.03);
 }
 
 .message-dots {
     display: flex;
     justify-content: center;
-    gap: 9px;
-    margin-top: 25px;
+    gap: 8px;
+    margin-top: 19px;
 }
 
 .message-dot {
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: rgba(234,215,192,.23);
+    background: rgba(234,215,192,.22);
 }
 
 .message-dot.active {
@@ -594,11 +600,11 @@ button {
 .message-counter {
     display: flex;
     justify-content: center;
-    gap: 7px;
-    margin-top: 14px;
+    gap: 6px;
+    margin-top: 11px;
     color: var(--soft);
     font-family: "Cormorant Garamond", serif;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .message-counter .current,
@@ -606,43 +612,46 @@ button {
     color: var(--red);
 }
 
+
 /* =========================================================
-   FOOTER
+   RODAPÉ
 ========================================================= */
 
 .footer {
-    padding: 42px 20px 38px;
+    padding: 38px 20px 34px;
     text-align: center;
 }
 
 .footer-line {
-    width: 90px;
+    width: 80px;
     height: 1px;
-    margin: 0 auto 22px;
+    margin: 0 auto 18px;
     background: var(--line);
 }
 
 .footer-text {
-    max-width: 620px;
+    max-width: 560px;
     margin: 0 auto;
-    color: rgba(183,170,160,.72);
+    color: rgba(183,170,160,.70);
     font-family: "Cormorant Garamond", serif;
-    font-size: 15px;
-    line-height: 1.5;
+    font-size: 14px;
+    line-height: 1.45;
 }
 
 .footer-heart {
-    margin-top: 16px;
+    margin-top: 13px;
     color: var(--red);
     font-family: "Cormorant Garamond", serif;
-    font-size: 32px;
+    font-size: 29px;
 }
+
 
 /* =========================================================
    TABLET
 ========================================================= */
 
 @media (max-width: 950px) and (min-width: 701px) {
+
     :root {
         --side-space: 55px;
     }
@@ -675,67 +684,89 @@ button {
         font-size: 13px;
     }
 
+    .hero {
+        min-height: 570px;
+        grid-template-columns: 47% 53%;
+    }
+
+    .hero-photo {
+        min-height: 570px;
+    }
+
     .hero-title {
-        font-size: 55px;
+        font-size: 52px;
     }
 
     .hero-text {
         padding-left: 7%;
-        padding-right: 28px;
+        padding-right: 25px;
+    }
+
+    .magic-flower.flower-left {
+        width: 78px;
+        height: 78px;
+        opacity: .06;
+    }
+
+    .magic-fairy.fairy-left {
+        width: 85px;
+        opacity: .012;
     }
 }
 
+
 /* =========================================================
    MOBILE
-   The hero stays as one visual composition:
-   text on the left, Marco on the right.
+   Uma única composição: texto + foto.
 ========================================================= */
 
 @media (max-width: 700px) {
+
     :root {
         --side-space: 18px;
     }
 
+    /* HEADER */
+
     .nav-inner {
-        width: calc(100% - 24px);
+        width: calc(100% - 22px);
         min-height: 0;
-        padding: 12px 0 0;
+        padding: 11px 0 0;
         display: grid;
         grid-template-columns: 1fr auto auto;
         grid-template-areas:
             "logo heart language"
             "links links links";
-        gap: 6px 10px;
+        gap: 5px 9px;
     }
 
     .logo {
         grid-area: logo;
         align-self: center;
-        font-size: 22px;
+        font-size: 21px;
         letter-spacing: .15em;
     }
 
     .nav-heart {
         grid-area: heart;
         align-self: center;
-        font-size: 43px;
+        font-size: 40px;
     }
 
-    /* One box containing all three language choices.
-       Korean is visually first because it is the site's main language. */
     .language-selector {
         grid-area: language;
-        min-height: 38px;
-        padding: 0 8px;
-        gap: 5px;
+        min-height: 35px;
+        padding: 0 7px;
+        gap: 4px;
         border-radius: 6px;
     }
 
     .language-selector button {
-        font-size: 12px;
-        padding: 6px 1px;
+        font-size: 11px;
+        padding: 5px 1px;
     }
 
+    /* Korean is visually the main language */
     .language-selector button[data-lang="kr"] {
         order: 1;
     }
@@ -759,32 +790,37 @@ button {
     .nav-links {
         grid-area: links;
         width: 100%;
-        padding: 2px 0 9px;
-        gap: 17px;
-        border-bottom: 1px solid rgba(181,31,37,.68);
+        padding: 2px 0 8px;
+        gap: 16px;
+        border-bottom: 1px solid rgba(181,31,37,.62);
     }
 
     .nav-links a {
-        padding: 6px 0 3px;
-        font-size: 9px;
-        letter-spacing: .025em;
+        padding: 5px 0 3px;
+        font-size: 8px;
+        letter-spacing: .02em;
     }
 
     .menu-icon {
         display: none;
     }
 
-    /* Central composition with side breathing room */
+
+    /* CONTENT */
+
     .hero,
     .messages-intro,
     .messages-section,
     .footer {
-        width: calc(100% - 36px);
+        width: calc(100% - 34px);
     }
 
+
     /* HERO */
+
     .hero {
-        min-height: 510px;
+        min-height: 455px;
+        height: 455px;
         display: block;
         position: relative;
         overflow: hidden;
@@ -795,8 +831,8 @@ button {
         position: absolute;
         inset: 0;
         width: 100%;
-        height: 510px;
-        min-height: 510px;
+        height: 455px;
+        min-height: 455px;
         z-index: 1;
     }
 
@@ -804,154 +840,151 @@ button {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: 67% center;
+        object-position: 66% center;
     }
 
     .hero-photo::after {
         background:
             linear-gradient(
                 to right,
-                rgba(2,2,2,.96) 0%,
-                rgba(2,2,2,.76) 28%,
-                rgba(2,2,2,.26) 55%,
-                rgba(2,2,2,.06) 100%
+                rgba(2,2,2,.94) 0%,
+                rgba(2,2,2,.73) 25%,
+                rgba(2,2,2,.27) 54%,
+                rgba(2,2,2,.04) 100%
             ),
             linear-gradient(
                 to bottom,
-                rgba(2,2,2,.06) 0%,
-                rgba(2,2,2,.16) 55%,
-                rgba(2,2,2,.70) 100%
+                rgba(2,2,2,.02) 35%,
+                rgba(2,2,2,.58) 100%
             );
     }
 
     .hero-text {
         position: relative;
         z-index: 8;
-        width: 54%;
-        min-height: 510px;
-        padding: 64px 0 30px 34px;
+        width: 55%;
+        min-height: 455px;
+        padding: 58px 0 25px 25px;
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
     }
 
     .hero-title {
-        max-width: 270px;
-        font-size: 39px;
-        line-height: .98;
+        max-width: 245px;
+        font-size: 35px;
+        line-height: .99;
         letter-spacing: -.02em;
     }
 
     .hero-line {
-        width: 58px;
+        width: 56px;
         height: 2px;
-        margin: 20px 0 13px;
+        margin: 18px 0 12px;
     }
 
     .hero-subtitle {
-        max-width: 235px;
-        font-size: 13px;
-        line-height: 1.5;
-        color: rgba(234,215,192,.74);
+        max-width: 215px;
+        font-size: 12px;
+        line-height: 1.48;
     }
 
     .hero-heart {
-        margin-top: 14px;
-        font-size: 34px;
+        margin-top: 13px;
+        font-size: 31px;
     }
 
     .tear {
-        height: 21px;
+        height: 20px;
     }
 
+
     /* INTRO */
+
     .messages-intro {
-        padding: 42px 10px 30px;
+        padding: 35px 8px 25px;
     }
 
     .messages-intro-title {
-        max-width: 300px;
-        font-size: 27px;
-        line-height: 1.10;
+        max-width: 290px;
+        font-size: 24px;
+        line-height: 1.15;
     }
 
     .messages-intro-subtitle {
-        max-width: 255px;
-        margin-top: 12px;
-        font-size: 15px;
+        max-width: 245px;
+        margin-top: 10px;
+        font-size: 14px;
         line-height: 1.4;
     }
 
     .intro-line {
-        width: 62px;
-        margin-top: 19px;
+        width: 55px;
+        margin-top: 16px;
     }
 
-    .intro-decoration {
-        display: none;
-    }
 
     /* MESSAGES */
+
     .messages-section {
-        padding: 24px 7px 50px;
+        padding: 18px 4px 46px;
     }
 
     .messages-title {
-        max-width: 310px;
-        margin: 0 auto;
-        gap: 8px;
-        font-size: 24px;
-        line-height: 1.1;
-        letter-spacing: .06em;
+        max-width: 290px;
+        gap: 7px;
+        font-size: 19px;
+        line-height: 1.15;
+        letter-spacing: .055em;
     }
 
     .messages-envelope {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .messages-area {
         max-width: 100%;
-        margin-top: 25px;
+        margin-top: 18px;
         display: grid;
-        grid-template-columns: 38px minmax(0, 1fr) 38px;
-        gap: 7px;
+        grid-template-columns: 34px minmax(0, 1fr) 34px;
+        gap: 6px;
         align-items: center;
     }
 
     .message-card {
-        padding: 27px 21px 24px;
-        border-radius: 11px;
+        padding: 23px 20px 21px;
+        border-radius: 10px;
     }
 
     .message-name {
-        font-size: 24px;
+        font-size: 22px;
     }
 
     .message-name-line {
-        width: 58px;
-        margin: 9px 0 13px;
+        width: 53px;
+        margin: 8px 0 12px;
     }
 
     .message-country {
-        top: 16px;
-        right: 13px;
+        top: 13px;
+        right: 11px;
     }
 
     .stamp-flag {
-        padding: 6px 8px;
-        font-size: 22px;
+        padding: 5px 7px;
+        font-size: 20px;
     }
 
     .message-text {
         max-width: 100%;
-        margin-top: 18px;
-        font-size: 17px;
+        margin-top: 16px;
+        font-size: 16px;
         line-height: 1.48;
     }
 
     .message-heart {
-        margin-top: 16px;
-        font-size: 32px;
+        margin-top: 14px;
+        font-size: 29px;
     }
 
     .message-arrow {
@@ -959,85 +992,94 @@ button {
         top: auto;
         left: auto !important;
         right: auto !important;
-        width: 38px;
-        height: 38px;
-        font-size: 18px;
+        width: 34px;
+        height: 34px;
+        font-size: 16px;
     }
 
     .message-dots {
         gap: 8px;
-        margin-top: 20px;
+        margin-top: 17px;
     }
 
     .message-counter {
-        margin-top: 12px;
-        font-size: 15px;
-    }
-
-    /* FOOTER */
-    .footer {
-        padding: 35px 10px 32px;
-    }
-
-    .footer-text {
+        margin-top: 10px;
         font-size: 14px;
     }
 
-    /* ONE FLOWER — small and contemplative */
-    .magic-flower.flower-left {
-        width: 72px;
-        height: 72px;
-        left: 2px;
-        top: 67%;
-        opacity: .085;
+
+    /* FOOTER */
+
+    .footer {
+        padding: 30px 8px 28px;
     }
 
-    /* ONE FAIRY — shadow only */
+    .footer-text {
+        font-size: 13px;
+    }
+
+    .footer-heart {
+        font-size: 27px;
+    }
+
+
+    /* DECORAÇÃO — uma de cada, sombra */
+
+    .magic-flower.flower-left {
+        width: 66px;
+        height: 66px;
+        left: 1px;
+        top: 69%;
+        opacity: .06;
+    }
+
     .magic-fairy.fairy-left {
-        width: 70px;
-        left: 2px;
-        top: 25%;
-        opacity: .015;
-        filter: grayscale(1) brightness(.38) contrast(.65);
+        width: 62px;
+        left: 1px;
+        top: 26%;
+        opacity: .012;
+        filter: grayscale(1) brightness(.30) contrast(.60);
     }
 
     .magic-dust {
-        opacity: .018 !important;
+        opacity: .012 !important;
     }
 }
 
+
 /* =========================================================
-   VERY SMALL PHONES
+   CELULARES MUITO PEQUENOS
 ========================================================= */
 
 @media (max-width: 380px) {
+
     .nav-inner {
-        width: calc(100% - 18px);
+        width: calc(100% - 16px);
     }
 
     .logo {
-        font-size: 20px;
+        font-size: 19px;
     }
 
     .nav-heart {
-        font-size: 39px;
+        font-size: 37px;
     }
 
     .language-selector {
-        min-height: 35px;
+        min-height: 33px;
         padding: 0 6px;
     }
 
     .language-selector button {
-        font-size: 11px;
+        font-size: 10px;
     }
 
     .nav-links {
-        gap: 13px;
+        gap: 12px;
     }
 
     .nav-links a {
-        font-size: 8px;
+        font-size: 7.5px;
     }
 
     .hero,
@@ -1047,666 +1089,61 @@ button {
         width: calc(100% - 28px);
     }
 
-    .hero {
-        min-height: 475px;
-    }
-
+    .hero,
     .hero-photo,
     .hero-text {
-        min-height: 475px;
-    }
-
-    .hero-photo {
-        height: 475px;
+        min-height: 435px;
+        height: 435px;
     }
 
     .hero-text {
-        width: 56%;
-        padding: 55px 0 25px 27px;
+        padding: 52px 0 22px 22px;
     }
 
     .hero-title {
-        font-size: 34px;
+        font-size: 32px;
     }
 
     .hero-subtitle {
-        max-width: 205px;
-        font-size: 12px;
-    }
-
-        .messages-intro-title {
-        font-size: 25px;
-    }
-
-    .messages-title {
-        font-size: 22px;
-    }
-
-    .messages-area {
-        grid-template-columns: 34px minmax(0, 1fr) 34px;
-        gap: 5px;
-    }
-
-    .message-card {
-        padding: 23px 17px 21px;
-    }
-
-    .message-text {
-        font-size: 16px;
-    }
-
-    .message-arrow {
-        width: 34px;
-        height: 34px;
-        font-size: 16px;
-    }
-
-    .magic-flower.flower-left {
-        width: 62px;
-        height: 62px;
-        opacity: .075;
-    }
-
-    .magic-fairy.fairy-left {
-        width: 60px;
-        opacity: .012;
-    }
-}
-
-/* =========================================================
-   AJUSTE FINAL DE PROPORÇÃO — D.MARCO
-   DESKTOP + MOBILE
-========================================================= */
-
-
-/* =========================================================
-   1. ÁREA CENTRAL
-   Mantém espaço nas laterais para a fada
-========================================================= */
-
-.page {
-    width: 100%;
-    max-width: 1320px;
-    margin: 0 auto;
-    position: relative;
-}
-
-
-/* =========================================================
-   2. HERO — DESKTOP
-========================================================= */
-
-.hero {
-    width: min(100% - 180px, 1120px);
-    min-height: 560px;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    position: relative;
-    overflow: visible;
-}
-
-
-.hero-text {
-    width: 46%;
-    max-width: 470px;
-
-    position: relative;
-    z-index: 8;
-}
-
-
-.hero-title {
-    max-width: 430px;
-
-    font-size: clamp(42px, 4.2vw, 60px);
-
-    line-height: 1;
-
-    margin: 0;
-}
-
-
-.hero-subtitle {
-    max-width: 370px;
-
-    font-size: 15px;
-
-    line-height: 1.65;
-}
-
-
-.hero-photo {
-    position: absolute;
-
-    top: 0;
-    right: 0;
-
-    width: 55%;
-    height: 100%;
-
-    overflow: hidden;
-
-    z-index: 3;
-}
-
-
-.hero-photo img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    object-position: 58% center;
-}
-
-
-/* =========================================================
-   3. ÁREA LATERAL DA FADA
-========================================================= */
-
-.magic-decoration {
-    position: fixed;
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-    overflow: hidden;
-
-    pointer-events: none;
-
-    z-index: 1;
-}
-
-
-/* =========================================================
-   4. UMA ÚNICA FADA
-   Quase invisível e sem dourado forte
-========================================================= */
-
-.magic-fairy.fairy-right,
-.magic-fairy.fairy-bottom {
-    display: none !important;
-}
-
-
-.magic-fairy.fairy-left {
-    display: block;
-
-    position: fixed;
-
-    width: 105px;
-
-    left: 1.5%;
-    top: 32%;
-
-    opacity: 0.018;
-
-    filter:
-        grayscale(1)
-        brightness(0.35)
-        contrast(0.7);
-
-    z-index: 2;
-
-    pointer-events: none;
-}
-
-
-/* =========================================================
-   5. MARGARIDAS
-   SOMENTE UMA NO SITE
-========================================================= */
-
-.magic-flower.flower-right,
-.magic-flower.flower-top-right {
-    display: none !important;
-}
-
-
-.magic-flower.flower-left {
-    display: block;
-
-    position: fixed;
-
-    width: 95px;
-    height: 95px;
-
-    left: 0.8%;
-    top: 60%;
-
-    opacity: 0.09;
-
-    object-fit: contain;
-
-    pointer-events: none;
-
-    z-index: 2;
-}
-
-
-/* =========================================================
-   6. PÓ MÁGICO
-========================================================= */
-
-.magic-dust {
-    opacity: 0.035 !important;
-}
-
-
-/* =========================================================
-   7. INTRODUÇÃO
-========================================================= */
-
-.messages-intro {
-    width: min(100% - 180px, 1000px);
-
-    margin-left: auto;
-    margin-right: auto;
-
-    padding-top: 45px;
-    padding-bottom: 40px;
-
-    position: relative;
-    z-index: 5;
-}
-
-
-.messages-intro-title {
-    max-width: 600px;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    font-size: 32px;
-
-    line-height: 1.2;
-}
-
-
-.messages-intro-subtitle {
-    max-width: 430px;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    font-size: 17px;
-
-    line-height: 1.5;
-}
-
-
-/* =========================================================
-   8. MURAL
-========================================================= */
-
-.messages-section {
-    width: min(100% - 180px, 1000px);
-
-    margin-left: auto;
-    margin-right: auto;
-
-    position: relative;
-    z-index: 5;
-}
-
-
-.messages-title {
-    font-size: 23px;
-
-    line-height: 1.25;
-
-    text-align: center;
-
-    max-width: 600px;
-
-    margin-left: auto;
-    margin-right: auto;
-}
-
-
-/* =========================================================
-   9. ÁREA DA MENSAGEM
-========================================================= */
-
-.messages-area {
-    width: 100%;
-    max-width: 800px;
-
-    margin: 28px auto 0;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 22px;
-}
-
-
-.message-stage {
-    width: min(100%, 530px);
-}
-
-
-.message-card {
-    width: 100%;
-
-    height: auto;
-    min-height: 0;
-
-    padding: 30px 32px;
-
-    box-sizing: border-box;
-}
-
-
-.message-text {
-    max-width: 420px;
-
-    margin-top: 20px;
-
-    font-size: 19px;
-
-    line-height: 1.55;
-}
-
-
-/* =========================================================
-   10. MOBILE
-========================================================= */
-
-@media (max-width: 700px) {
-
-    .page {
-        width: 100%;
-        max-width: 100%;
-    }
-
-
-    /* HERO */
-
-    .hero {
-        width: calc(100% - 34px);
-
-        min-height: 475px;
-
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-
-    .hero-text {
-        width: 47%;
-
-        max-width: 250px;
-
-        padding-top: 52px;
-
-        position: relative;
-        z-index: 8;
-    }
-
-
-    .hero-title {
-        max-width: 240px;
-
-        font-size: 34px;
-
-        line-height: 1.02;
-    }
-
-
-    .hero-subtitle {
-        max-width: 215px;
-
-        font-size: 12px;
-
-        line-height: 1.55;
-    }
-
-
-    .hero-photo {
-        width: 62%;
-
-        height: 100%;
-
-        right: -8px;
-    }
-
-
-    .hero-photo img {
-        object-position: 58% center;
-    }
-
-
-    /* FADA */
-
-    .magic-fairy.fairy-left {
-
-        width: 68px;
-
-        left: 0.5%;
-        top: 27%;
-
-        opacity: 0.016;
-
-        filter:
-            grayscale(1)
-            brightness(0.3)
-            contrast(0.65);
-    }
-
-
-    /* MARGARIDA */
-
-    .magic-flower.flower-left {
-
-        width: 72px;
-        height: 72px;
-
-        left: 0.2%;
-        top: 57%;
-
-        opacity: 0.075;
-    }
-
-
-    /* PÓ */
-
-    .magic-dust {
-        opacity: 0.025 !important;
-    }
-
-
-    /* INTRODUÇÃO */
-
-    .messages-intro {
-
-        width: calc(100% - 44px);
-
-        padding-top: 30px;
-        padding-bottom: 26px;
-    }
-
-
-    .messages-intro-title {
-
-        max-width: 300px;
-
-        font-size: 24px;
-
-        line-height: 1.25;
-    }
-
-
-    .messages-intro-subtitle {
-
-        max-width: 260px;
-
-        font-size: 14px;
-
-        line-height: 1.45;
-    }
-
-
-    /* MURAL */
-
-    .messages-section {
-
-        width: calc(100% - 44px);
-    }
-
-
-    .messages-title {
-
-        max-width: 300px;
-
-        margin-left: auto;
-        margin-right: auto;
-
-        font-size: 19px;
-
-        line-height: 1.3;
-    }
-
-
-    .messages-area {
-
-        max-width: 100%;
-
-        margin-top: 20px;
-
-        gap: 7px;
-    }
-
-
-    .message-stage {
-
-        width: calc(100% - 68px);
-
-        max-width: 430px;
-    }
-
-
-    .message-card {
-
-        padding: 24px 22px;
-    }
-
-
-    .message-text {
-
-        margin-top: 17px;
-
-        font-size: 16px;
-
-        line-height: 1.5;
-    }
-
-
-    .message-name {
-        font-size: 19px;
-    }
-
-
-    .message-arrow {
-
-        width: 38px;
-        height: 38px;
-
-        flex-shrink: 0;
-    }
-
-
-    .message-counter {
-        margin-top: 12px;
-    }
-
-}
-
-
-/* =========================================================
-   11. CELULARES PEQUENOS
-========================================================= */
-
-@media (max-width: 380px) {
-
-    .hero {
-        width: calc(100% - 30px);
-
-        min-height: 450px;
-    }
-
-
-    .hero-text {
-        padding-top: 46px;
-    }
-
-
-    .hero-title {
-        font-size: 31px;
-    }
-
-
-    .hero-subtitle {
-        font-size: 11px;
-
         max-width: 195px;
+        font-size: 11px;
     }
-
-
-    .hero-photo {
-        width: 63%;
-
-        right: -6px;
-    }
-
-
-    .messages-intro {
-        width: calc(100% - 36px);
-    }
-
 
     .messages-intro-title {
         font-size: 22px;
     }
-
 
     .messages-title {
         font-size: 18px;
     }
 
-
-    .message-stage {
-        width: calc(100% - 58px);
+    .messages-area {
+        grid-template-columns: 31px minmax(0, 1fr) 31px;
+        gap: 4px;
     }
-
 
     .message-card {
-        padding: 21px 18px;
+        padding: 21px 17px 19px;
     }
-
 
     .message-text {
         font-size: 15px;
     }
 
-
-    .magic-fairy.fairy-left {
-        width: 58px;
-
-        opacity: 0.014;
+    .message-arrow {
+        width: 31px;
+        height: 31px;
+        font-size: 15px;
     }
-
 
     .magic-flower.flower-left {
-        width: 62px;
-        height: 62px;
-
-        opacity: 0.065;
+        width: 58px;
+        height: 58px;
+        opacity: .05;
     }
 
+    .magic-fairy.fairy-left {
+        width: 55px;
+        opacity: .010;
+    }
 }
