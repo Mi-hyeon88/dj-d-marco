@@ -1,0 +1,255 @@
+/* =========================================================
+   D.MARCO — HOME
+========================================================= */
+
+:root {
+    --preto: #030303;
+    --dourado: #c9a46a;
+    --creme: #eee4d8;
+    --cinza: #b8aea5;
+    --borda: rgba(201, 164, 106, 0.45);
+}
+
+/* ---------- BASE ---------- */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+}
+
+body {
+    background: var(--preto);
+    color: var(--creme);
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+/* ---------- HOME ---------- */
+
+.home {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+
+    background-image:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.05),
+            rgba(0, 0, 0, 0.18) 45%,
+            rgba(0, 0, 0, 0.72)
+        ),
+        url("home-bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+}
+
+/* ---------- TOPO ---------- */
+
+.topo {
+    position: relative;
+    z-index: 2;
+
+    padding: 42px 55px;
+}
+
+.logo {
+    color: var(--dourado);
+
+    font-size: 30px;
+    letter-spacing: 2px;
+}
+
+/* ---------- BOAS-VINDAS ---------- */
+
+.boas-vindas {
+    position: relative;
+    z-index: 2;
+
+    width: min(1050px, 90%);
+    margin: 7vh auto 0;
+
+    text-align: center;
+}
+
+.boas-vindas h1 {
+    margin: 0 0 42px;
+
+    color: var(--creme);
+
+    font-size: clamp(32px, 4vw, 58px);
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+/* ---------- CARDS ---------- */
+
+.navegacao {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.card {
+    min-height: 260px;
+
+    padding: 30px 22px;
+
+    border: 1px solid var(--borda);
+    border-radius: 18px;
+
+    background: rgba(0, 0, 0, 0.30);
+
+    color: var(--creme);
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.card:hover {
+    background: rgba(0, 0, 0, 0.48);
+    border-color: rgba(201, 164, 106, 0.75);
+
+    transform: translateY(-3px);
+}
+
+.icone {
+    margin-bottom: 24px;
+
+    color: var(--dourado);
+
+    font-size: 38px;
+}
+
+.card h2 {
+    margin: 0 0 16px;
+
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.card p {
+    margin: 0;
+
+    color: var(--cinza);
+
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* ---------- IDIOMA ---------- */
+
+.idioma {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 34px;
+
+    color: var(--cinza);
+
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.idiomas {
+    display: flex;
+
+    padding: 3px;
+
+    border: 1px solid var(--borda);
+    border-radius: 30px;
+}
+
+.idiomas button {
+    border: 0;
+    background: transparent;
+
+    padding: 8px 20px;
+
+    color: var(--cinza);
+
+    cursor: pointer;
+}
+
+.idiomas .ativo {
+    color: var(--dourado);
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .topo {
+        padding: 25px 22px;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .boas-vindas {
+        width: 94%;
+        margin-top: 5vh;
+    }
+
+    .boas-vindas h1 {
+        margin-bottom: 25px;
+
+        font-size: 30px;
+    }
+
+    .navegacao {
+        gap: 8px;
+    }
+
+    .card {
+        min-height: 225px;
+
+        padding: 20px 9px;
+
+        border-radius: 14px;
+    }
+
+    .icone {
+        margin-bottom: 16px;
+
+        font-size: 28px;
+    }
+
+    .card h2 {
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
+
+    .card p {
+        font-size: 9px;
+        line-height: 1.5;
+    }
+
+    .idioma {
+        margin-top: 22px;
+    }
+
+    .idiomas button {
+        padding: 7px 15px;
+    }
+}
