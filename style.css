@@ -199,64 +199,28 @@ body {
 @media (max-width: 700px) {
 
     .home {
+        position: relative;
         min-height: 100svh;
-        background-size: auto 100%;
+        background-color: #030303;
+        overflow: hidden;
+    }
+
+    .home::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+
+        background-image: url("home-bg.jpg");
+        background-repeat: no-repeat;
         background-position: center top;
+        background-size: 100% auto;
+
+        z-index: 0;
     }
 
-    .topo {
-        padding: 24px 22px;
-    }
-
-    .logo {
-        font-size: 23px;
-        letter-spacing: 1.5px;
-    }
-
+    .topo,
     .boas-vindas {
-        width: 94%;
-        margin-top: 4vh;
-    }
-
-    .boas-vindas h1 {
-        margin-bottom: 22px;
-        font-size: 30px;
-        letter-spacing: 1px;
-    }
-
-    .navegacao {
-        gap: 8px;
-    }
-
-    .card {
-        min-height: 190px;
-        padding: 17px 8px;
-        border-radius: 14px;
-        background: rgba(0, 0, 0, 0.24);
-    }
-
-    .icone {
-        margin-bottom: 13px;
-        font-size: 27px;
-    }
-
-    .card h2 {
-        margin-bottom: 10px;
-        font-size: 13px;
-        letter-spacing: 1px;
-    }
-
-    .card p {
-        font-size: 8.5px;
-        line-height: 1.45;
-    }
-
-    .idioma {
-        margin-top: 20px;
-        font-size: 10px;
-    }
-
-    .idiomas button {
-        padding: 7px 15px;
+        position: relative;
+        z-index: 1;
     }
 }
