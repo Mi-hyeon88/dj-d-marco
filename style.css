@@ -219,7 +219,7 @@ background-image: none;
             to bottom,
             rgba(0, 0, 0, 0.30),
             rgba(0, 0, 0, 0.45) 55%,
-            rgba(0, 0, 0, 0.80) 100%
+            rgba(0, 0, 0, 0.60) 100%
         ),
         url("home-bg.jpg");
 
@@ -227,7 +227,7 @@ background-image: none;
     background-position: center top;
     background-size: 100% 100%;
 
-    opacity: 0.68;
+    opacity: 0.75;
 
     z-index: 0;
 }
@@ -245,54 +245,54 @@ background-image: none;
     }
 
     .navegacao {
-        gap: 8px;
-    }
+    gap: 6px;
+}
 
-    .card {
-        min-height: 170px;
-        padding: 15px 8px;
-        border-radius: 14px;
-    }
+.card {
+    min-height: 0;
+    padding: 12px 6px;
+    border-radius: 13px;
+}
 
-    .icone {
-        margin-bottom: 13px;
-        font-size: 27px;
-    }
+.icone {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
 
-    .card h2 {
-        margin-bottom: 10px;
-        font-size: 13px;
-        letter-spacing: 1px;
-    }
+.card h2 {
+    margin-bottom: 7px;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
 
-    .card p {
-        font-size: 9px;
-        line-height: 1.5;
-    }
-
-    .idioma {
-        margin-top: 20px;
-        font-size: 10px;
-    }
-
-    .idiomas button {
-        padding: 7px 15px;
-    }
-
-.boas-vindas h1 {
-    transform: translateY(-75px);
+.card p {
+    font-size: 8px;
+    line-height: 1.45;
 }
 
 .idioma {
-    margin-top: 45px;
+    margin-top: 14px;
+    gap: 6px;
+    font-size: 9px;
     position: relative;
     z-index: 2;
     text-shadow: 0 1px 8px #000;
 }
 
 .idiomas {
+    padding: 2px;
     position: relative;
     z-index: 2;
+}
+
+.idiomas button {
+    padding: 5px 14px;
+    font-size: 11px;
+
+}
+
+.boas-vindas h1 {
+    transform: translateY(-75px);
 }
 
 }
