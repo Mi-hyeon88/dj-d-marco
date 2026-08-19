@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.documentElement.lang = idioma;
 
-    }
+localStorage.setItem("idiomaDMarco", idioma);
 
 
     /* =========================
