@@ -143,7 +143,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.documentElement.lang = idioma;
 
-localStorage.setItem("idiomaDMarco", idioma);
+
+        /* =========================
+           SALVAR IDIOMA
+        ========================== */
+
+        localStorage.setItem(
+            "idiomaDMarco",
+            idioma
+        );
+
+    }
 
 
     /* =========================
@@ -164,10 +174,24 @@ localStorage.setItem("idiomaDMarco", idioma);
 
 
     /* =========================
-       IDIOMA PADRÃO
-       COREANO
+       IDIOMA INICIAL
     ========================== */
 
-    mudarIdioma("ko");
+    const idiomaSalvo =
+        localStorage.getItem("idiomaDMarco");
+
+
+    if (
+        idiomaSalvo &&
+        idiomas[idiomaSalvo]
+    ) {
+
+        mudarIdioma(idiomaSalvo);
+
+    } else {
+
+        mudarIdioma("ko");
+
+    }
 
 });
