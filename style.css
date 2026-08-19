@@ -377,7 +377,7 @@ body {
         background-position: center 8%;
         background-repeat: no-repeat;
 
-        opacity: 0.65;
+        opacity: 0.22;
 
         z-index: 0;
     }
@@ -484,8 +484,8 @@ overflow: hidden;
         background-image:
             linear-gradient(
                 to bottom,
-                rgba(0, 0, 0, 0.25),
-                rgba(0, 0, 0, 0.68)
+                rgba(0, 0, 0, 0.10),
+                rgba(0, 0, 0, 0.38)
             ),
             url("cards-bg.jpg");
 
