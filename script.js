@@ -1,60 +1,67 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     const idiomas = {
-        ko: {
-            pagina: "환영합니다",
-            cards: [
-                {
-                    titulo: "홈",
-                    texto: "모든 것은 여기에서 시작됩니다. 이 공간의 의미입니다."
-                },
-                {
-                    titulo: "메시지",
-                    texto: "팬들이 당신에게 전하고 싶은 이야기."
-                },
-                {
-                    titulo: "추억",
-                    texto: "우리가 기억하고 싶은 것: 당신을 떠올리게 하는 순간, 사진, 영상, 음악."
-                }
-            ]
-        },
 
-        pt: {
-            pagina: "Bem-vindo",
-            cards: [
-                {
-                    titulo: "Início",
-                    texto: "Tudo começa aqui. O propósito deste espaço."
-                },
-                {
-                    titulo: "Mensagem",
-                    texto: "O que os fãs querem te dizer."
-                },
-                {
-                    titulo: "Memórias",
-                    texto: "O que queremos relembrar: momentos, fotos, vídeos e músicas que nos fazem lembrar de você."
-                }
-            ]
-        },
+    ko: {
+        pagina: "환영합니다",
 
-        en: {
-            pagina: "Welcome",
-            cards: [
-                {
-                    titulo: "Home",
-                    texto: "Everything starts here. The purpose of this space."
-                },
-                {
-                    titulo: "Message",
-                    texto: "What the fans want to tell you."
-                },
-                {
-                    titulo: "Memories",
-                    texto: "What we want to remember: moments, photos, videos and songs that remind us of you."
-                }
-            ]
-        }
-    };
+        cards: [
+            {
+                titulo: "당신을 위해",
+                texto: "모든 것은 여기에서 시작됩니다. 이 공간의 의미입니다."
+            },
+            {
+                titulo: "메시지",
+                texto: "팬들이 당신에게 전하고 싶은 이야기."
+            },
+            {
+                titulo: "추억",
+                texto: "우리가 기억하고 싶은 것: 당신을 떠올리게 하는 순간, 사진, 영상, 음악."
+            }
+        ]
+    },
+
+
+    pt: {
+        pagina: "Bem-vindo",
+
+        cards: [
+            {
+                titulo: "Para Você",
+                texto: "Tudo começa aqui. O propósito deste espaço."
+            },
+            {
+                titulo: "Mensagens",
+                texto: "O que os fãs querem te dizer."
+            },
+            {
+                titulo: "Memórias",
+                texto: "O que queremos relembrar: momentos, fotos, vídeos e músicas que nos fazem lembrar de você."
+            }
+        ]
+    },
+
+
+    en: {
+        pagina: "Welcome",
+
+        cards: [
+            {
+                titulo: "For You",
+                texto: "Everything starts here. The purpose of this space."
+            },
+            {
+                titulo: "Messages",
+                texto: "What the fans want to tell you."
+            },
+            {
+                titulo: "Memories",
+                texto: "What we want to remember: moments, photos, videos and songs that remind us of you."
+            }
+        ]
+    }
+
+};
 
 
     const botoes = document.querySelectorAll(
