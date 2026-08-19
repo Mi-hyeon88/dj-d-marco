@@ -19,31 +19,76 @@
 
         <header class="inicio-topo">
 
-            <nav class="inicio-navegacao">
+            <a
+    href="index.html"
+    class="inicio-link"
+    data-nav="home"
+    aria-label="Home"
+>
+    <svg
+        class="icone-home"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+    >
+        <path
+            d="M4 10.5
+               L12 4
+               L20 10.5
+               V19
+               H4
+               V10.5Z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.35"
+            stroke-linejoin="round"
+        />
 
-                <a
-                    href="index.html"
-                    class="inicio-link ativo"
-                    data-nav="inicio"
-                >
-                    <span data-i18n="nav.inicio">INÍCIO</span>
-                </a>
+        <path
+            d="M9.5 19
+               V13.5
+               H14.5
+               V19"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.35"
+            stroke-linejoin="round"
+        />
+    </svg>
+</a>
 
-                <a
-                    href="#"
-                    class="inicio-link"
-                    data-nav="mensagem"
-                >
-                    <span data-i18n="nav.mensagem">MENSAGEM</span>
-                </a>
 
-                <a
-                    href="#"
-                    class="inicio-link"
-                    data-nav="memorias"
-                >
-                    <span data-i18n="nav.memorias">MEMÓRIAS</span>
-                </a>
+<a
+    href="inicio.html"
+    class="inicio-link ativo"
+    data-nav="paraVoce"
+>
+    <span data-i18n="nav.paraVoce">
+        PARA VOCÊ
+    </span>
+</a>
+
+
+<a
+    href="mensagem.html"
+    class="inicio-link"
+    data-nav="mensagens"
+>
+    <span data-i18n="nav.mensagens">
+        MENSAGENS
+    </span>
+</a>
+
+
+<a
+    href="memorias.html"
+    class="inicio-link"
+    data-nav="memorias"
+>
+    <span data-i18n="nav.memorias">
+        MEMÓRIAS
+    </span>
+</a>
 
             </nav>
 
