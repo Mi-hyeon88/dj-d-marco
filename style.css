@@ -10,7 +10,10 @@
     --borda: rgba(201, 164, 106, 0.45);
 }
 
-/* ---------- BASE ---------- */
+
+/* =========================================================
+   BASE
+========================================================= */
 
 * {
     box-sizing: border-box;
@@ -28,7 +31,10 @@ body {
     font-family: Georgia, "Times New Roman", serif;
 }
 
-/* ---------- HOME ---------- */
+
+/* =========================================================
+   HOME
+========================================================= */
 
 .home {
     position: relative;
@@ -51,11 +57,18 @@ body {
     overflow: hidden;
 }
 
-/* ---------- TOPO ---------- */
+
+/* =========================================================
+   TOPO
+========================================================= */
 
 .topo {
     position: relative;
-    z-index: 2;
+    z-index: 3;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     padding: 42px 55px;
 }
@@ -67,7 +80,56 @@ body {
     letter-spacing: 2px;
 }
 
-/* ---------- BOAS-VINDAS ---------- */
+.topo-direita {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.seletor-topo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: var(--creme);
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.globo {
+    color: var(--dourado);
+    font-size: 27px;
+}
+
+.seta {
+    color: var(--dourado);
+    font-size: 18px;
+}
+
+.menu-mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    gap: 7px;
+
+    width: 32px;
+}
+
+.menu-mobile span {
+    display: block;
+
+    width: 100%;
+    height: 2px;
+
+    background: var(--dourado);
+}
+
+
+/* =========================================================
+   BOAS-VINDAS
+========================================================= */
 
 .boas-vindas {
     position: relative;
@@ -86,14 +148,20 @@ body {
 
     font-size: clamp(32px, 4vw, 58px);
     font-weight: 400;
+
     letter-spacing: 2px;
 }
 
-/* ---------- CARDS ---------- */
+
+/* =========================================================
+   CARDS
+========================================================= */
 
 .navegacao {
     display: grid;
+
     grid-template-columns: repeat(3, 1fr);
+
     gap: 22px;
 }
 
@@ -119,6 +187,7 @@ body {
 
 .card:hover {
     background: rgba(0, 0, 0, 0.48);
+
     border-color: rgba(201, 164, 106, 0.75);
 
     transform: translateY(-3px);
@@ -137,6 +206,7 @@ body {
 
     font-size: 18px;
     font-weight: 400;
+
     letter-spacing: 2px;
 }
 
@@ -146,11 +216,15 @@ body {
     color: var(--cinza);
 
     font-family: Arial, sans-serif;
+
     font-size: 13px;
     line-height: 1.7;
 }
 
-/* ---------- IDIOMA ---------- */
+
+/* =========================================================
+   IDIOMA
+========================================================= */
 
 .idioma {
     display: flex;
@@ -165,6 +239,7 @@ body {
 
     font-family: Arial, sans-serif;
     font-size: 11px;
+
     letter-spacing: 2px;
 }
 
@@ -192,107 +267,284 @@ body {
     color: var(--dourado);
 }
 
+
 /* =========================================================
    MOBILE
 ========================================================= */
 
 @media (max-width: 700px) {
 
+    /* ---------- FUNDO ---------- */
+
     .home {
-        position: relative;
         min-height: 100svh;
-        background-color: #030303;
-background-image: none;
+
+        background-color: var(--preto);
+        background-image: none;
+
         overflow: hidden;
     }
 
     .home::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    aspect-ratio: 9 / 16;
+        content: "";
 
-    background-image:
-        linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.30),
-            rgba(0, 0, 0, 0.45) 55%,
-            rgba(0, 0, 0, 0.60) 100%
-        ),
-        url("home-bg.jpg");
+        position: absolute;
 
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: 100% 100%;
+        top: 0;
+        left: 0;
 
-    opacity: 0.75;
+        width: 100%;
+        height: 100%;
 
-    z-index: 0;
-}
+        background-image:
+            linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.05),
+                rgba(0, 0, 0, 0.15) 35%,
+                rgba(0, 0, 0, 0.48) 65%,
+                rgba(0, 0, 0, 0.92) 100%
+            ),
+            url("home-bg.jpg");
 
-    .topo,
+        background-repeat: no-repeat;
+
+        background-position: center top;
+
+        background-size: 100% auto;
+
+        opacity: 0.95;
+
+        z-index: 0;
+    }
+
+
+    /* ---------- TOPO ---------- */
+
+    .topo {
+        position: relative;
+        z-index: 3;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 34px 38px 0;
+    }
+
+    .logo {
+        font-size: 29px;
+        letter-spacing: 1.5px;
+    }
+
+    .topo-direita {
+        gap: 25px;
+    }
+
+    .seletor-topo {
+        font-size: 14px;
+    }
+
+    .globo {
+        font-size: 27px;
+    }
+
+    .menu-mobile {
+        width: 32px;
+        gap: 7px;
+    }
+
+
+    /* ---------- CONTEÚDO ---------- */
+
     .boas-vindas {
         position: relative;
-        z-index: 1;
+        z-index: 2;
+
+        width: calc(100% - 70px);
+
+        margin: 505px auto 0;
+
+        text-align: center;
     }
 
     .boas-vindas h1 {
-        margin-bottom: 22px;
+        margin: 0 0 30px;
+
+        color: var(--dourado);
+
         font-size: 30px;
+        font-weight: 400;
+
+        letter-spacing: 1px;
+
+        white-space: nowrap;
+    }
+
+
+    /* ---------- GRID DOS CARDS ---------- */
+
+    .navegacao {
+        display: grid;
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 20px 24px;
+    }
+
+
+    /* ---------- CARDS SUPERIORES ---------- */
+
+    .card {
+        min-height: 340px;
+
+        padding: 24px 18px;
+
+        border: 1px solid var(--borda);
+
+        border-radius: 17px;
+
+        background:
+            linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.20),
+                rgba(0, 0, 0, 0.50)
+            );
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: flex-start;
+
+        text-align: center;
+    }
+
+
+    /* ---------- MEMÓRIAS ---------- */
+
+    .card:nth-child(3) {
+        grid-column: 1 / -1;
+
+        min-height: 205px;
+
+        display: grid;
+
+        grid-template-columns: 1fr 1.5fr;
+
+        align-items: center;
+
+        text-align: left;
+
+        padding: 20px 35px;
+    }
+
+
+    /* ---------- ÍCONES ---------- */
+
+    .icone {
+        margin-bottom: 20px;
+
+        color: var(--dourado);
+
+        font-size: 46px;
+    }
+
+    .card:nth-child(3) .icone {
+        margin: 0;
+
+        justify-self: center;
+
+        font-size: 43px;
+    }
+
+
+    /* ---------- TÍTULOS ---------- */
+
+    .card h2 {
+        margin: 0 0 14px;
+
+        color: var(--dourado);
+
+        font-size: 18px;
+        font-weight: 400;
+
         letter-spacing: 1px;
     }
 
-    .navegacao {
-    gap: 6px;
-}
+    .card:nth-child(3) h2 {
+        margin-bottom: 10px;
+    }
 
-.card {
-    min-height: 0;
-    padding: 12px 6px;
-    border-radius: 13px;
-}
 
-.icone {
-    margin-bottom: 10px;
-    font-size: 24px;
-}
+    /* ---------- TEXTOS ---------- */
 
-.card h2 {
-    margin-bottom: 7px;
-    font-size: 12px;
-    letter-spacing: 1px;
-}
+    .card p {
+        margin: 0;
 
-.card p {
-    font-size: 8px;
-    line-height: 1.45;
-}
+        color: var(--creme);
 
-.idioma {
-    margin-top: 14px;
-    gap: 6px;
-    font-size: 9px;
-    position: relative;
-    z-index: 2;
-    text-shadow: 0 1px 8px #000;
-}
+        font-family: Arial, sans-serif;
 
-.idiomas {
-    padding: 2px;
-    position: relative;
-    z-index: 2;
-}
+        font-size: 13px;
 
-.idiomas button {
-    padding: 5px 14px;
-    font-size: 11px;
+        line-height: 1.7;
+    }
 
-}
 
-.boas-vindas h1 {
-    transform: translateY(-75px);
-}
+    /* ---------- IDIOMA ---------- */
+
+    .idioma {
+        position: relative;
+        z-index: 3;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        gap: 14px;
+
+        margin-top: 28px;
+        margin-bottom: 35px;
+
+        color: var(--cinza);
+
+        font-family: Arial, sans-serif;
+
+        font-size: 11px;
+
+        letter-spacing: 1.5px;
+
+        text-shadow: 0 1px 8px #000;
+    }
+
+    .idiomas {
+        display: flex;
+
+        padding: 3px 18px;
+
+        border: 1px solid var(--borda);
+
+        border-radius: 30px;
+    }
+
+    .idiomas button {
+        padding: 8px 22px;
+
+        border: 0;
+
+        background: transparent;
+
+        color: var(--cinza);
+
+        font-family: Arial, sans-serif;
+
+        font-size: 15px;
+
+        cursor: pointer;
+    }
+
+    .idiomas .ativo {
+        color: var(--dourado);
+    }
 
 }
