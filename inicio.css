@@ -1,0 +1,679 @@
+/* =========================================================
+   D.MARCO — SESSÃO INÍCIO
+========================================================= */
+
+:root {
+    --dourado: #c9a46a;
+    --dourado-claro: #e1b36d;
+    --creme: #eee4d8;
+    --preto: #030303;
+}
+
+
+/* =========================================================
+   BASE
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: var(--preto);
+    color: var(--creme);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   PÁGINA
+========================================================= */
+
+.inicio-page {
+    position: relative;
+
+    width: 100%;
+    min-height: 100svh;
+
+    background-image:
+        url("home-bg.jpg");
+
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   TOPO
+========================================================= */
+
+.inicio-topo {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    z-index: 10;
+
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding:
+        58px
+        clamp(45px, 7vw, 95px)
+        0;
+}
+
+
+/* =========================================================
+   NAVEGAÇÃO
+========================================================= */
+
+.inicio-navegacao {
+    display: flex;
+    align-items: center;
+
+    gap: clamp(28px, 4vw, 52px);
+}
+
+.inicio-link {
+    position: relative;
+
+    padding-bottom: 11px;
+
+    color: rgba(238, 228, 216, 0.85);
+
+    text-decoration: none;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    transition: color 0.25s ease;
+}
+
+.inicio-link:hover {
+    color: var(--creme);
+}
+
+.inicio-link.ativo {
+    color: var(--dourado);
+}
+
+
+/* ---------- brilho do item ativo ---------- */
+
+.inicio-link.ativo::before {
+    content: "✦";
+
+    position: absolute;
+
+    top: -18px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: var(--dourado);
+
+    font-size: 9px;
+
+    text-shadow:
+        0 0 7px
+        rgba(201, 164, 106, 0.9);
+}
+
+
+/* ---------- linha ativa ---------- */
+
+.inicio-link.ativo::after {
+    content: "";
+
+    position: absolute;
+
+    left: -8px;
+    right: -8px;
+    bottom: 0;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--dourado),
+            transparent
+        );
+
+    box-shadow:
+        0 0 8px
+        rgba(201, 164, 106, 0.7);
+}
+
+
+/* =========================================================
+   MÚSICA
+========================================================= */
+
+.inicio-musica {
+    width: 38px;
+    height: 38px;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--dourado);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 29px;
+
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   LINHA VERTICAL
+========================================================= */
+
+.linha-vertical {
+    position: absolute;
+
+    z-index: 3;
+
+    top: 260px;
+    left: clamp(85px, 12vw, 145px);
+
+    width: 1px;
+
+    height: 900px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(201, 164, 106, 0.7) 8%,
+            rgba(201, 164, 106, 0.7) 92%,
+            transparent
+        );
+}
+
+.linha-vertical span {
+    position: absolute;
+
+    left: 50%;
+
+    width: 4px;
+    height: 4px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background: var(--dourado);
+
+    box-shadow:
+        0 0 7px
+        rgba(201, 164, 106, 0.9);
+}
+
+.linha-vertical span:nth-child(1) {
+    top: 28%;
+}
+
+.linha-vertical span:nth-child(2) {
+    top: 46%;
+}
+
+.linha-vertical span:nth-child(3) {
+    top: 64%;
+}
+
+.linha-vertical span:nth-child(4) {
+    top: 82%;
+}
+
+
+/* =========================================================
+   CONTEÚDO
+========================================================= */
+
+.inicio-conteudo {
+    position: relative;
+
+    z-index: 5;
+
+    width: 100%;
+
+    min-height: 100svh;
+
+    padding:
+        305px
+        30px
+        210px;
+}
+
+
+.inicio-texto {
+    width: min(620px, 70%);
+
+    margin-left: clamp(145px, 18vw, 230px);
+}
+
+
+/* =========================================================
+   ABERTURA
+========================================================= */
+
+.inicio-abertura {
+    color: var(--creme);
+
+    font-size:
+        clamp(28px, 3.2vw, 42px);
+
+    line-height: 1.22;
+
+    font-weight: 400;
+}
+
+.inicio-abertura span {
+    color: var(--dourado-claro);
+}
+
+
+/* =========================================================
+   PARÁGRAFOS
+========================================================= */
+
+.inicio-texto p {
+    margin: 0;
+
+    color: var(--creme);
+
+    font-size:
+        clamp(16px, 1.45vw, 20px);
+
+    line-height: 1.8;
+
+    font-weight: 400;
+}
+
+.inicio-texto p span {
+    color: var(--dourado-claro);
+}
+
+
+/* =========================================================
+   SEPARADORES
+========================================================= */
+
+.separador {
+    display: block;
+
+    width: 25px;
+    height: 1px;
+
+    margin:
+        25px 0;
+
+    background: var(--dourado);
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.inicio-final p {
+    margin-bottom: 5px;
+}
+
+.estrela-texto {
+    position: relative;
+
+    line-height: 1;
+}
+
+.estrela-texto > span {
+    color: var(--creme);
+
+    font-size:
+        clamp(29px, 3.3vw, 43px);
+}
+
+.estrela-texto em {
+    color: var(--dourado-claro);
+
+    font-family:
+        "Brush Script MT",
+        "Segoe Script",
+        cursive;
+
+    font-size:
+        clamp(32px, 3.8vw, 49px);
+
+    font-weight: 400;
+
+    font-style: normal;
+}
+
+.estrela-texto b {
+    margin-left: 7px;
+
+    color: var(--dourado);
+
+    font-size: 22px;
+
+    font-weight: 400;
+
+    text-shadow:
+        0 0 9px
+        rgba(201, 164, 106, 0.8);
+}
+
+
+/* =========================================================
+   ASSINATURA
+========================================================= */
+
+.inicio-assinatura {
+    position: absolute;
+
+    z-index: 8;
+
+    left: 50%;
+    bottom: 42px;
+
+    transform: translateX(-50%);
+
+    width: 100%;
+
+    text-align: center;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: var(--dourado);
+}
+
+.linha-assinatura {
+    display: block;
+
+    width: 125px;
+    height: 1px;
+
+    margin:
+        0 auto 18px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--dourado),
+            transparent
+        );
+}
+
+.inicio-assinatura p {
+    margin: 0 0 7px;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.inicio-assinatura strong {
+    display: block;
+
+    font-size: 9px;
+
+    font-weight: 400;
+
+    letter-spacing: 1.4px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .inicio-page {
+        min-height: 100svh;
+
+        background-size: auto 100%;
+        background-position: center top;
+
+        overflow-y: auto;
+    }
+
+
+    /* =====================================================
+       TOPO MOBILE
+    ====================================================== */
+
+    .inicio-topo {
+        padding:
+            27px
+            24px
+            0;
+    }
+
+    .inicio-navegacao {
+        gap: 20px;
+    }
+
+    .inicio-link {
+        padding-bottom: 7px;
+
+        font-size: 8px;
+
+        letter-spacing: 1.35px;
+    }
+
+    .inicio-link.ativo::before {
+        top: -12px;
+
+        font-size: 7px;
+    }
+
+    .inicio-musica {
+        width: 27px;
+        height: 27px;
+
+        font-size: 23px;
+    }
+
+
+    /* =====================================================
+       LINHA MOBILE
+    ====================================================== */
+
+    .linha-vertical {
+        top: 263px;
+        left: 52px;
+
+        height: 830px;
+    }
+
+
+    /* =====================================================
+       CONTEÚDO MOBILE
+    ====================================================== */
+
+    .inicio-conteudo {
+        min-height: auto;
+
+        padding:
+            175px
+            36px
+            150px;
+    }
+
+    .inicio-texto {
+        width: calc(100% - 17px);
+
+        margin-left: 57px;
+    }
+
+
+    /* =====================================================
+       ABERTURA
+    ====================================================== */
+
+    .inicio-abertura {
+        font-size: 25px;
+
+        line-height: 1.27;
+    }
+
+
+    /* =====================================================
+       TEXTO
+    ====================================================== */
+
+    .inicio-texto p {
+        font-size: 13px;
+
+        line-height: 1.78;
+    }
+
+
+    /* =====================================================
+       SEPARADORES
+    ====================================================== */
+
+    .separador {
+        width: 23px;
+
+        margin:
+            18px 0;
+    }
+
+
+    /* =====================================================
+       FINAL
+    ====================================================== */
+
+    .estrela-texto > span {
+        font-size: 28px;
+    }
+
+    .estrela-texto em {
+        font-size: 34px;
+    }
+
+    .estrela-texto b {
+        font-size: 17px;
+    }
+
+
+    /* =====================================================
+       ASSINATURA
+    ====================================================== */
+
+    .inicio-assinatura {
+        bottom: 25px;
+    }
+
+    .linha-assinatura {
+        width: 105px;
+
+        margin-bottom: 13px;
+    }
+
+    .inicio-assinatura p {
+        margin-bottom: 5px;
+
+        font-size: 7px;
+
+        letter-spacing: 1.5px;
+    }
+
+    .inicio-assinatura strong {
+        font-size: 7px;
+
+        letter-spacing: 1px;
+    }
+}
+
+
+/* =========================================================
+   TELAS MUITO PEQUENAS
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .inicio-topo {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .inicio-navegacao {
+        gap: 14px;
+    }
+
+    .inicio-link {
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
+
+    .inicio-conteudo {
+        padding-left: 29px;
+        padding-right: 29px;
+    }
+
+    .linha-vertical {
+        left: 43px;
+    }
+
+    .inicio-texto {
+        margin-left: 48px;
+
+        width: calc(100% - 10px);
+    }
+
+    .inicio-abertura {
+        font-size: 23px;
+    }
+
+    .inicio-texto p {
+        font-size: 12px;
+    }
+}
