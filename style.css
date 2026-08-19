@@ -313,26 +313,38 @@ body {
 
     /* ---------- FUNDO PRINCIPAL ---------- */
 
-    .home {
-        min-height: 100svh;
+   .home {
+    min-height: 100svh;
 
-        background-image:
-            linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.08) 0%,
-                rgba(0, 0, 0, 0.10) 36%,
-                rgba(0, 0, 0, 0.42) 62%,
-                rgba(0, 0, 0, 0.94) 100%
-            ),
-            url("home-bg.jpg");
+    background: var(--preto);
 
-        background-size: 100% auto;
-        background-position: center top;
-        background-repeat: no-repeat;
+    overflow-x: hidden;
+    overflow-y: visible;
+}
 
-        overflow-x: hidden;
-        overflow-y: visible;
-    }
+.home::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.35),
+            rgba(0, 0, 0, 0.72) 65%,
+            rgba(0, 0, 0, 0.94)
+        ),
+        url("home-bg.jpg");
+
+    background-size: 100% auto;
+    background-position: center 8%;
+    background-repeat: no-repeat;
+
+    opacity: 0.38;
+
+    z-index: 0;
+}
 
 
     /* ---------- TOPO ---------- */
@@ -376,7 +388,7 @@ body {
         width: calc(100% - 40px);
 
         margin: 0 auto;
-        padding-top: 76vw;
+        padding-top: 48vw;
 
         text-align: center;
     }
@@ -407,7 +419,7 @@ body {
     /* ---------- CARDS ---------- */
 
     .card {
-        min-height: 210px;
+        min-height: 155px;
 
         padding: 22px 12px;
 
@@ -464,7 +476,7 @@ body {
     .card:nth-child(3) {
         grid-column: 1 / -1;
 
-        min-height: 155px;
+        min-height: 135px;
 
         display: grid;
 
