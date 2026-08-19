@@ -166,7 +166,10 @@ body {
     gap: 22px;
 }
 
-/* ---------- CARDS ---------- */
+
+/* =========================================================
+   CARDS
+========================================================= */
 
 .card {
     min-height: 0;
@@ -174,6 +177,7 @@ body {
 
     padding: 18px 12px;
 
+    border: 1px solid var(--borda);
     border-radius: 15px;
 
     background-color: rgba(0, 0, 0, 0.30);
@@ -197,10 +201,16 @@ body {
     justify-content: flex-start;
 
     text-align: center;
+
+    font-family: inherit;
+    color: inherit;
+
+    cursor: pointer;
 }
 
 .icone {
     margin-bottom: 10px;
+
     font-size: 32px;
 }
 
@@ -214,6 +224,8 @@ body {
 }
 
 .card p {
+    margin: 0;
+
     color: var(--creme);
 
     font-size: 10px;
@@ -221,7 +233,9 @@ body {
 }
 
 
-/* ---------- MEMÓRIAS ---------- */
+/* =========================================================
+   MEMÓRIAS — DESKTOP
+========================================================= */
 
 .card:nth-child(3) {
     grid-column: 1 / -1;
@@ -269,9 +283,12 @@ body {
 }
 
 .card:nth-child(3) p {
+    margin: 0;
+
     font-size: 10px;
     line-height: 1.5;
 }
+
 
 /* =========================================================
    IDIOMA
@@ -332,38 +349,38 @@ body {
 
     /* ---------- FUNDO PRINCIPAL ---------- */
 
-   .home {
-    min-height: 100svh;
+    .home {
+        min-height: 100svh;
 
-    background: var(--preto);
+        background: var(--preto);
 
-    overflow-x: hidden;
-    overflow-y: visible;
-}
+        overflow-x: hidden;
+        overflow-y: visible;
+    }
 
-.home::before {
-    content: "";
+    .home::before {
+        content: "";
 
-    position: absolute;
-    inset: 0;
+        position: absolute;
+        inset: 0;
 
-    background-image:
-        linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.05),
-            rgba(0, 0, 0, 0.20) 65%,
-            rgba(0, 0, 0, 0.55)
-        ),
-        url("home-bg.jpg");
+        background-image:
+            linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.05),
+                rgba(0, 0, 0, 0.20) 65%,
+                rgba(0, 0, 0, 0.55)
+            ),
+            url("home-bg.jpg");
 
-    background-size: 100% auto;
-    background-position: center 8%;
-    background-repeat: no-repeat;
+        background-size: 100% auto;
+        background-position: center 8%;
+        background-repeat: no-repeat;
 
-    opacity: 0.65;
+        opacity: 0.65;
 
-    z-index: 0;
-}
+        z-index: 0;
+    }
 
 
     /* ---------- TOPO ---------- */
@@ -423,108 +440,100 @@ body {
         letter-spacing: 1px;
     }
 
-   /* ---------- GRID ---------- */
 
-.navegacao {
-    display: grid;
+    /* ---------- GRID ---------- */
 
-    /* OS 3 CARDS LADO A LADO */
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    .navegacao {
+        display: grid;
 
-    /* distância entre os cards */
-    gap: 10px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
 
-    width: 100%;
-}
+        gap: 10px;
 
-
-/* ---------- CARDS COMPACTOS ---------- */
-
-.card,
-.card:nth-child(3) {
-
-    /* nenhum card ocupa a linha inteira */
-    grid-column: auto;
-
-    width: 100%;
-
-    /* tamanho compacto */
-    height: 158px;
-    min-height: 158px;
-
-    /* espaço interno reduzido */
-    padding: 12px 7px;
-
-    border-radius: 13px;
-
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: flex-start;
-
-    text-align: center;
-
-    background-image:
-        linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.25),
-            rgba(0, 0, 0, 0.68)
-        ),
-        url("cards-bg.jpg");
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+        width: 100%;
+    }
 
 
-/* ---------- ÍCONE ---------- */
+    /* ---------- CARDS COMPACTOS ---------- */
 
-.icone,
-.card:nth-child(3) .icone {
+    .card,
+    .card:nth-child(3) {
 
-    margin: 0 0 7px;
+        grid-column: auto;
 
-    font-size: 24px;
-    line-height: 1;
+        width: 100%;
 
-    text-align: center;
-}
+        height: 158px;
+        min-height: 158px;
+
+        padding: 12px 7px;
+
+        border-radius: 13px;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: flex-start;
+
+        text-align: center;
+
+        background-image:
+            linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.25),
+                rgba(0, 0, 0, 0.68)
+            ),
+            url("cards-bg.jpg");
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 
 
-/* ---------- TÍTULO ---------- */
+    /* ---------- ÍCONE ---------- */
 
-.card h2,
-.card:nth-child(3) h2 {
+    .icone,
+    .card:nth-child(3) .icone {
 
-    margin: 0 0 5px;
+        margin: 0 0 7px;
 
-    font-size: 12px;
-    line-height: 1.2;
+        font-size: 24px;
+        line-height: 1;
 
-    letter-spacing: 0.5px;
-}
+        text-align: center;
+    }
 
 
-/* ---------- TEXTO ---------- */
+    /* ---------- TÍTULO ---------- */
 
-.card p,
-.card:nth-child(3) p {
+    .card h2,
+    .card:nth-child(3) h2 {
 
-    margin: 0;
+        margin: 0 0 5px;
 
-    font-size: 7px;
-    line-height: 1.2;
+        font-size: 12px;
+        line-height: 1.2;
 
-    max-width: 100%;
-}
+        letter-spacing: 0.5px;
+    }
 
-.card:nth-child(3) p {
-    font-size: 10px;
-    line-height: 1.5;
-}
-   
+
+    /* ---------- TEXTO ---------- */
+
+    .card p,
+    .card:nth-child(3) p {
+
+        margin: 0;
+
+        font-size: 7.5px;
+        line-height: 1.3;
+
+        max-width: 100%;
+    }
+
+
     /* ---------- IDIOMA ---------- */
 
     .idioma {
