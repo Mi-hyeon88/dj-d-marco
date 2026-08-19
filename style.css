@@ -419,7 +419,7 @@ body {
     /* ---------- CARDS ---------- */
 
     .card {
-        min-height: 155px;
+        min-height: 130px;
 
         padding: 22px 12px;
 
@@ -476,7 +476,7 @@ body {
     .card:nth-child(3) {
         grid-column: 1 / -1;
 
-        min-height: 135px;
+        min-height: 115px;
 
         display: grid;
 
