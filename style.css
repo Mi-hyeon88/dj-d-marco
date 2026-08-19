@@ -1,3 +1,7 @@
+/* =========================================================
+   D.MARCO — HOME
+========================================================= */
+
 :root {
     --preto: #030303;
     --dourado: #c9a46a;
@@ -6,6 +10,11 @@
     --borda: rgba(201, 164, 106, 0.45);
 }
 
+
+/* =========================================================
+   BASE
+========================================================= */
+
 * {
     box-sizing: border-box;
 }
@@ -13,6 +22,7 @@
 html,
 body {
     margin: 0;
+    padding: 0;
     min-height: 100%;
 }
 
@@ -32,18 +42,20 @@ body {
     min-height: 100vh;
     min-height: 100svh;
 
-    background:
+    background-image:
         linear-gradient(
             to bottom,
             rgba(0, 0, 0, 0.05),
             rgba(0, 0, 0, 0.18) 45%,
-            rgba(0, 0, 0, 0.72)
+            rgba(0, 0, 0, 0.72) 100%
         ),
         url("home-bg.jpg");
 
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     background-repeat: no-repeat;
+
+    overflow-x: hidden;
 }
 
 
@@ -64,6 +76,7 @@ body {
 
 .logo {
     color: var(--dourado);
+
     font-size: 30px;
     letter-spacing: 2px;
 }
@@ -87,30 +100,36 @@ body {
 
 .globo {
     color: var(--dourado);
-    font-size: 24px;
+    font-size: 25px;
 }
 
 .seta {
     color: var(--dourado);
+    font-size: 18px;
 }
 
 .menu-mobile {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+
     gap: 6px;
 
     width: 30px;
 }
 
 .menu-mobile span {
+    display: block;
+
     width: 100%;
     height: 2px;
+
     background: var(--dourado);
 }
 
 
 /* =========================================================
-   CONTEÚDO
+   BOAS-VINDAS
 ========================================================= */
 
 .boas-vindas {
@@ -130,7 +149,21 @@ body {
 
     font-size: clamp(32px, 4vw, 58px);
     font-weight: 400;
+
     letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   NAVEGAÇÃO
+========================================================= */
+
+.navegacao {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 22px;
 }
 
 
@@ -138,13 +171,9 @@ body {
    CARDS
 ========================================================= */
 
-.navegacao {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-}
-
 .card {
+    position: relative;
+
     min-height: 260px;
 
     padding: 30px 22px;
@@ -152,44 +181,74 @@ body {
     border: 1px solid var(--borda);
     border-radius: 18px;
 
-    background: rgba(0, 0, 0, 0.30);
+    overflow: hidden;
+
+    background-color: rgba(0, 0, 0, 0.35);
+
+    background-image:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.25),
+            rgba(0, 0, 0, 0.68)
+        ),
+        url("cards-bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
     color: var(--creme);
+
+    font-family: inherit;
 
     cursor: pointer;
 
     transition:
-        background 0.3s ease,
         border-color 0.3s ease,
         transform 0.3s ease;
 }
 
 .card:hover {
-    background: rgba(0, 0, 0, 0.48);
     border-color: rgba(201, 164, 106, 0.75);
+
     transform: translateY(-3px);
 }
 
 .icone {
+    position: relative;
+    z-index: 1;
+
     margin-bottom: 24px;
+
     color: var(--dourado);
+
     font-size: 38px;
 }
 
 .card h2 {
+    position: relative;
+    z-index: 1;
+
     margin: 0 0 16px;
+
+    color: var(--dourado);
 
     font-size: 18px;
     font-weight: 400;
+
     letter-spacing: 2px;
 }
 
 .card p {
+    position: relative;
+    z-index: 1;
+
     margin: 0;
 
-    color: var(--cinza);
+    color: var(--creme);
 
     font-family: Arial, sans-serif;
+
     font-size: 13px;
     line-height: 1.7;
 }
@@ -205,13 +264,16 @@ body {
     align-items: center;
 
     gap: 12px;
+
     margin-top: 34px;
     padding-bottom: 40px;
 
     color: var(--cinza);
 
     font-family: Arial, sans-serif;
+
     font-size: 11px;
+
     letter-spacing: 2px;
 }
 
@@ -231,6 +293,10 @@ body {
     padding: 8px 20px;
 
     color: var(--cinza);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: inherit;
+
     cursor: pointer;
 }
 
@@ -245,15 +311,17 @@ body {
 
 @media (max-width: 700px) {
 
+    /* ---------- FUNDO PRINCIPAL ---------- */
+
     .home {
         min-height: 100svh;
 
-        background:
+        background-image:
             linear-gradient(
                 to bottom,
                 rgba(0, 0, 0, 0.08) 0%,
-                rgba(0, 0, 0, 0.08) 38%,
-                rgba(0, 0, 0, 0.45) 62%,
+                rgba(0, 0, 0, 0.10) 36%,
+                rgba(0, 0, 0, 0.42) 62%,
                 rgba(0, 0, 0, 0.94) 100%
             ),
             url("home-bg.jpg");
@@ -263,6 +331,7 @@ body {
         background-repeat: no-repeat;
 
         overflow-x: hidden;
+        overflow-y: visible;
     }
 
 
@@ -282,11 +351,17 @@ body {
     }
 
     .seletor-topo {
+        gap: 5px;
+
         font-size: 12px;
     }
 
     .globo {
         font-size: 21px;
+    }
+
+    .seta {
+        font-size: 15px;
     }
 
     .menu-mobile {
@@ -298,7 +373,7 @@ body {
     /* ---------- CONTEÚDO ---------- */
 
     .boas-vindas {
-        width: calc(100% - 32px);
+        width: calc(100% - 40px);
 
         margin: 0 auto;
         padding-top: 76vw;
@@ -307,47 +382,80 @@ body {
     }
 
     .boas-vindas h1 {
-        margin: 0 0 18px;
+        margin: 0 0 22px;
 
-        color: var(--creme);
+        color: var(--dourado);
 
-        font-size: 27px;
+        font-size: 28px;
         font-weight: 400;
+
         letter-spacing: 1px;
+    }
+
+
+    /* ---------- GRID ---------- */
+
+    .navegacao {
+        display: grid;
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 12px 18px;
     }
 
 
     /* ---------- CARDS ---------- */
 
-    .navegacao {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 9px;
-    }
-
     .card {
-        min-height: 178px;
+        min-height: 210px;
 
-        padding: 17px 8px;
+        padding: 22px 12px;
 
-        border-radius: 14px;
-        background: rgba(0, 0, 0, 0.32);
+        border-radius: 15px;
+
+        background-color: rgba(0, 0, 0, 0.30);
+
+        background-image:
+            linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.25),
+                rgba(0, 0, 0, 0.68)
+            ),
+            url("cards-bg.jpg");
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: flex-start;
+
+        text-align: center;
     }
 
     .icone {
-        margin-bottom: 10px;
-        font-size: 30px;
+        margin-bottom: 14px;
+
+        font-size: 35px;
     }
 
     .card h2 {
-        margin: 0 0 7px;
+        margin: 0 0 10px;
 
-        font-size: 15px;
+        color: var(--dourado);
+
+        font-size: 16px;
         letter-spacing: 1px;
     }
 
     .card p {
-        font-size: 9px;
-        line-height: 1.45;
+        color: var(--creme);
+
+        font-size: 10px;
+        line-height: 1.55;
     }
 
 
@@ -356,47 +464,74 @@ body {
     .card:nth-child(3) {
         grid-column: 1 / -1;
 
-        min-height: 125px;
+        min-height: 155px;
 
         display: grid;
-        grid-template-columns: 75px 1fr;
+
+        grid-template-columns: 90px 1fr;
+
+        column-gap: 18px;
 
         align-items: center;
 
+        padding: 20px 24px;
+
         text-align: left;
 
-        padding: 16px 20px;
+        background-image:
+            linear-gradient(
+                to right,
+                rgba(0, 0, 0, 0.28),
+                rgba(0, 0, 0, 0.70)
+            ),
+            url("cards-bg.jpg");
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 
     .card:nth-child(3) .icone {
         margin: 0;
+
+        font-size: 42px;
+
         text-align: center;
-        font-size: 32px;
     }
 
     .card:nth-child(3) h2 {
-        margin-bottom: 6px;
+        margin: 0 0 8px;
+
+        font-size: 17px;
+    }
+
+    .card:nth-child(3) p {
+        font-size: 10px;
+
+        line-height: 1.55;
     }
 
 
     /* ---------- IDIOMA ---------- */
 
     .idioma {
-        gap: 8px;
+        gap: 9px;
 
-        margin-top: 17px;
-        padding-bottom: 25px;
+        margin-top: 20px;
+        padding-bottom: 28px;
 
         font-size: 9px;
+
         letter-spacing: 1.5px;
     }
 
     .idiomas {
-        padding: 2px 8px;
+        padding: 2px 9px;
     }
 
     .idiomas button {
-        padding: 6px 13px;
+        padding: 7px 15px;
+
         font-size: 11px;
     }
 }
