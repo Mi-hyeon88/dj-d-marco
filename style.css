@@ -221,15 +221,27 @@ body {
 
 /* ---------- ÍCONE ---------- */
 
-.icone,
-.card:nth-child(3) .icone {
+.icone {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
 
     margin: 0 0 10px;
 
-    font-size: 30px;
-    line-height: 1;
+    color: var(--dourado);
+}
 
-    text-align: center;
+.icone svg {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
 }
 
 
@@ -473,16 +485,17 @@ overflow: hidden;
 
     /* ---------- ÍCONE ---------- */
 
-    .icone,
-    .card:nth-child(3) .icone {
+    .icone {
+    width: 30px;
+    height: 30px;
 
-        margin: 0 0 7px;
+    margin: 0 0 7px;
+}
 
-        font-size: 24px;
-        line-height: 1;
-
-        text-align: center;
-    }
+.icone svg {
+    width: 100%;
+    height: 100%;
+}
 
 
     /* ---------- TÍTULO ---------- */
@@ -533,6 +546,6 @@ overflow: hidden;
     .idiomas button {
         padding: 7px 15px;
 
-        font-size: 11p;x
+        font-size: 11px;
     }
 }
