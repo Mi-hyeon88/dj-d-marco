@@ -9,10 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
         ko: {
 
             nav: {
-                inicio: "시작",
-                mensagem: "메시지",
-                memorias: "추억"
-            },
+    paraVoce: "당신을 위해",
+    mensagens: "메시지",
+    memorias: "추억"
+},
 
             abertura: `
                 이곳은 당신을 위해 만들어졌습니다.
@@ -47,10 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
         pt: {
 
             nav: {
-                inicio: "INÍCIO",
-                mensagem: "MENSAGEM",
-                memorias: "MEMÓRIAS"
-            },
+    paraVoce: "PARA VOCÊ",
+    mensagens: "MENSAGENS",
+    memorias: "MEMÓRIAS"
+},
 
             abertura:
                 "este lugar foi criado<br><span>para você.</span>",
@@ -84,10 +84,10 @@ document.addEventListener("DOMContentLoaded", () => {
         en: {
 
             nav: {
-                inicio: "HOME",
-                mensagem: "MESSAGE",
-                memorias: "MEMORIES"
-            },
+    paraVoce: "FOR YOU",
+    mensagens: "MESSAGES",
+    memorias: "MEMORIES"
+},
 
             abertura:
                 "this place was created<br><span>for you.</span>",
@@ -213,9 +213,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             if (
-                destino === "mensagem" ||
-                destino === "memorias"
-            ) {
+    destino === "mensagens" ||
+    destino === "memorias"
+) {
 
                 event.preventDefault();
 
