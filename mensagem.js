@@ -92,9 +92,66 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function normalizarPais(pais) {
 
-        return String(pais || "")
+    const valor =
+        String(pais || "")
             .trim()
-            .toLowerCase();
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
+
+    const aliases = {
+
+        brasil: "brasil",
+        brazil: "brasil",
+
+        "coreia do sul": "coreia do sul",
+        coreia: "coreia do sul",
+        korea: "coreia do sul",
+        "south korea": "coreia do sul",
+
+        japao: "japao",
+        japan: "japao",
+
+        "estados unidos": "estados unidos",
+        "united states": "estados unidos",
+        usa: "estados unidos",
+        eua: "estados unidos",
+
+        franca: "franca",
+        france: "franca",
+
+        portugal: "portugal",
+
+        mexico: "mexico",
+        mexico: "mexico",
+
+        alemanha: "alemanha",
+        germany: "alemanha",
+
+        argentina: "argentina",
+
+        chile: "chile",
+
+        colombia: "colombia",
+
+        peru: "peru",
+
+        canada: "canada",
+
+        italia: "italia",
+        italy: "italia",
+
+        espanha: "espanha",
+        spain: "espanha",
+
+        "reino unido": "reino unido",
+        "reino_unido": "reino unido",
+        "united kingdom": "reino unido",
+        uk: "reino unido"
+
+    };
+
+    return aliases[valor] || valor;
 
     }
 
