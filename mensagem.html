@@ -1,1 +1,337 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
 
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>D.MARCO — Mensagens</title>
+
+    <link
+        rel="stylesheet"
+        href="mensagem.css"
+    >
+
+</head>
+
+
+<body>
+
+<main class="mensagens-page">
+
+
+    <!-- =====================================================
+         TOPO
+    ====================================================== -->
+
+    <header class="mensagens-topo">
+
+        <a
+            href="inicio.html"
+            class="mensagens-voltar"
+            aria-label="Voltar"
+        >
+            ←
+        </a>
+
+
+        <div class="mensagens-titulo">
+
+            <span>MURAL</span>
+
+            <i>✦</i>
+
+            <small data-i18n="subtitulo">
+                Mensagens ao redor do mundo
+            </small>
+
+        </div>
+
+
+        <button
+            class="mensagens-musica"
+            type="button"
+            aria-label="Música"
+        >
+            ♫
+        </button>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MURAL / GLOBO
+    ====================================================== -->
+
+    <section
+        class="estado estado-mural ativo"
+        data-estado="mural"
+    >
+
+        <div
+            id="globo"
+            class="globo"
+            aria-label="Globo interativo"
+        ></div>
+
+
+        <div class="globo-instrucao">
+
+            <span class="icone-toque">
+                ♧
+            </span>
+
+            <p data-i18n="instrucaoGlobo">
+                Gire o globo ou toque em um país<br>
+                para explorar as mensagens.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         LISTA DE PAÍSES
+    ====================================================== -->
+
+    <section
+        class="estado estado-paises"
+        data-estado="paises"
+    >
+
+        <div class="lista-cabecalho">
+
+            <h1>MURAL</h1>
+
+            <i>✦</i>
+
+            <p data-i18n="subtitulo">
+                Mensagens ao redor do mundo
+            </p>
+
+        </div>
+
+
+        <div
+            id="listaPaises"
+            class="lista-paises"
+        ></div>
+
+
+        <p
+            class="lista-instrucao"
+            data-i18n="instrucaoPais"
+        >
+            Toque em um país para ver<br>
+            as mensagens ♡
+        </p>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         APRESENTAÇÃO DO PAÍS
+    ====================================================== -->
+
+    <section
+        class="estado estado-pais"
+        data-estado="pais"
+    >
+
+        <button
+            class="estado-voltar"
+            data-voltar="paises"
+            aria-label="Voltar"
+        >
+            ←
+        </button>
+
+
+        <div class="pais-cabecalho">
+
+            <h1 id="paisNome">
+                BRASIL
+            </h1>
+
+            <span id="paisQuantidade">
+                0 mensagens
+            </span>
+
+        </div>
+
+
+        <div class="pais-centro">
+
+            <p data-i18n="paraVoce">
+                Para você,
+            </p>
+
+            <h2>
+                Marco...
+            </h2>
+
+        </div>
+
+
+        <div
+            class="pais-brilho"
+            aria-hidden="true"
+        >
+            ✦
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CARTA / MENSAGEM
+    ====================================================== -->
+
+    <section
+        class="estado estado-mensagem"
+        data-estado="mensagem"
+    >
+
+        <button
+            class="estado-voltar"
+            data-voltar="pais"
+            aria-label="Voltar"
+        >
+            ←
+        </button>
+
+
+        <article class="carta">
+
+            <header class="carta-cabecalho">
+
+                <div
+                    id="cartaPais"
+                    class="carta-pais"
+                >
+                    BRASIL
+                </div>
+
+                <div
+                    id="cartaNome"
+                    class="carta-nome"
+                >
+                    —
+                </div>
+
+            </header>
+
+
+            <div class="carta-divisor">
+                <span>✦</span>
+            </div>
+
+
+            <div
+                id="cartaTexto"
+                class="carta-texto"
+            ></div>
+
+
+            <div class="carta-final">
+                ♡
+            </div>
+
+        </article>
+
+
+        <nav class="mensagem-controles">
+
+            <button
+                id="mensagemAnterior"
+                type="button"
+                data-i18n="anterior"
+            >
+                Anterior
+            </button>
+
+
+            <span id="mensagemContador">
+                1 de 1
+            </span>
+
+
+            <button
+                id="mensagemProxima"
+                type="button"
+                data-i18n="proxima"
+            >
+                Próxima
+            </button>
+
+        </nav>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CARREGAMENTO
+    ====================================================== -->
+
+    <div
+        id="carregando"
+        class="carregando"
+    >
+        <span>✦</span>
+    </div>
+
+
+    <!-- =====================================================
+         ERRO
+    ====================================================== -->
+
+    <div
+        id="erro"
+        class="erro"
+        hidden
+    >
+
+        <p data-i18n="erro">
+            Não foi possível carregar as mensagens.
+        </p>
+
+        <button
+            id="tentarNovamente"
+            type="button"
+            data-i18n="tentarNovamente"
+        >
+            Tentar novamente
+        </button>
+
+    </div>
+
+
+</main>
+
+
+<!-- =========================================================
+     GLOBE.GL
+========================================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/globe.gl"></script>
+
+
+<!-- =========================================================
+     JAVASCRIPT DO MURAL
+========================================================= -->
+
+<script src="mensagem.js"></script>
+
+
+</body>
+</html>
