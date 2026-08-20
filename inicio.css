@@ -827,10 +827,19 @@ body {
 
 
     .linha-vertical {
-        top: 165px;
-        left: 34px;
+    top: 175px;
+    left: 34px;
 
-        height: 635px;
+    height: 455px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(201, 164, 106, 0.55) 7%,
+            rgba(201, 164, 106, 0.55) 93%,
+            transparent
+        );
     }
 
 
