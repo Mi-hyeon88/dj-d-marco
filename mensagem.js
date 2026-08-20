@@ -224,7 +224,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     ).padStart(2, "0")}
                 </span>
 
-                <span class="pais-seta">›</span>
+                <span class="pais-seta">
+                    ›
+                </span>
             `;
 
 
@@ -288,7 +290,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       ABRIR MENSAGEM
+       ABRIR PRIMEIRA MENSAGEM
+    ====================================================== */
+
+    function abrirMensagem() {
+
+        if (!mensagensPais.length) {
+            return;
+        }
+
+        prepararMensagem();
+
+    }
+
+
+    /* =====================================================
+       PREPARAR MENSAGEM
     ====================================================== */
 
     function prepararMensagem() {
@@ -417,6 +434,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         mostrarEstado("paises");
 
+                        return;
+
                     }
 
 
@@ -433,7 +452,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       BOTÕES DA CARTA
+       ABRIR MENSAGEM AO TOCAR NA APRESENTAÇÃO DO PAÍS
+    ====================================================== */
+
+    const paisCentro =
+        document.querySelector(".pais-centro");
+
+    if (paisCentro) {
+
+        paisCentro.style.cursor = "pointer";
+
+        paisCentro.addEventListener(
+            "click",
+            abrirMensagem
+        );
+
+    }
+
+
+    /* =====================================================
+       BOTÃO ANTERIOR
     ====================================================== */
 
     if (mensagemAnteriorBotao) {
@@ -445,6 +483,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+
+    /* =====================================================
+       BOTÃO PRÓXIMA
+    ====================================================== */
 
     if (mensagemProximaBotao) {
 
@@ -865,25 +907,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       CARREGAR DADOS — JSONP
+       CARREGAR MENSAGENS — JSONP
     ====================================================== */
 
     function carregarMensagens() {
 
-        if (carregando) {
-
-            carregando.style.display =
-                "flex";
-
-        }
-
-
-        const callback =
-            "dmarcoMensagens_" +
+        const nomeCallback =
+            "dmMarcoMensagens_" +
             Date.now();
 
 
-        window[callback] =
+        const script =
+            document.createElement("script");
+
+
+        window[nomeCallback] =
             function(dados) {
 
                 try {
@@ -919,18 +957,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                     if (carregando) {
-
                         carregando.remove();
-
                     }
 
 
-                }
-
-                catch (error) {
+                } catch (error) {
 
                     console.error(
-                        "Erro nos dados:",
+                        "Erro ao processar mensagens:",
                         error
                     );
 
@@ -939,46 +973,48 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                delete window[callback];
-
-            };
-
-
-        const script =
-            document.createElement("script");
-
-
-        script.src =
-            API_URL +
-            "?callback=" +
-            encodeURIComponent(callback) +
-            "&t=" +
-            Date.now();
-
-
-        script.onerror =
-            function() {
-
-                console.error(
-                    "Não foi possível acessar o Apps Script."
-                );
-
-                mostrarErro();
-
-                delete window[callback];
+                delete window[nomeCallback];
 
                 script.remove();
 
             };
 
 
-        document.body.appendChild(script);
+        script.src =
+            API_URL +
+            "?callback=" +
+            encodeURIComponent(
+                nomeCallback
+            );
+
+
+        script.onerror =
+            function() {
+
+                console.error(
+                    "Não foi possível acessar a API."
+                );
+
+
+                mostrarErro();
+
+
+                delete window[nomeCallback];
+
+                script.remove();
+
+            };
+
+
+        document
+            .head
+            .appendChild(script);
 
     }
 
 
     /* =====================================================
-       ERRO
+       MOSTRAR ERRO
     ====================================================== */
 
     function mostrarErro() {
@@ -1018,6 +1054,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     erro.style.display =
                         "none";
+
+                }
+
+
+                if (carregando) {
+
+                    carregando.style.display =
+                        "flex";
 
                 }
 
