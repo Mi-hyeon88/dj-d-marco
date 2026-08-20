@@ -58,6 +58,18 @@ body {
     overflow-x: hidden;
 }
 
+/* =========================================================
+   DESKTOP — AJUSTE DA IMAGEM DE FUNDO
+========================================================= */
+
+@media (min-width: 701px) {
+
+    .home {
+        background-size: cover;
+        background-position: center 43%;
+    }
+
+}
 
 /* =========================================================
    TOPO
