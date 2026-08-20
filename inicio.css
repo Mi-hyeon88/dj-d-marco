@@ -578,10 +578,10 @@ body {
     background:
         linear-gradient(
             to bottom,
-            transparent,
-            rgba(201, 164, 106, 0.55) 7%,
-            rgba(201, 164, 106, 0.55) 93%,
-            transparent
+            transparent 0%,
+            rgba(201, 164, 106, 0.55) 4%,
+            rgba(201, 164, 106, 0.55) 97%,
+            transparent 100%
         );
     }
 
@@ -681,7 +681,7 @@ body {
 
     .inicio-assinatura {
         left: 50%;
-        bottom: 25px;
+        bottom: 52px;
 
         width: 100%;
     }
