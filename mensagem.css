@@ -1,1 +1,1111 @@
+/* =========================================================
+   D.MARCO — MENSAGENS
+========================================================= */
 
+:root {
+    --preto: #030303;
+    --dourado: #c9a46a;
+    --dourado-claro: #e1b36d;
+    --creme: #eee4d8;
+    --cinza: #b8aea5;
+    --linha: rgba(201, 164, 106, 0.28);
+}
+
+
+/* =========================================================
+   BASE
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    min-height: 100%;
+
+    background: var(--preto);
+}
+
+body {
+    color: var(--creme);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   PÁGINA
+========================================================= */
+
+.mensagens-page {
+    position: relative;
+
+    width: 100%;
+    height: 100svh;
+    min-height: 100svh;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(201, 164, 106, 0.035),
+            transparent 48%
+        ),
+        var(--preto);
+}
+
+
+/* =========================================================
+   TOPO
+========================================================= */
+
+.mensagens-topo {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    z-index: 50;
+
+    width: 100%;
+
+    height: 88px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding:
+        0
+        clamp(30px, 6vw, 70px);
+}
+
+
+/* =========================================================
+   VOLTAR
+========================================================= */
+
+.mensagens-voltar,
+.estado-voltar {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--dourado);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 34px;
+
+    font-weight: 300;
+
+    line-height: 1;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   TÍTULO
+========================================================= */
+
+.mensagens-titulo {
+    position: absolute;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    color: var(--dourado);
+
+    text-align: center;
+}
+
+.mensagens-titulo span {
+    font-size: 27px;
+
+    letter-spacing: 2px;
+
+    font-weight: 400;
+}
+
+.mensagens-titulo i {
+    margin-top: 5px;
+
+    font-size: 12px;
+
+    font-style: normal;
+}
+
+.mensagens-titulo small {
+    margin-top: 9px;
+
+    color: var(--creme);
+
+    font-size: 13px;
+
+    font-weight: 400;
+
+    letter-spacing: 0.3px;
+}
+
+
+/* =========================================================
+   MÚSICA
+========================================================= */
+
+.mensagens-musica {
+    width: 42px;
+    height: 42px;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--dourado);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   ESTADOS
+========================================================= */
+
+.estado {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.45s ease,
+        visibility 0.45s ease;
+}
+
+.estado.ativo {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   GLOBO
+========================================================= */
+
+.estado-mural {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding-top: 55px;
+}
+
+.globo {
+    position: relative;
+
+    width: min(620px, 76vw);
+    height: min(620px, 76vw);
+
+    margin-top: 20px;
+}
+
+.globo canvas {
+    display: block;
+}
+
+
+/* =========================================================
+   INSTRUÇÃO DO GLOBO
+========================================================= */
+
+.globo-instrucao {
+    position: absolute;
+
+    left: 50%;
+    bottom: 45px;
+
+    transform: translateX(-50%);
+
+    width: 100%;
+
+    text-align: center;
+}
+
+.icone-toque {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: var(--dourado);
+
+    font-size: 24px;
+}
+
+.globo-instrucao p {
+    margin: 0;
+
+    color: var(--creme);
+
+    font-size: 14px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   LISTA DE PAÍSES
+========================================================= */
+
+.estado-paises {
+    padding:
+        125px
+        clamp(35px, 8vw, 100px)
+        60px;
+}
+
+.lista-cabecalho {
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+.lista-cabecalho h1 {
+    margin: 0;
+
+    color: var(--dourado);
+
+    font-size: 30px;
+
+    font-weight: 400;
+
+    letter-spacing: 2px;
+}
+
+.lista-cabecalho i {
+    display: block;
+
+    margin: 5px 0;
+
+    color: var(--dourado);
+
+    font-size: 12px;
+
+    font-style: normal;
+}
+
+.lista-cabecalho p {
+    margin: 0;
+
+    color: var(--creme);
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   LISTA
+========================================================= */
+
+.lista-paises {
+    width: min(620px, 100%);
+
+    max-height: calc(100svh - 280px);
+
+    margin: 0 auto;
+
+    overflow-y: auto;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        var(--dourado)
+        transparent;
+}
+
+.pais-item {
+    width: 100%;
+
+    min-height: 56px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 0 8px;
+
+    border: 0;
+    border-bottom: 1px solid var(--linha);
+
+    background: transparent;
+
+    color: var(--creme);
+
+    font-family: inherit;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.pais-item:first-child {
+    border-top: 1px solid var(--linha);
+}
+
+.pais-item:hover {
+    color: var(--dourado);
+}
+
+.pais-pin {
+    color: var(--dourado);
+
+    font-size: 17px;
+}
+
+.pais-nome {
+    flex: 1;
+
+    font-size: 17px;
+}
+
+.pais-contagem {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--dourado);
+
+    border-radius: 50%;
+
+    color: var(--dourado);
+
+    font-size: 13px;
+}
+
+.pais-seta {
+    color: var(--dourado);
+
+    font-size: 23px;
+
+    font-weight: 300;
+}
+
+
+/* =========================================================
+   INSTRUÇÃO
+========================================================= */
+
+.lista-instrucao {
+    margin: 28px 0 0;
+
+    color: var(--creme);
+
+    text-align: center;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   APRESENTAÇÃO DO PAÍS
+========================================================= */
+
+.estado-pais {
+    padding-top: 105px;
+
+    background:
+        radial-gradient(
+            circle at 50% 58%,
+            rgba(201, 164, 106, 0.13),
+            transparent 34%
+        );
+}
+
+.estado-pais .estado-voltar {
+    position: absolute;
+
+    top: 23px;
+    left: clamp(25px, 5vw, 65px);
+}
+
+.pais-cabecalho {
+    text-align: center;
+}
+
+.pais-cabecalho h1 {
+    margin: 0;
+
+    color: var(--dourado);
+
+    font-size: 31px;
+
+    font-weight: 400;
+
+    letter-spacing: 2px;
+}
+
+.pais-cabecalho span {
+    display: block;
+
+    margin-top: 7px;
+
+    color: var(--creme);
+
+    font-size: 14px;
+}
+
+.pais-centro {
+    position: absolute;
+
+    left: 50%;
+    top: 53%;
+
+    transform: translate(-50%, -50%);
+
+    width: 90%;
+
+    text-align: center;
+}
+
+.pais-centro p {
+    margin: 0 0 7px;
+
+    color: var(--creme);
+
+    font-size: 24px;
+}
+
+.pais-centro h2 {
+    margin: 0;
+
+    color: var(--dourado-claro);
+
+    font-size: clamp(32px, 5vw, 48px);
+
+    font-weight: 400;
+}
+
+.pais-brilho {
+    position: absolute;
+
+    left: 50%;
+    top: 66%;
+
+    transform: translateX(-50%);
+
+    color: var(--dourado);
+
+    font-size: 28px;
+
+    text-shadow:
+        0 0 15px
+        rgba(201, 164, 106, 0.9);
+}
+
+
+/* =========================================================
+   CARTA
+========================================================= */
+
+.estado-mensagem {
+    padding:
+        105px
+        25px
+        45px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.estado-mensagem .estado-voltar {
+    position: absolute;
+
+    top: 23px;
+    left: clamp(25px, 5vw, 65px);
+}
+
+.carta {
+    width: min(650px, 88vw);
+
+    max-height: calc(100svh - 220px);
+
+    padding:
+        42px
+        45px
+        30px;
+
+    overflow-y: auto;
+
+    background:
+        linear-gradient(
+            rgba(238, 228, 216, 0.97),
+            rgba(238, 228, 216, 0.97)
+        );
+
+    color: #17120e;
+
+    box-shadow:
+        0 18px 50px
+        rgba(0, 0, 0, 0.5);
+
+    scrollbar-width: thin;
+}
+
+.carta-cabecalho {
+    text-align: center;
+}
+
+.carta-pais {
+    font-size: 24px;
+
+    color: #17120e;
+
+    letter-spacing: 1px;
+}
+
+.carta-nome {
+    margin-top: 7px;
+
+    font-size: 13px;
+
+    color: #4b4038;
+}
+
+.carta-divisor {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    margin:
+        17px 0
+        25px;
+
+    color: #8f6d43;
+}
+
+.carta-divisor::before,
+.carta-divisor::after {
+    content: "";
+
+    width: 90px;
+    height: 1px;
+
+    background: rgba(143, 109, 67, 0.5);
+}
+
+.carta-texto {
+    white-space: pre-line;
+
+    font-size: 18px;
+
+    line-height: 1.85;
+}
+
+.carta-final {
+    margin-top: 28px;
+
+    text-align: center;
+
+    font-size: 28px;
+}
+
+
+/* =========================================================
+   CONTROLES
+========================================================= */
+
+.mensagem-controles {
+    width: min(650px, 88vw);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 17px;
+}
+
+.mensagem-controles button {
+    border: 0;
+
+    padding: 6px;
+
+    background: transparent;
+
+    color: var(--dourado);
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+.mensagem-controles span {
+    color: var(--creme);
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   CARREGAMENTO
+========================================================= */
+
+.carregando {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--preto);
+}
+
+.carregando span {
+    color: var(--dourado);
+
+    font-size: 30px;
+
+    animation:
+        pulsar 1.4s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   ERRO
+========================================================= */
+
+.erro {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 110;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    background: var(--preto);
+
+    text-align: center;
+}
+
+.erro p {
+    color: var(--creme);
+
+    font-size: 16px;
+}
+
+.erro button {
+    margin-top: 15px;
+
+    border: 1px solid var(--dourado);
+
+    padding: 10px 20px;
+
+    background: transparent;
+
+    color: var(--dourado);
+
+    font-family: inherit;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   ANIMAÇÃO
+========================================================= */
+
+@keyframes pulsar {
+
+    0%,
+    100% {
+        opacity: 0.35;
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .mensagens-topo {
+        height: 72px;
+
+        padding:
+            0
+            17px;
+    }
+
+
+    .mensagens-voltar,
+    .estado-voltar {
+        width: 30px;
+        height: 30px;
+
+        font-size: 28px;
+    }
+
+
+    .mensagens-titulo span {
+        font-size: 20px;
+
+        letter-spacing: 1.5px;
+    }
+
+    .mensagens-titulo i {
+        margin-top: 2px;
+
+        font-size: 9px;
+    }
+
+    .mensagens-titulo small {
+        margin-top: 5px;
+
+        font-size: 8px;
+    }
+
+
+    .mensagens-musica {
+        width: 30px;
+        height: 30px;
+
+        font-size: 21px;
+    }
+
+
+    /* =====================================================
+       GLOBO MOBILE
+    ====================================================== */
+
+    .estado-mural {
+        padding-top: 55px;
+    }
+
+    .globo {
+        width: 92vw;
+        height: 92vw;
+
+        margin-top: 10px;
+    }
+
+    .globo-instrucao {
+        bottom: 28px;
+    }
+
+    .icone-toque {
+        margin-bottom: 4px;
+
+        font-size: 19px;
+    }
+
+    .globo-instrucao p {
+        font-size: 10px;
+
+        line-height: 1.5;
+    }
+
+
+    /* =====================================================
+       PAÍSES MOBILE
+    ====================================================== */
+
+    .estado-paises {
+        padding:
+            88px
+            18px
+            25px;
+    }
+
+    .lista-cabecalho {
+        margin-bottom: 15px;
+    }
+
+    .lista-cabecalho h1 {
+        font-size: 23px;
+    }
+
+    .lista-cabecalho i {
+        margin: 3px 0;
+
+        font-size: 9px;
+    }
+
+    .lista-cabecalho p {
+        font-size: 9px;
+    }
+
+    .lista-paises {
+        max-height: calc(100svh - 215px);
+    }
+
+    .pais-item {
+        min-height: 48px;
+
+        gap: 9px;
+
+        padding: 0 4px;
+    }
+
+    .pais-pin {
+        font-size: 14px;
+    }
+
+    .pais-nome {
+        font-size: 13px;
+    }
+
+    .pais-contagem {
+        width: 30px;
+        height: 30px;
+
+        font-size: 10px;
+    }
+
+    .pais-seta {
+        font-size: 18px;
+    }
+
+    .lista-instrucao {
+        margin-top: 13px;
+
+        font-size: 9px;
+
+        line-height: 1.5;
+    }
+
+
+    /* =====================================================
+       PAÍS MOBILE
+    ====================================================== */
+
+    .estado-pais {
+        padding-top: 85px;
+    }
+
+    .estado-pais .estado-voltar,
+    .estado-mensagem .estado-voltar {
+        top: 17px;
+        left: 14px;
+    }
+
+    .pais-cabecalho h1 {
+        font-size: 24px;
+    }
+
+    .pais-cabecalho span {
+        margin-top: 4px;
+
+        font-size: 10px;
+    }
+
+    .pais-centro {
+        top: 53%;
+    }
+
+    .pais-centro p {
+        margin-bottom: 4px;
+
+        font-size: 17px;
+    }
+
+    .pais-centro h2 {
+        font-size: 30px;
+    }
+
+    .pais-brilho {
+        top: 66%;
+
+        font-size: 20px;
+    }
+
+
+    /* =====================================================
+       CARTA MOBILE
+    ====================================================== */
+
+    .estado-mensagem {
+        padding:
+            85px
+            17px
+            25px;
+    }
+
+    .carta {
+        width: 100%;
+
+        max-height: calc(100svh - 175px);
+
+        padding:
+            27px
+            22px
+            22px;
+    }
+
+    .carta-pais {
+        font-size: 19px;
+    }
+
+    .carta-nome {
+        margin-top: 5px;
+
+        font-size: 10px;
+    }
+
+    .carta-divisor {
+        margin:
+            11px 0
+            17px;
+    }
+
+    .carta-divisor::before,
+    .carta-divisor::after {
+        width: 55px;
+    }
+
+    .carta-texto {
+        font-size: 12px;
+
+        line-height: 1.7;
+    }
+
+    .carta-final {
+        margin-top: 18px;
+
+        font-size: 21px;
+    }
+
+    .mensagem-controles {
+        width: 100%;
+
+        margin-top: 10px;
+    }
+
+    .mensagem-controles button,
+    .mensagem-controles span {
+        font-size: 9px;
+    }
+
+}
+
+
+/* =========================================================
+   TELAS MUITO PEQUENAS
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .globo {
+        width: 94vw;
+        height: 94vw;
+    }
+
+    .globo-instrucao {
+        bottom: 18px;
+    }
+
+    .globo-instrucao p {
+        font-size: 9px;
+    }
+
+    .carta {
+        max-height: calc(100svh - 165px);
+
+        padding:
+            24px
+            18px
+            18px;
+    }
+
+    .carta-texto {
+        font-size: 11px;
+    }
+
+}
