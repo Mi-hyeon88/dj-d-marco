@@ -263,8 +263,8 @@ body {
 
     left: 50%;
 
-    width: 4px;
-    height: 4px;
+    width: 2px;
+    height: 2px;
 
     transform: translateX(-50%);
 
@@ -273,8 +273,8 @@ body {
     background: var(--dourado);
 
     box-shadow:
-        0 0 7px
-        rgba(201, 164, 106, 0.9);
+        0 0 3px
+        rgba(201, 164, 106, 0.65);
 }
 
 .linha-vertical span:nth-child(1) {
