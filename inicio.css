@@ -569,11 +569,11 @@ body {
     ====================================================== */
 
     .linha-vertical {
-    top: 175px;
+    top: 200px;
     left: 39px;
 
     width: 1px;
-    height: 455px;
+    height: 710px;
 
     background:
         linear-gradient(
@@ -827,10 +827,10 @@ body {
 
 
     .linha-vertical {
-    top: 175px;
+    top: 200px;
     left: 34px;
 
-    height: 455px;
+    height: 710px;
 
     background:
         linear-gradient(
