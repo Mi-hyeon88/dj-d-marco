@@ -549,695 +549,668 @@ document.addEventListener("DOMContentLoaded", () => {
        GLOBO INTERATIVO
     ====================================================== */
 
-    function criarGlobo() {
+   function criarGlobo() {
+
+    if (!globo) return;
+
+    globo.innerHTML = "";
+
+    const canvas =
+        document.createElement("canvas");
+
+    canvas.width = 900;
+    canvas.height = 900;
+
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    canvas.style.touchAction = "none";
+
+    globo.appendChild(canvas);
+
+    const ctx =
+        canvas.getContext("2d");
+
+    let rotacao = 0;
+    let arrastando = false;
+    let inicioX = 0;
+
+    /*
+     * POSIÇÕES GEOGRÁFICAS APROXIMADAS
+     *
+     * latitude  = -90 a +90
+     * longitude = -180 a +180
+     *
+     * Os países serão desenhados na superfície
+     * do globo e acompanharão a rotação.
+     */
+
+    const coordenadasPaises = {
+
+        brasil: {
+            latitude: -10,
+            longitude: -52
+        },
+
+        "coreia do sul": {
+            latitude: 36,
+            longitude: 128
+        },
+
+        japao: {
+            latitude: 36,
+            longitude: 138
+        },
+
+        "estados unidos": {
+            latitude: 38,
+            longitude: -97
+        },
+
+        franca: {
+            latitude: 46,
+            longitude: 2
+        },
+
+        portugal: {
+            latitude: 39,
+            longitude: -8
+        },
+
+        mexico: {
+            latitude: 23,
+            longitude: -102
+        },
+
+        alemanha: {
+            latitude: 51,
+            longitude: 10
+        },
+
+        argentina: {
+            latitude: -34,
+            longitude: -64
+        },
+
+        chile: {
+            latitude: -33,
+            longitude: -71
+        },
+
+        colombia: {
+            latitude: 4,
+            longitude: -74
+        },
+
+        peru: {
+            latitude: -9,
+            longitude: -75
+        },
+
+        canada: {
+            latitude: 56,
+            longitude: -106
+        },
 
-        if (!globo) return;
+        italia: {
+            latitude: 42,
+            longitude: 12
+        },
 
+        espanha: {
+            latitude: 40,
+            longitude: -4
+        },
 
-        globo.innerHTML = "";
+        "reino unido": {
+            latitude: 55,
+            longitude: -3
+        }
 
+    };
 
-        const canvas =
-            document.createElement("canvas");
 
+    /*
+     * Converte latitude/longitude
+     * para posição no globo.
+     */
 
-        canvas.width = 900;
-        canvas.height = 900;
+    function projetarPonto(
+        latitude,
+        longitude,
+        centroX,
+        centroY,
+        raio
+    ) {
 
+        const lat =
+            latitude * Math.PI / 180;
 
-        canvas.style.width = "100%";
-        canvas.style.height = "100%";
-        canvas.style.touchAction = "none";
+        const lon =
+            longitude * Math.PI / 180;
 
+        const lonRotacionada =
+            lon + rotacao;
 
-        globo.appendChild(canvas);
+        const x =
+            Math.cos(lat) *
+            Math.sin(lonRotacionada);
 
+        const y =
+            Math.sin(lat);
 
-        const ctx =
-            canvas.getContext("2d");
+        const z =
+            Math.cos(lat) *
+            Math.cos(lonRotacionada);
 
 
-        let rotacao = 0;
+        /*
+         * z > 0 = lado visível do globo.
+         */
 
-        let arrastando = false;
-
-        let inicioX = 0;
-
-        let movimentoToque = 0;
-
-        let pontosGlobo = [];
-
-
-        /* =================================================
-           POSIÇÕES DOS PAÍSES
-        ================================================== */
-
-        const coordenadas = {
-
-            brasil: [-52, -10],
-
-            "coreia do sul": [127.8, 36.2],
-
-            coreia: [127.8, 36.2],
-
-            japao: [138, 36],
-
-            "japão": [138, 36],
-
-            "estados unidos": [-100, 38],
-
-            eua: [-100, 38],
-
-            canada: [-106, 56],
-
-            mexico: [-102, 23],
-
-            "méxico": [-102, 23],
-
-            argentina: [-64, -34],
-
-            chile: [-71, -33],
-
-            portugal: [-8, 39],
-
-            espanha: [-4, 40],
-
-            franca: [2, 46],
-
-            "frança": [2, 46],
-
-            alemanha: [10, 51],
-
-            italia: [12, 42],
-
-            "itália": [12, 42],
-
-            reino_unido: [-3, 55],
-
-            "reino unido": [-3, 55],
-
-            colombia: [-74, 4],
-
-            "colômbia": [-74, 4],
-
-            peru: [-75, -10]
-
-        };
-
-
-        /* =================================================
-           POSIÇÃO DO PONTO NO GLOBO
-        ================================================== */
-
-        function projetarPonto(
-            longitude,
-            latitude,
-            raio,
-            centroX,
-            centroY
-        ) {
-
-            const lon =
-                (
-                    longitude +
-                    rotacao * 12
-                ) *
-                Math.PI /
-                180;
-
-
-            const lat =
-                latitude *
-                Math.PI /
-                180;
-
-
-            const x3d =
-                Math.cos(lat) *
-                Math.sin(lon);
-
-
-            const y3d =
-                Math.sin(lat);
-
-
-            const z3d =
-                Math.cos(lat) *
-                Math.cos(lon);
-
-
-            if (z3d < 0) {
-                return null;
-            }
-
-
-            return {
-
-                x:
-                    centroX +
-                    x3d * raio,
-
-                y:
-                    centroY -
-                    y3d * raio,
-
-                profundidade:
-                    z3d
-
-            };
-
+        if (z <= 0) {
+            return null;
         }
 
 
-        /* =================================================
-           DESENHAR
-        ================================================== */
+        return {
 
-        function desenhar() {
+            x:
+                centroX +
+                x * raio,
 
-            const largura =
-                canvas.width;
+            y:
+                centroY -
+                y * raio,
 
-            const altura =
-                canvas.height;
+            profundidade:
+                z
 
+        };
 
-            const raio =
-                Math.min(
-                    largura,
-                    altura
-                ) * 0.42;
+    }
 
 
-            const centroX =
-                largura / 2;
+    /*
+     * Desenha tudo.
+     */
 
-            const centroY =
-                altura / 2;
+    function desenhar() {
 
+        const largura =
+            canvas.width;
 
-            ctx.clearRect(
-                0,
-                0,
+        const altura =
+            canvas.height;
+
+        const raio =
+            Math.min(
                 largura,
                 altura
+            ) * 0.42;
+
+        const centroX =
+            largura / 2;
+
+        const centroY =
+            altura / 2;
+
+
+        ctx.clearRect(
+            0,
+            0,
+            largura,
+            altura
+        );
+
+
+        /* =================================================
+           ATMOSFERA
+        ================================================== */
+
+        const atmosfera =
+            ctx.createRadialGradient(
+                centroX,
+                centroY,
+                raio * 0.65,
+                centroX,
+                centroY,
+                raio * 1.12
             );
 
+        atmosfera.addColorStop(
+            0,
+            "rgba(20,20,25,1)"
+        );
 
-            /* ---------- ATMOSFERA ---------- */
+        atmosfera.addColorStop(
+            0.75,
+            "rgba(3,3,5,1)"
+        );
 
-            const atmosfera =
-                ctx.createRadialGradient(
-                    centroX,
-                    centroY,
-                    raio * 0.65,
-                    centroX,
-                    centroY,
-                    raio * 1.12
-                );
+        atmosfera.addColorStop(
+            1,
+            "rgba(201,164,106,0)"
+        );
+
+        ctx.fillStyle =
+            atmosfera;
+
+        ctx.beginPath();
+
+        ctx.arc(
+            centroX,
+            centroY,
+            raio * 1.12,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fill();
 
 
-            atmosfera.addColorStop(
-                0,
-                "rgba(20,20,25,1)"
+        /* =================================================
+           OCEANO
+        ================================================== */
+
+        const oceano =
+            ctx.createRadialGradient(
+                centroX - raio * 0.25,
+                centroY - raio * 0.3,
+                raio * 0.1,
+                centroX,
+                centroY,
+                raio
             );
 
-            atmosfera.addColorStop(
-                0.75,
-                "rgba(3,3,5,1)"
-            );
+        oceano.addColorStop(
+            0,
+            "#17212a"
+        );
 
-            atmosfera.addColorStop(
-                1,
-                "rgba(201,164,106,0)"
-            );
+        oceano.addColorStop(
+            0.7,
+            "#071018"
+        );
+
+        oceano.addColorStop(
+            1,
+            "#010305"
+        );
+
+        ctx.fillStyle =
+            oceano;
+
+        ctx.beginPath();
+
+        ctx.arc(
+            centroX,
+            centroY,
+            raio,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fill();
 
 
-            ctx.fillStyle =
-                atmosfera;
+        /* =================================================
+           GRADE DO GLOBO
+        ================================================== */
 
+        ctx.strokeStyle =
+            "rgba(201,164,106,0.13)";
+
+        ctx.lineWidth = 2;
+
+
+        /* Longitudes */
+
+        for (
+            let i = -3;
+            i <= 3;
+            i++
+        ) {
 
             ctx.beginPath();
 
-            ctx.arc(
+            ctx.ellipse(
                 centroX,
                 centroY,
-                raio * 1.12,
-                0,
-                Math.PI * 2
-            );
-
-            ctx.fill();
-
-
-            /* ---------- OCEANO ---------- */
-
-            const oceano =
-                ctx.createRadialGradient(
-                    centroX - raio * 0.25,
-                    centroY - raio * 0.3,
-                    raio * 0.1,
-                    centroX,
-                    centroY,
-                    raio
-                );
-
-
-            oceano.addColorStop(
-                0,
-                "#17212a"
-            );
-
-            oceano.addColorStop(
-                0.7,
-                "#071018"
-            );
-
-            oceano.addColorStop(
-                1,
-                "#010305"
-            );
-
-
-            ctx.fillStyle =
-                oceano;
-
-
-            ctx.beginPath();
-
-            ctx.arc(
-                centroX,
-                centroY,
+                Math.abs(
+                    Math.sin(
+                        (i + rotacao) * 0.5
+                    )
+                ) * raio,
                 raio,
                 0,
-                Math.PI * 2
-            );
-
-            ctx.fill();
-
-
-            /* ---------- LONGITUDES ---------- */
-
-            ctx.strokeStyle =
-                "rgba(201,164,106,0.13)";
-
-            ctx.lineWidth = 2;
-
-
-            for (
-                let i = -3;
-                i <= 3;
-                i++
-            ) {
-
-                ctx.beginPath();
-
-                ctx.ellipse(
-                    centroX,
-                    centroY,
-                    Math.max(
-                        Math.abs(
-                            Math.sin(
-                                (i + rotacao) * 0.5
-                            )
-                        ) * raio,
-                        2
-                    ),
-                    raio,
-                    0,
-                    0,
-                    Math.PI * 2
-                );
-
-                ctx.stroke();
-
-            }
-
-
-            /* ---------- LATITUDES ---------- */
-
-            for (
-                let i = -2;
-                i <= 2;
-                i++
-            ) {
-
-                ctx.beginPath();
-
-                ctx.ellipse(
-                    centroX,
-                    centroY,
-                    raio,
-                    Math.cos(
-                        i * 0.35
-                    ) * raio * 0.82,
-                    0,
-                    0,
-                    Math.PI * 2
-                );
-
-                ctx.stroke();
-
-            }
-
-
-            /* =================================================
-               PONTOS DOS PAÍSES
-            ================================================== */
-
-            pontosGlobo = [];
-
-
-            const grupos =
-                agruparPaises();
-
-
-            Object.keys(grupos).forEach(
-                pais => {
-
-                    let coordenada =
-                        coordenadas[pais];
-
-
-                    /*
-                     * Se o país ainda não estiver
-                     * cadastrado acima, recebe uma
-                     * posição automática.
-                     */
-
-                    if (!coordenada) {
-
-                        const quantidade =
-                            Object.keys(
-                                grupos
-                            ).length;
-
-
-                        const posicao =
-                            Object.keys(
-                                grupos
-                            ).indexOf(pais);
-
-
-                        const angulo =
-                            (
-                                posicao /
-                                Math.max(
-                                    quantidade,
-                                    1
-                                )
-                            ) *
-                            Math.PI *
-                            2;
-
-
-                        coordenada = [
-
-                            Math.sin(angulo) * 120,
-
-                            Math.cos(angulo) * 45
-
-                        ];
-
-                    }
-
-
-                    const ponto =
-                        projetarPonto(
-                            coordenada[0],
-                            coordenada[1],
-                            raio,
-                            centroX,
-                            centroY
-                        );
-
-
-                    if (!ponto) return;
-
-
-                    pontosGlobo.push({
-
-                        pais,
-
-                        x: ponto.x,
-
-                        y: ponto.y,
-
-                        profundidade:
-                            ponto.profundidade
-
-                    });
-
-                }
-            );
-
-
-            pontosGlobo
-                .sort(
-                    (a, b) =>
-                        a.profundidade -
-                        b.profundidade
-                )
-                .forEach(ponto => {
-
-                    const tamanho =
-                        3 +
-                        ponto.profundidade *
-                        3;
-
-
-                    ctx.fillStyle =
-                        "rgba(225,179,109,0.95)";
-
-
-                    ctx.shadowBlur =
-                        14;
-
-
-                    ctx.shadowColor =
-                        "rgba(225,179,109,0.9)";
-
-
-                    ctx.beginPath();
-
-
-                    ctx.arc(
-                        ponto.x,
-                        ponto.y,
-                        tamanho,
-                        0,
-                        Math.PI * 2
-                    );
-
-
-                    ctx.fill();
-
-
-                    ctx.shadowBlur = 0;
-
-                });
-
-
-            /* ---------- BORDA ---------- */
-
-            ctx.strokeStyle =
-                "rgba(201,164,106,0.45)";
-
-            ctx.lineWidth = 2;
-
-
-            ctx.beginPath();
-
-            ctx.arc(
-                centroX,
-                centroY,
-                raio,
                 0,
                 Math.PI * 2
             );
 
             ctx.stroke();
 
-
-            /* ---------- ROTAÇÃO ---------- */
-
-            if (!arrastando) {
-
-                rotacao += 0.0025;
-
-            }
+        }
 
 
-            requestAnimationFrame(
-                desenhar
+        /* Latitudes */
+
+        for (
+            let i = -2;
+            i <= 2;
+            i++
+        ) {
+
+            ctx.beginPath();
+
+            ctx.ellipse(
+                centroX,
+                centroY,
+                raio,
+                Math.cos(
+                    i * 0.35
+                ) * raio * 0.82,
+                0,
+                0,
+                Math.PI * 2
             );
+
+            ctx.stroke();
 
         }
 
 
         /* =================================================
-           TOQUE / ARRASTAR
+           PONTOS DOS PAÍSES
         ================================================== */
 
-        canvas.addEventListener(
-            "pointerdown",
-            event => {
-
-                arrastando = true;
-
-                movimentoToque = 0;
-
-                inicioX =
-                    event.clientX;
+        const grupos =
+            agruparPaises();
 
 
-                canvas.setPointerCapture(
-                    event.pointerId
-                );
+        Object.keys(grupos)
+            .forEach(pais => {
 
-            }
-        );
+                const coordenada =
+                    coordenadasPaises[pais];
 
-
-        canvas.addEventListener(
-            "pointermove",
-            event => {
-
-                if (!arrastando) return;
+                if (!coordenada) return;
 
 
-                const diferenca =
-                    event.clientX -
-                    inicioX;
-
-
-                movimentoToque +=
-                    Math.abs(diferenca);
-
-
-                rotacao +=
-                    diferenca * 0.012;
-
-
-                inicioX =
-                    event.clientX;
-
-            }
-        );
-
-
-        canvas.addEventListener(
-            "pointerup",
-            event => {
-
-                if (!arrastando) return;
-
-
-                arrastando = false;
-
-
-                /*
-                 * Se quase não houve movimento,
-                 * tratamos como TOQUE.
-                 */
-
-                if (movimentoToque < 12) {
-
-                    const rect =
-                        canvas.getBoundingClientRect();
-
-
-                    const escalaX =
-                        canvas.width /
-                        rect.width;
-
-
-                    const escalaY =
-                        canvas.height /
-                        rect.height;
-
-
-                    const toqueX =
-                        (
-                            event.clientX -
-                            rect.left
-                        ) *
-                        escalaX;
-
-
-                    const toqueY =
-                        (
-                            event.clientY -
-                            rect.top
-                        ) *
-                        escalaY;
-
-
-                    let pontoEscolhido =
-                        null;
-
-                    let menorDistancia =
-                        Infinity;
-
-
-                    pontosGlobo.forEach(
-                        ponto => {
-
-                            const distancia =
-                                Math.hypot(
-                                    toqueX -
-                                    ponto.x,
-                                    toqueY -
-                                    ponto.y
-                                );
-
-
-                            if (
-                                distancia <
-                                35 &&
-                                distancia <
-                                menorDistancia
-                            ) {
-
-                                menorDistancia =
-                                    distancia;
-
-                                pontoEscolhido =
-                                    ponto;
-
-                            }
-
-                        }
+                const ponto =
+                    projetarPonto(
+                        coordenada.latitude,
+                        coordenada.longitude,
+                        centroX,
+                        centroY,
+                        raio
                     );
 
 
-                    if (pontoEscolhido) {
+                if (!ponto) return;
 
-                        abrirPais(
-                            pontoEscolhido.pais
-                        );
 
-                    }
+                const tamanho =
+                    3 +
+                    ponto.profundidade * 2;
+
+
+                ctx.fillStyle =
+                    "rgba(225,179,109,0.95)";
+
+                ctx.shadowBlur =
+                    14;
+
+                ctx.shadowColor =
+                    "rgba(225,179,109,0.9)";
+
+
+                ctx.beginPath();
+
+                ctx.arc(
+                    ponto.x,
+                    ponto.y,
+                    tamanho,
+                    0,
+                    Math.PI * 2
+                );
+
+                ctx.fill();
+
+                ctx.shadowBlur = 0;
+
+            });
+
+
+        /* =================================================
+           BORDA
+        ================================================== */
+
+        ctx.strokeStyle =
+            "rgba(201,164,106,0.45)";
+
+        ctx.lineWidth = 2;
+
+        ctx.beginPath();
+
+        ctx.arc(
+            centroX,
+            centroY,
+            raio,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.stroke();
+
+
+        /* =================================================
+           ROTAÇÃO AUTOMÁTICA
+        ================================================== */
+
+        if (!arrastando) {
+
+            rotacao += 0.0025;
+
+        }
+
+
+        requestAnimationFrame(
+            desenhar
+        );
+
+    }
+
+
+    /* =====================================================
+       LOCALIZAR PAÍS PELO TOQUE
+    ====================================================== */
+
+    function detectarPais(
+        evento
+    ) {
+
+        const rect =
+            canvas.getBoundingClientRect();
+
+
+        const escalaX =
+            canvas.width /
+            rect.width;
+
+        const escalaY =
+            canvas.height /
+            rect.height;
+
+
+        const toqueX =
+            (evento.clientX -
+                rect.left) *
+            escalaX;
+
+        const toqueY =
+            (evento.clientY -
+                rect.top) *
+            escalaY;
+
+
+        const centroX =
+            canvas.width / 2;
+
+        const centroY =
+            canvas.height / 2;
+
+        const raio =
+            Math.min(
+                canvas.width,
+                canvas.height
+            ) * 0.42;
+
+
+        let paisSelecionado = null;
+
+        let menorDistancia =
+            Infinity;
+
+
+        const grupos =
+            agruparPaises();
+
+
+        Object.keys(grupos)
+            .forEach(pais => {
+
+                const coordenada =
+                    coordenadasPaises[pais];
+
+                if (!coordenada) return;
+
+
+                const ponto =
+                    projetarPonto(
+                        coordenada.latitude,
+                        coordenada.longitude,
+                        centroX,
+                        centroY,
+                        raio
+                    );
+
+
+                if (!ponto) return;
+
+
+                const distancia =
+                    Math.hypot(
+                        toqueX - ponto.x,
+                        toqueY - ponto.y
+                    );
+
+
+                if (
+                    distancia < 35 &&
+                    distancia < menorDistancia
+                ) {
+
+                    menorDistancia =
+                        distancia;
+
+                    paisSelecionado =
+                        pais;
 
                 }
 
-            }
-        );
+            });
 
 
-        canvas.addEventListener(
-            "pointercancel",
-            () => {
+        if (paisSelecionado) {
 
-                arrastando = false;
+            abrirPais(
+                paisSelecionado
+            );
 
-            }
-        );
-
-
-        desenhar();
+        }
 
     }
+
+
+    /* =====================================================
+       TOQUE / ARRASTAR
+    ====================================================== */
+
+    canvas.addEventListener(
+        "pointerdown",
+        evento => {
+
+            arrastando = false;
+
+            inicioX =
+                evento.clientX;
+
+            canvas.setPointerCapture(
+                evento.pointerId
+            );
+
+        }
+    );
+
+
+    canvas.addEventListener(
+        "pointermove",
+        evento => {
+
+            const diferenca =
+                evento.clientX -
+                inicioX;
+
+
+            if (
+                Math.abs(diferenca) > 3
+            ) {
+
+                arrastando = true;
+
+                rotacao +=
+                    diferenca * 0.008;
+
+                inicioX =
+                    evento.clientX;
+
+            }
+
+        }
+    );
+
+
+    canvas.addEventListener(
+        "pointerup",
+        evento => {
+
+            if (!arrastando) {
+
+                detectarPais(
+                    evento
+                );
+
+            }
+
+            arrastando = false;
+
+        }
+    );
+
+
+    canvas.addEventListener(
+        "pointercancel",
+        () => {
+
+            arrastando = false;
+
+        }
+    );
+
+
+    desenhar();
+
+}
 
 
     /* =====================================================
