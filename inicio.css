@@ -506,7 +506,7 @@ body {
         height: 100svh;
         min-height: 100svh;
 
-        background-size: auto 100%;
+        background-size: cover;
         background-position: center top;
 
         overflow: hidden;
