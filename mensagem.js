@@ -455,41 +455,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =====================================================
-       VOLTAR
-    ====================================================== */
+     /* =====================================================
+   VOLTAR ENTRE OS ESTADOS
+===================================================== */
 
-    document
-        .querySelectorAll("[data-voltar]")
-        .forEach(botao => {
+document
+    .querySelectorAll("[data-voltar]")
+    .forEach(botao => {
 
-            botao.addEventListener(
-                "click",
-                () => {
+        botao.addEventListener(
+            "click",
+            evento => {
 
-                    const destino =
-                        botao.dataset.voltar;
+                evento.preventDefault();
+                evento.stopPropagation();
 
+                const destino =
+                    botao.dataset.voltar;
 
-                    if (destino === "paises") {
+                mostrarEstado(destino);
 
-                        criarListaPaises();
+            }
+        );
 
-                        mostrarEstado("paises");
-
-                    }
-
-
-                    if (destino === "pais") {
-
-                        mostrarEstado("pais");
-
-                    }
-
-                }
-            );
-
-        });
+    });
 
 
     /* =====================================================
@@ -950,15 +939,6 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.stroke();
 
 
-            /* ROTAÇÃO */
-
-            if (!arrastando) {
-
-                rotacao += 0.0025;
-
-            }
-
-
             requestAnimationFrame(
                 desenhar
             );
@@ -1346,25 +1326,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =====================================================
-       INICIALIZAÇÃO
-    ====================================================== */
+   /* =====================================================
+   INICIALIZAÇÃO
+====================================================== */
 
-    /*
-     * PRIMEIRO:
-     * Globo.
-     */
+/*
+ * O globo é a primeira coisa exibida.
+ */
 
-    criarGlobo();
+if (erro) {
+    erro.hidden = true;
+    erro.style.display = "none";
+}
 
-    mostrarEstado("mural");
+if (carregando) {
+    carregando.remove();
+}
+
+criarGlobo();
+
+mostrarEstado("mural");
 
 
-    /*
-     * SEGUNDO:
-     * Dados.
-     */
+/*
+ * Os dados são carregados depois,
+ * sem bloquear o globo.
+ */
 
-    carregarMensagens();
-
-});
+carregarMensagens();
+   
