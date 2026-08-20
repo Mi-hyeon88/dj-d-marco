@@ -42,14 +42,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const erro =
         document.querySelector(".erro");
 
+    const tentarNovamente =
+        document.getElementById("tentarNovamente");
+
     const mensagemAnteriorBotao =
         document.getElementById("mensagemAnterior");
 
     const mensagemProximaBotao =
         document.getElementById("mensagemProxima");
 
-    const tentarNovamente =
-        document.getElementById("tentarNovamente");
+    const globo =
+        document.querySelector(".globo");
 
 
     /* =====================================================
@@ -121,6 +124,9 @@ document.addEventListener("DOMContentLoaded", () => {
             "estados unidos":
                 "Estados Unidos",
 
+            eua:
+                "Estados Unidos",
+
             franca:
                 "França",
 
@@ -140,7 +146,40 @@ document.addEventListener("DOMContentLoaded", () => {
                 "Alemanha",
 
             argentina:
-                "Argentina"
+                "Argentina",
+
+            chile:
+                "Chile",
+
+            colombia:
+                "Colômbia",
+
+            "colômbia":
+                "Colômbia",
+
+            peru:
+                "Peru",
+
+            canada:
+                "Canadá",
+
+            italia:
+                "Itália",
+
+            "itália":
+                "Itália",
+
+            espanha:
+                "Espanha",
+
+            "espanha":
+                "Espanha",
+
+            reino_unido:
+                "Reino Unido",
+
+            "reino unido":
+                "Reino Unido"
 
         };
 
@@ -179,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       CRIAR LISTA DE PAÍSES
+       LISTA DE PAÍSES
     ====================================================== */
 
     function criarListaPaises() {
@@ -195,7 +234,8 @@ document.addEventListener("DOMContentLoaded", () => {
             Object.keys(grupos)
                 .sort((a, b) =>
                     nomePais(a).localeCompare(
-                        nomePais(b)
+                        nomePais(b),
+                        "pt-BR"
                     )
                 );
 
@@ -290,22 +330,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       ABRIR PRIMEIRA MENSAGEM
-    ====================================================== */
-
-    function abrirMensagem() {
-
-        if (!mensagensPais.length) {
-            return;
-        }
-
-        prepararMensagem();
-
-    }
-
-
-    /* =====================================================
-       PREPARAR MENSAGEM
+       ABRIR MENSAGEM
     ====================================================== */
 
     function prepararMensagem() {
@@ -362,13 +387,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function proximaMensagem() {
 
-        if (!mensagensPais.length) {
-            return;
-        }
-
+        if (!mensagensPais.length) return;
 
         indiceMensagem++;
-
 
         if (
             indiceMensagem >=
@@ -378,7 +399,6 @@ document.addEventListener("DOMContentLoaded", () => {
             indiceMensagem = 0;
 
         }
-
 
         prepararMensagem();
 
@@ -391,13 +411,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function mensagemAnterior() {
 
-        if (!mensagensPais.length) {
-            return;
-        }
-
+        if (!mensagensPais.length) return;
 
         indiceMensagem--;
-
 
         if (indiceMensagem < 0) {
 
@@ -405,7 +421,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 mensagensPais.length - 1;
 
         }
-
 
         prepararMensagem();
 
@@ -434,8 +449,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         mostrarEstado("paises");
 
-                        return;
-
                     }
 
 
@@ -452,26 +465,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       ABRIR MENSAGEM AO TOCAR NA APRESENTAÇÃO DO PAÍS
-    ====================================================== */
-
-    const paisCentro =
-        document.querySelector(".pais-centro");
-
-    if (paisCentro) {
-
-        paisCentro.style.cursor = "pointer";
-
-        paisCentro.addEventListener(
-            "click",
-            abrirMensagem
-        );
-
-    }
-
-
-    /* =====================================================
-       BOTÃO ANTERIOR
+       BOTÕES DA CARTA
     ====================================================== */
 
     if (mensagemAnteriorBotao) {
@@ -484,10 +478,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =====================================================
-       BOTÃO PRÓXIMA
-    ====================================================== */
-
     if (mensagemProximaBotao) {
 
         mensagemProximaBotao.addEventListener(
@@ -499,12 +489,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       GLOBO
+       GLOBO INTERATIVO
     ====================================================== */
-
-    const globo =
-        document.querySelector(".globo");
-
 
     function criarGlobo() {
 
@@ -540,6 +526,135 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let inicioX = 0;
 
+        let movimentoToque = 0;
+
+        let pontosGlobo = [];
+
+
+        /* =================================================
+           POSIÇÕES DOS PAÍSES
+        ================================================== */
+
+        const coordenadas = {
+
+            brasil: [-52, -10],
+
+            "coreia do sul": [127.8, 36.2],
+
+            coreia: [127.8, 36.2],
+
+            japao: [138, 36],
+
+            "japão": [138, 36],
+
+            "estados unidos": [-100, 38],
+
+            eua: [-100, 38],
+
+            canada: [-106, 56],
+
+            mexico: [-102, 23],
+
+            "méxico": [-102, 23],
+
+            argentina: [-64, -34],
+
+            chile: [-71, -33],
+
+            portugal: [-8, 39],
+
+            espanha: [-4, 40],
+
+            franca: [2, 46],
+
+            "frança": [2, 46],
+
+            alemanha: [10, 51],
+
+            italia: [12, 42],
+
+            "itália": [12, 42],
+
+            reino_unido: [-3, 55],
+
+            "reino unido": [-3, 55],
+
+            colombia: [-74, 4],
+
+            "colômbia": [-74, 4],
+
+            peru: [-75, -10]
+
+        };
+
+
+        /* =================================================
+           POSIÇÃO DO PONTO NO GLOBO
+        ================================================== */
+
+        function projetarPonto(
+            longitude,
+            latitude,
+            raio,
+            centroX,
+            centroY
+        ) {
+
+            const lon =
+                (
+                    longitude +
+                    rotacao * 12
+                ) *
+                Math.PI /
+                180;
+
+
+            const lat =
+                latitude *
+                Math.PI /
+                180;
+
+
+            const x3d =
+                Math.cos(lat) *
+                Math.sin(lon);
+
+
+            const y3d =
+                Math.sin(lat);
+
+
+            const z3d =
+                Math.cos(lat) *
+                Math.cos(lon);
+
+
+            if (z3d < 0) {
+                return null;
+            }
+
+
+            return {
+
+                x:
+                    centroX +
+                    x3d * raio,
+
+                y:
+                    centroY -
+                    y3d * raio,
+
+                profundidade:
+                    z3d
+
+            };
+
+        }
+
+
+        /* =================================================
+           DESENHAR
+        ================================================== */
 
         function desenhar() {
 
@@ -683,11 +798,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 ctx.ellipse(
                     centroX,
                     centroY,
-                    Math.abs(
-                        Math.sin(
-                            (i + rotacao) * 0.5
-                        )
-                    ) * raio,
+                    Math.max(
+                        Math.abs(
+                            Math.sin(
+                                (i + rotacao) * 0.5
+                            )
+                        ) * raio,
+                        2
+                    ),
                     raio,
                     0,
                     0,
@@ -726,77 +844,141 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            /* ---------- PONTOS DE LUZ ---------- */
+            /* =================================================
+               PONTOS DOS PAÍSES
+            ================================================== */
 
-            const pontos = [
-
-                [0.73, 0.38],
-                [0.68, 0.45],
-                [0.58, 0.53],
-                [0.51, 0.65],
-                [0.42, 0.70],
-                [0.31, 0.58],
-                [0.23, 0.42],
-                [0.62, 0.30],
-                [0.39, 0.33]
-
-            ];
+            pontosGlobo = [];
 
 
-            pontos.forEach(([x, y]) => {
-
-                const px =
-                    centroX +
-                    (x - 0.5) *
-                    raio *
-                    1.7;
+            const grupos =
+                agruparPaises();
 
 
-                const py =
-                    centroY +
-                    (y - 0.5) *
-                    raio *
-                    1.7;
+            Object.keys(grupos).forEach(
+                pais => {
+
+                    let coordenada =
+                        coordenadas[pais];
 
 
-                const distancia =
-                    Math.hypot(
-                        px - centroX,
-                        py - centroY
+                    /*
+                     * Se o país ainda não estiver
+                     * cadastrado acima, recebe uma
+                     * posição automática.
+                     */
+
+                    if (!coordenada) {
+
+                        const quantidade =
+                            Object.keys(
+                                grupos
+                            ).length;
+
+
+                        const posicao =
+                            Object.keys(
+                                grupos
+                            ).indexOf(pais);
+
+
+                        const angulo =
+                            (
+                                posicao /
+                                Math.max(
+                                    quantidade,
+                                    1
+                                )
+                            ) *
+                            Math.PI *
+                            2;
+
+
+                        coordenada = [
+
+                            Math.sin(angulo) * 120,
+
+                            Math.cos(angulo) * 45
+
+                        ];
+
+                    }
+
+
+                    const ponto =
+                        projetarPonto(
+                            coordenada[0],
+                            coordenada[1],
+                            raio,
+                            centroX,
+                            centroY
+                        );
+
+
+                    if (!ponto) return;
+
+
+                    pontosGlobo.push({
+
+                        pais,
+
+                        x: ponto.x,
+
+                        y: ponto.y,
+
+                        profundidade:
+                            ponto.profundidade
+
+                    });
+
+                }
+            );
+
+
+            pontosGlobo
+                .sort(
+                    (a, b) =>
+                        a.profundidade -
+                        b.profundidade
+                )
+                .forEach(ponto => {
+
+                    const tamanho =
+                        3 +
+                        ponto.profundidade *
+                        3;
+
+
+                    ctx.fillStyle =
+                        "rgba(225,179,109,0.95)";
+
+
+                    ctx.shadowBlur =
+                        14;
+
+
+                    ctx.shadowColor =
+                        "rgba(225,179,109,0.9)";
+
+
+                    ctx.beginPath();
+
+
+                    ctx.arc(
+                        ponto.x,
+                        ponto.y,
+                        tamanho,
+                        0,
+                        Math.PI * 2
                     );
 
 
-                if (
-                    distancia >
-                    raio * 0.88
-                ) return;
+                    ctx.fill();
 
 
-                ctx.fillStyle =
-                    "rgba(225,179,109,0.9)";
+                    ctx.shadowBlur = 0;
 
-
-                ctx.shadowBlur = 12;
-
-                ctx.shadowColor =
-                    "rgba(225,179,109,0.9)";
-
-
-                ctx.beginPath();
-
-                ctx.arc(
-                    px,
-                    py,
-                    4,
-                    0,
-                    Math.PI * 2
-                );
-
-                ctx.fill();
-
-                ctx.shadowBlur = 0;
-
-            });
+                });
 
 
             /* ---------- BORDA ---------- */
@@ -836,15 +1018,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /* =====================================================
-           INTERAÇÃO DO GLOBO
-        ====================================================== */
+        /* =================================================
+           TOQUE / ARRASTAR
+        ================================================== */
 
         canvas.addEventListener(
             "pointerdown",
             event => {
 
                 arrastando = true;
+
+                movimentoToque = 0;
 
                 inicioX =
                     event.clientX;
@@ -870,8 +1054,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     inicioX;
 
 
+                movimentoToque +=
+                    Math.abs(diferenca);
+
+
                 rotacao +=
-                    diferenca * 0.008;
+                    diferenca * 0.012;
 
 
                 inicioX =
@@ -883,9 +1071,98 @@ document.addEventListener("DOMContentLoaded", () => {
 
         canvas.addEventListener(
             "pointerup",
-            () => {
+            event => {
+
+                if (!arrastando) return;
+
 
                 arrastando = false;
+
+
+                /*
+                 * Se quase não houve movimento,
+                 * tratamos como TOQUE.
+                 */
+
+                if (movimentoToque < 12) {
+
+                    const rect =
+                        canvas.getBoundingClientRect();
+
+
+                    const escalaX =
+                        canvas.width /
+                        rect.width;
+
+
+                    const escalaY =
+                        canvas.height /
+                        rect.height;
+
+
+                    const toqueX =
+                        (
+                            event.clientX -
+                            rect.left
+                        ) *
+                        escalaX;
+
+
+                    const toqueY =
+                        (
+                            event.clientY -
+                            rect.top
+                        ) *
+                        escalaY;
+
+
+                    let pontoEscolhido =
+                        null;
+
+                    let menorDistancia =
+                        Infinity;
+
+
+                    pontosGlobo.forEach(
+                        ponto => {
+
+                            const distancia =
+                                Math.hypot(
+                                    toqueX -
+                                    ponto.x,
+                                    toqueY -
+                                    ponto.y
+                                );
+
+
+                            if (
+                                distancia <
+                                35 &&
+                                distancia <
+                                menorDistancia
+                            ) {
+
+                                menorDistancia =
+                                    distancia;
+
+                                pontoEscolhido =
+                                    ponto;
+
+                            }
+
+                        }
+                    );
+
+
+                    if (pontoEscolhido) {
+
+                        abrirPais(
+                            pontoEscolhido.pais
+                        );
+
+                    }
+
+                }
 
             }
         );
@@ -915,10 +1192,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const nomeCallback =
             "dmMarcoMensagens_" +
             Date.now();
-
-
-        const script =
-            document.createElement("script");
 
 
         window[nomeCallback] =
@@ -975,9 +1248,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 delete window[nomeCallback];
 
-                script.remove();
+                if (script) {
+                    script.remove();
+                }
 
             };
+
+
+        const script =
+            document.createElement("script");
 
 
         script.src =
@@ -995,7 +1274,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Não foi possível acessar a API."
                 );
 
-
                 mostrarErro();
 
 
@@ -1006,15 +1284,15 @@ document.addEventListener("DOMContentLoaded", () => {
             };
 
 
-        document
-            .head
-            .appendChild(script);
+        document.head.appendChild(
+            script
+        );
 
     }
 
 
     /* =====================================================
-       MOSTRAR ERRO
+       ERRO
     ====================================================== */
 
     function mostrarErro() {
@@ -1058,14 +1336,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                if (carregando) {
-
-                    carregando.style.display =
-                        "flex";
-
-                }
-
-
                 carregarMensagens();
 
             }
@@ -1081,3 +1351,4 @@ document.addEventListener("DOMContentLoaded", () => {
     carregarMensagens();
 
 });
+               
