@@ -521,7 +521,7 @@ body {
         top: 0;
 
         padding:
-            24px
+            18px
             21px
             0;
     }
@@ -569,11 +569,20 @@ body {
     ====================================================== */
 
     .linha-vertical {
-        top: 170px;
-        left: 39px;
+    top: 175px;
+    left: 39px;
 
-        width: 1px;
-        height: 650px;
+    width: 1px;
+    height: 455px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(201, 164, 106, 0.55) 7%,
+            rgba(201, 164, 106, 0.55) 93%,
+            transparent
+        );
     }
 
 
@@ -587,15 +596,15 @@ body {
         min-height: 100svh;
 
         padding:
-            108px
+            93px
             25px
             60px;
     }
 
     .inicio-texto {
-        width: calc(100% - 34px);
+        width: calc(100% - 28px);
 
-        margin-left: 43px;
+        margin-left: 38px;
     }
 
 
@@ -635,7 +644,7 @@ body {
         height: 1px;
 
         margin:
-            9px 0;
+            6px 0;
     }
 
 
@@ -672,7 +681,7 @@ body {
 
     .inicio-assinatura {
         left: 50%;
-        bottom: 12px;
+        bottom: 25px;
 
         width: 100%;
     }
@@ -699,21 +708,21 @@ body {
 
 
     /* =====================================================
-       REVELAÇÃO SUAVE
-    ====================================================== */
+   REVELAÇÃO SUAVE
+===================================================== */
 
-    .inicio-texto > * {
-        opacity: 0;
+.inicio-texto > * {
+    opacity: 0;
 
-        transform:
-            translateY(7px);
+    transform:
+        translateY(3px);
 
-        animation:
-            revelarConteudo
-            0.8s
-            ease
-            forwards;
-    }
+    animation:
+        revelarConteudo
+        0.7s
+        ease
+        forwards;
+}
 
     .inicio-texto > *:nth-child(1) {
         animation-delay: 0.10s;
@@ -771,7 +780,7 @@ body {
         opacity: 0;
 
         transform:
-            translateY(7px);
+            translateY(2px);
     }
 
     to {
