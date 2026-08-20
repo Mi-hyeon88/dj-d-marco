@@ -779,11 +779,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             mensagens =
-                dados.filter(item =>
-                    item &&
-                    item.pais &&
-                    item.mensagem
-                );
+    (dados.mensagens || []).filter(item =>
+        item &&
+        item.pais &&
+        item.mensagem
+    );
 
 
             criarListaPaises();
