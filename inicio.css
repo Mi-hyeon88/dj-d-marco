@@ -118,6 +118,17 @@ body {
     transition: color 0.25s ease;
 }
 
+.icone-home {
+    display: block;
+
+    width: 18px;
+    height: 18px;
+
+    color: var(--dourado);
+
+    flex-shrink: 0;
+}
+
 .inicio-link:hover {
     color: var(--creme);
 }
