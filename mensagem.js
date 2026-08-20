@@ -48,6 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const mensagemProximaBotao =
         document.getElementById("mensagemProxima");
 
+    const tentarNovamente =
+        document.getElementById("tentarNovamente");
+
 
     /* =====================================================
        DADOS
@@ -63,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       ESTADO
+       ESTADO DA PÁGINA
     ====================================================== */
 
     function mostrarEstado(nome) {
@@ -221,9 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     ).padStart(2, "0")}
                 </span>
 
-                <span class="pais-seta">
-                    ›
-                </span>
+                <span class="pais-seta">›</span>
             `;
 
 
@@ -283,13 +284,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         mostrarEstado("pais");
 
-        prepararMensagem();
-
     }
 
 
     /* =====================================================
-       PREPARAR MENSAGEM
+       ABRIR MENSAGEM
     ====================================================== */
 
     function prepararMensagem() {
@@ -334,9 +333,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
-
-        /* Depois de escolher o país,
-           abre a carta automaticamente. */
 
         mostrarEstado("mensagem");
 
@@ -421,16 +417,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         mostrarEstado("paises");
 
-                        return;
-
                     }
 
 
                     if (destino === "pais") {
 
                         mostrarEstado("pais");
-
-                        return;
 
                     }
 
@@ -441,7 +433,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       BOTÕES ANTERIOR / PRÓXIMA
+       BOTÕES DA CARTA
     ====================================================== */
 
     if (mensagemAnteriorBotao) {
@@ -490,8 +482,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         canvas.style.width = "100%";
         canvas.style.height = "100%";
-
-
         canvas.style.touchAction = "none";
 
 
@@ -540,9 +530,7 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
 
-            /* =================================================
-               ATMOSFERA
-            ================================================== */
+            /* ---------- ATMOSFERA ---------- */
 
             const atmosfera =
                 ctx.createRadialGradient(
@@ -560,12 +548,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 "rgba(20,20,25,1)"
             );
 
-
             atmosfera.addColorStop(
                 0.75,
                 "rgba(3,3,5,1)"
             );
-
 
             atmosfera.addColorStop(
                 1,
@@ -579,7 +565,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             ctx.beginPath();
 
-
             ctx.arc(
                 centroX,
                 centroY,
@@ -588,13 +573,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 Math.PI * 2
             );
 
-
             ctx.fill();
 
 
-            /* =================================================
-               GLOBO
-            ================================================== */
+            /* ---------- OCEANO ---------- */
 
             const oceano =
                 ctx.createRadialGradient(
@@ -612,12 +594,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 "#17212a"
             );
 
-
             oceano.addColorStop(
                 0.7,
                 "#071018"
             );
-
 
             oceano.addColorStop(
                 1,
@@ -631,7 +611,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             ctx.beginPath();
 
-
             ctx.arc(
                 centroX,
                 centroY,
@@ -640,13 +619,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 Math.PI * 2
             );
 
-
             ctx.fill();
 
 
-            /* =================================================
-               LONGITUDES
-            ================================================== */
+            /* ---------- LONGITUDES ---------- */
 
             ctx.strokeStyle =
                 "rgba(201,164,106,0.13)";
@@ -662,7 +638,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 ctx.beginPath();
 
-
                 ctx.ellipse(
                     centroX,
                     centroY,
@@ -677,15 +652,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     Math.PI * 2
                 );
 
-
                 ctx.stroke();
 
             }
 
 
-            /* =================================================
-               LATITUDES
-            ================================================== */
+            /* ---------- LATITUDES ---------- */
 
             for (
                 let i = -2;
@@ -694,7 +666,6 @@ document.addEventListener("DOMContentLoaded", () => {
             ) {
 
                 ctx.beginPath();
-
 
                 ctx.ellipse(
                     centroX,
@@ -708,15 +679,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     Math.PI * 2
                 );
 
-
                 ctx.stroke();
 
             }
 
 
-            /* =================================================
-               PONTOS DE LUZ
-            ================================================== */
+            /* ---------- PONTOS DE LUZ ---------- */
 
             const pontos = [
 
@@ -733,86 +701,71 @@ document.addEventListener("DOMContentLoaded", () => {
             ];
 
 
-            pontos.forEach(
-                ([x, y]) => {
+            pontos.forEach(([x, y]) => {
 
-                    const px =
-                        centroX +
-                        (x - 0.5) *
-                        raio *
-                        1.7;
-
-
-                    const py =
-                        centroY +
-                        (y - 0.5) *
-                        raio *
-                        1.7;
+                const px =
+                    centroX +
+                    (x - 0.5) *
+                    raio *
+                    1.7;
 
 
-                    const distancia =
-                        Math.hypot(
-                            px - centroX,
-                            py - centroY
-                        );
+                const py =
+                    centroY +
+                    (y - 0.5) *
+                    raio *
+                    1.7;
 
 
-                    if (
-                        distancia >
-                        raio * 0.88
-                    ) {
-
-                        return;
-
-                    }
-
-
-                    ctx.fillStyle =
-                        "rgba(225,179,109,0.9)";
-
-
-                    ctx.shadowBlur =
-                        12;
-
-
-                    ctx.shadowColor =
-                        "rgba(225,179,109,0.9)";
-
-
-                    ctx.beginPath();
-
-
-                    ctx.arc(
-                        px,
-                        py,
-                        4,
-                        0,
-                        Math.PI * 2
+                const distancia =
+                    Math.hypot(
+                        px - centroX,
+                        py - centroY
                     );
 
 
-                    ctx.fill();
+                if (
+                    distancia >
+                    raio * 0.88
+                ) return;
 
 
-                    ctx.shadowBlur = 0;
-
-                }
-            );
+                ctx.fillStyle =
+                    "rgba(225,179,109,0.9)";
 
 
-            /* =================================================
-               BORDA
-            ================================================== */
+                ctx.shadowBlur = 12;
+
+                ctx.shadowColor =
+                    "rgba(225,179,109,0.9)";
+
+
+                ctx.beginPath();
+
+                ctx.arc(
+                    px,
+                    py,
+                    4,
+                    0,
+                    Math.PI * 2
+                );
+
+                ctx.fill();
+
+                ctx.shadowBlur = 0;
+
+            });
+
+
+            /* ---------- BORDA ---------- */
 
             ctx.strokeStyle =
                 "rgba(201,164,106,0.45)";
-
 
             ctx.lineWidth = 2;
 
 
             ctx.beginPath();
-
 
             ctx.arc(
                 centroX,
@@ -822,13 +775,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 Math.PI * 2
             );
 
-
             ctx.stroke();
 
 
-            /* =================================================
-               MOVIMENTO AUTOMÁTICO
-            ================================================== */
+            /* ---------- ROTAÇÃO ---------- */
 
             if (!arrastando) {
 
@@ -845,7 +795,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         /* =====================================================
-           CONTROLE POR TOQUE / MOUSE
+           INTERAÇÃO DO GLOBO
         ====================================================== */
 
         canvas.addEventListener(
@@ -915,93 +865,167 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       CARREGAR MENSAGENS
+       CARREGAR DADOS — JSONP
     ====================================================== */
 
-    async function carregarMensagens() {
+    function carregarMensagens() {
 
-        try {
+        if (carregando) {
 
-            const resposta =
-                await fetch(API_URL);
-
-
-            if (!resposta.ok) {
-
-                throw new Error(
-                    "Erro ao acessar a API."
-                );
-
-            }
-
-
-            const dados =
-                await resposta.json();
-
-
-            if (
-                !dados ||
-                !Array.isArray(
-                    dados.mensagens
-                )
-            ) {
-
-                throw new Error(
-                    "Formato de dados inválido."
-                );
-
-            }
-
-
-            mensagens =
-                dados.mensagens.filter(
-                    item =>
-                        item &&
-                        item.pais &&
-                        item.mensagem
-                );
-
-
-            criarListaPaises();
-
-            criarGlobo();
-
-            mostrarEstado("mural");
-
-
-            if (carregando) {
-
-                carregando.remove();
-
-            }
+            carregando.style.display =
+                "flex";
 
         }
 
-        catch (error) {
 
-            console.error(
-                "Erro ao carregar mensagens:",
-                error
-            );
+        const callback =
+            "dmarcoMensagens_" +
+            Date.now();
 
 
-            if (carregando) {
+        window[callback] =
+            function(dados) {
 
-                carregando.remove();
+                try {
 
-            }
+                    if (
+                        !dados ||
+                        !Array.isArray(
+                            dados.mensagens
+                        )
+                    ) {
+
+                        throw new Error(
+                            "Formato de dados inválido."
+                        );
+
+                    }
 
 
-            if (erro) {
+                    mensagens =
+                        dados.mensagens.filter(
+                            item =>
+                                item &&
+                                item.pais &&
+                                item.mensagem
+                        );
 
-                erro.hidden = false;
 
-                erro.style.display =
-                    "flex";
+                    criarListaPaises();
 
-            }
+                    criarGlobo();
+
+                    mostrarEstado("mural");
+
+
+                    if (carregando) {
+
+                        carregando.remove();
+
+                    }
+
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "Erro nos dados:",
+                        error
+                    );
+
+                    mostrarErro();
+
+                }
+
+
+                delete window[callback];
+
+            };
+
+
+        const script =
+            document.createElement("script");
+
+
+        script.src =
+            API_URL +
+            "?callback=" +
+            encodeURIComponent(callback) +
+            "&t=" +
+            Date.now();
+
+
+        script.onerror =
+            function() {
+
+                console.error(
+                    "Não foi possível acessar o Apps Script."
+                );
+
+                mostrarErro();
+
+                delete window[callback];
+
+                script.remove();
+
+            };
+
+
+        document.body.appendChild(script);
+
+    }
+
+
+    /* =====================================================
+       ERRO
+    ====================================================== */
+
+    function mostrarErro() {
+
+        if (carregando) {
+
+            carregando.remove();
 
         }
+
+
+        if (erro) {
+
+            erro.hidden = false;
+
+            erro.style.display =
+                "flex";
+
+        }
+
+    }
+
+
+    /* =====================================================
+       TENTAR NOVAMENTE
+    ====================================================== */
+
+    if (tentarNovamente) {
+
+        tentarNovamente.addEventListener(
+            "click",
+            () => {
+
+                if (erro) {
+
+                    erro.hidden = true;
+
+                    erro.style.display =
+                        "none";
+
+                }
+
+
+                carregarMensagens();
+
+            }
+        );
 
     }
 
