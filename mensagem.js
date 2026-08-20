@@ -42,6 +42,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const erro =
         document.querySelector(".erro");
 
+    const mensagemAnteriorBotao =
+        document.getElementById("mensagemAnterior");
+
+    const mensagemProximaBotao =
+        document.getElementById("mensagemProxima");
+
 
     /* =====================================================
        DADOS
@@ -57,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       ESTADO DA PÁGINA
+       ESTADO
     ====================================================== */
 
     function mostrarEstado(nome) {
@@ -94,19 +100,45 @@ document.addEventListener("DOMContentLoaded", () => {
     function nomePais(pais) {
 
         const nomes = {
+
             brasil: "Brasil",
-            "coreia do sul": "Coreia do Sul",
-            coreia: "Coreia do Sul",
-            japao: "Japão",
-            "japão": "Japão",
-            "estados unidos": "Estados Unidos",
-            franca: "França",
-            "frança": "França",
-            portugal: "Portugal",
-            mexico: "México",
-            "méxico": "México",
-            alemanha: "Alemanha",
-            argentina: "Argentina"
+
+            "coreia do sul":
+                "Coreia do Sul",
+
+            coreia:
+                "Coreia do Sul",
+
+            japao:
+                "Japão",
+
+            "japão":
+                "Japão",
+
+            "estados unidos":
+                "Estados Unidos",
+
+            franca:
+                "França",
+
+            "frança":
+                "França",
+
+            portugal:
+                "Portugal",
+
+            mexico:
+                "México",
+
+            "méxico":
+                "México",
+
+            alemanha:
+                "Alemanha",
+
+            argentina:
+                "Argentina"
+
         };
 
         return nomes[normalizarPais(pais)] ||
@@ -153,12 +185,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         listaPaises.innerHTML = "";
 
-        const grupos = agruparPaises();
+        const grupos =
+            agruparPaises();
 
         const paises =
             Object.keys(grupos)
                 .sort((a, b) =>
-                    nomePais(a).localeCompare(nomePais(b))
+                    nomePais(a).localeCompare(
+                        nomePais(b)
+                    )
                 );
 
 
@@ -167,7 +202,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const botao =
                 document.createElement("button");
 
-            botao.className = "pais-item";
+            botao.type = "button";
+
+            botao.className =
+                "pais-item";
+
 
             botao.innerHTML = `
                 <span class="pais-pin">⌖</span>
@@ -177,10 +216,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 </span>
 
                 <span class="pais-contagem">
-                    ${String(grupos[pais].length).padStart(2, "0")}
+                    ${String(
+                        grupos[pais].length
+                    ).padStart(2, "0")}
                 </span>
 
-                <span class="pais-seta">›</span>
+                <span class="pais-seta">
+                    ›
+                </span>
             `;
 
 
@@ -203,27 +246,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function abrirPais(pais) {
 
-        const grupos = agruparPaises();
+        const grupos =
+            agruparPaises();
 
         mensagensPais =
             grupos[pais] || [];
 
-        if (!mensagensPais.length) return;
 
-        paisAtual = pais;
+        if (!mensagensPais.length) {
+            return;
+        }
 
-        indiceMensagem = 0;
+
+        paisAtual =
+            pais;
+
+        indiceMensagem =
+            0;
 
 
         if (tituloPais) {
+
             tituloPais.textContent =
                 nomePais(pais);
+
         }
 
 
         if (contagemPais) {
+
             contagemPais.textContent =
                 `${mensagensPais.length} mensagens`;
+
         }
 
 
@@ -243,26 +297,33 @@ document.addEventListener("DOMContentLoaded", () => {
         const mensagem =
             mensagensPais[indiceMensagem];
 
+
         if (!mensagem) return;
 
 
         if (cartaPais) {
+
             cartaPais.textContent =
                 nomePais(paisAtual);
+
         }
 
 
         if (cartaNome) {
+
             cartaNome.textContent =
                 mensagem.nome
                     ? `De ${mensagem.nome}`
                     : "";
+
         }
 
 
         if (cartaTexto) {
+
             cartaTexto.textContent =
                 mensagem.mensagem || "";
+
         }
 
 
@@ -273,6 +334,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
+
+        /* Depois de escolher o país,
+           abre a carta automaticamente. */
+
+        mostrarEstado("mensagem");
+
     }
 
 
@@ -282,16 +349,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function proximaMensagem() {
 
-        if (!mensagensPais.length) return;
+        if (!mensagensPais.length) {
+            return;
+        }
+
 
         indiceMensagem++;
+
 
         if (
             indiceMensagem >=
             mensagensPais.length
         ) {
+
             indiceMensagem = 0;
+
         }
+
 
         prepararMensagem();
 
@@ -304,9 +378,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function mensagemAnterior() {
 
-        if (!mensagensPais.length) return;
+        if (!mensagensPais.length) {
+            return;
+        }
+
 
         indiceMensagem--;
+
 
         if (indiceMensagem < 0) {
 
@@ -315,53 +393,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
+
         prepararMensagem();
 
     }
 
 
     /* =====================================================
-       BOTÕES DE NAVEGAÇÃO
+       VOLTAR
     ====================================================== */
 
     document
-        .querySelectorAll("[data-acao]")
+        .querySelectorAll("[data-voltar]")
         .forEach(botao => {
 
             botao.addEventListener(
                 "click",
                 () => {
 
-                    const acao =
-                        botao.dataset.acao;
+                    const destino =
+                        botao.dataset.voltar;
 
 
-                    if (acao === "mural") {
-
-                        mostrarEstado("mural");
-
-                    }
-
-
-                    if (acao === "paises") {
+                    if (destino === "paises") {
 
                         criarListaPaises();
 
                         mostrarEstado("paises");
 
-                    }
-
-
-                    if (acao === "anterior") {
-
-                        mensagemAnterior();
+                        return;
 
                     }
 
 
-                    if (acao === "proxima") {
+                    if (destino === "pais") {
 
-                        proximaMensagem();
+                        mostrarEstado("pais");
+
+                        return;
 
                     }
 
@@ -369,6 +438,30 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
         });
+
+
+    /* =====================================================
+       BOTÕES ANTERIOR / PRÓXIMA
+    ====================================================== */
+
+    if (mensagemAnteriorBotao) {
+
+        mensagemAnteriorBotao.addEventListener(
+            "click",
+            mensagemAnterior
+        );
+
+    }
+
+
+    if (mensagemProximaBotao) {
+
+        mensagemProximaBotao.addEventListener(
+            "click",
+            proximaMensagem
+        );
+
+    }
 
 
     /* =====================================================
@@ -383,16 +476,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!globo) return;
 
+
         globo.innerHTML = "";
+
 
         const canvas =
             document.createElement("canvas");
 
+
         canvas.width = 900;
         canvas.height = 900;
 
+
         canvas.style.width = "100%";
         canvas.style.height = "100%";
+
+
+        canvas.style.touchAction = "none";
+
 
         globo.appendChild(canvas);
 
@@ -416,8 +517,19 @@ document.addEventListener("DOMContentLoaded", () => {
             const altura =
                 canvas.height;
 
+
             const raio =
-                Math.min(largura, altura) * 0.42;
+                Math.min(
+                    largura,
+                    altura
+                ) * 0.42;
+
+
+            const centroX =
+                largura / 2;
+
+            const centroY =
+                altura / 2;
 
 
             ctx.clearRect(
@@ -428,14 +540,9 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
 
-            const centroX =
-                largura / 2;
-
-            const centroY =
-                altura / 2;
-
-
-            /* ---------- ATMOSFERA ---------- */
+            /* =================================================
+               ATMOSFERA
+            ================================================== */
 
             const atmosfera =
                 ctx.createRadialGradient(
@@ -447,15 +554,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     raio * 1.12
                 );
 
+
             atmosfera.addColorStop(
                 0,
                 "rgba(20,20,25,1)"
             );
 
+
             atmosfera.addColorStop(
                 0.75,
                 "rgba(3,3,5,1)"
             );
+
 
             atmosfera.addColorStop(
                 1,
@@ -466,7 +576,9 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.fillStyle =
                 atmosfera;
 
+
             ctx.beginPath();
+
 
             ctx.arc(
                 centroX,
@@ -476,39 +588,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 Math.PI * 2
             );
 
+
             ctx.fill();
 
-    document
-        .querySelectorAll("[data-voltar]")
-        .forEach(botao => {
 
-            botao.addEventListener("click", () => {
-
-                mostrarEstado(
-                    botao.dataset.voltar
-                );
-
-            });
-
-        });
-
-
-    document
-        .getElementById("mensagemAnterior")
-        ?.addEventListener(
-            "click",
-            mensagemAnterior
-        );
-
-
-    document
-        .getElementById("mensagemProxima")
-        ?.addEventListener(
-            "click",
-            proximaMensagem
-        );
-           
-            /* ---------- GLOBO ---------- */
+            /* =================================================
+               GLOBO
+            ================================================== */
 
             const oceano =
                 ctx.createRadialGradient(
@@ -520,15 +606,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     raio
                 );
 
+
             oceano.addColorStop(
                 0,
                 "#17212a"
             );
 
+
             oceano.addColorStop(
                 0.7,
                 "#071018"
             );
+
 
             oceano.addColorStop(
                 1,
@@ -539,7 +628,9 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.fillStyle =
                 oceano;
 
+
             ctx.beginPath();
+
 
             ctx.arc(
                 centroX,
@@ -549,10 +640,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 Math.PI * 2
             );
 
+
             ctx.fill();
 
 
-            /* ---------- LONGITUDES ---------- */
+            /* =================================================
+               LONGITUDES
+            ================================================== */
 
             ctx.strokeStyle =
                 "rgba(201,164,106,0.13)";
@@ -568,6 +662,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 ctx.beginPath();
 
+
                 ctx.ellipse(
                     centroX,
                     centroY,
@@ -582,12 +677,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     Math.PI * 2
                 );
 
+
                 ctx.stroke();
 
             }
 
 
-            /* ---------- LATITUDES ---------- */
+            /* =================================================
+               LATITUDES
+            ================================================== */
 
             for (
                 let i = -2;
@@ -597,24 +695,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 ctx.beginPath();
 
+
                 ctx.ellipse(
                     centroX,
                     centroY,
                     raio,
-                    Math.cos(i * 0.35) * raio * 0.82,
+                    Math.cos(
+                        i * 0.35
+                    ) * raio * 0.82,
                     0,
                     0,
                     Math.PI * 2
                 );
+
 
                 ctx.stroke();
 
             }
 
 
-            /* ---------- PONTOS DE LUZ ---------- */
+            /* =================================================
+               PONTOS DE LUZ
+            ================================================== */
 
             const pontos = [
+
                 [0.73, 0.38],
                 [0.68, 0.45],
                 [0.58, 0.53],
@@ -624,6 +729,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 [0.23, 0.42],
                 [0.62, 0.30],
                 [0.39, 0.33]
+
             ];
 
 
@@ -635,6 +741,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         (x - 0.5) *
                         raio *
                         1.7;
+
 
                     const py =
                         centroY +
@@ -653,18 +760,27 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (
                         distancia >
                         raio * 0.88
-                    ) return;
+                    ) {
+
+                        return;
+
+                    }
 
 
                     ctx.fillStyle =
                         "rgba(225,179,109,0.9)";
 
-                    ctx.shadowBlur = 12;
+
+                    ctx.shadowBlur =
+                        12;
+
 
                     ctx.shadowColor =
                         "rgba(225,179,109,0.9)";
 
+
                     ctx.beginPath();
+
 
                     ctx.arc(
                         px,
@@ -674,7 +790,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         Math.PI * 2
                     );
 
+
                     ctx.fill();
+
 
                     ctx.shadowBlur = 0;
 
@@ -682,14 +800,19 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
 
-            /* ---------- BORDA ---------- */
+            /* =================================================
+               BORDA
+            ================================================== */
 
             ctx.strokeStyle =
                 "rgba(201,164,106,0.45)";
 
+
             ctx.lineWidth = 2;
 
+
             ctx.beginPath();
+
 
             ctx.arc(
                 centroX,
@@ -699,8 +822,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 Math.PI * 2
             );
 
+
             ctx.stroke();
 
+
+            /* =================================================
+               MOVIMENTO AUTOMÁTICO
+            ================================================== */
 
             if (!arrastando) {
 
@@ -716,6 +844,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
+        /* =====================================================
+           CONTROLE POR TOQUE / MOUSE
+        ====================================================== */
+
         canvas.addEventListener(
             "pointerdown",
             event => {
@@ -724,6 +856,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 inicioX =
                     event.clientX;
+
 
                 canvas.setPointerCapture(
                     event.pointerId
@@ -739,12 +872,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (!arrastando) return;
 
+
                 const diferenca =
                     event.clientX -
                     inicioX;
 
+
                 rotacao +=
                     diferenca * 0.008;
+
 
                 inicioX =
                     event.clientX;
@@ -779,7 +915,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       BUSCAR DADOS
+       CARREGAR MENSAGENS
     ====================================================== */
 
     async function carregarMensagens() {
@@ -789,10 +925,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const resposta =
                 await fetch(API_URL);
 
+
             if (!resposta.ok) {
+
                 throw new Error(
                     "Erro ao acessar a API."
                 );
+
             }
 
 
@@ -800,18 +939,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 await resposta.json();
 
 
-            if (!dados || !Array.isArray(dados.mensagens)) {
-    throw new Error(
-        "Formato de dados inválido."
-    );
-}
+            if (
+                !dados ||
+                !Array.isArray(
+                    dados.mensagens
+                )
+            ) {
 
-mensagens =
-    dados.mensagens.filter(item =>
-        item &&
-        item.pais &&
-        item.mensagem
-    );
+                throw new Error(
+                    "Formato de dados inválido."
+                );
+
+            }
+
+
+            mensagens =
+                dados.mensagens.filter(
+                    item =>
+                        item &&
+                        item.pais &&
+                        item.mensagem
+                );
 
 
             criarListaPaises();
@@ -822,21 +970,35 @@ mensagens =
 
 
             if (carregando) {
+
                 carregando.remove();
+
             }
 
         }
 
         catch (error) {
 
-            console.error(error);
+            console.error(
+                "Erro ao carregar mensagens:",
+                error
+            );
+
 
             if (carregando) {
+
                 carregando.remove();
+
             }
 
+
             if (erro) {
-                erro.style.display = "flex";
+
+                erro.hidden = false;
+
+                erro.style.display =
+                    "flex";
+
             }
 
         }
