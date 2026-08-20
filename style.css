@@ -339,6 +339,36 @@ body {
     color: var(--dourado);
 }
 
+/* =========================================================
+   DESKTOP — AJUSTE DOS CARDS
+========================================================= */
+
+@media (min-width: 701px) {
+
+    .card,
+    .card:nth-child(3) {
+
+        height: 200px;
+        min-height: 200px;
+        max-height: 200px;
+
+        padding: 18px 18px;
+
+        justify-content: center;
+
+        background-image:
+            linear-gradient(
+                to bottom,
+                rgba(3, 3, 3, 0.72),
+                rgba(3, 3, 3, 0.82)
+            ),
+            url("cards-bg.jpg");
+
+        background-size: cover;
+        background-position: center;
+    }
+
+}
 
 /* =========================================================
    MOBILE
