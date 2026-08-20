@@ -478,7 +478,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
             ctx.fill();
 
+    document
+        .querySelectorAll("[data-voltar]")
+        .forEach(botao => {
 
+            botao.addEventListener("click", () => {
+
+                mostrarEstado(
+                    botao.dataset.voltar
+                );
+
+            });
+
+        });
+
+
+    document
+        .getElementById("mensagemAnterior")
+        ?.addEventListener(
+            "click",
+            mensagemAnterior
+        );
+
+
+    document
+        .getElementById("mensagemProxima")
+        ?.addEventListener(
+            "click",
+            proximaMensagem
+        );
+           
             /* ---------- GLOBO ---------- */
 
             const oceano =
@@ -771,15 +800,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 await resposta.json();
 
 
-            if (!Array.isArray(dados)) {
-                throw new Error(
-                    "Formato de dados inválido."
-                );
-            }
+            if (!dados || !Array.isArray(dados.mensagens)) {
+    throw new Error(
+        "Formato de dados inválido."
+    );
+}
 
-
-            mensagens =
-    (dados.mensagens || []).filter(item =>
+mensagens =
+    dados.mensagens.filter(item =>
         item &&
         item.pais &&
         item.mensagem
