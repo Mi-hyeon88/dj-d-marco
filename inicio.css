@@ -1,5 +1,5 @@
 /* =========================================================
-   D.MARCO — SESSÃO INÍCIO
+   D.MARCO — SESSÃO PARA VOCÊ
 ========================================================= */
 
 :root {
@@ -25,10 +25,11 @@ body {
 
     width: 100%;
     min-height: 100%;
+
+    background: var(--preto);
 }
 
 body {
-    background: var(--preto);
     color: var(--creme);
 
     font-family:
@@ -100,6 +101,9 @@ body {
 .inicio-link {
     position: relative;
 
+    display: flex;
+    align-items: center;
+
     padding-bottom: 11px;
 
     color: rgba(238, 228, 216, 0.85);
@@ -115,8 +119,23 @@ body {
 
     letter-spacing: 2px;
 
-    transition: color 0.25s ease;
+    transition:
+        color 0.25s ease,
+        opacity 0.25s ease;
 }
+
+.inicio-link:hover {
+    color: var(--creme);
+}
+
+.inicio-link.ativo {
+    color: var(--dourado);
+}
+
+
+/* =========================================================
+   ÍCONE HOME
+========================================================= */
 
 .icone-home {
     display: block;
@@ -129,16 +148,10 @@ body {
     flex-shrink: 0;
 }
 
-.inicio-link:hover {
-    color: var(--creme);
-}
 
-.inicio-link.ativo {
-    color: var(--dourado);
-}
-
-
-/* ---------- brilho do item ativo ---------- */
+/* =========================================================
+   BRILHO DO ITEM ATIVO
+========================================================= */
 
 .inicio-link.ativo::before {
     content: "✦";
@@ -160,7 +173,9 @@ body {
 }
 
 
-/* ---------- linha ativa ---------- */
+/* =========================================================
+   LINHA DO ITEM ATIVO
+========================================================= */
 
 .inicio-link.ativo::after {
     content: "";
@@ -213,6 +228,8 @@ body {
     line-height: 1;
 
     cursor: pointer;
+
+    flex-shrink: 0;
 }
 
 
@@ -229,7 +246,6 @@ body {
     left: clamp(85px, 12vw, 145px);
 
     width: 1px;
-
     height: 900px;
 
     background:
@@ -288,7 +304,6 @@ body {
     z-index: 5;
 
     width: 100%;
-
     min-height: 100svh;
 
     padding:
@@ -297,11 +312,11 @@ body {
         210px;
 }
 
-
 .inicio-texto {
     width: min(620px, 70%);
 
-    margin-left: clamp(145px, 18vw, 230px);
+    margin-left:
+        clamp(145px, 18vw, 230px);
 }
 
 
@@ -481,114 +496,13 @@ body {
 
 /* =========================================================
    MOBILE
+   COMPOSIÇÃO FECHADA — SEM ROLAGEM
 ========================================================= */
 
 @media (max-width: 700px) {
 
     .inicio-page {
-        min-height: 100svh;
-
-        background-size: auto 100%;
-        background-position: center top;
-
-        overflow-y: auto;
-    }
-
-
-    /* =====================================================
-       TOPO MOBILE
-    ====================================================== */
-
-    .inicio-topo {
-        padding:
-            27px
-            24px
-            0;
-    }
-
-    .inicio-navegacao {
-        gap: 20px;
-    }
-
-    .inicio-link {
-        padding-bottom: 7px;
-
-        font-size: 8px;
-
-        letter-spacing: 1.35px;
-    }
-
-    .inicio-link.ativo::before {
-        top: -12px;
-
-        font-size: 7px;
-    }
-
-    .inicio-musica {
-        width: 27px;
-        height: 27px;
-
-        font-size: 23px;
-    }
-
-
-    /* =====================================================
-       LINHA MOBILE
-    ====================================================== */
-
-    .linha-vertical {
-        top: 263px;
-        left: 52px;
-
-        height: 830px;
-    }
-
-
-    /* =====================================================
-       CONTEÚDO MOBILE
-    ====================================================== */
-
-    .inicio-conteudo {
-        min-height: auto;
-
-        padding:
-            175px
-            36px
-            150px;
-    }
-
-    .inicio-texto {
-        width: calc(100% - 17px);
-
-        margin-left: 57px;
-    }
-
-
-    /* =====================================================
-       ABERTURA
-    ====================================================== */
-
-    .inicio-abertura {
-        font-size: 25px;
-
-        line-height: 1.27;
-    }
-
-
-    /* =====================================================
-       TEXTO
-    ====================================================== */
-
-    .inicio-texto p {
-        font-size: 13px;
-
-/* =========================================================
-   MOBILE — COMPOSIÇÃO COMPLETA
-========================================================= */
-
-@media (max-width: 700px) {
-
-    .inicio-page {
+        width: 100%;
         height: 100svh;
         min-height: 100svh;
 
@@ -600,10 +514,12 @@ body {
 
 
     /* =====================================================
-       TOPO
+       TOPO MOBILE
     ====================================================== */
 
     .inicio-topo {
+        top: 0;
+
         padding:
             24px
             21px
@@ -618,7 +534,10 @@ body {
         padding-bottom: 5px;
 
         font-size: 7px;
+
         letter-spacing: 1px;
+
+        white-space: nowrap;
     }
 
     .icone-home {
@@ -628,7 +547,13 @@ body {
 
     .inicio-link.ativo::before {
         top: -10px;
+
         font-size: 6px;
+    }
+
+    .inicio-link.ativo::after {
+        left: -5px;
+        right: -5px;
     }
 
     .inicio-musica {
@@ -640,28 +565,31 @@ body {
 
 
     /* =====================================================
-       LINHA DECORATIVA
+       LINHA VERTICAL MOBILE
     ====================================================== */
 
     .linha-vertical {
         top: 170px;
         left: 39px;
 
-        height: 610px;
+        width: 1px;
+        height: 650px;
     }
 
 
     /* =====================================================
-       CONTEÚDO
+       CONTEÚDO MOBILE
     ====================================================== */
 
     .inicio-conteudo {
+        width: 100%;
+        height: 100svh;
         min-height: 100svh;
 
         padding:
             108px
             25px
-            65px;
+            60px;
     }
 
     .inicio-texto {
@@ -672,18 +600,20 @@ body {
 
 
     /* =====================================================
-       ABERTURA
+       ABERTURA MOBILE
     ====================================================== */
 
     .inicio-abertura {
         font-size: 19px;
 
         line-height: 1.18;
+
+        letter-spacing: 0;
     }
 
 
     /* =====================================================
-       PARÁGRAFOS
+       PARÁGRAFOS MOBILE
     ====================================================== */
 
     .inicio-texto p {
@@ -696,11 +626,13 @@ body {
 
 
     /* =====================================================
-       SEPARADORES
+       SEPARADORES MOBILE
     ====================================================== */
 
     .separador {
         width: 17px;
+
+        height: 1px;
 
         margin:
             9px 0;
@@ -708,7 +640,7 @@ body {
 
 
     /* =====================================================
-       FINAL
+       FINAL MOBILE
     ====================================================== */
 
     .inicio-final p {
@@ -735,11 +667,14 @@ body {
 
 
     /* =====================================================
-       ASSINATURA
+       ASSINATURA MOBILE
     ====================================================== */
 
     .inicio-assinatura {
-        bottom: 13px;
+        left: 50%;
+        bottom: 12px;
+
+        width: 100%;
     }
 
     .linha-assinatura {
@@ -752,12 +687,98 @@ body {
         margin-bottom: 3px;
 
         font-size: 5px;
+
         letter-spacing: 1px;
     }
 
     .inicio-assinatura strong {
         font-size: 5px;
+
         letter-spacing: 0.7px;
+    }
+
+
+    /* =====================================================
+       REVELAÇÃO SUAVE
+    ====================================================== */
+
+    .inicio-texto > * {
+        opacity: 0;
+
+        transform:
+            translateY(7px);
+
+        animation:
+            revelarConteudo
+            0.8s
+            ease
+            forwards;
+    }
+
+    .inicio-texto > *:nth-child(1) {
+        animation-delay: 0.10s;
+    }
+
+    .inicio-texto > *:nth-child(2) {
+        animation-delay: 0.22s;
+    }
+
+    .inicio-texto > *:nth-child(3) {
+        animation-delay: 0.34s;
+    }
+
+    .inicio-texto > *:nth-child(4) {
+        animation-delay: 0.46s;
+    }
+
+    .inicio-texto > *:nth-child(5) {
+        animation-delay: 0.58s;
+    }
+
+    .inicio-texto > *:nth-child(6) {
+        animation-delay: 0.70s;
+    }
+
+    .inicio-texto > *:nth-child(7) {
+        animation-delay: 0.82s;
+    }
+
+    .inicio-texto > *:nth-child(8) {
+        animation-delay: 0.94s;
+    }
+
+    .inicio-texto > *:nth-child(9) {
+        animation-delay: 1.06s;
+    }
+
+    .inicio-texto > *:nth-child(10) {
+        animation-delay: 1.18s;
+    }
+
+    .inicio-texto > *:nth-child(11) {
+        animation-delay: 1.30s;
+    }
+}
+
+
+/* =========================================================
+   ANIMAÇÃO
+========================================================= */
+
+@keyframes revelarConteudo {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(7px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
     }
 }
 
@@ -769,39 +790,97 @@ body {
 @media (max-width: 380px) {
 
     .inicio-topo {
-        padding-left: 18px;
-        padding-right: 18px;
+        padding-left: 17px;
+        padding-right: 17px;
     }
 
     .inicio-navegacao {
-        gap: 14px;
+        gap: 12px;
     }
 
     .inicio-link {
-        font-size: 7px;
-        letter-spacing: 1px;
+        font-size: 6.5px;
+
+        letter-spacing: 0.8px;
     }
 
-    .inicio-conteudo {
-        padding-left: 29px;
-        padding-right: 29px;
+    .icone-home {
+        width: 15px;
+        height: 15px;
     }
+
+    .inicio-musica {
+        width: 22px;
+        height: 22px;
+
+        font-size: 19px;
+    }
+
 
     .linha-vertical {
-        left: 43px;
+        top: 165px;
+        left: 34px;
+
+        height: 635px;
+    }
+
+
+    .inicio-conteudo {
+        padding:
+            104px
+            21px
+            55px;
     }
 
     .inicio-texto {
-        margin-left: 48px;
+        width: calc(100% - 27px);
 
-        width: calc(100% - 10px);
+        margin-left: 38px;
     }
 
+
     .inicio-abertura {
-        font-size: 23px;
+        font-size: 18px;
+
+        line-height: 1.17;
     }
 
     .inicio-texto p {
-        font-size: 12px;
+        font-size: 9.3px;
+
+        line-height: 1.46;
+    }
+
+    .separador {
+        width: 16px;
+
+        margin:
+            8px 0;
+    }
+
+
+    .estrela-texto > span {
+        font-size: 18px;
+    }
+
+    .estrela-texto em {
+        font-size: 22px;
+    }
+
+    .estrela-texto b {
+        font-size: 11px;
+    }
+
+
+    .inicio-assinatura {
+        bottom: 10px;
+    }
+
+    .inicio-assinatura p {
+        font-size: 4.5px;
+    }
+
+    .inicio-assinatura strong {
+        font-size: 4.5px;
     }
 }
