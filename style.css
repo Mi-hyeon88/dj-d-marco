@@ -65,7 +65,7 @@ body {
 @media (min-width: 701px) {
 
     .home {
-        background-size: cover;
+        background-size: 100%;
         background-position: center 43%;
     }
 
