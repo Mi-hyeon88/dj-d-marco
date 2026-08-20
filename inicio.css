@@ -582,7 +582,116 @@ body {
     .inicio-texto p {
         font-size: 13px;
 
-        line-height: 1.78;
+/* =========================================================
+   MOBILE — COMPOSIÇÃO COMPLETA
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .inicio-page {
+        height: 100svh;
+        min-height: 100svh;
+
+        background-size: auto 100%;
+        background-position: center top;
+
+        overflow: hidden;
+    }
+
+
+    /* =====================================================
+       TOPO
+    ====================================================== */
+
+    .inicio-topo {
+        padding:
+            24px
+            21px
+            0;
+    }
+
+    .inicio-navegacao {
+        gap: 16px;
+    }
+
+    .inicio-link {
+        padding-bottom: 5px;
+
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
+
+    .icone-home {
+        width: 16px;
+        height: 16px;
+    }
+
+    .inicio-link.ativo::before {
+        top: -10px;
+        font-size: 6px;
+    }
+
+    .inicio-musica {
+        width: 24px;
+        height: 24px;
+
+        font-size: 20px;
+    }
+
+
+    /* =====================================================
+       LINHA DECORATIVA
+    ====================================================== */
+
+    .linha-vertical {
+        top: 170px;
+        left: 39px;
+
+        height: 610px;
+    }
+
+
+    /* =====================================================
+       CONTEÚDO
+    ====================================================== */
+
+    .inicio-conteudo {
+        min-height: 100svh;
+
+        padding:
+            108px
+            25px
+            65px;
+    }
+
+    .inicio-texto {
+        width: calc(100% - 34px);
+
+        margin-left: 43px;
+    }
+
+
+    /* =====================================================
+       ABERTURA
+    ====================================================== */
+
+    .inicio-abertura {
+        font-size: 19px;
+
+        line-height: 1.18;
+    }
+
+
+    /* =====================================================
+       PARÁGRAFOS
+    ====================================================== */
+
+    .inicio-texto p {
+        font-size: 10px;
+
+        line-height: 1.48;
+
+        letter-spacing: 0;
     }
 
 
@@ -591,10 +700,10 @@ body {
     ====================================================== */
 
     .separador {
-        width: 23px;
+        width: 17px;
 
         margin:
-            18px 0;
+            9px 0;
     }
 
 
@@ -602,16 +711,26 @@ body {
        FINAL
     ====================================================== */
 
+    .inicio-final p {
+        margin-bottom: 3px;
+    }
+
+    .estrela-texto {
+        line-height: 0.95;
+    }
+
     .estrela-texto > span {
-        font-size: 28px;
+        font-size: 19px;
     }
 
     .estrela-texto em {
-        font-size: 34px;
+        font-size: 24px;
     }
 
     .estrela-texto b {
-        font-size: 17px;
+        margin-left: 3px;
+
+        font-size: 12px;
     }
 
 
@@ -620,27 +739,25 @@ body {
     ====================================================== */
 
     .inicio-assinatura {
-        bottom: 25px;
+        bottom: 13px;
     }
 
     .linha-assinatura {
-        width: 105px;
+        width: 75px;
 
-        margin-bottom: 13px;
+        margin-bottom: 6px;
     }
 
     .inicio-assinatura p {
-        margin-bottom: 5px;
+        margin-bottom: 3px;
 
-        font-size: 7px;
-
-        letter-spacing: 1.5px;
+        font-size: 5px;
+        letter-spacing: 1px;
     }
 
     .inicio-assinatura strong {
-        font-size: 7px;
-
-        letter-spacing: 1px;
+        font-size: 5px;
+        letter-spacing: 0.7px;
     }
 }
 
