@@ -92,66 +92,65 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function normalizarPais(pais) {
 
-    const valor =
-        String(pais || "")
-            .trim()
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "");
+        const valor =
+            String(pais || "")
+                .trim()
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "");
 
-    const aliases = {
+        const aliases = {
 
-        brasil: "brasil",
-        brazil: "brasil",
+            brasil: "brasil",
+            brazil: "brasil",
 
-        "coreia do sul": "coreia do sul",
-        coreia: "coreia do sul",
-        korea: "coreia do sul",
-        "south korea": "coreia do sul",
+            "coreia do sul": "coreia do sul",
+            coreia: "coreia do sul",
+            korea: "coreia do sul",
+            "south korea": "coreia do sul",
 
-        japao: "japao",
-        japan: "japao",
+            japao: "japao",
+            japan: "japao",
 
-        "estados unidos": "estados unidos",
-        "united states": "estados unidos",
-        usa: "estados unidos",
-        eua: "estados unidos",
+            "estados unidos": "estados unidos",
+            "united states": "estados unidos",
+            usa: "estados unidos",
+            eua: "estados unidos",
 
-        franca: "franca",
-        france: "franca",
+            franca: "franca",
+            france: "franca",
 
-        portugal: "portugal",
+            portugal: "portugal",
 
-        mexico: "mexico",
-        mexico: "mexico",
+            mexico: "mexico",
 
-        alemanha: "alemanha",
-        germany: "alemanha",
+            alemanha: "alemanha",
+            germany: "alemanha",
 
-        argentina: "argentina",
+            argentina: "argentina",
 
-        chile: "chile",
+            chile: "chile",
 
-        colombia: "colombia",
+            colombia: "colombia",
 
-        peru: "peru",
+            peru: "peru",
 
-        canada: "canada",
+            canada: "canada",
 
-        italia: "italia",
-        italy: "italia",
+            italia: "italia",
+            italy: "italia",
 
-        espanha: "espanha",
-        spain: "espanha",
+            espanha: "espanha",
+            spain: "espanha",
 
-        "reino unido": "reino unido",
-        "reino_unido": "reino unido",
-        "united kingdom": "reino unido",
-        uk: "reino unido"
+            "reino unido": "reino unido",
+            "reino_unido": "reino unido",
+            "united kingdom": "reino unido",
+            uk: "reino unido"
 
-    };
+        };
 
-    return aliases[valor] || valor;
+        return aliases[valor] || valor;
 
     }
 
@@ -169,34 +168,19 @@ document.addEventListener("DOMContentLoaded", () => {
             "coreia do sul":
                 "Coreia do Sul",
 
-            coreia:
-                "Coreia do Sul",
-
             japao:
-                "Japão",
-
-            "japão":
                 "Japão",
 
             "estados unidos":
                 "Estados Unidos",
 
-            eua:
-                "Estados Unidos",
-
             franca:
-                "França",
-
-            "frança":
                 "França",
 
             portugal:
                 "Portugal",
 
             mexico:
-                "México",
-
-            "méxico":
                 "México",
 
             alemanha:
@@ -211,9 +195,6 @@ document.addEventListener("DOMContentLoaded", () => {
             colombia:
                 "Colômbia",
 
-            "colômbia":
-                "Colômbia",
-
             peru:
                 "Peru",
 
@@ -223,17 +204,8 @@ document.addEventListener("DOMContentLoaded", () => {
             italia:
                 "Itália",
 
-            "itália":
-                "Itália",
-
             espanha:
                 "Espanha",
-
-            "espanha":
-                "Espanha",
-
-            reino_unido:
-                "Reino Unido",
 
             "reino unido":
                 "Reino Unido"
@@ -387,14 +359,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       ABRIR MENSAGEM
+       PREPARAR MENSAGEM
     ====================================================== */
 
     function prepararMensagem() {
 
         const mensagem =
             mensagensPais[indiceMensagem];
-
 
         if (!mensagem) return;
 
@@ -546,675 +517,644 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       GLOBO INTERATIVO
+       GLOBO
     ====================================================== */
 
-   function criarGlobo() {
+    function criarGlobo() {
 
-    if (!globo) return;
+        if (!globo) return;
 
-    globo.innerHTML = "";
+        globo.innerHTML = "";
 
-    const canvas =
-        document.createElement("canvas");
+        const canvas =
+            document.createElement("canvas");
 
-    canvas.width = 900;
-    canvas.height = 900;
+        canvas.width = 900;
+        canvas.height = 900;
 
-    canvas.style.width = "100%";
-    canvas.style.height = "100%";
-    canvas.style.touchAction = "none";
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+        canvas.style.touchAction = "none";
 
-    globo.appendChild(canvas);
+        globo.appendChild(canvas);
 
-    const ctx =
-        canvas.getContext("2d");
+        const ctx =
+            canvas.getContext("2d");
 
-    let rotacao = 0;
-    let arrastando = false;
-    let inicioX = 0;
-
-    /*
-     * POSIÇÕES GEOGRÁFICAS APROXIMADAS
-     *
-     * latitude  = -90 a +90
-     * longitude = -180 a +180
-     *
-     * Os países serão desenhados na superfície
-     * do globo e acompanharão a rotação.
-     */
-
-    const coordenadasPaises = {
-
-        brasil: {
-            latitude: -10,
-            longitude: -52
-        },
-
-        "coreia do sul": {
-            latitude: 36,
-            longitude: 128
-        },
-
-        japao: {
-            latitude: 36,
-            longitude: 138
-        },
-
-        "estados unidos": {
-            latitude: 38,
-            longitude: -97
-        },
-
-        franca: {
-            latitude: 46,
-            longitude: 2
-        },
-
-        portugal: {
-            latitude: 39,
-            longitude: -8
-        },
-
-        mexico: {
-            latitude: 23,
-            longitude: -102
-        },
-
-        alemanha: {
-            latitude: 51,
-            longitude: 10
-        },
-
-        argentina: {
-            latitude: -34,
-            longitude: -64
-        },
-
-        chile: {
-            latitude: -33,
-            longitude: -71
-        },
-
-        colombia: {
-            latitude: 4,
-            longitude: -74
-        },
-
-        peru: {
-            latitude: -9,
-            longitude: -75
-        },
-
-        canada: {
-            latitude: 56,
-            longitude: -106
-        },
-
-        italia: {
-            latitude: 42,
-            longitude: 12
-        },
-
-        espanha: {
-            latitude: 40,
-            longitude: -4
-        },
-
-        "reino unido": {
-            latitude: 55,
-            longitude: -3
-        }
-
-    };
+        let rotacao = 0;
+        let arrastando = false;
+        let inicioX = 0;
 
 
-    /*
-     * Converte latitude/longitude
-     * para posição no globo.
-     */
+        /* =================================================
+           COORDENADAS
+        ================================================== */
 
-    function projetarPonto(
-        latitude,
-        longitude,
-        centroX,
-        centroY,
-        raio
-    ) {
+        const coordenadasPaises = {
 
-        const lat =
-            latitude * Math.PI / 180;
+            brasil: {
+                latitude: -10,
+                longitude: -52
+            },
 
-        const lon =
-            longitude * Math.PI / 180;
+            "coreia do sul": {
+                latitude: 36,
+                longitude: 128
+            },
 
-        const lonRotacionada =
-            lon + rotacao;
+            japao: {
+                latitude: 36,
+                longitude: 138
+            },
 
-        const x =
-            Math.cos(lat) *
-            Math.sin(lonRotacionada);
+            "estados unidos": {
+                latitude: 38,
+                longitude: -97
+            },
 
-        const y =
-            Math.sin(lat);
+            franca: {
+                latitude: 46,
+                longitude: 2
+            },
 
-        const z =
-            Math.cos(lat) *
-            Math.cos(lonRotacionada);
+            portugal: {
+                latitude: 39,
+                longitude: -8
+            },
 
+            mexico: {
+                latitude: 23,
+                longitude: -102
+            },
 
-        /*
-         * z > 0 = lado visível do globo.
-         */
+            alemanha: {
+                latitude: 51,
+                longitude: 10
+            },
 
-        if (z <= 0) {
-            return null;
-        }
+            argentina: {
+                latitude: -34,
+                longitude: -64
+            },
 
+            chile: {
+                latitude: -33,
+                longitude: -71
+            },
 
-        return {
+            colombia: {
+                latitude: 4,
+                longitude: -74
+            },
 
-            x:
-                centroX +
-                x * raio,
+            peru: {
+                latitude: -9,
+                longitude: -75
+            },
 
-            y:
-                centroY -
-                y * raio,
+            canada: {
+                latitude: 56,
+                longitude: -106
+            },
 
-            profundidade:
-                z
+            italia: {
+                latitude: 42,
+                longitude: 12
+            },
+
+            espanha: {
+                latitude: 40,
+                longitude: -4
+            },
+
+            "reino unido": {
+                latitude: 55,
+                longitude: -3
+            }
 
         };
 
-    }
+
+        /* =================================================
+           PROJEÇÃO
+        ================================================== */
+
+        function projetarPonto(
+            latitude,
+            longitude,
+            centroX,
+            centroY,
+            raio
+        ) {
+
+            const lat =
+                latitude * Math.PI / 180;
+
+            const lon =
+                longitude * Math.PI / 180;
+
+            const lonRotacionada =
+                lon + rotacao;
+
+            const x =
+                Math.cos(lat) *
+                Math.sin(lonRotacionada);
+
+            const y =
+                Math.sin(lat);
+
+            const z =
+                Math.cos(lat) *
+                Math.cos(lonRotacionada);
 
 
-    /*
-     * Desenha tudo.
-     */
+            if (z <= 0) {
+                return null;
+            }
 
-    function desenhar() {
 
-        const largura =
-            canvas.width;
+            return {
 
-        const altura =
-            canvas.height;
+                x:
+                    centroX +
+                    x * raio,
 
-        const raio =
-            Math.min(
+                y:
+                    centroY -
+                    y * raio,
+
+                profundidade:
+                    z
+
+            };
+
+        }
+
+
+        /* =================================================
+           DESENHAR
+        ================================================== */
+
+        function desenhar() {
+
+            const largura =
+                canvas.width;
+
+            const altura =
+                canvas.height;
+
+            const raio =
+                Math.min(
+                    largura,
+                    altura
+                ) * 0.42;
+
+            const centroX =
+                largura / 2;
+
+            const centroY =
+                altura / 2;
+
+
+            ctx.clearRect(
+                0,
+                0,
                 largura,
                 altura
-            ) * 0.42;
-
-        const centroX =
-            largura / 2;
-
-        const centroY =
-            altura / 2;
-
-
-        ctx.clearRect(
-            0,
-            0,
-            largura,
-            altura
-        );
-
-
-        /* =================================================
-           ATMOSFERA
-        ================================================== */
-
-        const atmosfera =
-            ctx.createRadialGradient(
-                centroX,
-                centroY,
-                raio * 0.65,
-                centroX,
-                centroY,
-                raio * 1.12
             );
 
-        atmosfera.addColorStop(
-            0,
-            "rgba(20,20,25,1)"
-        );
 
-        atmosfera.addColorStop(
-            0.75,
-            "rgba(3,3,5,1)"
-        );
+            /* ATMOSFERA */
 
-        atmosfera.addColorStop(
-            1,
-            "rgba(201,164,106,0)"
-        );
+            const atmosfera =
+                ctx.createRadialGradient(
+                    centroX,
+                    centroY,
+                    raio * 0.65,
+                    centroX,
+                    centroY,
+                    raio * 1.12
+                );
 
-        ctx.fillStyle =
-            atmosfera;
-
-        ctx.beginPath();
-
-        ctx.arc(
-            centroX,
-            centroY,
-            raio * 1.12,
-            0,
-            Math.PI * 2
-        );
-
-        ctx.fill();
-
-
-        /* =================================================
-           OCEANO
-        ================================================== */
-
-        const oceano =
-            ctx.createRadialGradient(
-                centroX - raio * 0.25,
-                centroY - raio * 0.3,
-                raio * 0.1,
-                centroX,
-                centroY,
-                raio
+            atmosfera.addColorStop(
+                0,
+                "rgba(20,20,25,1)"
             );
 
-        oceano.addColorStop(
-            0,
-            "#17212a"
-        );
+            atmosfera.addColorStop(
+                0.75,
+                "rgba(3,3,5,1)"
+            );
 
-        oceano.addColorStop(
-            0.7,
-            "#071018"
-        );
+            atmosfera.addColorStop(
+                1,
+                "rgba(201,164,106,0)"
+            );
 
-        oceano.addColorStop(
-            1,
-            "#010305"
-        );
-
-        ctx.fillStyle =
-            oceano;
-
-        ctx.beginPath();
-
-        ctx.arc(
-            centroX,
-            centroY,
-            raio,
-            0,
-            Math.PI * 2
-        );
-
-        ctx.fill();
-
-
-        /* =================================================
-           GRADE DO GLOBO
-        ================================================== */
-
-        ctx.strokeStyle =
-            "rgba(201,164,106,0.13)";
-
-        ctx.lineWidth = 2;
-
-
-        /* Longitudes */
-
-        for (
-            let i = -3;
-            i <= 3;
-            i++
-        ) {
+            ctx.fillStyle =
+                atmosfera;
 
             ctx.beginPath();
 
-            ctx.ellipse(
+            ctx.arc(
                 centroX,
                 centroY,
-                Math.abs(
-                    Math.sin(
-                        (i + rotacao) * 0.5
-                    )
-                ) * raio,
-                raio,
-                0,
+                raio * 1.12,
                 0,
                 Math.PI * 2
             );
 
-            ctx.stroke();
-
-        }
+            ctx.fill();
 
 
-        /* Latitudes */
+            /* OCEANO */
 
-        for (
-            let i = -2;
-            i <= 2;
-            i++
-        ) {
+            const oceano =
+                ctx.createRadialGradient(
+                    centroX - raio * 0.25,
+                    centroY - raio * 0.3,
+                    raio * 0.1,
+                    centroX,
+                    centroY,
+                    raio
+                );
+
+            oceano.addColorStop(
+                0,
+                "#17212a"
+            );
+
+            oceano.addColorStop(
+                0.7,
+                "#071018"
+            );
+
+            oceano.addColorStop(
+                1,
+                "#010305"
+            );
+
+            ctx.fillStyle =
+                oceano;
 
             ctx.beginPath();
 
-            ctx.ellipse(
+            ctx.arc(
                 centroX,
                 centroY,
                 raio,
-                Math.cos(
-                    i * 0.35
-                ) * raio * 0.82,
-                0,
                 0,
                 Math.PI * 2
             );
 
-            ctx.stroke();
-
-        }
+            ctx.fill();
 
 
-        /* =================================================
-           PONTOS DOS PAÍSES
-        ================================================== */
+            /* GRADE */
 
-        const grupos =
-            agruparPaises();
+            ctx.strokeStyle =
+                "rgba(201,164,106,0.13)";
 
-
-        Object.keys(grupos)
-            .forEach(pais => {
-
-                const coordenada =
-                    coordenadasPaises[pais];
-
-                if (!coordenada) return;
+            ctx.lineWidth = 2;
 
 
-                const ponto =
-                    projetarPonto(
-                        coordenada.latitude,
-                        coordenada.longitude,
-                        centroX,
-                        centroY,
-                        raio
-                    );
-
-
-                if (!ponto) return;
-
-
-                const tamanho =
-                    3 +
-                    ponto.profundidade * 2;
-
-
-                ctx.fillStyle =
-                    "rgba(225,179,109,0.95)";
-
-                ctx.shadowBlur =
-                    14;
-
-                ctx.shadowColor =
-                    "rgba(225,179,109,0.9)";
-
+            for (
+                let i = -3;
+                i <= 3;
+                i++
+            ) {
 
                 ctx.beginPath();
 
-                ctx.arc(
-                    ponto.x,
-                    ponto.y,
-                    tamanho,
+                ctx.ellipse(
+                    centroX,
+                    centroY,
+                    Math.abs(
+                        Math.sin(
+                            (i + rotacao) * 0.5
+                        )
+                    ) * raio,
+                    raio,
+                    0,
                     0,
                     Math.PI * 2
                 );
 
-                ctx.fill();
-
-                ctx.shadowBlur = 0;
-
-            });
-
-
-        /* =================================================
-           BORDA
-        ================================================== */
-
-        ctx.strokeStyle =
-            "rgba(201,164,106,0.45)";
-
-        ctx.lineWidth = 2;
-
-        ctx.beginPath();
-
-        ctx.arc(
-            centroX,
-            centroY,
-            raio,
-            0,
-            Math.PI * 2
-        );
-
-        ctx.stroke();
-
-
-        /* =================================================
-           ROTAÇÃO AUTOMÁTICA
-        ================================================== */
-
-        if (!arrastando) {
-
-            rotacao += 0.0025;
-
-        }
-
-
-        requestAnimationFrame(
-            desenhar
-        );
-
-    }
-
-
-    /* =====================================================
-       LOCALIZAR PAÍS PELO TOQUE
-    ====================================================== */
-
-    function detectarPais(
-        evento
-    ) {
-
-        const rect =
-            canvas.getBoundingClientRect();
-
-
-        const escalaX =
-            canvas.width /
-            rect.width;
-
-        const escalaY =
-            canvas.height /
-            rect.height;
-
-
-        const toqueX =
-            (evento.clientX -
-                rect.left) *
-            escalaX;
-
-        const toqueY =
-            (evento.clientY -
-                rect.top) *
-            escalaY;
-
-
-        const centroX =
-            canvas.width / 2;
-
-        const centroY =
-            canvas.height / 2;
-
-        const raio =
-            Math.min(
-                canvas.width,
-                canvas.height
-            ) * 0.42;
-
-
-        let paisSelecionado = null;
-
-        let menorDistancia =
-            Infinity;
-
-
-        const grupos =
-            agruparPaises();
-
-
-        Object.keys(grupos)
-            .forEach(pais => {
-
-                const coordenada =
-                    coordenadasPaises[pais];
-
-                if (!coordenada) return;
-
-
-                const ponto =
-                    projetarPonto(
-                        coordenada.latitude,
-                        coordenada.longitude,
-                        centroX,
-                        centroY,
-                        raio
-                    );
-
-
-                if (!ponto) return;
-
-
-                const distancia =
-                    Math.hypot(
-                        toqueX - ponto.x,
-                        toqueY - ponto.y
-                    );
-
-
-                if (
-                    distancia < 35 &&
-                    distancia < menorDistancia
-                ) {
-
-                    menorDistancia =
-                        distancia;
-
-                    paisSelecionado =
-                        pais;
-
-                }
-
-            });
-
-
-        if (paisSelecionado) {
-
-            abrirPais(
-                paisSelecionado
-            );
-
-        }
-
-    }
-
-
-    /* =====================================================
-       TOQUE / ARRASTAR
-    ====================================================== */
-
-    canvas.addEventListener(
-        "pointerdown",
-        evento => {
-
-            arrastando = false;
-
-            inicioX =
-                evento.clientX;
-
-            canvas.setPointerCapture(
-                evento.pointerId
-            );
-
-        }
-    );
-
-
-    canvas.addEventListener(
-        "pointermove",
-        evento => {
-
-            const diferenca =
-                evento.clientX -
-                inicioX;
-
-
-            if (
-                Math.abs(diferenca) > 3
-            ) {
-
-                arrastando = true;
-
-                rotacao +=
-                    diferenca * 0.008;
-
-                inicioX =
-                    evento.clientX;
+                ctx.stroke();
 
             }
 
-        }
-    );
+
+            for (
+                let i = -2;
+                i <= 2;
+                i++
+            ) {
+
+                ctx.beginPath();
+
+                ctx.ellipse(
+                    centroX,
+                    centroY,
+                    raio,
+                    Math.cos(
+                        i * 0.35
+                    ) * raio * 0.82,
+                    0,
+                    0,
+                    Math.PI * 2
+                );
+
+                ctx.stroke();
+
+            }
 
 
-    canvas.addEventListener(
-        "pointerup",
-        evento => {
+            /* PONTOS */
+
+            const grupos =
+                agruparPaises();
+
+
+            Object.keys(grupos)
+                .forEach(pais => {
+
+                    const coordenada =
+                        coordenadasPaises[pais];
+
+                    if (!coordenada) return;
+
+
+                    const ponto =
+                        projetarPonto(
+                            coordenada.latitude,
+                            coordenada.longitude,
+                            centroX,
+                            centroY,
+                            raio
+                        );
+
+
+                    if (!ponto) return;
+
+
+                    const tamanho =
+                        3 +
+                        ponto.profundidade * 2;
+
+
+                    ctx.fillStyle =
+                        "rgba(225,179,109,0.95)";
+
+                    ctx.shadowBlur =
+                        14;
+
+                    ctx.shadowColor =
+                        "rgba(225,179,109,0.9)";
+
+
+                    ctx.beginPath();
+
+                    ctx.arc(
+                        ponto.x,
+                        ponto.y,
+                        tamanho,
+                        0,
+                        Math.PI * 2
+                    );
+
+                    ctx.fill();
+
+                    ctx.shadowBlur = 0;
+
+                });
+
+
+            /* BORDA */
+
+            ctx.strokeStyle =
+                "rgba(201,164,106,0.45)";
+
+            ctx.lineWidth = 2;
+
+            ctx.beginPath();
+
+            ctx.arc(
+                centroX,
+                centroY,
+                raio,
+                0,
+                Math.PI * 2
+            );
+
+            ctx.stroke();
+
+
+            /* ROTAÇÃO */
 
             if (!arrastando) {
 
-                detectarPais(
-                    evento
+                rotacao += 0.0025;
+
+            }
+
+
+            requestAnimationFrame(
+                desenhar
+            );
+
+        }
+
+
+        /* =================================================
+           DETECTAR PAÍS
+        ================================================== */
+
+        function detectarPais(evento) {
+
+            const rect =
+                canvas.getBoundingClientRect();
+
+            const escalaX =
+                canvas.width /
+                rect.width;
+
+            const escalaY =
+                canvas.height /
+                rect.height;
+
+            const toqueX =
+                (evento.clientX -
+                    rect.left) *
+                escalaX;
+
+            const toqueY =
+                (evento.clientY -
+                    rect.top) *
+                escalaY;
+
+            const centroX =
+                canvas.width / 2;
+
+            const centroY =
+                canvas.height / 2;
+
+            const raio =
+                Math.min(
+                    canvas.width,
+                    canvas.height
+                ) * 0.42;
+
+
+            let paisSelecionado = null;
+
+            let menorDistancia =
+                Infinity;
+
+
+            const grupos =
+                agruparPaises();
+
+
+            Object.keys(grupos)
+                .forEach(pais => {
+
+                    const coordenada =
+                        coordenadasPaises[pais];
+
+                    if (!coordenada) return;
+
+
+                    const ponto =
+                        projetarPonto(
+                            coordenada.latitude,
+                            coordenada.longitude,
+                            centroX,
+                            centroY,
+                            raio
+                        );
+
+
+                    if (!ponto) return;
+
+
+                    const distancia =
+                        Math.hypot(
+                            toqueX - ponto.x,
+                            toqueY - ponto.y
+                        );
+
+
+                    if (
+                        distancia < 35 &&
+                        distancia < menorDistancia
+                    ) {
+
+                        menorDistancia =
+                            distancia;
+
+                        paisSelecionado =
+                            pais;
+
+                    }
+
+                });
+
+
+            if (paisSelecionado) {
+
+                abrirPais(
+                    paisSelecionado
                 );
 
             }
 
-            arrastando = false;
-
         }
-    );
 
 
-    canvas.addEventListener(
-        "pointercancel",
-        () => {
+        /* =================================================
+           TOQUE / ARRASTAR
+        ================================================== */
 
-            arrastando = false;
+        canvas.addEventListener(
+            "pointerdown",
+            evento => {
 
-        }
-    );
+                arrastando = false;
+
+                inicioX =
+                    evento.clientX;
+
+                canvas.setPointerCapture(
+                    evento.pointerId
+                );
+
+            }
+        );
 
 
-    desenhar();
+        canvas.addEventListener(
+            "pointermove",
+            evento => {
 
-}
+                const diferenca =
+                    evento.clientX -
+                    inicioX;
+
+
+                if (
+                    Math.abs(diferenca) > 3
+                ) {
+
+                    arrastando = true;
+
+                    rotacao +=
+                        diferenca * 0.008;
+
+                    inicioX =
+                        evento.clientX;
+
+                }
+
+            }
+        );
+
+
+        canvas.addEventListener(
+            "pointerup",
+            evento => {
+
+                if (!arrastando) {
+
+                    detectarPais(
+                        evento
+                    );
+
+                }
+
+                arrastando = false;
+
+            }
+        );
+
+
+        canvas.addEventListener(
+            "pointercancel",
+            () => {
+
+                arrastando = false;
+
+            }
+        );
+
+
+        desenhar();
+
+    }
 
 
     /* =====================================================
-       CARREGAR MENSAGENS — JSONP
+       CARREGAR MENSAGENS
     ====================================================== */
 
     function carregarMensagens() {
@@ -1254,13 +1194,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     criarListaPaises();
 
-                    criarGlobo();
-
-                    mostrarEstado("mural");
-
 
                     if (carregando) {
+
                         carregando.remove();
+
+                    }
+
+
+                    /*
+                     * Se a API funcionar,
+                     * o Globo permanece exatamente onde está.
+                     */
+
+                    if (erro) {
+
+                        erro.hidden = true;
+
+                        erro.style.display =
+                            "none";
+
                     }
 
 
@@ -1271,7 +1224,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         error
                     );
 
-                    mostrarErro();
+                    tratarFalhaAPI();
 
                 }
 
@@ -1279,7 +1232,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 delete window[nomeCallback];
 
                 if (script) {
+
                     script.remove();
+
                 }
 
             };
@@ -1304,7 +1259,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Não foi possível acessar a API."
                 );
 
-                mostrarErro();
+
+                tratarFalhaAPI();
 
 
                 delete window[nomeCallback];
@@ -1322,10 +1278,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       ERRO
+       FALHA DA API
     ====================================================== */
 
-    function mostrarErro() {
+    function tratarFalhaAPI() {
+
+        /*
+         * O Globo NÃO é removido.
+         * A tela mural continua ativa.
+         */
+
+        mostrarEstado("mural");
+
 
         if (carregando) {
 
@@ -1334,12 +1298,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
+        /*
+         * Não usamos a tela de erro como uma
+         * camada que cobre o Globo.
+         *
+         * O botão de tentar novamente continua
+         * disponível, mas sem esconder o mural.
+         */
+
         if (erro) {
 
-            erro.hidden = false;
+            erro.hidden = true;
 
             erro.style.display =
-                "flex";
+                "none";
 
         }
 
@@ -1375,10 +1347,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       INICIAR
+       INICIALIZAÇÃO
     ====================================================== */
+
+    /*
+     * PRIMEIRO:
+     * Globo.
+     */
+
+    criarGlobo();
+
+    mostrarEstado("mural");
+
+
+    /*
+     * SEGUNDO:
+     * Dados.
+     */
 
     carregarMensagens();
 
 });
-               
