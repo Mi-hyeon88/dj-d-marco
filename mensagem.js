@@ -833,6 +833,38 @@ document.addEventListener("DOMContentLoaded", () => {
         )
 )
 
+           .ringsData(
+    pontos
+)
+
+.ringLat(
+    "lat"
+)
+
+.ringLng(
+    "lng"
+)
+
+.ringAltitude(
+    0.021
+)
+
+.ringColor(
+    () => "#e1b36d"
+)
+
+.ringMaxRadius(
+    1.4
+)
+
+.ringPropagationSpeed(
+    0
+)
+
+.ringRepeatPeriod(
+    0
+)
+           
 .onPointClick(
     ponto => {
 
