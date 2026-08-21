@@ -897,6 +897,7 @@ document
                                 item.mensagem
                         );
 
+                   criarGlobo();
 
                     criarListaPaises();
 
