@@ -521,38 +521,52 @@ document
 
 async function obterCoordenadasPais(pais) {
 
-    if (coordenadasPaises[pais]) {
-        return coordenadasPaises[pais];
+    const chave = normalizarPais(pais);
+
+    if (coordenadasPaises[chave]) {
+        return coordenadasPaises[chave];
     }
 
     try {
 
         const resposta = await fetch(
-            `https://restcountries.com/v3.1/name/${encodeURIComponent(pais)}?fields=name,latlng`
+            `https://restcountries.com/v3.1/all?fields=name,latlng`
         );
 
-        if (!resposta.ok) return null;
+        if (!resposta.ok) {
+            throw new Error("Falha ao carregar países.");
+        }
 
         const dados = await resposta.json();
 
-        if (!dados.length || !dados[0].latlng) {
-            return null;
-        }
+        dados.forEach(item => {
 
-        const coordenada = {
-            lat: dados[0].latlng[0],
-            lng: dados[0].latlng[1]
-        };
+            if (
+                !item ||
+                !item.name ||
+                !item.name.common ||
+                !Array.isArray(item.latlng)
+            ) {
+                return;
+            }
 
-        coordenadasPaises[pais] = coordenada;
+            const nome = normalizarPais(
+                item.name.common
+            );
 
-        return coordenada;
+            coordenadasPaises[nome] = {
+                lat: item.latlng[0],
+                lng: item.latlng[1]
+            };
+
+        });
+
+        return coordenadasPaises[chave] || null;
 
     } catch (erro) {
 
         console.error(
-            "Erro ao localizar país:",
-            pais,
+            "Erro ao carregar coordenadas:",
             erro
         );
 
