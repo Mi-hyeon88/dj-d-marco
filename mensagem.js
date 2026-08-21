@@ -665,15 +665,133 @@ document
 .pointLat("lat")
 .pointLng("lng")
 
-.pointColor(
-    () => "#e1b36d"
-)
+.pointAltitude(0.04)
 
-.pointRadius(0.48)
+.pointThreeObject(() => {
 
-.pointAltitude(0.035)
+    const grupo = new THREE.Group();
 
-.pointResolution(12)
+
+    /* PONTO CENTRAL */
+
+    const geometria =
+        new THREE.SphereGeometry(
+            0.018,
+            12,
+            12
+        );
+
+    const material =
+        new THREE.MeshBasicMaterial({
+            color: 0xe1b36d
+        });
+
+    const ponto =
+        new THREE.Mesh(
+            geometria,
+            material
+        );
+
+    grupo.add(ponto);
+
+
+    /* HALO SEPARADO */
+
+    const canvas =
+        document.createElement("canvas");
+
+    canvas.width = 128;
+    canvas.height = 128;
+
+    const contexto =
+        canvas.getContext("2d");
+
+    const centro = 64;
+
+
+    const gradiente =
+        contexto.createRadialGradient(
+            centro,
+            centro,
+            18,
+            centro,
+            centro,
+            58
+        );
+
+
+    gradiente.addColorStop(
+        0,
+        "rgba(225,179,109,0)"
+    );
+
+    gradiente.addColorStop(
+        0.30,
+        "rgba(225,179,109,0)"
+    );
+
+    gradiente.addColorStop(
+        0.55,
+        "rgba(225,179,109,0.22)"
+    );
+
+    gradiente.addColorStop(
+        0.72,
+        "rgba(225,179,109,0.08)"
+    );
+
+    gradiente.addColorStop(
+        1,
+        "rgba(225,179,109,0)"
+    );
+
+
+    contexto.fillStyle =
+        gradiente;
+
+    contexto.fillRect(
+        0,
+        0,
+        128,
+        128
+    );
+
+
+    const textura =
+        new THREE.CanvasTexture(
+            canvas
+        );
+
+    textura.needsUpdate = true;
+
+
+    const materialHalo =
+        new THREE.SpriteMaterial({
+            map: textura,
+            transparent: true,
+            depthWrite: false
+        });
+
+
+    const halo =
+        new THREE.Sprite(
+            materialHalo
+        );
+
+
+    halo.scale.set(
+        0.18,
+        0.18,
+        1
+    );
+
+
+    grupo.add(halo);
+
+
+    return grupo;
+
+})
 
 .pointLabel(
     ponto =>
@@ -688,22 +806,7 @@ document
         );
 
     }
-)
-
-.ringsData(pontos)
-
-.ringLat("lat")
-.ringLng("lng")
-
-.ringColor(
-    () => () => "rgba(225,179,109,0.35)"
-)
-
-.ringMaxRadius(1.8)
-
-.ringPropagationSpeed(0.35)
-
-.ringRepeatPeriod(0);
+);
 
 
     /* =====================================================
