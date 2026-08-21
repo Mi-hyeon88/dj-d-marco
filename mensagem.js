@@ -797,168 +797,174 @@ document.addEventListener("DOMContentLoaded", () => {
                     0.12
                 )
 
-                .pointsData(
-                    pontos
-                )
-
-                .pointLat(
-                    "lat"
-                )
-
-                .pointLng(
-                    "lng"
-                )
-
-                .pointAltitude(
-                    0.06
-                )
-
-
-                /* =================================================
-   PONTO + HALO
+               /* =================================================
+   MARCADORES DOS PAÍSES
 ================================================= */
 
-.pointThreeObject(() => {
+.objectsData(
+    pontos
+)
 
-    const grupo =
-        new THREE.Group();
+.objectLat(
+    "lat"
+)
+
+.objectLng(
+    "lng"
+)
+
+.objectAltitude(
+    0.065
+)
+
+.objectThreeObject(
+    () => {
+
+        const canvas =
+            document.createElement(
+                "canvas"
+            );
+
+        canvas.width = 128;
+        canvas.height = 128;
+
+        const contexto =
+            canvas.getContext("2d");
+
+        const centro = 64;
 
 
-    /* PONTO CENTRAL */
+        /* =========================================
+           HALO SUTIL
+        ========================================== */
 
-    const geometria =
-        new THREE.SphereGeometry(
-            0.018,
-            16,
-            16
+        const gradiente =
+            contexto.createRadialGradient(
+                centro,
+                centro,
+                12,
+                centro,
+                centro,
+                50
+            );
+
+        gradiente.addColorStop(
+            0,
+            "rgba(225,179,109,0)"
         );
 
-    const material =
-        new THREE.MeshBasicMaterial({
-            color: 0xe1b36d
-        });
-
-    const ponto =
-        new THREE.Mesh(
-            geometria,
-            material
+        gradiente.addColorStop(
+            0.42,
+            "rgba(225,179,109,0)"
         );
 
-    grupo.add(
-        ponto
-    );
-
-
-    /* HALO SEPARADO */
-
-    const canvas =
-        document.createElement(
-            "canvas"
+        gradiente.addColorStop(
+            0.60,
+            "rgba(225,179,109,0.16)"
         );
 
-    canvas.width = 128;
-    canvas.height = 128;
+        gradiente.addColorStop(
+            0.78,
+            "rgba(225,179,109,0.05)"
+        );
 
-    const contexto =
-        canvas.getContext("2d");
+        gradiente.addColorStop(
+            1,
+            "rgba(225,179,109,0)"
+        );
 
-    const centro = 64;
+        contexto.fillStyle =
+            gradiente;
+
+        contexto.fillRect(
+            0,
+            0,
+            128,
+            128
+        );
 
 
-    const gradiente =
-        contexto.createRadialGradient(
+        /* =========================================
+           PONTO CENTRAL
+        ========================================== */
+
+        contexto.beginPath();
+
+        contexto.arc(
             centro,
             centro,
-            28,
-            centro,
-            centro,
-            58
+            4,
+            0,
+            Math.PI * 2
         );
 
+        contexto.fillStyle =
+            "#e1b36d";
 
-    /* CENTRO TOTALMENTE TRANSPARENTE */
-
-    gradiente.addColorStop(
-        0,
-        "rgba(225,179,109,0)"
-    );
-
-    gradiente.addColorStop(
-        0.48,
-        "rgba(225,179,109,0)"
-    );
+        contexto.fill();
 
 
-    /* LUZ MUITO SUTIL */
+        /* =========================================
+           SPRITE
+        ========================================== */
 
-    gradiente.addColorStop(
-        0.62,
-        "rgba(225,179,109,0.16)"
-    );
+        const textura =
+            new THREE.CanvasTexture(
+                canvas
+            );
 
-    gradiente.addColorStop(
-        0.76,
-        "rgba(225,179,109,0.06)"
-    );
+        textura.needsUpdate =
+            true;
 
-    gradiente.addColorStop(
-        1,
-        "rgba(225,179,109,0)"
-    );
+        const material =
+            new THREE.SpriteMaterial({
 
+                map:
+                    textura,
 
-    contexto.fillStyle =
-        gradiente;
+                transparent:
+                    true,
 
-    contexto.fillRect(
-        0,
-        0,
-        128,
-        128
-    );
+                depthWrite:
+                    false,
 
+                depthTest:
+                    true
 
-    const textura =
-        new THREE.CanvasTexture(
-            canvas
+            });
+
+        const marcador =
+            new THREE.Sprite(
+                material
+            );
+
+        marcador.scale.set(
+            5,
+            5,
+            1
         );
 
-    textura.needsUpdate = true;
+        return marcador;
 
+    }
+)
 
-    const materialHalo =
-        new THREE.SpriteMaterial({
+.objectLabel(
+    ponto =>
+        nomePais(
+            ponto.pais
+        )
+)
 
-            map: textura,
+.onObjectClick(
+    ponto => {
 
-            transparent: true,
-
-            depthWrite: false
-
-        });
-
-
-    const halo =
-        new THREE.Sprite(
-            materialHalo
+        abrirPais(
+            ponto.pais
         );
 
-
-    halo.scale.set(
-        0.14,
-        0.14,
-        1
-    );
-
-
-    grupo.add(
-        halo
-    );
-
-
-    return grupo;
-
-})
+    }
+);
 
 
 /* =====================================================
