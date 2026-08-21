@@ -797,9 +797,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     0.12
                 )
 
-              /* =================================================
+/* =================================================
    MARCADORES DOS PAÍSES
-   PONTO + HALO SEPARADO
+   PONTO DE LUZ + FEIXE
 ================================================= */
 
 .pointsData(
@@ -818,12 +818,17 @@ document.addEventListener("DOMContentLoaded", () => {
     0.02
 )
 
+/*
+ * O ponto nativo fica invisível.
+ * A luz será desenhada pelo elemento HTML.
+ */
+
 .pointRadius(
-    0.25
+    0
 )
 
 .pointColor(
-    () => "#e1b36d"
+    () => "rgba(0,0,0,0)"
 )
 
 .pointLabel(
@@ -832,15 +837,217 @@ document.addEventListener("DOMContentLoaded", () => {
             ponto.pais
         )
 )
-           
-.onPointClick(
+
+
+/* =================================================
+   LUZ DOS PAÍSES
+================================================= */
+
+.htmlElementsData(
+    pontos
+)
+
+.htmlLat(
+    "lat"
+)
+
+.htmlLng(
+    "lng"
+)
+
+.htmlAltitude(
+    0.025
+)
+
+.htmlElement(
     ponto => {
 
-        abrirPais(
-            ponto.pais
+        const marcador =
+            document.createElement("div");
+
+        marcador.style.position =
+            "relative";
+
+        marcador.style.width =
+            "34px";
+
+        marcador.style.height =
+            "48px";
+
+        marcador.style.pointerEvents =
+            "auto";
+
+        marcador.style.cursor =
+            "pointer";
+
+        marcador.style.transform =
+            "translate(-50%, -50%)";
+
+
+        /* =================================================
+           FEIXE
+        ================================================== */
+
+        const feixe =
+            document.createElement("div");
+
+        feixe.style.position =
+            "absolute";
+
+        feixe.style.left =
+            "50%";
+
+        feixe.style.bottom =
+            "50%";
+
+        feixe.style.width =
+            "1px";
+
+        feixe.style.height =
+            "38px";
+
+        feixe.style.transform =
+            "translateX(-50%) rotate(28deg)";
+
+        feixe.style.transformOrigin =
+            "bottom center";
+
+        feixe.style.background =
+            "linear-gradient(" +
+            "to top," +
+            "rgba(225,179,109,0.70)," +
+            "rgba(225,179,109,0)" +
+            ")";
+
+        feixe.style.boxShadow =
+            "0 0 5px rgba(225,179,109,0.35)";
+
+
+        /* =================================================
+           AURA
+        ================================================== */
+
+        const aura =
+            document.createElement("div");
+
+        aura.style.position =
+            "absolute";
+
+        aura.style.left =
+            "50%";
+
+        aura.style.top =
+            "50%";
+
+        aura.style.width =
+            "18px";
+
+        aura.style.height =
+            "18px";
+
+        aura.style.transform =
+            "translate(-50%, -50%)";
+
+        aura.style.borderRadius =
+            "50%";
+
+        aura.style.background =
+            "radial-gradient(" +
+            "circle," +
+            "rgba(255,248,223,0.95) 0%," +
+            "rgba(225,179,109,0.65) 20%," +
+            "rgba(225,179,109,0.25) 42%," +
+            "rgba(225,179,109,0) 72%" +
+            ")";
+
+        aura.style.boxShadow =
+            "0 0 6px rgba(255,241,196,0.8)," +
+            "0 0 14px rgba(225,179,109,0.65)";
+
+
+        /* =================================================
+           NÚCLEO
+        ================================================== */
+
+        const nucleo =
+            document.createElement("div");
+
+        nucleo.style.position =
+            "absolute";
+
+        nucleo.style.left =
+            "50%";
+
+        nucleo.style.top =
+            "50%";
+
+        nucleo.style.width =
+            "5px";
+
+        nucleo.style.height =
+            "5px";
+
+        nucleo.style.transform =
+            "translate(-50%, -50%)";
+
+        nucleo.style.borderRadius =
+            "50%";
+
+        nucleo.style.background =
+            "#fff8df";
+
+        nucleo.style.boxShadow =
+            "0 0 4px #fff8df," +
+            "0 0 9px #e1b36d";
+
+
+        marcador.appendChild(
+            feixe
         );
 
+        marcador.appendChild(
+            aura
+        );
+
+        marcador.appendChild(
+            nucleo
+        );
+
+
+        /* =================================================
+           CLIQUE
+        ================================================== */
+
+        marcador.addEventListener(
+            "click",
+            evento => {
+
+                evento.stopPropagation();
+
+                abrirPais(
+                    ponto.pais
+                );
+
+            }
+        );
+
+
+        return marcador;
+
     }
+)
+
+.htmlElementVisibilityModifier(
+    (elemento, visivel) => {
+
+        elemento.style.opacity =
+            visivel ? "1" : "0";
+
+    }
+)
+
+.htmlTransitionDuration(
+    0
 );
 
 
