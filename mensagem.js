@@ -579,24 +579,6 @@ async function obterCoordenadasPais(pais) {
     )
 ).filter(Boolean);
 
-            if (!coordenada) return null;
-
-            return {
-
-                pais: pais,
-
-                lat: coordenada.lat,
-
-                lng: coordenada.lng,
-
-                quantidade:
-                    grupos[pais].length
-
-            };
-
-        })
-        .filter(Boolean);
-
 
     const mundo =
         Globe()(globo)
