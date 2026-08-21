@@ -666,10 +666,10 @@ document
 .pointLng("lng")
 
 .pointColor(
-    () => "rgba(225,179,109,0.95)"
+    () => "#e1b36d"
 )
 
-.pointRadius(0.32)
+.pointRadius(0.48)
 
 .pointAltitude(0.035)
 
@@ -688,7 +688,22 @@ document
         );
 
     }
-);
+)
+
+.ringsData(pontos)
+
+.ringLat("lat")
+.ringLng("lng")
+
+.ringColor(
+    () => () => "rgba(225,179,109,0.35)"
+)
+
+.ringMaxRadius(1.8)
+
+.ringPropagationSpeed(0.35)
+
+.ringRepeatPeriod(0);
 
 
     /* =====================================================
