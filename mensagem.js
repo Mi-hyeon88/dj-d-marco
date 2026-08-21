@@ -1023,8 +1023,6 @@ if (carregando) {
     carregando.remove();
 }
 
-criarGlobo();
-
 mostrarEstado("mural");
 
 
