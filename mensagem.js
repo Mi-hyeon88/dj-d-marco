@@ -509,7 +509,7 @@ document
        GLOBO
     ====================================================== */
 
-    async function criarGlobo() {
+    function criarGlobo() {
 
     if (!globo) return;
 
