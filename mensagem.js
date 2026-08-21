@@ -833,143 +833,98 @@ document.addEventListener("DOMContentLoaded", () => {
         )
 )
 
-           .htmlElementsData(
-    pontos
-)
+          .pointThreeObject(
+    ponto => {
 
-.htmlLat(
-    "lat"
-)
+        const canvas =
+            document.createElement("canvas");
 
-.htmlLng(
-    "lng"
-)
+        canvas.width = 128;
+        canvas.height = 128;
 
-.htmlAltitude(
-    0.035
-)
+        const contexto =
+            canvas.getContext("2d");
 
-.htmlElement(
-    () => {
+        const gradiente =
+            contexto.createRadialGradient(
+                64,
+                64,
+                0,
+                64,
+                64,
+                64
+            );
 
-        const marcador =
-            document.createElement("div");
-
-        marcador.style.position =
-            "relative";
-
-        marcador.style.width =
-            "46px";
-
-        marcador.style.height =
-            "70px";
-
-        marcador.style.pointerEvents =
-            "none";
-
-        marcador.style.transform =
-            "translate(-50%, -100%)";
-
-
-        /* FEIXE DE LUZ */
-
-        const feixe =
-            document.createElement("div");
-
-        feixe.style.position =
-            "absolute";
-
-        feixe.style.left =
-            "50%";
-
-        feixe.style.bottom =
-            "15px";
-
-        feixe.style.width =
-            "1px";
-
-        feixe.style.height =
-            "48px";
-
-        feixe.style.transform =
-            "translateX(-50%)";
-
-        feixe.style.background =
-            "linear-gradient(" +
-            "to top," +
-            "rgba(225,179,109,0.75)," +
-            "rgba(225,179,109,0)" +
-            ")";
-
-        feixe.style.boxShadow =
-            "0 0 6px rgba(225,179,109,0.55)";
-
-
-        /* BRILHO */
-
-        const brilho =
-            document.createElement("div");
-
-        brilho.style.position =
-            "absolute";
-
-        brilho.style.left =
-            "50%";
-
-        brilho.style.bottom =
-            "7px";
-
-        brilho.style.width =
-            "22px";
-
-        brilho.style.height =
-            "22px";
-
-        brilho.style.transform =
-            "translate(-50%, 50%)";
-
-        brilho.style.borderRadius =
-            "50%";
-
-        brilho.style.background =
-            "radial-gradient(" +
-            "circle," +
-            "#fff8df 0%," +
-            "#e1b36d 18%," +
-            "rgba(225,179,109,0.45) 38%," +
-            "rgba(225,179,109,0) 72%" +
-            ")";
-
-        brilho.style.boxShadow =
-            "0 0 5px #fff1c4," +
-            "0 0 12px rgba(225,179,109,0.9)," +
-            "0 0 24px rgba(225,179,109,0.45)";
-
-
-        marcador.appendChild(
-            feixe
+        gradiente.addColorStop(
+            0,
+            "rgba(255,248,223,1)"
         );
 
-        marcador.appendChild(
-            brilho
+        gradiente.addColorStop(
+            0.12,
+            "rgba(255,235,185,0.95)"
         );
 
-        return marcador;
+        gradiente.addColorStop(
+            0.28,
+            "rgba(225,179,109,0.75)"
+        );
+
+        gradiente.addColorStop(
+            0.5,
+            "rgba(225,179,109,0.28)"
+        );
+
+        gradiente.addColorStop(
+            0.72,
+            "rgba(225,179,109,0.08)"
+        );
+
+        gradiente.addColorStop(
+            1,
+            "rgba(225,179,109,0)"
+        );
+
+        contexto.fillStyle =
+            gradiente;
+
+        contexto.fillRect(
+            0,
+            0,
+            128,
+            128
+        );
+
+
+        const textura =
+            new THREE.CanvasTexture(
+                canvas
+            );
+
+        textura.needsUpdate =
+            true;
+
+        const material =
+            new THREE.SpriteMaterial({
+                map: textura,
+                transparent: true,
+                depthWrite: false
+            });
+
+        const sprite =
+            new THREE.Sprite(
+                material
+            );
+
+        sprite.scale.set(
+            0.045,
+            0.045,
+            1
+        );
+
+        return sprite;
 
     }
-)
-
-.htmlElementVisibilityModifier(
-    (element, visivel) => {
-
-        element.style.opacity =
-            visivel ? "1" : "0";
-
-    }
-)
-
-.htmlTransitionDuration(
-    0
 )
            
 .onPointClick(
