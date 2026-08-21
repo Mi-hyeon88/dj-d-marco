@@ -530,6 +530,61 @@ async function obterCoordenadasPais(pais) {
     try {
 
         const resposta = await fetch(
+            `https://api.restcountries.com/countries/v5?q=${encodeURIComponent(pais)}&limit=5&response_fields=names,coordinates`,
+            {
+                headers: {
+                    "Authorization": "Bearer rc_live_demo"
+                }
+            }
+        );
+
+        if (!resposta.ok) {
+            throw new Error(
+                `Erro HTTP ${resposta.status}`
+            );
+        }
+
+        const resultado =
+            await resposta.json();
+
+        const paises =
+            resultado?.data?.objects || [];
+
+        const encontrado =
+            paises.find(item =>
+                item?.coordinates &&
+                Array.isArray(item.coordinates.latlng)
+            );
+
+        if (!encontrado) {
+            return null;
+        }
+
+        const coordenada = {
+            lat: encontrado.coordinates.latlng[0],
+            lng: encontrado.coordinates.latlng[1]
+        };
+
+        coordenadasPaises[chave] =
+            coordenada;
+
+        return coordenada;
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao localizar país:",
+            pais,
+            erro
+        );
+
+        return null;
+    }
+}
+
+    try {
+
+        const resposta = await fetch(
             `https://restcountries.com/v3.1/all?fields=name,latlng`
         );
 
