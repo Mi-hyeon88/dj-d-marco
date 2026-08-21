@@ -518,116 +518,155 @@ document
     const grupos = agruparPaises();
 
     const coordenadasPaises = {};
+let promessaCoordenadas = null;
+
+function adicionarChaveCoordenada(chave, coordenada) {
+
+    if (!chave) return;
+
+    const normalizada =
+        String(chave)
+            .trim()
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
+
+    coordenadasPaises[normalizada] = coordenada;
+}
+
 
 async function obterCoordenadasPais(pais) {
 
-    const chave = normalizarPais(pais);
+    const chavePais =
+        normalizarPais(pais);
 
-    if (coordenadasPaises[chave]) {
-        return coordenadasPaises[chave];
+    const chaveSimples =
+        String(chavePais)
+            .trim()
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
+
+
+    if (coordenadasPaises[chaveSimples]) {
+
+        return coordenadasPaises[chaveSimples];
+
     }
 
-    try {
 
-        const resposta = await fetch(
-            `https://api.restcountries.com/countries/v5?q=${encodeURIComponent(pais)}&limit=5&response_fields=names,coordinates`,
-            {
-                headers: {
-                    "Authorization": "Bearer rc_live_demo"
+    if (!promessaCoordenadas) {
+
+        promessaCoordenadas =
+            fetch(
+                "https://restcountries.com/v3.1/all?fields=name,latlng,translations"
+            )
+            .then(resposta => {
+
+                if (!resposta.ok) {
+                    throw new Error(
+                        "Falha ao carregar coordenadas dos países."
+                    );
                 }
-            }
-        );
 
-        if (!resposta.ok) {
-            throw new Error(
-                `Erro HTTP ${resposta.status}`
-            );
-        }
+                return resposta.json();
 
-        const resultado =
-            await resposta.json();
+            })
+            .then(dados => {
 
-        const paises =
-            resultado?.data?.objects || [];
+                dados.forEach(item => {
 
-        const encontrado =
-            paises.find(item =>
-                item?.coordinates &&
-                Array.isArray(item.coordinates.latlng)
-            );
+                    if (
+                        !item ||
+                        !item.latlng ||
+                        !Array.isArray(item.latlng) ||
+                        item.latlng.length < 2
+                    ) {
+                        return;
+                    }
 
-        if (!encontrado) {
-            return null;
-        }
 
-        const coordenada = {
-            lat: encontrado.coordinates.latlng[0],
-            lng: encontrado.coordinates.latlng[1]
-        };
+                    const coordenada = {
 
-        coordenadasPaises[chave] =
-            coordenada;
+                        lat: item.latlng[0],
 
-        return coordenada;
+                        lng: item.latlng[1]
 
-    } catch (erro) {
+                    };
 
-        console.error(
-            "Erro ao localizar país:",
-            pais,
-            erro
-        );
 
-        return null;
+                    /* Nome principal */
+
+                    if (item.name) {
+
+                        adicionarChaveCoordenada(
+                            item.name.common,
+                            coordenada
+                        );
+
+                        adicionarChaveCoordenada(
+                            item.name.official,
+                            coordenada
+                        );
+
+                    }
+
+
+                    /* Traduções */
+
+                    if (item.translations) {
+
+                        Object.values(
+                            item.translations
+                        ).forEach(traducao => {
+
+                            if (!traducao) return;
+
+                            adicionarChaveCoordenada(
+                                traducao.common,
+                                coordenada
+                            );
+
+                            adicionarChaveCoordenada(
+                                traducao.official,
+                                coordenada
+                            );
+
+                        });
+
+                    }
+
+                });
+
+                return coordenadasPaises;
+
+            })
+            .catch(erro => {
+
+                console.error(
+                    "Erro ao carregar coordenadas:",
+                    erro
+                );
+
+                promessaCoordenadas = null;
+
+                return null;
+
+            });
+
     }
+
+
+    await promessaCoordenadas;
+
+
+    return (
+        coordenadasPaises[chaveSimples] ||
+        null
+    );
+
 }
 
-    try {
-
-        const resposta = await fetch(
-            `https://restcountries.com/v3.1/all?fields=name,latlng`
-        );
-
-        if (!resposta.ok) {
-            throw new Error("Falha ao carregar países.");
-        }
-
-        const dados = await resposta.json();
-
-        dados.forEach(item => {
-
-            if (
-                !item ||
-                !item.name ||
-                !item.name.common ||
-                !Array.isArray(item.latlng)
-            ) {
-                return;
-            }
-
-            const nome = normalizarPais(
-                item.name.common
-            );
-
-            coordenadasPaises[nome] = {
-                lat: item.latlng[0],
-                lng: item.latlng[1]
-            };
-
-        });
-
-        return coordenadasPaises[chave] || null;
-
-    } catch (erro) {
-
-        console.error(
-            "Erro ao carregar coordenadas:",
-            erro
-        );
-
-        return null;
-    }
-}
 
     const pontos = (
     await Promise.all(
