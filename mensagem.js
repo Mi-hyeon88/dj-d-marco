@@ -665,7 +665,7 @@ document
 .pointLat("lat")
 .pointLng("lng")
 
-.pointAltitude(0.04)
+.pointAltitude(0.06)
 
 .pointThreeObject(() => {
 
@@ -676,7 +676,7 @@ document
 
     const geometria =
         new THREE.SphereGeometry(
-            0.018,
+            1.6,
             12,
             12
         );
@@ -780,8 +780,8 @@ document
 
 
     halo.scale.set(
-        0.18,
-        0.18,
+        6,
+        6,
         1
     );
 
