@@ -662,44 +662,33 @@ document
 
             .pointsData(pontos)
 
-            .pointLat(
-                "lat"
-            )
+.pointLat("lat")
+.pointLng("lng")
 
-            .pointLng(
-                "lng"
-            )
+.pointColor(
+    () => "rgba(225,179,109,0.95)"
+)
 
-            .pointColor(
-                () => "#e1b36d"
-            )
+.pointRadius(0.32)
 
-            .pointRadius(
-                0.55
-            )
+.pointAltitude(0.035)
 
-            .pointAltitude(
-                0.025
-            )
+.pointResolution(12)
 
-            .pointResolution(
-                10
-            )
+.pointLabel(
+    ponto =>
+        `${nomePais(ponto.pais)}`
+)
 
-            .pointLabel(
-                ponto =>
-                    `${nomePais(ponto.pais)}`
-            )
+.onPointClick(
+    ponto => {
 
-            .onPointClick(
-                ponto => {
+        abrirPais(
+            ponto.pais
+        );
 
-                    abrirPais(
-                        ponto.pais
-                    );
-
-                }
-            );
+    }
+);
 
 
     /* =====================================================
