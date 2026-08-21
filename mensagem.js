@@ -958,8 +958,8 @@ const halo =
 
 
 halo.scale.set(
-    6,
-    6,
+    0.18,
+    0.18,
     1
 );
 
