@@ -509,7 +509,7 @@ document
        GLOBO
     ====================================================== */
 
-    function criarGlobo() {
+    async function criarGlobo() {
 
     if (!globo) return;
 
@@ -517,96 +517,67 @@ document
 
     const grupos = agruparPaises();
 
-    const coordenadasPaises = {
+    const coordenadasPaises = {};
 
-        brasil: {
-            lat: -10,
-            lng: -52
-        },
+async function obterCoordenadasPais(pais) {
 
-        "coreia do sul": {
-            lat: 36,
-            lng: 128
-        },
+    if (coordenadasPaises[pais]) {
+        return coordenadasPaises[pais];
+    }
 
-        japao: {
-            lat: 36,
-            lng: 138
-        },
+    try {
 
-        "estados unidos": {
-            lat: 38,
-            lng: -97
-        },
+        const resposta = await fetch(
+            `https://restcountries.com/v3.1/name/${encodeURIComponent(pais)}?fields=name,latlng`
+        );
 
-        franca: {
-            lat: 46,
-            lng: 2
-        },
+        if (!resposta.ok) return null;
 
-        portugal: {
-            lat: 39,
-            lng: -8
-        },
+        const dados = await resposta.json();
 
-        mexico: {
-            lat: 23,
-            lng: -102
-        },
-
-        alemanha: {
-            lat: 51,
-            lng: 10
-        },
-
-        argentina: {
-            lat: -34,
-            lng: -64
-        },
-
-        chile: {
-            lat: -33,
-            lng: -71
-        },
-
-        colombia: {
-            lat: 4,
-            lng: -74
-        },
-
-        peru: {
-            lat: -9,
-            lng: -75
-        },
-
-        canada: {
-            lat: 56,
-            lng: -106
-        },
-
-        italia: {
-            lat: 42,
-            lng: 12
-        },
-
-        espanha: {
-            lat: 40,
-            lng: -4
-        },
-
-        "reino unido": {
-            lat: 55,
-            lng: -3
+        if (!dados.length || !dados[0].latlng) {
+            return null;
         }
 
-    };
+        const coordenada = {
+            lat: dados[0].latlng[0],
+            lng: dados[0].latlng[1]
+        };
 
+        coordenadasPaises[pais] = coordenada;
 
-    const pontos = Object.keys(grupos)
-        .map(pais => {
+        return coordenada;
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao localizar país:",
+            pais,
+            erro
+        );
+
+        return null;
+    }
+}
+
+    const pontos = (
+    await Promise.all(
+        Object.keys(grupos).map(async pais => {
 
             const coordenada =
-                coordenadasPaises[pais];
+                await obterCoordenadasPais(pais);
+
+            if (!coordenada) return null;
+
+            return {
+                pais: pais,
+                lat: coordenada.lat,
+                lng: coordenada.lng,
+                quantidade: grupos[pais].length
+            };
+        })
+    )
+).filter(Boolean);
 
             if (!coordenada) return null;
 
