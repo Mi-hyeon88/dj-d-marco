@@ -1354,4 +1354,5 @@ mostrarEstado("mural");
  */
 
 carregarMensagens();
-   
+
+   });
