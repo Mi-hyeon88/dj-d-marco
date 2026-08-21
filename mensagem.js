@@ -799,6 +799,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                /* =================================================
    MARCADORES DOS PAÍSES
+   PONTO + HALO SEPARADO
 ================================================= */
 
 .objectsData(
@@ -820,16 +821,153 @@ document.addEventListener("DOMContentLoaded", () => {
 .objectThreeObject(
     () => {
 
-        return new THREE.Mesh(
+        const grupo =
+            new THREE.Group();
+
+
+        /* =================================================
+           PONTO CENTRAL
+        ================================================= */
+
+        const pontoGeometria =
             new THREE.SphereGeometry(
-                0.035,
+                0.018,
                 16,
                 16
-            ),
+            );
+
+
+        const pontoMaterial =
             new THREE.MeshBasicMaterial({
                 color: 0xe1b36d
-            })
+            });
+
+
+        const ponto =
+            new THREE.Mesh(
+                pontoGeometria,
+                pontoMaterial
+            );
+
+
+        grupo.add(
+            ponto
         );
+
+
+        /* =================================================
+           HALO SEPARADO
+        ================================================= */
+
+        const canvas =
+            document.createElement(
+                "canvas"
+            );
+
+        canvas.width = 128;
+        canvas.height = 128;
+
+
+        const contexto =
+            canvas.getContext(
+                "2d"
+            );
+
+
+        const gradiente =
+            contexto.createRadialGradient(
+                64,
+                64,
+                18,
+                64,
+                64,
+                62
+            );
+
+
+        gradiente.addColorStop(
+            0,
+            "rgba(225,179,109,0)"
+        );
+
+        gradiente.addColorStop(
+            0.32,
+            "rgba(225,179,109,0)"
+        );
+
+        gradiente.addColorStop(
+            0.48,
+            "rgba(225,179,109,0.16)"
+        );
+
+        gradiente.addColorStop(
+            0.62,
+            "rgba(225,179,109,0.07)"
+        );
+
+        gradiente.addColorStop(
+            1,
+            "rgba(225,179,109,0)"
+        );
+
+
+        contexto.fillStyle =
+            gradiente;
+
+        contexto.fillRect(
+            0,
+            0,
+            128,
+            128
+        );
+
+
+        const textura =
+            new THREE.CanvasTexture(
+                canvas
+            );
+
+
+        const haloMaterial =
+            new THREE.SpriteMaterial({
+                map: textura,
+                transparent: true,
+                opacity: 0.9,
+                depthWrite: false
+            });
+
+
+        const halo =
+            new THREE.Sprite(
+                haloMaterial
+            );
+
+
+        halo.scale.set(
+            0.11,
+            0.11,
+            1
+        );
+
+
+        /*
+         * O halo fica ligeiramente
+         * afastado do ponto central.
+         */
+
+        halo.position.set(
+            0,
+            0,
+            -0.002
+        );
+
+
+        grupo.add(
+            halo
+        );
+
+
+        return grupo;
 
     }
 )
