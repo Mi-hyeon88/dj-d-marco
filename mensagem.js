@@ -797,7 +797,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     0.12
                 )
 
-               /* =================================================
+              /* =================================================
    MARCADORES DOS PAÍSES
    PONTO + HALO SEPARADO
 ================================================= */
@@ -815,7 +815,7 @@ document.addEventListener("DOMContentLoaded", () => {
 )
 
 .objectAltitude(
-    0.065
+    0.012
 )
 
 .objectThreeObject(
@@ -831,7 +831,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const pontoGeometria =
             new THREE.SphereGeometry(
-                0.018,
+                0.28,
                 16,
                 16
             );
@@ -891,18 +891,23 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         gradiente.addColorStop(
-            0.32,
+            0.28,
             "rgba(225,179,109,0)"
         );
 
         gradiente.addColorStop(
-            0.48,
+            0.42,
             "rgba(225,179,109,0.16)"
         );
 
         gradiente.addColorStop(
-            0.62,
-            "rgba(225,179,109,0.07)"
+            0.58,
+            "rgba(225,179,109,0.08)"
+        );
+
+        gradiente.addColorStop(
+            0.78,
+            "rgba(225,179,109,0.025)"
         );
 
         gradiente.addColorStop(
@@ -944,16 +949,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         halo.scale.set(
-            0.11,
-            0.11,
+            3.2,
+            3.2,
             1
         );
 
-
-        /*
-         * O halo fica ligeiramente
-         * afastado do ponto central.
-         */
 
         halo.position.set(
             0,
