@@ -820,131 +820,16 @@ document.addEventListener("DOMContentLoaded", () => {
 .objectThreeObject(
     () => {
 
-        const canvas =
-            document.createElement(
-                "canvas"
-            );
-
-        canvas.width = 128;
-        canvas.height = 128;
-
-        const contexto =
-            canvas.getContext("2d");
-
-        const centro = 64;
-
-
-        /* =========================================
-           HALO SUTIL
-        ========================================== */
-
-        const gradiente =
-            contexto.createRadialGradient(
-                centro,
-                centro,
-                12,
-                centro,
-                centro,
-                50
-            );
-
-        gradiente.addColorStop(
-            0,
-            "rgba(225,179,109,0)"
+        return new THREE.Mesh(
+            new THREE.SphereGeometry(
+                0.035,
+                16,
+                16
+            ),
+            new THREE.MeshBasicMaterial({
+                color: 0xe1b36d
+            })
         );
-
-        gradiente.addColorStop(
-            0.42,
-            "rgba(225,179,109,0)"
-        );
-
-        gradiente.addColorStop(
-            0.60,
-            "rgba(225,179,109,0.16)"
-        );
-
-        gradiente.addColorStop(
-            0.78,
-            "rgba(225,179,109,0.05)"
-        );
-
-        gradiente.addColorStop(
-            1,
-            "rgba(225,179,109,0)"
-        );
-
-        contexto.fillStyle =
-            gradiente;
-
-        contexto.fillRect(
-            0,
-            0,
-            128,
-            128
-        );
-
-
-        /* =========================================
-           PONTO CENTRAL
-        ========================================== */
-
-        contexto.beginPath();
-
-        contexto.arc(
-            centro,
-            centro,
-            4,
-            0,
-            Math.PI * 2
-        );
-
-        contexto.fillStyle =
-            "#e1b36d";
-
-        contexto.fill();
-
-
-        /* =========================================
-           SPRITE
-        ========================================== */
-
-        const textura =
-            new THREE.CanvasTexture(
-                canvas
-            );
-
-        textura.needsUpdate =
-            true;
-
-        const material =
-            new THREE.SpriteMaterial({
-
-                map:
-                    textura,
-
-                transparent:
-                    true,
-
-                depthWrite:
-                    false,
-
-                depthTest:
-                    true
-
-            });
-
-        const marcador =
-            new THREE.Sprite(
-                material
-            );
-
-        marcador.scale.set(
-            5,
-            5,
-            1
-        );
-
-        return marcador;
 
     }
 )
