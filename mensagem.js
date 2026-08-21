@@ -813,8 +813,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     0.06
                 )
 
-           .pointRadius(0.45)
-
 
                 /* =================================================
                    PONTO + HALO
@@ -830,7 +828,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     const geometria =
                         new THREE.SphereGeometry(
-                            0.45,
+                            0.018,
                             16,
                             16
                         );
