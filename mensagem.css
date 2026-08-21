@@ -768,6 +768,10 @@ body {
     text-align: center;
 }
 
+.erro[hidden] {
+    display: none !important;
+}
+
 .erro p {
     color: var(--creme);
 
