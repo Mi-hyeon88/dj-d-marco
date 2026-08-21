@@ -757,7 +757,13 @@ document.addEventListener("DOMContentLoaded", () => {
             pontos
         );
 
-
+       alert(
+    "PAÍSES: " +
+    Object.keys(grupos).length +
+    "\nPONTOS: " +
+    pontos.length
+);
+       
         /* =================================================
            GLOBO
         ================================================== */
