@@ -846,34 +846,115 @@ document.addEventListener("DOMContentLoaded", () => {
 )
 
 .htmlAltitude(
-    0.021
+    0.035
 )
 
 .htmlElement(
     () => {
 
-        const halo =
+        const marcador =
             document.createElement("div");
 
-        halo.style.width = "24px";
-        halo.style.height = "24px";
+        marcador.style.position =
+            "relative";
 
-        halo.style.borderRadius = "50%";
+        marcador.style.width =
+            "46px";
 
-        halo.style.background =
-            "radial-gradient(circle, " +
-            "rgba(225,179,109,0) 0%, " +
-            "rgba(225,179,109,0.42) 28%, " +
-            "rgba(225,179,109,0.18) 48%, " +
-            "rgba(225,179,109,0) 72%)";
+        marcador.style.height =
+            "70px";
 
-        halo.style.pointerEvents =
+        marcador.style.pointerEvents =
             "none";
 
-        halo.style.transform =
-            "translate(-50%, -50%)";
+        marcador.style.transform =
+            "translate(-50%, -100%)";
 
-        return halo;
+
+        /* FEIXE DE LUZ */
+
+        const feixe =
+            document.createElement("div");
+
+        feixe.style.position =
+            "absolute";
+
+        feixe.style.left =
+            "50%";
+
+        feixe.style.bottom =
+            "15px";
+
+        feixe.style.width =
+            "1px";
+
+        feixe.style.height =
+            "48px";
+
+        feixe.style.transform =
+            "translateX(-50%)";
+
+        feixe.style.background =
+            "linear-gradient(" +
+            "to top," +
+            "rgba(225,179,109,0.75)," +
+            "rgba(225,179,109,0)" +
+            ")";
+
+        feixe.style.boxShadow =
+            "0 0 6px rgba(225,179,109,0.55)";
+
+
+        /* BRILHO */
+
+        const brilho =
+            document.createElement("div");
+
+        brilho.style.position =
+            "absolute";
+
+        brilho.style.left =
+            "50%";
+
+        brilho.style.bottom =
+            "7px";
+
+        brilho.style.width =
+            "22px";
+
+        brilho.style.height =
+            "22px";
+
+        brilho.style.transform =
+            "translate(-50%, 50%)";
+
+        brilho.style.borderRadius =
+            "50%";
+
+        brilho.style.background =
+            "radial-gradient(" +
+            "circle," +
+            "#fff8df 0%," +
+            "#e1b36d 18%," +
+            "rgba(225,179,109,0.45) 38%," +
+            "rgba(225,179,109,0) 72%" +
+            ")";
+
+        brilho.style.boxShadow =
+            "0 0 5px #fff1c4," +
+            "0 0 12px rgba(225,179,109,0.9)," +
+            "0 0 24px rgba(225,179,109,0.45)";
+
+
+        marcador.appendChild(
+            feixe
+        );
+
+        marcador.appendChild(
+            brilho
+        );
+
+        return marcador;
 
     }
 )
