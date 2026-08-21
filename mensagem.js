@@ -833,6 +833,63 @@ document.addEventListener("DOMContentLoaded", () => {
         )
 )
 
+           .htmlElementsData(
+    pontos
+)
+
+.htmlLat(
+    "lat"
+)
+
+.htmlLng(
+    "lng"
+)
+
+.htmlAltitude(
+    0.021
+)
+
+.htmlElement(
+    () => {
+
+        const halo =
+            document.createElement("div");
+
+        halo.style.width = "24px";
+        halo.style.height = "24px";
+
+        halo.style.borderRadius = "50%";
+
+        halo.style.background =
+            "radial-gradient(circle, " +
+            "rgba(225,179,109,0) 0%, " +
+            "rgba(225,179,109,0.42) 28%, " +
+            "rgba(225,179,109,0.18) 48%, " +
+            "rgba(225,179,109,0) 72%)";
+
+        halo.style.pointerEvents =
+            "none";
+
+        halo.style.transform =
+            "translate(-50%, -50%)";
+
+        return halo;
+
+    }
+)
+
+.htmlElementVisibilityModifier(
+    (element, visivel) => {
+
+        element.style.opacity =
+            visivel ? "1" : "0";
+
+    }
+)
+
+.htmlTransitionDuration(
+    0
+)
            
 .onPointClick(
     ponto => {
