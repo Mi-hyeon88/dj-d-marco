@@ -53,6 +53,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const globo =
         document.querySelector(".globo");
 
+   const mensagemVoltar =
+    document.querySelector(".mensagens-voltar");
+
+let mundoGlobo = null;
+let indiceCoordenadasGlobo = {};
+   
 
     /* =====================================================
        DADOS
