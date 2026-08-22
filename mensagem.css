@@ -230,6 +230,16 @@ body {
         visibility 0.45s ease;
 }
 
+.estado:not(.ativo) .estado-voltar {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.estado.ativo .estado-voltar {
+    visibility: visible;
+    pointer-events: auto;
+}
+
 .estado.ativo {
     opacity: 1;
 
