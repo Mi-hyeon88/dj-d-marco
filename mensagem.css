@@ -1088,7 +1088,7 @@ body {
 
         letter-spacing: 1.5px;
 
-       transform: translateY(22px);
+       transform: none;
     }
 
     .mensagens-titulo i {
@@ -1132,7 +1132,7 @@ body {
     }
 
     .globo-instrucao {
-        bottom: 150px;
+        bottom: 300px;
     }
 
     .icone-toque {
