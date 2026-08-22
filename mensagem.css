@@ -1096,6 +1096,8 @@ body {
         margin-top: 5px;
 
         font-size: 8px;
+
+       transform: translateY(22px);
     }
 
 
@@ -1123,7 +1125,7 @@ body {
     }
 
     .globo-instrucao {
-        bottom: 60px;
+        bottom: 50px;
     }
 
     .icone-toque {
