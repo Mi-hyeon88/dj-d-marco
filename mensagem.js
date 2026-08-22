@@ -126,7 +126,6 @@ document.addEventListener("DOMContentLoaded", () => {
         portugal: "portugal",
 
         mexico: "mexico",
-        mexico: "mexico",
 
         alemanha: "alemanha",
         germany: "alemanha",
@@ -136,11 +135,9 @@ document.addEventListener("DOMContentLoaded", () => {
         chile: "chile",
 
         colombia: "colombia",
-        colombia: "colombia",
 
         peru: "peru",
 
-        canada: "canada",
         canada: "canada",
 
         italia: "italia",
@@ -645,491 +642,472 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-/* =====================================================
-   GLOBO
-===================================================== */
+    /* =====================================================
+       GLOBO
+    ====================================================== */
 
-let mundoGlobo = null;
-let indiceCoordenadasGlobo = null;
+    async function criarGlobo() {
 
+        if (!globo) return;
 
-/* =====================================================
-   CRIAR GLOBO
-===================================================== */
+        globo.innerHTML = "";
 
-async function criarGlobo() {
-
-    if (!globo) return;
-
-    globo.innerHTML = "";
-
-    const grupos =
-        agruparPaises();
+        const grupos =
+            agruparPaises();
 
 
-    /* =================================================
-       CARREGAR COORDENADAS
-    ================================================= */
+        let dadosCoordenadas;
 
-    let dadosCoordenadas;
+        try {
 
-    try {
+            dadosCoordenadas =
+                await carregarCoordenadas();
 
-        dadosCoordenadas =
-            await carregarCoordenadas();
+        } catch (erro) {
 
-    } catch (erro) {
+            console.error(
+                "Erro ao carregar coordenadas:",
+                erro
+            );
 
-        console.error(
-            "Erro ao carregar coordenadas:",
-            erro
-        );
+            return;
 
-        return;
-
-    }
+        }
 
 
-    const indiceCoordenadas =
-        criarIndiceCoordenadas(
-            dadosCoordenadas
-        );
+        const indiceCoordenadas =
+            criarIndiceCoordenadas(
+                dadosCoordenadas
+            );
 
 
-    /* =================================================
-       CRIAR PONTOS
-    ================================================= */
+        /* =================================================
+           CRIAR PONTOS SOMENTE DOS PAÍSES COM MENSAGEM
+        ================================================== */
 
-    const pontos = [];
+        const pontos = [];
 
-    Object.keys(grupos)
-        .forEach(pais => {
+        Object.keys(grupos)
+            .forEach(pais => {
 
-            let coordenada =
-                indiceCoordenadas[
-                    chavePais(pais)
-                ];
-
-
-            if (!coordenada) {
-
-                coordenada =
+                let coordenada =
                     indiceCoordenadas[
-                        chavePais(
-                            nomePais(pais)
-                        )
+                        chavePais(pais)
                     ];
 
-            }
+
+                /*
+                 * Segunda tentativa:
+                 * procura diretamente pelo nome exibido.
+                 */
+
+                if (!coordenada) {
+
+                    coordenada =
+                        indiceCoordenadas[
+                            chavePais(
+                                nomePais(pais)
+                            )
+                        ];
+
+                }
 
 
-            if (!coordenada) {
+                if (!coordenada) {
 
-                console.warn(
-                    "País sem coordenada:",
-                    pais
-                );
+                    console.warn(
+                        "País sem coordenada:",
+                        pais
+                    );
 
-                return;
+                    return;
 
-            }
+                }
 
 
-            pontos.push({
+                pontos.push({
 
-                pais:
-                    pais,
+                    pais:
+                        pais,
 
-                lat:
-                    coordenada.lat,
+                    lat:
+                        coordenada.lat,
 
-                lng:
-                    coordenada.lng,
+                    lng:
+                        coordenada.lng,
 
-                quantidade:
-                    grupos[pais].length
+                    quantidade:
+                        grupos[pais].length
+
+                });
 
             });
 
-        });
 
+        console.log(
+            "Países com mensagens:",
+            Object.keys(grupos)
+        );
 
-    console.log(
-        "Países com mensagens:",
-        Object.keys(grupos)
-    );
-
-
-    console.log(
-        "Pontos criados:",
-        pontos
-    );
-
-
-    /* =================================================
-       GLOBO
-    ================================================= */
-
-    const mundo =
-        Globe()(globo)
-
-            .width(
-                globo.clientWidth
-            )
-
-            .height(
-                globo.clientHeight
-            )
-
-            .backgroundColor(
-                "rgba(0,0,0,0)"
-            )
-
-            .globeImageUrl(
-                "https://unpkg.com/three-globe/example/img/earth-night.jpg"
-            )
-
-            .bumpImageUrl(
-                "https://unpkg.com/three-globe/example/img/earth-topology.png"
-            )
-
-            .showAtmosphere(
-                true
-            )
-
-            .atmosphereColor(
-                "#c9a46a"
-            )
-
-            .atmosphereAltitude(
-                0.12
-            );
-
-
-    /* =================================================
-       PONTOS NATIVOS INVISÍVEIS
-    ================================================= */
-
-    mundo
-
-        .pointsData(
+        console.log(
+            "Pontos criados:",
             pontos
-        )
+        );
 
-        .pointLat(
-            "lat"
-        )
 
-        .pointLng(
-            "lng"
-        )
+        /* =================================================
+           GLOBO
+        ================================================== */
 
-        .pointAltitude(
-            0.02
-        )
+        const mundo =
+            Globe()(globo)
 
-        .pointRadius(
-            0
-        )
-
-        .pointColor(
-            () =>
-                "rgba(0,0,0,0)"
-        )
-
-        .pointLabel(
-            ponto =>
-                nomePais(
-                    ponto.pais
+                .width(
+                    globo.clientWidth
                 )
+
+                .height(
+                    globo.clientHeight
+                )
+
+                .backgroundColor(
+                    "rgba(0,0,0,0)"
+                )
+
+                .globeImageUrl(
+                    "https://unpkg.com/three-globe/example/img/earth-night.jpg"
+                )
+
+                .bumpImageUrl(
+                    "https://unpkg.com/three-globe/example/img/earth-topology.png"
+                )
+
+                .showAtmosphere(
+                    true
+                )
+
+                .atmosphereColor(
+                    "#c9a46a"
+                )
+
+                .atmosphereAltitude(
+                    0.12
+                )
+
+
+/* =================================================
+   MARCADORES DOS PAÍSES
+   PONTO DE LUZ + FEIXE
+================================================= */
+
+.pointsData(
+    pontos
+)
+
+.pointLat(
+    "lat"
+)
+
+.pointLng(
+    "lng"
+)
+
+.pointAltitude(
+    0.02
+)
+
+/*
+ * O ponto nativo fica invisível.
+ * A luz será desenhada pelo elemento HTML.
+ */
+
+.pointRadius(
+    0
+)
+
+.pointColor(
+    () => "rgba(0,0,0,0)"
+)
+
+.pointLabel(
+    ponto =>
+        nomePais(
+            ponto.pais
+        )
+)
+
+
+/* =================================================
+   LUZ DOS PAÍSES
+================================================= */
+
+.htmlElementsData(
+    pontos
+)
+
+.htmlLat(
+    "lat"
+)
+
+.htmlLng(
+    "lng"
+)
+
+.htmlAltitude(
+    0.025
+)
+
+.htmlElement(
+    ponto => {
+
+        const marcador =
+            document.createElement("div");
+
+        marcador.style.position =
+            "relative";
+
+        marcador.style.width =
+            "34px";
+
+        marcador.style.height =
+            "48px";
+
+        marcador.style.pointerEvents =
+            "auto";
+
+        marcador.style.cursor =
+            "pointer";
+
+        marcador.style.transform =
+            "translate(-50%, -50%)";
+
+
+        /* =================================================
+           FEIXE
+        ================================================== */
+
+        const feixe =
+            document.createElement("div");
+
+        feixe.style.position =
+            "absolute";
+
+        feixe.style.left =
+            "50%";
+
+        feixe.style.bottom =
+            "50%";
+
+        feixe.style.width =
+            "1px";
+
+        feixe.style.height =
+            "38px";
+
+        feixe.style.transform =
+            "translateX(-50%) rotate(28deg)";
+
+        feixe.style.transformOrigin =
+            "bottom center";
+
+        feixe.style.background =
+            "linear-gradient(" +
+            "to top," +
+            "rgba(225,179,109,0.70)," +
+            "rgba(225,179,109,0)" +
+            ")";
+
+        feixe.style.boxShadow =
+            "0 0 5px rgba(225,179,109,0.35)";
+
+
+        /* =================================================
+           AURA
+        ================================================== */
+
+        const aura =
+            document.createElement("div");
+
+        aura.style.position =
+            "absolute";
+
+        aura.style.left =
+            "50%";
+
+        aura.style.top =
+            "50%";
+
+        aura.style.width =
+            "18px";
+
+        aura.style.height =
+            "18px";
+
+        aura.style.transform =
+            "translate(-50%, -50%)";
+
+        aura.style.borderRadius =
+            "50%";
+
+        aura.style.background =
+            "radial-gradient(" +
+            "circle," +
+            "rgba(255,248,223,0.95) 0%," +
+            "rgba(225,179,109,0.65) 20%," +
+            "rgba(225,179,109,0.25) 42%," +
+            "rgba(225,179,109,0) 72%" +
+            ")";
+
+        aura.style.boxShadow =
+            "0 0 6px rgba(255,241,196,0.8)," +
+            "0 0 14px rgba(225,179,109,0.65)";
+
+
+        /* =================================================
+           NÚCLEO
+        ================================================== */
+
+        const nucleo =
+            document.createElement("div");
+
+        nucleo.style.position =
+            "absolute";
+
+        nucleo.style.left =
+            "50%";
+
+        nucleo.style.top =
+            "50%";
+
+        nucleo.style.width =
+            "5px";
+
+        nucleo.style.height =
+            "5px";
+
+        nucleo.style.transform =
+            "translate(-50%, -50%)";
+
+        nucleo.style.borderRadius =
+            "50%";
+
+        nucleo.style.background =
+            "#fff8df";
+
+        nucleo.style.boxShadow =
+            "0 0 4px #fff8df," +
+            "0 0 9px #e1b36d";
+
+
+        marcador.appendChild(
+            feixe
+        );
+
+        marcador.appendChild(
+            aura
+        );
+
+        marcador.appendChild(
+            nucleo
         );
 
 
-    /* =================================================
-       PONTOS DE LUZ
-    ================================================= */
+        /* =================================================
+           CLIQUE
+        ================================================== */
 
-    mundo
+        marcador.addEventListener(
+            "click",
+            evento => {
 
-        .htmlElementsData(
-            pontos
-        )
+                evento.stopPropagation();
 
-        .htmlLat(
-            "lat"
-        )
-
-        .htmlLng(
-            "lng"
-        )
-
-        .htmlAltitude(
-            0.025
-        )
-
-        .htmlElement(
-            ponto => {
-
-                const marcador =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                marcador.style.position =
-                    "relative";
-
-                marcador.style.width =
-                    "34px";
-
-                marcador.style.height =
-                    "48px";
-
-                marcador.style.pointerEvents =
-                    "auto";
-
-                marcador.style.cursor =
-                    "pointer";
-
-                marcador.style.transform =
-                    "translate(-50%, -50%)";
-
-
-                /* =====================================
-                   FEIXE
-                ====================================== */
-
-                const feixe =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                feixe.style.position =
-                    "absolute";
-
-                feixe.style.left =
-                    "50%";
-
-                feixe.style.bottom =
-                    "50%";
-
-                feixe.style.width =
-                    "1px";
-
-                feixe.style.height =
-                    "38px";
-
-                feixe.style.transform =
-                    "translateX(-50%) rotate(28deg)";
-
-                feixe.style.transformOrigin =
-                    "bottom center";
-
-                feixe.style.background =
-                    "linear-gradient(" +
-                    "to top," +
-                    "rgba(225,179,109,0.70)," +
-                    "rgba(225,179,109,0)" +
-                    ")";
-
-                feixe.style.boxShadow =
-                    "0 0 5px rgba(225,179,109,0.35)";
-
-
-                /* =====================================
-                   AURA
-                ====================================== */
-
-                const aura =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                aura.style.position =
-                    "absolute";
-
-                aura.style.left =
-                    "50%";
-
-                aura.style.top =
-                    "50%";
-
-                aura.style.width =
-                    "18px";
-
-                aura.style.height =
-                    "18px";
-
-                aura.style.transform =
-                    "translate(-50%, -50%)";
-
-                aura.style.borderRadius =
-                    "50%";
-
-                aura.style.background =
-                    "radial-gradient(" +
-                    "circle," +
-                    "rgba(255,248,223,0.95) 0%," +
-                    "rgba(225,179,109,0.65) 20%," +
-                    "rgba(225,179,109,0.25) 42%," +
-                    "rgba(225,179,109,0) 72%" +
-                    ")";
-
-                aura.style.boxShadow =
-                    "0 0 6px rgba(255,241,196,0.8)," +
-                    "0 0 14px rgba(225,179,109,0.65)";
-
-
-                /* =====================================
-                   NÚCLEO
-                ====================================== */
-
-                const nucleo =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                nucleo.style.position =
-                    "absolute";
-
-                nucleo.style.left =
-                    "50%";
-
-                nucleo.style.top =
-                    "50%";
-
-                nucleo.style.width =
-                    "5px";
-
-                nucleo.style.height =
-                    "5px";
-
-                nucleo.style.transform =
-                    "translate(-50%, -50%)";
-
-                nucleo.style.borderRadius =
-                    "50%";
-
-                nucleo.style.background =
-                    "#fff8df";
-
-                nucleo.style.boxShadow =
-                    "0 0 4px #fff8df," +
-                    "0 0 9px #e1b36d";
-
-
-                marcador.appendChild(
-                    feixe
+                abrirPais(
+                    ponto.pais
                 );
-
-                marcador.appendChild(
-                    aura
-                );
-
-                marcador.appendChild(
-                    nucleo
-                );
-
-
-                /* =====================================
-                   CLIQUE
-                ====================================== */
-
-                marcador.addEventListener(
-                    "click",
-                    evento => {
-
-                        evento.stopPropagation();
-
-                        abrirPais(
-                            ponto.pais
-                        );
-
-                    }
-                );
-
-
-                return marcador;
 
             }
-        )
-
-        .htmlElementVisibilityModifier(
-            (elemento, visivel) => {
-
-                elemento.style.opacity =
-                    visivel ? "1" : "0";
-
-            }
-        )
-
-        .htmlTransitionDuration(
-            0
         );
 
 
-    /* =================================================
-       POSIÇÃO INICIAL
-    ================================================= */
-
-    mundo.pointOfView(
-        {
-            lat:
-                10,
-
-            lng:
-                -35,
-
-            altitude:
-                2.15
-
-        },
-        0
-    );
-
-
-    /* =================================================
-       CONTROLE POR TOQUE
-    ================================================= */
-
-    mundo.controls()
-        .enableZoom = false;
-
-    mundo.controls()
-        .autoRotate = true;
-
-    mundo.controls()
-        .autoRotateSpeed = 0.35;
-
-
-    /* =================================================
-       RESPONSIVO
-    ================================================= */
-
-    function ajustarGlobo() {
-
-        mundo
-            .width(
-                globo.clientWidth
-            )
-            .height(
-                globo.clientHeight
-            );
+        return marcador;
 
     }
+)
+
+.htmlElementVisibilityModifier(
+    (elemento, visivel) => {
+
+        elemento.style.opacity =
+            visivel ? "1" : "0";
+
+    }
+)
+
+.htmlTransitionDuration(
+    0
+);
 
 
-    window.addEventListener(
-        "resize",
-        ajustarGlobo
-    );
+/* =====================================================
+   POSIÇÃO INICIAL
+===================================================== */
+
+mundo.pointOfView(
+    {
+        lat:
+            10,
+
+        lng:
+            -35,
+
+        altitude:
+            2.15
+
+    },
+    0
+);
+
+
+/* =====================================================
+   CONTROLE POR TOQUE
+===================================================== */
+
+mundo.controls()
+    .enableZoom = false;
+
+mundo.controls()
+    .autoRotate = true;
+
+mundo.controls()
+    .autoRotateSpeed = 0.35;
+
+
+/* =====================================================
+   RESPONSIVO
+===================================================== */
+
+function ajustarGlobo() {
+
+    mundo
+        .width(
+            globo.clientWidth
+        )
+        .height(
+            globo.clientHeight
+        );
 
 }
-   
-   
+
+
+window.addEventListener(
+    "resize",
+    ajustarGlobo
+);
+
+}
+
+
 /* =====================================================
    CARREGAR MENSAGENS DA PLANILHA
 ===================================================== */
@@ -1175,9 +1153,10 @@ function carregarMensagens() {
                     );
 
 
-               criarListaPaises();
+                criarListaPaises();
 
-atualizarPontosGlobo();
+
+                criarGlobo();
 
 
                 if (carregando) {
@@ -1337,13 +1316,6 @@ mostrarEstado(
 );
 
 
-/* =====================================================
-   CRIAR O GLOBO IMEDIATAMENTE
-===================================================== */
-
-criarGlobo();
-
-
 carregarMensagens();
 
-   
+});
