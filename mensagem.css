@@ -1079,7 +1079,10 @@ body {
         font-size: 28px;
     }
 
-
+.mensagens-titulo {
+   top: 18px;
+}
+   
     .mensagens-titulo span {
         font-size: 20px;
 
@@ -1097,11 +1100,11 @@ body {
     }
 
     .mensagens-titulo small {
-        margin-top: 5px;
+        margin-top: 13px;
 
         font-size: 15px;
 
-       transform: translateY(30px);
+       transform: none;
     }
 
 
@@ -1129,7 +1132,7 @@ body {
     }
 
     .globo-instrucao {
-        bottom: 120px;
+        bottom: 150px;
     }
 
     .icone-toque {
