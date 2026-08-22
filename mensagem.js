@@ -78,9 +78,14 @@ let indiceCoordenadasGlobo = {};
 
     if (mensagemVoltar) {
 
-        mensagemVoltar.style.display =
+        mensagemVoltar.style.visibility =
             nome === "mural"
-                ? "flex"
+                ? "visible"
+                : "hidden";
+
+        mensagemVoltar.style.pointerEvents =
+            nome === "mural"
+                ? "auto"
                 : "none";
 
     }
