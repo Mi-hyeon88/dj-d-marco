@@ -677,7 +677,23 @@ async function criarGlobo() {
 
     globo.innerHTML = "";
 
+    /* =================================================
+       PRÉ-CARREGAR TEXTURAS DO GLOBO
+    ================================================= */
 
+    const texturaTerra =
+        new Image();
+
+    texturaTerra.src =
+        "https://unpkg.com/three-globe/example/img/earth-night.jpg";
+
+    const texturaRelevo =
+        new Image();
+
+    texturaRelevo.src =
+        "https://unpkg.com/three-globe/example/img/earth-topology.png";
+
+   
     /* =================================================
        CRIAR O GLOBO IMEDIATAMENTE
     ================================================= */
@@ -701,6 +717,10 @@ async function criarGlobo() {
                 "https://unpkg.com/three-globe/example/img/earth-night.jpg"
             )
 
+       .bumpImageUrl(
+    "https://unpkg.com/three-globe/example/img/earth-topology.png"
+)
+       
             .showAtmosphere(
                 true
             )
