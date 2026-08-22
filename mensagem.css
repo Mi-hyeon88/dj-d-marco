@@ -1223,6 +1223,83 @@ body {
     z-index: 100;
 }
 
+   .mensagens-carta {
+
+    width: 100%;
+
+    max-height:
+        calc(100svh - 145px);
+
+    padding:
+        22px
+        17px
+        18px;
+}
+
+
+.mensagens-carta-cabecalho {
+
+    margin-bottom: 8px;
+}
+
+
+.mensagens-carta-cabecalho h1 {
+
+    font-size: 22px;
+}
+
+
+.mensagens-carta-cabecalho p {
+
+    font-size: 11px;
+}
+
+
+.mensagens-carta-divisor {
+
+    margin:
+        7px 0
+        6px;
+}
+
+
+.mensagem-item {
+
+    min-height: 58px;
+
+    gap: 8px;
+
+    padding:
+        8px
+        2px;
+}
+
+
+.mensagem-numero {
+
+    width: 28px;
+
+    font-size: 10px;
+}
+
+
+.mensagem-item-conteudo strong {
+
+    font-size: 12px;
+}
+
+
+.mensagem-item-conteudo small {
+
+    font-size: 9px;
+}
+
+
+.mensagem-item-seta {
+
+    font-size: 19px;
+}
+
     .pais-cabecalho h1 {
         font-size: 24px;
     }
