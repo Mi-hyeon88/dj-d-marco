@@ -637,10 +637,18 @@ function aplicarIdioma() {
 
         if (contadorMensagens) {
 
-            contadorMensagens.textContent =
-                `${indiceMensagem + 1} de ${mensagensPais.length}`;
+          const numeroAtual =
+    indiceMensagem + 1;
 
-        }
+const totalMensagens =
+    mensagensPais.length;
+
+contadorMensagens.textContent =
+    idiomaAtual === "ko"
+        ? `${numeroAtual} / ${totalMensagens}`
+        : idiomaAtual === "en"
+            ? `${numeroAtual} of ${totalMensagens}`
+            : `${numeroAtual} de ${totalMensagens}`;
 
         mostrarEstado("mensagem");
 
