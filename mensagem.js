@@ -76,14 +76,23 @@ let indiceCoordenadasGlobo = {};
 
     function mostrarEstado(nome) {
 
-        estados.forEach(estado => {
+    if (mensagemVoltar) {
 
-            estado.classList.toggle(
-                "ativo",
-                estado.dataset.estado === nome
-            );
+        mensagemVoltar.style.display =
+            nome === "mural"
+                ? "flex"
+                : "none";
 
-        });
+    }
+
+    estados.forEach(estado => {
+
+        estado.classList.toggle(
+            "ativo",
+            estado.dataset.estado === nome
+        );
+
+    });
 
     }
 
