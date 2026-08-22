@@ -661,155 +661,22 @@ async function criarGlobo() {
 
     if (!globo) return;
 
-
-    /* =================================================
-       EVITA CRIAR O GLOBO MAIS DE UMA VEZ
-    ================================================= */
-
-    if (mundoGlobo) {
-
-        atualizarPontosGlobo();
-
-        return;
-
-    }
-
-
     globo.innerHTML = "";
 
-    /* =================================================
-       PRÉ-CARREGAR TEXTURAS DO GLOBO
-    ================================================= */
-
-    const texturaTerra =
-        new Image();
-
-    texturaTerra.src =
-        "https://unpkg.com/three-globe/example/img/earth-night.jpg";
-
-    const texturaRelevo =
-        new Image();
-
-    texturaRelevo.src =
-        "https://unpkg.com/three-globe/example/img/earth-topology.png";
-
-   
-    /* =================================================
-       CRIAR O GLOBO IMEDIATAMENTE
-    ================================================= */
-
-    mundoGlobo =
-        Globe()(globo)
-
-            .width(
-                globo.clientWidth
-            )
-
-            .height(
-                globo.clientHeight
-            )
-
-            .backgroundColor(
-                "rgba(0,0,0,0)"
-            )
-
-            .globeImageUrl(
-                "https://unpkg.com/three-globe/example/img/earth-night.jpg"
-            )
-
-       .bumpImageUrl(
-    "https://unpkg.com/three-globe/example/img/earth-topology.png"
-)
-       
-            .showAtmosphere(
-                true
-            )
-
-            .atmosphereColor(
-                "#c9a46a"
-            )
-
-            .atmosphereAltitude(
-                0.12
-            );
+    const grupos =
+        agruparPaises();
 
 
     /* =================================================
-       POSIÇÃO INICIAL
+       CARREGAR COORDENADAS
     ================================================= */
 
-    mundoGlobo.pointOfView(
-        {
-            lat:
-                10,
-
-            lng:
-                -35,
-
-            altitude:
-                2.15
-
-        },
-        0
-    );
-
-
-    /* =================================================
-       CONTROLE POR TOQUE
-    ================================================= */
-
-    mundoGlobo.controls()
-        .enableZoom = false;
-
-    mundoGlobo.controls()
-        .autoRotate = true;
-
-    mundoGlobo.controls()
-        .autoRotateSpeed = 0.35;
-
-
-    /* =================================================
-       RESPONSIVO
-    ================================================= */
-
-    function ajustarGlobo() {
-
-        mundoGlobo
-            .width(
-                globo.clientWidth
-            )
-
-            .height(
-                globo.clientHeight
-            );
-
-    }
-
-
-    window.addEventListener(
-        "resize",
-        ajustarGlobo
-    );
-
-
-    /* =================================================
-       CARREGAR COORDENADAS EM PARALELO
-       NÃO BLOQUEIA A APARIÇÃO DO GLOBO
-    ================================================= */
+    let dadosCoordenadas;
 
     try {
 
-        const dadosCoordenadas =
+        dadosCoordenadas =
             await carregarCoordenadas();
-
-
-        indiceCoordenadasGlobo =
-            criarIndiceCoordenadas(
-                dadosCoordenadas
-            );
-
-
-        atualizarPontosGlobo();
 
     } catch (erro) {
 
@@ -818,34 +685,15 @@ async function criarGlobo() {
             erro
         );
 
-    }
-
-}
-
-
-/* =====================================================
-   ATUALIZAR PONTOS DO GLOBO
-===================================================== */
-
-function atualizarPontosGlobo() {
-
-    if (
-        !mundoGlobo ||
-        !indiceCoordenadasGlobo ||
-        !mensagens.length
-    ) {
-
         return;
 
     }
 
 
-    /* =================================================
-       GRUPOS DE MENSAGENS
-    ================================================= */
-
-    const grupos =
-        agruparPaises();
+    const indiceCoordenadas =
+        criarIndiceCoordenadas(
+            dadosCoordenadas
+        );
 
 
     /* =================================================
@@ -854,12 +702,11 @@ function atualizarPontosGlobo() {
 
     const pontos = [];
 
-
     Object.keys(grupos)
         .forEach(pais => {
 
             let coordenada =
-                indiceCoordenadasGlobo[
+                indiceCoordenadas[
                     chavePais(pais)
                 ];
 
@@ -867,7 +714,7 @@ function atualizarPontosGlobo() {
             if (!coordenada) {
 
                 coordenada =
-                    indiceCoordenadasGlobo[
+                    indiceCoordenadas[
                         chavePais(
                             nomePais(pais)
                         )
@@ -920,10 +767,50 @@ function atualizarPontosGlobo() {
 
 
     /* =================================================
+       GLOBO
+    ================================================= */
+
+    const mundo =
+        Globe()(globo)
+
+            .width(
+                globo.clientWidth
+            )
+
+            .height(
+                globo.clientHeight
+            )
+
+            .backgroundColor(
+                "rgba(0,0,0,0)"
+            )
+
+            .globeImageUrl(
+                "https://unpkg.com/three-globe/example/img/earth-night.jpg"
+            )
+
+            .bumpImageUrl(
+                "https://unpkg.com/three-globe/example/img/earth-topology.png"
+            )
+
+            .showAtmosphere(
+                true
+            )
+
+            .atmosphereColor(
+                "#c9a46a"
+            )
+
+            .atmosphereAltitude(
+                0.12
+            );
+
+
+    /* =================================================
        PONTOS NATIVOS INVISÍVEIS
     ================================================= */
 
-    mundoGlobo
+    mundo
 
         .pointsData(
             pontos
@@ -962,7 +849,7 @@ function atualizarPontosGlobo() {
        PONTOS DE LUZ
     ================================================= */
 
-    mundoGlobo
+    mundo
 
         .htmlElementsData(
             pontos
@@ -1182,6 +1069,63 @@ function atualizarPontosGlobo() {
         .htmlTransitionDuration(
             0
         );
+
+
+    /* =================================================
+       POSIÇÃO INICIAL
+    ================================================= */
+
+    mundo.pointOfView(
+        {
+            lat:
+                10,
+
+            lng:
+                -35,
+
+            altitude:
+                2.15
+
+        },
+        0
+    );
+
+
+    /* =================================================
+       CONTROLE POR TOQUE
+    ================================================= */
+
+    mundo.controls()
+        .enableZoom = false;
+
+    mundo.controls()
+        .autoRotate = true;
+
+    mundo.controls()
+        .autoRotateSpeed = 0.35;
+
+
+    /* =================================================
+       RESPONSIVO
+    ================================================= */
+
+    function ajustarGlobo() {
+
+        mundo
+            .width(
+                globo.clientWidth
+            )
+            .height(
+                globo.clientHeight
+            );
+
+    }
+
+
+    window.addEventListener(
+        "resize",
+        ajustarGlobo
+    );
 
 }
    
