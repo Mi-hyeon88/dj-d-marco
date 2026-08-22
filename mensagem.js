@@ -69,7 +69,147 @@ let indiceCoordenadasGlobo = {};
     let mensagensPais = [];
     let indiceMensagem = 0;
 
+/* =====================================================
+   IDIOMA
+===================================================== */
 
+const idiomaAtual =
+    localStorage.getItem("idiomaDMarco") || "ko";
+
+
+const traducoes = {
+
+    ko: {
+        subtitulo: "세계 곳곳에서 온 메시지",
+
+        instrucaoGlobo:
+            "글로브를 움직여 나라를 둘러보세요.<br>빛나는 곳을 눌러 메시지를 확인하세요.",
+
+        instrucaoPais:
+            "나라를 눌러<br>메시지를 확인하세요 ♡",
+
+        paraVoce:
+            "당신을 위해,",
+
+        anterior:
+            "이전",
+
+        proxima:
+            "다음",
+
+        erro:
+            "메시지를 불러오지 못했습니다.",
+
+        tentarNovamente:
+            "다시 시도",
+
+        de:
+            "보낸 사람",
+
+        contador: "개"
+    },
+
+    pt: {
+        subtitulo:
+            "Mensagens ao redor do mundo",
+
+        instrucaoGlobo:
+            "Mova o globo para explorar os países.<br>Toque nas luzes para ver as mensagens.",
+
+        instrucaoPais:
+            "Toque em um país para ver<br>as mensagens ♡",
+
+        paraVoce:
+            "Para você,",
+
+        anterior:
+            "Anterior",
+
+        proxima:
+            "Próxima",
+
+        erro:
+            "Não foi possível carregar as mensagens.",
+
+        tentarNovamente:
+            "Tentar novamente",
+
+        de:
+            "De",
+
+        contador: "mensagens"
+    },
+
+    en: {
+        subtitulo:
+            "Messages from around the world",
+
+        instrucaoGlobo:
+            "Move the globe to explore the countries.<br>Tap the lights to see the messages.",
+
+        instrucaoPais:
+            "Tap a country to see<br>the messages ♡",
+
+        paraVoce:
+            "For you,",
+
+        anterior:
+            "Previous",
+
+        proxima:
+            "Next",
+
+        erro:
+            "Could not load the messages.",
+
+        tentarNovamente:
+            "Try again",
+
+        de:
+            "From",
+
+        contador: "messages"
+    }
+
+};
+
+
+function aplicarIdioma() {
+
+    const traducao =
+        traducoes[idiomaAtual] ||
+        traducoes.ko;
+
+
+    document.documentElement.lang =
+        idiomaAtual === "pt"
+            ? "pt-BR"
+            : idiomaAtual === "ko"
+                ? "ko"
+                : "en";
+
+
+    document
+        .querySelectorAll("[data-i18n]")
+        .forEach(elemento => {
+
+            const chave =
+                elemento.dataset.i18n;
+
+            if (
+                traducao[chave] !== undefined
+            ) {
+
+                elemento.innerHTML =
+                    traducao[chave];
+
+            }
+
+        });
+
+}
+
+   
     /* =====================================================
        ESTADO
     ====================================================== */
@@ -190,62 +330,133 @@ let indiceCoordenadasGlobo = {};
 
     function nomePais(pais) {
 
-        const nomes = {
+    const nomes = {
 
-            brasil: "Brasil",
+        brasil: {
+            ko: "브라질",
+            pt: "Brasil",
+            en: "Brazil"
+        },
 
-            "coreia do sul":
-                "Coreia do Sul",
+        "coreia do sul": {
+            ko: "대한민국",
+            pt: "Coreia do Sul",
+            en: "South Korea"
+        },
 
-            japao:
-                "Japão",
+        japao: {
+            ko: "일본",
+            pt: "Japão",
+            en: "Japan"
+        },
 
-            "estados unidos":
-                "Estados Unidos",
+        "estados unidos": {
+            ko: "미국",
+            pt: "Estados Unidos",
+            en: "United States"
+        },
 
-            franca:
-                "França",
+        franca: {
+            ko: "프랑스",
+            pt: "França",
+            en: "France"
+        },
 
-            portugal:
-                "Portugal",
+        portugal: {
+            ko: "포르투갈",
+            pt: "Portugal",
+            en: "Portugal"
+        },
 
-            mexico:
-                "México",
+        mexico: {
+            ko: "멕시코",
+            pt: "México",
+            en: "Mexico"
+        },
 
-            alemanha:
-                "Alemanha",
+        alemanha: {
+            ko: "독일",
+            pt: "Alemanha",
+            en: "Germany"
+        },
 
-            argentina:
-                "Argentina",
+        argentina: {
+            ko: "아르헨티나",
+            pt: "Argentina",
+            en: "Argentina"
+        },
 
-            chile:
-                "Chile",
+        chile: {
+            ko: "칠레",
+            pt: "Chile",
+            en: "Chile"
+        },
 
-            colombia:
-                "Colômbia",
+        colombia: {
+            ko: "콜롬비아",
+            pt: "Colômbia",
+            en: "Colombia"
+        },
 
-            peru:
-                "Peru",
+        peru: {
+            ko: "페루",
+            pt: "Peru",
+            en: "Peru"
+        },
 
-            canada:
-                "Canadá",
+        canada: {
+            ko: "캐나다",
+            pt: "Canadá",
+            en: "Canada"
+        },
 
-            italia:
-                "Itália",
+        italia: {
+            ko: "이탈리아",
+            pt: "Itália",
+            en: "Italy"
+        },
 
-            espanha:
-                "Espanha",
+        espanha: {
+            ko: "스페인",
+            pt: "Espanha",
+            en: "Spain"
+        },
 
-            "reino unido":
-                "Reino Unido"
+        "reino unido": {
+            ko: "영국",
+            pt: "Reino Unido",
+            en: "United Kingdom"
+        }
 
-        };
+    };
 
-        return nomes[chavePais(pais)] ||
-               String(pais || "Outros países");
+
+    const chave =
+        chavePais(pais);
+
+    const idioma =
+        traducoes[idiomaAtual]
+            ? idiomaAtual
+            : "ko";
+
+
+    return (
+        nomes[chave] &&
+        nomes[chave][idioma]
+    )
+        ? nomes[chave][idioma]
+        : String(
+            pais ||
+            (
+                idioma === "ko"
+                    ? "기타 국가"
+                    : idioma === "en"
+                        ? "Other countries"
+                        : "Outros países"
+            )
+        );
 
     }
-
 
     /* =====================================================
        AGRUPAR MENSAGENS POR PAÍS
@@ -1294,6 +1505,8 @@ if (carregando) {
 mostrarEstado(
     "mural"
 );
+
+   aplicarIdioma();
 
 
 /* =====================================================
