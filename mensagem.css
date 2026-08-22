@@ -1084,12 +1084,16 @@ body {
         font-size: 20px;
 
         letter-spacing: 1.5px;
+
+       transform: translateY(22px);
     }
 
     .mensagens-titulo i {
         margin-top: 2px;
 
         font-size: 9px;
+
+       transform: translateY(15px)
     }
 
     .mensagens-titulo small {
@@ -1097,7 +1101,7 @@ body {
 
         font-size: 15px;
 
-       transform: translateY(22px);
+       transform: translateY(30px);
     }
 
 
@@ -1125,17 +1129,19 @@ body {
     }
 
     .globo-instrucao {
-        bottom: 100px;
+        bottom: 120px;
     }
 
     .icone-toque {
         margin-bottom: 4px;
 
         font-size: 19px;
+
+       transform: translateY(-8px)
     }
 
     .globo-instrucao p {
-        font-size: 10px;
+        font-size: 18px;
 
         line-height: 1.5;
     }
