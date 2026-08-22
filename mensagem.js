@@ -17,11 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const listaPaises =
         document.querySelector(".lista-paises");
 
-    const tituloPais =
-        document.querySelector(".pais-cabecalho h1");
+   const tituloPais =
+    document.querySelector("#paisNome");
 
-    const contagemPais =
-        document.querySelector(".pais-cabecalho span");
+const listaMensagens =
+    document.querySelector("#listaMensagens");
 
     const cartaPais =
         document.querySelector(".carta-pais");
@@ -88,6 +88,9 @@ const traducoes = {
         instrucaoPais:
             "나라를 눌러<br>메시지를 확인하세요 ♡",
 
+       listaMensagensTitulo:
+    "당신을 위한 메시지",
+       
         paraVoce:
             "당신을 위해,",
 
@@ -119,6 +122,9 @@ const traducoes = {
         instrucaoPais:
             "Toque em um país para ver<br>as mensagens ♡",
 
+       listaMensagensTitulo:
+    "Mensagens para você",
+
         paraVoce:
             "Para você,",
 
@@ -149,6 +155,9 @@ const traducoes = {
 
         instrucaoPais:
             "Tap a country to see<br>the messages ♡",
+
+       listaMensagensTitulo:
+    "Messages for you",
 
         paraVoce:
             "For you,",
@@ -548,6 +557,94 @@ function aplicarIdioma() {
     }
 
 
+   /* =====================================================
+   LISTA DE MENSAGENS DO PAÍS
+===================================================== */
+
+function criarListaMensagens() {
+
+    if (!listaMensagens) return;
+
+    listaMensagens.innerHTML = "";
+
+
+    mensagensPais.forEach(
+        (mensagem, indice) => {
+
+            const botao =
+                document.createElement("button");
+
+            botao.type = "button";
+
+            botao.className =
+                "mensagem-item";
+
+
+            const numero =
+                String(indice + 1)
+                    .padStart(2, "0");
+
+
+            const nome =
+                mensagem.nome
+                    ? mensagem.nome
+                    : (
+                        idiomaAtual === "ko"
+                            ? "익명"
+                            : idiomaAtual === "en"
+                                ? "Anonymous"
+                                : "Anônimo"
+                    );
+
+
+            botao.innerHTML = `
+
+                <span class="mensagem-numero">
+                    ${numero}
+                </span>
+
+                <span class="mensagem-item-conteudo">
+
+                    <strong>
+                        ${nome}
+                    </strong>
+
+                    <small>
+                        ${mensagem.mensagem || ""}
+                    </small>
+
+                </span>
+
+                <span class="mensagem-item-seta">
+                    ›
+                </span>
+
+            `;
+
+
+            botao.addEventListener(
+                "click",
+                () => {
+
+                    indiceMensagem =
+                        indice;
+
+                    prepararMensagem();
+
+                }
+            );
+
+
+            listaMensagens.appendChild(
+                botao
+            );
+
+        }
+    );
+
+}
+
+   
     /* =====================================================
        ABRIR PAÍS
     ====================================================== */
