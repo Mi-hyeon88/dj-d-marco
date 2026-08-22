@@ -680,6 +680,8 @@ criarListaMensagens();
 
 mostrarEstado("pais");
 
+    }
+
 
     /* =====================================================
        PREPARAR MENSAGEM
