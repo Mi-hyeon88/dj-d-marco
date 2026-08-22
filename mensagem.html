@@ -141,55 +141,47 @@
          APRESENTAÇÃO DO PAÍS
     ====================================================== -->
 
-    <section
-        class="estado estado-pais"
-        data-estado="pais"
-    >
-
-        <button
-    class="estado-voltar"
-    data-voltar="mural"
-    aria-label="Voltar ao globo"
+   <section
+    class="estado estado-pais"
+    data-estado="pais"
 >
-    ←
-</button>
+
+    <button
+        class="estado-voltar"
+        data-voltar="mural"
+        aria-label="Voltar ao globo"
+    >
+        ←
+    </button>
 
 
-        <div class="pais-cabecalho">
+    <article class="mensagens-carta">
+
+        <header class="mensagens-carta-cabecalho">
 
             <h1 id="paisNome">
                 BRASIL
             </h1>
 
-            <span id="paisQuantidade">
-                0 mensagens
-            </span>
+            <div class="mensagens-carta-divisor">
+                <span>✦</span>
+            </div>
 
-        </div>
-
-
-        <div class="pais-centro">
-
-            <p data-i18n="paraVoce">
-                Para você,
+            <p data-i18n="listaMensagensTitulo">
+                Mensagens para você
             </p>
 
-            <h2>
-                Marco...
-            </h2>
-
-        </div>
+        </header>
 
 
         <div
-            class="pais-brilho"
-            aria-hidden="true"
-        >
-            ✦
-        </div>
+            id="listaMensagens"
+            class="lista-mensagens"
+        ></div>
 
-    </section>
+    </article>
 
+</section>
 
 
     <!-- =====================================================
