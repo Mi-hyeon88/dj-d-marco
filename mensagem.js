@@ -667,31 +667,18 @@ function criarListaMensagens() {
         indiceMensagem =
             0;
 
-        if (tituloPais) {
+       if (tituloPais) {
 
-            tituloPais.textContent =
-                nomePais(paisAtual);
+    tituloPais.textContent =
+        nomePais(paisAtual);
 
-        }
+}
 
-        if (contagemPais) {
 
-    const traducao =
-        traducoes[idiomaAtual] ||
-        traducoes.ko;
+criarListaMensagens();
 
-    contagemPais.textContent =
-        idiomaAtual === "ko"
-            ? `${mensagensPais.length}개 메시지`
-            : idiomaAtual === "en"
-                ? `${mensagensPais.length} messages`
-                : `${mensagensPais.length} mensagens`;
 
-        }
-
-        mostrarEstado("pais");
-
-    }
+mostrarEstado("pais");
 
 
     /* =====================================================
