@@ -645,31 +645,44 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
- /* =====================================================
+/* =====================================================
    GLOBO
+===================================================== */
+
+let mundoGlobo = null;
+let indiceCoordenadasGlobo = null;
+
+
+/* =====================================================
+   CRIAR GLOBO
 ===================================================== */
 
 async function criarGlobo() {
 
     if (!globo) return;
 
+
+    /* =================================================
+       EVITA CRIAR O GLOBO MAIS DE UMA VEZ
+    ================================================= */
+
+    if (mundoGlobo) {
+
+        atualizarPontosGlobo();
+
+        return;
+
+    }
+
+
     globo.innerHTML = "";
 
 
     /* =================================================
-       GRUPOS DE MENSAGENS
-    ================================================= */
-
-    const grupos =
-        agruparPaises();
-
-
-    /* =================================================
        CRIAR O GLOBO IMEDIATAMENTE
-       NÃO ESPERAMOS AS COORDENADAS
     ================================================= */
 
-    const mundo =
+    mundoGlobo =
         Globe()(globo)
 
             .width(
@@ -709,7 +722,7 @@ async function criarGlobo() {
        POSIÇÃO INICIAL
     ================================================= */
 
-    mundo.pointOfView(
+    mundoGlobo.pointOfView(
         {
             lat:
                 10,
@@ -729,13 +742,13 @@ async function criarGlobo() {
        CONTROLE POR TOQUE
     ================================================= */
 
-    mundo.controls()
+    mundoGlobo.controls()
         .enableZoom = false;
 
-    mundo.controls()
+    mundoGlobo.controls()
         .autoRotate = true;
 
-    mundo.controls()
+    mundoGlobo.controls()
         .autoRotateSpeed = 0.35;
 
 
@@ -745,7 +758,7 @@ async function criarGlobo() {
 
     function ajustarGlobo() {
 
-        mundo
+        mundoGlobo
             .width(
                 globo.clientWidth
             )
@@ -764,16 +777,23 @@ async function criarGlobo() {
 
 
     /* =================================================
-       CARREGAR COORDENADAS
-       O GLOBO JÁ ESTÁ NA TELA
+       CARREGAR COORDENADAS EM PARALELO
+       NÃO BLOQUEIA A APARIÇÃO DO GLOBO
     ================================================= */
-
-    let dadosCoordenadas;
 
     try {
 
-        dadosCoordenadas =
+        const dadosCoordenadas =
             await carregarCoordenadas();
+
+
+        indiceCoordenadasGlobo =
+            criarIndiceCoordenadas(
+                dadosCoordenadas
+            );
+
+
+        atualizarPontosGlobo();
 
     } catch (erro) {
 
@@ -782,24 +802,38 @@ async function criarGlobo() {
             erro
         );
 
+    }
+
+}
+
+
+/* =====================================================
+   ATUALIZAR PONTOS DO GLOBO
+===================================================== */
+
+function atualizarPontosGlobo() {
+
+    if (
+        !mundoGlobo ||
+        !indiceCoordenadasGlobo ||
+        !mensagens.length
+    ) {
+
         return;
 
     }
 
 
     /* =================================================
-       ÍNDICE DE COORDENADAS
+       GRUPOS DE MENSAGENS
     ================================================= */
 
-    const indiceCoordenadas =
-        criarIndiceCoordenadas(
-            dadosCoordenadas
-        );
+    const grupos =
+        agruparPaises();
 
 
     /* =================================================
-       CRIAR PONTOS SOMENTE DOS PAÍSES
-       COM MENSAGEM
+       CRIAR PONTOS
     ================================================= */
 
     const pontos = [];
@@ -809,20 +843,15 @@ async function criarGlobo() {
         .forEach(pais => {
 
             let coordenada =
-                indiceCoordenadas[
+                indiceCoordenadasGlobo[
                     chavePais(pais)
                 ];
 
 
-            /*
-             * Segunda tentativa:
-             * procura diretamente pelo nome exibido.
-             */
-
             if (!coordenada) {
 
                 coordenada =
-                    indiceCoordenadas[
+                    indiceCoordenadasGlobo[
                         chavePais(
                             nomePais(pais)
                         )
@@ -875,11 +904,10 @@ async function criarGlobo() {
 
 
     /* =================================================
-       MARCADORES DOS PAÍSES
-       PONTO DE LUZ + FEIXE
+       PONTOS NATIVOS INVISÍVEIS
     ================================================= */
 
-    mundo
+    mundoGlobo
 
         .pointsData(
             pontos
@@ -897,18 +925,13 @@ async function criarGlobo() {
             0.02
         )
 
-
-        /*
-         * O ponto nativo fica invisível.
-         * A luz será desenhada pelo elemento HTML.
-         */
-
         .pointRadius(
             0
         )
 
         .pointColor(
-            () => "rgba(0,0,0,0)"
+            () =>
+                "rgba(0,0,0,0)"
         )
 
         .pointLabel(
@@ -920,10 +943,10 @@ async function criarGlobo() {
 
 
     /* =================================================
-       LUZ DOS PAÍSES
+       PONTOS DE LUZ
     ================================================= */
 
-    mundo
+    mundoGlobo
 
         .htmlElementsData(
             pontos
@@ -1192,10 +1215,9 @@ function carregarMensagens() {
                     );
 
 
-                criarListaPaises();
+               criarListaPaises();
 
-
-                criarGlobo();
+atualizarPontosGlobo();
 
 
                 if (carregando) {
@@ -1355,7 +1377,13 @@ mostrarEstado(
 );
 
 
+/* =====================================================
+   CRIAR O GLOBO IMEDIATAMENTE
+===================================================== */
+
+criarGlobo();
+
+
 carregarMensagens();
 
-});
-       
+   
