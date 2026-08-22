@@ -740,6 +740,8 @@ contadorMensagens.textContent =
 
     }
 
+    }
+   
 
     /* =====================================================
        PRÓXIMA MENSAGEM
