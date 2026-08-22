@@ -701,10 +701,6 @@ async function criarGlobo() {
                 "https://unpkg.com/three-globe/example/img/earth-night.jpg"
             )
 
-            .bumpImageUrl(
-                "https://unpkg.com/three-globe/example/img/earth-topology.png"
-            )
-
             .showAtmosphere(
                 true
             )
