@@ -610,8 +610,8 @@ function criarListaMensagens() {
                     </strong>
 
                     <small>
-                        ${mensagem.mensagem || ""}
-                    </small>
+    ${textoMensagem(mensagem)}
+</small>
 
                 </span>
 
@@ -716,8 +716,8 @@ mostrarEstado("pais");
 
         if (cartaTexto) {
 
-            cartaTexto.textContent =
-                mensagem.mensagem || "";
+    cartaTexto.textContent =
+        textoMensagem(mensagem);
 
         }
 
@@ -1406,6 +1406,38 @@ function atualizarPontosGlobo() {
         .htmlElementsData(pontos);
 
 }
+
+
+   /* =====================================================
+   ESCOLHER MENSAGEM PELO IDIOMA
+===================================================== */
+
+function textoMensagem(mensagem) {
+
+    if (!mensagem) {
+        return "";
+    }
+
+    /* COREANO — usa a tradução */
+    if (idiomaAtual === "ko") {
+
+        return String(
+            mensagem.mensagem_coreano ||
+            mensagem.mensagem_original ||
+            mensagem.mensagem ||
+            ""
+        ).trim();
+
+    }
+
+    /* PORTUGUÊS E INGLÊS — mantém a mensagem original */
+    return String(
+        mensagem.mensagem_original ||
+        mensagem.mensagem ||
+        ""
+    ).trim();
+
+}
    
 
 /* =====================================================
@@ -1445,12 +1477,12 @@ function carregarMensagens() {
 
 
                 mensagens =
-                    dados.mensagens.filter(
-                        item =>
-                            item &&
-                            item.pais &&
-                            item.mensagem
-                    );
+    dados.mensagens.filter(
+        item =>
+            item &&
+            item.pais &&
+            textoMensagem(item)
+    );
 
 
                 criarListaPaises();
