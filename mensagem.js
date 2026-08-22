@@ -579,8 +579,16 @@ function aplicarIdioma() {
 
         if (contagemPais) {
 
-            contagemPais.textContent =
-                `${mensagensPais.length} mensagens`;
+    const traducao =
+        traducoes[idiomaAtual] ||
+        traducoes.ko;
+
+    contagemPais.textContent =
+        idiomaAtual === "ko"
+            ? `${mensagensPais.length}개 메시지`
+            : idiomaAtual === "en"
+                ? `${mensagensPais.length} messages`
+                : `${mensagensPais.length} mensagens`;
 
         }
 
@@ -609,10 +617,14 @@ function aplicarIdioma() {
 
         if (cartaNome) {
 
-            cartaNome.textContent =
-                mensagem.nome
-                    ? `De ${mensagem.nome}`
-                    : "";
+    const traducao =
+        traducoes[idiomaAtual] ||
+        traducoes.ko;
+
+    cartaNome.textContent =
+        mensagem.nome
+            ? `${traducao.de} ${mensagem.nome}`
+            : "";
 
         }
 
