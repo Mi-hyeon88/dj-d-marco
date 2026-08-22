@@ -1114,8 +1114,7 @@ function carregarMensagens() {
 
                 criarListaPaises();
 
-
-                criarGlobo();
+atualizarPontosGlobo();
 
 
                 if (carregando) {
