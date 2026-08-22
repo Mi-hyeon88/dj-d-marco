@@ -80,6 +80,8 @@ const idiomaAtual =
 const traducoes = {
 
     ko: {
+        tituloMural: "벽화",
+
         subtitulo: "세계 곳곳에서 온 메시지",
 
         instrucaoGlobo:
@@ -113,9 +115,11 @@ const traducoes = {
     },
 
     pt: {
-        subtitulo:
-            "Mensagens ao redor do mundo",
+    tituloMural: "Mural",
 
+    subtitulo:
+        "Mensagens ao redor do mundo",
+       
         instrucaoGlobo:
             "Mova o globo para explorar os países.<br>Toque nas luzes para ver as mensagens.",
 
@@ -147,8 +151,10 @@ const traducoes = {
     },
 
     en: {
-        subtitulo:
-            "Messages from around the world",
+    tituloMural: "Mural",
+
+    subtitulo:
+        "Messages from around the world",
 
         instrucaoGlobo:
             "Move the globe to explore the countries.<br>Tap the lights to see the messages.",
