@@ -474,30 +474,33 @@ let indiceCoordenadasGlobo = {};
    VOLTAR ENTRE ESTADOS
 ===================================================== */
 
-document.addEventListener(
-    "click",
-    evento => {
+const botoesVoltar =
+    document.querySelectorAll(
+        "[data-voltar]"
+    );
 
-        const botao =
-            evento.target.closest(
-                "[data-voltar]"
-            );
+botoesVoltar.forEach(botao => {
 
-        if (!botao) return;
+    botao.addEventListener(
+        "click",
+        evento => {
 
-        evento.preventDefault();
-        evento.stopPropagation();
+            evento.preventDefault();
+            evento.stopImmediatePropagation();
 
-        const destino =
-            botao.dataset.voltar;
+            const destino =
+                botao.getAttribute(
+                    "data-voltar"
+                );
 
-        if (!destino) return;
+            if (!destino) return;
 
-        mostrarEstado(destino);
+            mostrarEstado(destino);
 
-    },
-    true
-);
+        }
+    );
+
+});
 
 
     /* =====================================================
