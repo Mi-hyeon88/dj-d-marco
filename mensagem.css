@@ -1132,22 +1132,27 @@ body {
     }
 
     .globo-instrucao {
-        bottom: 300px;
-    }
+    top: 145px;
+    bottom: auto;
 
-    .icone-toque {
-        margin-bottom: 4px;
+    width: 90%;
 
-        font-size: 19px;
+    text-align: center;
+}
 
-       transform: translateY(-8px)
-    }
+.icone-toque {
+    margin-bottom: 5px;
 
-    .globo-instrucao p {
-        font-size: 18px;
+    font-size: 16px;
 
-        line-height: 1.5;
-    }
+    transform: none;
+}
+
+.globo-instrucao p {
+    font-size: 11px;
+
+    line-height: 1.5;
+}
 
 
     /* =====================================================
