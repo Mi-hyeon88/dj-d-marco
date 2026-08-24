@@ -1430,7 +1430,7 @@ body {
     }
 
     .globo-instrucao {
-        bottom: 18px;
+        bottom: auto;
     }
 
     .globo-instrucao p {
