@@ -744,6 +744,8 @@ contadorMensagens.textContent =
 
         mostrarEstado("mensagem");
 
+iniciarFada();
+
     }
 
     }
@@ -766,13 +768,43 @@ contadorMensagens.textContent =
 
             indiceMensagem = 0;
 
-        }
+       }
 
-        prepararMensagem();
+    prepararMensagem();
 
-    }
+}
 
 
+
+   /* =====================================================
+   FADA ANTES DA MENSAGEM
+===================================================== */
+
+function iniciarFada() {
+
+    const estadoMensagem =
+        document.querySelector(".estado-mensagem");
+
+    if (!estadoMensagem) return;
+
+
+    estadoMensagem.classList.add(
+        "carregando-fada"
+    );
+
+
+    setTimeout(() => {
+
+        estadoMensagem.classList.remove(
+            "carregando-fada"
+        );
+
+    }, 1300);
+
+}
+
+
+   
     /* =====================================================
        MENSAGEM ANTERIOR
     ====================================================== */
@@ -791,6 +823,10 @@ contadorMensagens.textContent =
         }
 
         prepararMensagem();
+
+       mostrarEstado("mensagem");
+
+iniciarFada();
 
     }
 
