@@ -1128,7 +1128,7 @@ body {
 .carta-pais {
     font-size: 24px;
 
-    color: #17120e;
+    color: var(--creme);
 
     letter-spacing: 1px;
 }
@@ -1138,7 +1138,7 @@ body {
 
     font-size: 13px;
 
-    color: #4b4038;
+    color: var(--cinza);
 }
 
 .carta-divisor {
