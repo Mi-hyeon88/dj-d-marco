@@ -325,6 +325,12 @@ function aplicarIdioma() {
         "united kingdom": "reino unido",
         uk: "reino unido"
 
+       filipinas: "filipinas",
+philippines: "filipinas",
+
+polonia: "polonia",
+poland: "polonia",
+       
     };
 
 
@@ -436,6 +442,18 @@ function aplicarIdioma() {
             pt: "Espanha",
             en: "Spain"
         },
+
+       filipinas: {
+    ko: "필리핀",
+    pt: "Filipinas",
+    en: "Philippines"
+},
+
+polonia: {
+    ko: "폴란드",
+    pt: "Polônia",
+    en: "Poland"
+},
 
         "reino unido": {
             ko: "영국",
@@ -1031,6 +1049,63 @@ botoesVoltar.forEach(botao => {
     }
 
 
+   /* =====================================================
+   CONFIGURAÇÃO VISUAL DOS PAÍSES
+===================================================== */
+
+const CONFIG_GLOBO = {
+
+    brasil: {
+        en: "BRAZIL",
+        ko: "브라질",
+        bandeira: "🇧🇷",
+        lado: "esquerda",
+        linha: 115
+    },
+
+    colombia: {
+        en: "COLOMBIA",
+        ko: "콜롬비아",
+        bandeira: "🇨🇴",
+        lado: "esquerda",
+        linha: 125
+    },
+
+    argentina: {
+        en: "ARGENTINA",
+        ko: "아르헨티나",
+        bandeira: "🇦🇷",
+        lado: "esquerda",
+        linha: 105
+    },
+
+    alemanha: {
+        en: "GERMANY",
+        ko: "독일",
+        bandeira: "🇩🇪",
+        lado: "direita",
+        linha: 105
+    },
+
+    polonia: {
+        en: "POLAND",
+        ko: "폴란드",
+        bandeira: "🇵🇱",
+        lado: "direita",
+        linha: 120
+    },
+
+    filipinas: {
+        en: "PHILIPPINES",
+        ko: "필리핀",
+        bandeira: "🇵🇭",
+        lado: "direita",
+        linha: 130
+    }
+
+};
+
+   
    /* =====================================================
    GLOBO
 ===================================================== */
@@ -1697,6 +1772,173 @@ mostrarEstado(
 
 criarGlobo();
 
+   .htmlElement(
+    ponto => {
+
+        const marcador =
+            document.createElement("div");
+
+        marcador.className =
+            "globo-marcador";
+
+
+        const config =
+            CONFIG_GLOBO[
+                chavePais(ponto.pais)
+            ];
+
+        if (!config) {
+            return marcador;
+        }
+
+
+        /* =================================================
+           LUZ
+        ================================================== */
+
+        const luz =
+            document.createElement("div");
+
+        luz.className =
+            "globo-luz";
+
+
+        /* =================================================
+           LINHA
+        ================================================== */
+
+        const linha =
+            document.createElement("div");
+
+        linha.className =
+            "globo-linha";
+
+        linha.style.setProperty(
+            "--linha-tamanho",
+            `${config.linha}px`
+        );
+
+
+        /* =================================================
+           ETIQUETA
+        ================================================== */
+
+        const etiqueta =
+            document.createElement("div");
+
+        etiqueta.className =
+            `globo-etiqueta ${config.lado}`;
+
+
+        /* =================================================
+           BANDEIRA
+        ================================================== */
+
+        const bandeira =
+            document.createElement("span");
+
+        bandeira.className =
+            "globo-bandeira";
+
+        bandeira.textContent =
+            config.bandeira;
+
+
+        /* =================================================
+           TEXTOS
+        ================================================== */
+
+        const textos =
+            document.createElement("div");
+
+        textos.className =
+            "globo-textos";
+
+
+        const nome =
+            document.createElement("div");
+
+        nome.className =
+            "globo-nome";
+
+        nome.textContent =
+            config.en;
+
+
+        const nomeCoreano =
+            document.createElement("div");
+
+        nomeCoreano.className =
+            "globo-nome-coreano";
+
+        nomeCoreano.textContent =
+            config.ko;
+
+
+        textos.appendChild(nome);
+
+        textos.appendChild(nomeCoreano);
+
+
+        etiqueta.appendChild(bandeira);
+
+        etiqueta.appendChild(textos);
+
+
+        marcador.appendChild(linha);
+
+        marcador.appendChild(luz);
+
+        marcador.appendChild(etiqueta);
+
+
+        /* =================================================
+           POSIÇÃO DA ETIQUETA
+        ================================================== */
+
+        if (config.lado === "esquerda") {
+
+            linha.style.transform =
+                "rotate(180deg)";
+
+            etiqueta.style.transform =
+                "translate(-100%, -50%)";
+
+        }
+
+        if (config.lado === "direita") {
+
+            linha.style.transform =
+                "rotate(0deg)";
+
+            etiqueta.style.transform =
+                "translate(0, -50%)";
+
+        }
+
+
+        /* =================================================
+           CLIQUE
+        ================================================== */
+
+        marcador.addEventListener(
+            "click",
+            evento => {
+
+                evento.stopPropagation();
+
+                abrirPais(
+                    ponto.pais
+                );
+
+            }
+        );
+
+
+        return marcador;
+
+    }
+)
 
 /* =====================================================
    CARREGAR MENSAGENS
