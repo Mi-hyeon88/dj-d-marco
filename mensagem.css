@@ -1665,12 +1665,37 @@ body {
     }
 
     .globo {
-        width: 92vw;
-        height: 92vw;
+    width: 100vw;
+    height: 100vw;
 
-        margin-top: 10px;
-    }
+    margin-top: 20px;
 
+    overflow: visible;
+}
+
+   .globo-nome {
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.globo-nome-coreano {
+    font-size: 8px;
+
+    letter-spacing: 0.5px;
+}
+
+.globo-bandeira {
+    width: 21px;
+    height: 14px;
+}
+
+.globo-etiqueta {
+    gap: 7px;
+
+    min-width: 110px;
+}
+   
 
     /* =====================================================
        PAÍSES MOBILE
