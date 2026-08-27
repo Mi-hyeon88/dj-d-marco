@@ -1384,16 +1384,27 @@ body {
         font-size: 21px;
     }
 
-   .mensagens-titulo .globo-instrucao {
-    margin-top: 7px;
+   .globo-instrucao {
+    position: absolute;
+
+    top: 185px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 90%;
+
+    margin: 0;
 
     color: var(--cinza);
 
-    font-size: 9px;
+    font-size: 10px;
 
-    line-height: 1.4;
+    line-height: 1.6;
 
     letter-spacing: 0;
+
+    text-align: center;
 }
 
 
