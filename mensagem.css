@@ -178,6 +178,28 @@ body {
 }
 
 
+.mensagens-titulo .globo-instrucao {
+    position: static;
+
+    width: auto;
+
+    margin:
+        8px 0 0;
+
+    transform: none;
+
+    color: var(--cinza);
+
+    font-size: 11px;
+
+    line-height: 1.45;
+
+    text-align: center;
+
+    letter-spacing: 0.1px;
+}
+
+
 /* =========================================================
    MÚSICA
 ========================================================= */
@@ -277,43 +299,6 @@ body {
     display: block;
 }
 
-
-/* =========================================================
-   INSTRUÇÃO DO GLOBO
-========================================================= */
-
-.globo-instrucao {
-    position: absolute;
-
-    left: 50%;
-    bottom: 45px;
-
-    transform: translateX(-50%);
-
-    width: 100%;
-
-    text-align: center;
-}
-
-.icone-toque {
-    display: block;
-
-    margin-bottom: 9px;
-
-    color: var(--dourado);
-
-    font-size: 24px;
-}
-
-.globo-instrucao p {
-    margin: 0;
-
-    color: var(--creme);
-
-    font-size: 14px;
-
-    line-height: 1.65;
-}
 
 
 /* =========================================================
@@ -497,32 +482,27 @@ body {
 
 .mensagens-carta {
 
-    width: min(650px, 88vw);
+    width: min(520px, 86vw);
 
-    max-height: calc(100svh - 180px);
+    max-height: calc(100svh - 190px);
+
+    margin: 0 auto;
 
     padding:
-        30px
-        24px
-        25px;
+        20px
+        10px
+        20px;
 
     overflow-y: auto;
 
-    background:
-        linear-gradient(
-            rgba(238, 228, 216, 0.97),
-            rgba(238, 228, 216, 0.97)
-        );
+    background: transparent;
 
-    color: #17120e;
+    color: var(--creme);
 
-    box-shadow:
-        0 18px 50px
-        rgba(0, 0, 0, 0.5);
+    box-shadow: none;
 
     scrollbar-width: thin;
 }
-
 
 .mensagens-carta-cabecalho {
 
@@ -536,7 +516,7 @@ body {
 
     margin: 0;
 
-    color: #17120e;
+   var(--dourado);
 
     font-size: 25px;
 
@@ -581,7 +561,7 @@ body {
 
     margin: 0;
 
-    color: #4b4038;
+    color: var(--creme);
 
     font-size: 13px;
 }
@@ -641,7 +621,7 @@ body {
 
     border-bottom:
         1px solid
-        rgba(143, 109, 67, 0.35);
+        var(--linha);
 }
 
 
@@ -658,7 +638,7 @@ body {
 
     width: 34px;
 
-    color: #9a7548;
+    color: var(--dourado);
 
     font-size: 12px;
 
@@ -684,7 +664,7 @@ body {
 
 .mensagem-item-conteudo strong {
 
-    color: #2a211b;
+    color: var(--creme);
 
     font-size: 14px;
 
@@ -694,9 +674,9 @@ body {
 
 .mensagem-item-conteudo small {
 
-    overflow: hidden;
+   overflow: hidden;
 
-    color: #6b5c50;
+    color: var(--cinza);
 
     font-size: 11px;
 
@@ -710,7 +690,7 @@ body {
 
 .mensagem-item-seta {
 
-    color: #9a7548;
+    color: var(--dourado);
 
     font-size: 22px;
 
@@ -800,6 +780,295 @@ body {
     text-shadow:
         0 0 15px
         rgba(201, 164, 106, 0.9);
+}
+
+
+/* =========================================================
+   FADA — CARREGAMENTO DA MENSAGEM
+========================================================= */
+
+.fada-carregando {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 200;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    visibility: hidden;
+}
+
+.estado-mensagem.carregando-fada
+.fada-carregando {
+
+    opacity: 1;
+
+    visibility: visible;
+}
+
+.estado-mensagem.carregando-fada .carta,
+.estado-mensagem.carregando-fada .mensagem-controles,
+.estado-mensagem.carregando-fada .estado-voltar {
+    opacity: 0;
+}
+
+.estado-mensagem .carta,
+.estado-mensagem .mensagem-controles,
+.estado-mensagem .estado-voltar {
+    transition:
+        opacity 0.45s ease;
+}
+
+
+
+/* =====================================================
+   CORPO DA FADA
+===================================================== */
+
+.fada {
+    position: relative;
+
+    width: 90px;
+    height: 120px;
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(225, 179, 109, 0.55)
+        );
+
+    animation:
+        fada-flutuar
+        2s
+        ease-in-out
+        infinite;
+}
+
+
+/* =====================================================
+   CABEÇA
+===================================================== */
+
+.fada-cabeca {
+
+    position: absolute;
+
+    left: 50%;
+    top: 18px;
+
+    width: 12px;
+    height: 12px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        rgba(225, 179, 109, 0.55);
+
+    box-shadow:
+        0 0 9px
+        rgba(225, 179, 109, 0.65);
+}
+
+
+/* =====================================================
+   CORPO
+===================================================== */
+
+.fada-corpo {
+
+    position: absolute;
+
+    left: 50%;
+    top: 31px;
+
+    width: 10px;
+    height: 48px;
+
+    transform:
+        translateX(-50%)
+        rotate(4deg);
+
+    border-radius:
+        50% 50% 45% 45%;
+
+    background:
+        rgba(201, 164, 106, 0.38);
+
+    box-shadow:
+        0 0 10px
+        rgba(225, 179, 109, 0.4);
+}
+
+
+/* =====================================================
+   ASAS
+===================================================== */
+
+.fada-asa {
+
+    position: absolute;
+
+    top: 34px;
+
+    width: 32px;
+    height: 45px;
+
+    border-radius:
+        70% 30% 70% 30%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(238, 228, 216, 0.25),
+            rgba(225, 179, 109, 0.08),
+            transparent 72%
+        );
+
+    border:
+        1px solid
+        rgba(225, 179, 109, 0.22);
+
+    box-shadow:
+        0 0 10px
+        rgba(225, 179, 109, 0.22);
+}
+
+
+.fada-asa-esquerda {
+
+    right: 51%;
+
+    transform:
+        rotate(-24deg);
+}
+
+
+.fada-asa-direita {
+
+    left: 51%;
+
+    transform:
+        scaleX(-1)
+        rotate(-24deg);
+}
+
+
+/* =====================================================
+   PAPEL ENROLADO
+===================================================== */
+
+.fada-papel {
+
+    position: absolute;
+
+    left: 61%;
+
+    top: 58px;
+
+    width: 24px;
+    height: 6px;
+
+    border-radius: 5px;
+
+    background:
+        rgba(238, 228, 216, 0.62);
+
+    transform:
+        rotate(-20deg);
+
+    box-shadow:
+        0 0 6px
+        rgba(238, 228, 216, 0.35);
+}
+
+
+/* =====================================================
+   PÓ DE FADA
+===================================================== */
+
+.po-fada {
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 248, 223, 0.18) 0%,
+            rgba(225, 179, 109, 0.10) 28%,
+            transparent 68%
+        );
+
+    animation:
+        poeira-fada
+        1.8s
+        ease-out
+        infinite;
+}
+
+
+/* =====================================================
+   ANIMAÇÕES
+===================================================== */
+
+@keyframes fada-flutuar {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(4px)
+            rotate(-1deg);
+    }
+
+    50% {
+
+        transform:
+            translateY(-7px)
+            rotate(1deg);
+    }
+}
+
+
+@keyframes poeira-fada {
+
+    0% {
+
+        transform:
+            scale(0.55)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    35% {
+
+        opacity: 0.9;
+    }
+
+    100% {
+
+        transform:
+            scale(1.2)
+            rotate(25deg);
+
+        opacity: 0;
+    }
 }
 
 
@@ -1115,6 +1384,18 @@ body {
         font-size: 21px;
     }
 
+   .mensagens-titulo .globo-instrucao {
+    margin-top: 7px;
+
+    color: var(--cinza);
+
+    font-size: 9px;
+
+    line-height: 1.4;
+
+    letter-spacing: 0;
+}
+
 
     /* =====================================================
        GLOBO MOBILE
@@ -1130,44 +1411,6 @@ body {
 
         margin-top: 10px;
     }
-
- .globo-instrucao {
-    position: absolute;
-
-    left: 50%;
-    top: 185px;
-    bottom: auto;
-
-    transform: translateX(-50%);
-
-    width: 90%;
-
-    padding: 0;
-
-    border: 0;
-
-    background: transparent;
-
-    text-align: center;
-
-    box-shadow: none;
-}
-
-   .icone-toque {
-    display: none;
-}
-
-.globo-instrucao p {
-    margin: 0;
-
-    color: var(--creme);
-
-    font-size: 10px;
-
-    line-height: 1.6;
-
-    letter-spacing: 0.1px;
-}
 
 
     /* =====================================================
@@ -1254,16 +1497,16 @@ body {
     z-index: 100;
 }
 
-   .mensagens-carta {
+  .mensagens-carta {
 
-    width: 100%;
+    width: 88vw;
 
     max-height:
         calc(100svh - 145px);
 
     padding:
-        22px
-        17px
+        18px
+        4px
         18px;
 }
 
@@ -1275,14 +1518,24 @@ body {
 
 
 .mensagens-carta-cabecalho h1 {
+    margin: 0;
 
-    font-size: 22px;
+    color: var(--dourado);
+
+    font-size: 25px;
+
+    font-weight: 400;
+
+    letter-spacing: 1px;
 }
 
 
 .mensagens-carta-cabecalho p {
+    margin: 0;
 
-    font-size: 11px;
+    color: var(--creme);
+
+    font-size: 13px;
 }
 
 
@@ -1296,13 +1549,39 @@ body {
 
 .mensagem-item {
 
-    min-height: 58px;
+    width: 100%;
 
-    gap: 8px;
+    min-height: 64px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
 
     padding:
-        8px
-        2px;
+        10px
+        4px;
+
+    border: 0;
+
+    border-top:
+        1px solid
+        var(--linha);
+
+    background: transparent;
+
+    color: var(--creme);
+
+    font-family: inherit;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        padding-left 0.2s ease;
 }
 
 
@@ -1441,14 +1720,7 @@ body {
         width: 94vw;
         height: 94vw;
     }
-
-    .globo-instrucao {
-        bottom: auto;
-    }
-
-    .globo-instrucao p {
-        font-size: 9px;
-    }
+   
 
     .carta {
         max-height: calc(100svh - 165px);
