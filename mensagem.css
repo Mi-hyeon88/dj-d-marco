@@ -1097,33 +1097,29 @@ body {
 
     z-index: 100;
 }
+   
+ .mensagens-carta {
+    width: min(520px, 84vw);
 
-.carta {
-    width: min(650px, 88vw);
-
-    max-height: calc(100svh - 220px);
+    max-height: calc(100svh - 210px);
 
     padding:
-        42px
-        45px
-        30px;
+        24px
+        20px
+        20px;
 
     overflow-y: auto;
 
-    background:
-        linear-gradient(
-            rgba(238, 228, 216, 0.97),
-            rgba(238, 228, 216, 0.97)
-        );
+    background: transparent;
 
-    color: #17120e;
+    color: var(--creme);
 
-    box-shadow:
-        0 18px 50px
-        rgba(0, 0, 0, 0.5);
+    box-shadow: none;
+
+    border: 0;
 
     scrollbar-width: thin;
-}
+}  
 
 .carta-cabecalho {
     text-align: center;
