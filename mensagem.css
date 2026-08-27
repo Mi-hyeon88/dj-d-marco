@@ -1131,29 +1131,42 @@ body {
         margin-top: 10px;
     }
 
-   .globo-instrucao {
+ .globo-instrucao {
     position: absolute;
 
     left: 50%;
-    top: 145px;
+    top: 185px;
     bottom: auto;
 
     transform: translateX(-50%);
 
-    width: min(310px, 78vw);
-    height: auto;
+    width: 90%;
 
-    padding: 11px 16px;
+    padding: 0;
 
-    border: 1px solid rgba(201, 164, 106, 0.38);
-    border-radius: 2px;
+    border: 0;
 
-    background: rgba(3, 3, 3, 0.55);
+    background: transparent;
 
     text-align: center;
 
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.25);
+    box-shadow: none;
+}
+
+   .icone-toque {
+    display: none;
+}
+
+.globo-instrucao p {
+    margin: 0;
+
+    color: var(--creme);
+
+    font-size: 10px;
+
+    line-height: 1.6;
+
+    letter-spacing: 0.1px;
 }
 
 
