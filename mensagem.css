@@ -477,12 +477,26 @@ body {
         );
 }
 
-.globo-etiqueta.colombia,
-.globo-etiqueta.brasil,
+.globo-etiqueta.colombia, {
+    transform:
+        translate(
+            calc(-100% + var(--offset-x) + 90px),
+            calc(-50% + var(--offset-y))
+        );
+}
+
+.globo-etiqueta.brasil, {
+
+ transform:
+        translate(
+            calc(-100% + var(--offset-x) + 40px),
+            calc(-50% + var(--offset-y))
+        );
+}
 .globo-etiqueta.argentina {
     transform:
         translate(
-            calc(-100% + var(--offset-x) + 40px),
+            calc(-100% + var(--offset-x) + 90px),
             calc(-50% + var(--offset-y))
         );
 }
