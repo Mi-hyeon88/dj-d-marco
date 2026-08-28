@@ -1640,7 +1640,7 @@ body {
    .globo-instrucao {
     position: absolute;
 
-    top: 185px;
+    top: 205px;
     left: 50%;
 
     transform: translateX(-50%);
@@ -1665,15 +1665,15 @@ body {
        GLOBO MOBILE
     ====================================================== */
 
-    .estado-mural {
+  .estado-mural {
     padding-top: 105px;
 }
 
-    .globo {
-    width: 100vw;
-    height: 100vw;
+.globo {
+    width: 86vw;
+    height: 86vw;
 
-    margin-top: 20px;
+    margin-top: 55px;
 
     overflow: visible;
 }
