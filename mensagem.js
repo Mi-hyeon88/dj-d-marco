@@ -1265,9 +1265,6 @@ async function criarGlobo() {
        
            linha.style.transform =
     `rotate(${config.angulo}deg)`;
-       
-        );
-
    
 
         /* =================================================
