@@ -1490,86 +1490,66 @@ body {
 
     0% {
         left: -180px;
-        top: 70%;
-
+        top: 68%;
         opacity: 0;
-
-        transform:
-            scale(0.42)
-            rotate(-10deg);
+        transform: scale(.38) rotate(-8deg);
     }
 
     8% {
         opacity: 1;
     }
 
-    22% {
-        left: 8%;
-        top: 61%;
-
-        transform:
-            scale(0.52)
-            rotate(5deg);
+    20% {
+        left: 2%;
+        top: 58%;
+        transform: scale(.48) rotate(6deg);
     }
 
-    38% {
-        left: 24%;
-        top: 48%;
-
-        transform:
-            scale(0.66)
-            rotate(-4deg);
+    34% {
+        left: 17%;
+        top: 45%;
+        transform: scale(.62) rotate(-6deg);
     }
 
-    54% {
-        left: 43%;
-        top: 38%;
-
-        transform:
-            scale(0.82)
-            rotate(4deg);
+    48% {
+        left: 35%;
+        top: 35%;
+        transform: scale(.76) rotate(5deg);
     }
 
-    68% {
-        left: 58%;
-        top: 34%;
-
-        transform:
-            scale(0.94)
-            rotate(-2deg);
+    62% {
+        left: 52%;
+        top: 29%;
+        transform: scale(.88) rotate(-4deg);
     }
 
-    82% {
-        left: 66%;
-        top: 37%;
+    74% {
+        left: 67%;
+        top: 32%;
+        transform: scale(.98) rotate(4deg);
+    }
 
-        transform:
-            scale(1)
-            rotate(2deg);
+    84% {
+        left: 80%;
+        top: 42%;
+        transform: scale(1.04) rotate(7deg);
     }
 
     92% {
-        left: 67%;
-        top: 39%;
-
-        transform:
-            scale(1)
-            rotate(0deg);
+        left: 91%;
+        top: 53%;
+        transform: scale(1.08) rotate(10deg);
+        opacity: .9;
     }
 
     100% {
-        left: 67%;
-        top: 39%;
-
-        opacity: 1;
-
-        transform:
-            scale(1)
-            rotate(0deg);
+        left: 108%;
+        top: 62%;
+        transform: scale(1.12) rotate(12deg);
+        opacity: 0;
     }
 }
    
-
 
 /* =====================================================
    MOVIMENTO DAS ASAS
