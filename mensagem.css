@@ -1175,6 +1175,14 @@ body {
 
     opacity: 0.92;
 
+   transform-origin: center center;
+
+animation:
+    flutuar-fada
+    1.8s
+    ease-in-out
+    infinite;
+   
     /* transforma a imagem em uma sombra */
     filter:
         brightness(0)
@@ -1406,6 +1414,27 @@ body {
     50% {
         transform:
             scaleY(.82);
+    }
+}
+
+
+/* =====================================================
+   FLUTUAÇÃO DA FADA
+===================================================== */
+
+@keyframes flutuar-fada {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-4px)
+            rotate(-1.5deg);
     }
 }
 
