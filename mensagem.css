@@ -1135,30 +1135,31 @@ body {
 .fada {
     position: absolute;
 
-    width: 150px;
-    height: 123px;
+    width: 170px;
+    height: 140px;
 
-    left: -180px;
-    top: 58%;
+    left: -190px;
+    top: 62%;
 
     z-index: 5;
 
     opacity: 0;
 
-    transform-origin: center;
+    transform-origin: 50% 50%;
 
     filter:
         drop-shadow(
-            0 0 5px
+            0 0 6px
             rgba(225, 179, 109, 0.45)
         );
 
     animation:
         voo-real-da-fada
-        3.7s
+        6s
         cubic-bezier(.22,.61,.36,1)
         forwards;
 }
+
 
 /* =====================================================
    FADA — DARK FANTASY
@@ -1387,34 +1388,86 @@ body {
 
 /* extremidades enroladas */
 
-.fada-pergaminho::before,
+.fada-pergaminho {
+
+    position: absolute;
+
+    left: 108px;
+    top: 42px;
+
+    width: 18px;
+    height: 7px;
+
+    border-radius: 4px;
+
+    background:
+        rgba(238, 228, 216, 0.95);
+
+    transform:
+        rotate(-8deg);
+
+    transform-origin: left center;
+
+    box-shadow:
+        0 0 6px
+        rgba(238, 228, 216, 0.5);
+
+    animation:
+        abrir-pergaminho
+        1.2s
+        ease-out
+        4.7s
+        forwards;
+}
+
+
+/* ponta esquerda */
+
+.fada-pergaminho::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: -4px;
+    top: -2px;
+
+    width: 11px;
+    height: 11px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(238, 228, 216, 0.7);
+
+    background:
+        rgba(201, 164, 106, 0.3);
+}
+
+
+/* ponta direita */
+
 .fada-pergaminho::after {
 
     content: "";
 
     position: absolute;
 
+    right: -4px;
     top: -2px;
 
-    width: 9px;
-    height: 9px;
+    width: 11px;
+    height: 11px;
 
     border-radius: 50%;
 
     border:
         1px solid
-        rgba(238, 228, 216, 0.65);
+        rgba(238, 228, 216, 0.7);
 
     background:
-        rgba(201, 164, 106, 0.25);
-}
-
-.fada-pergaminho::before {
-    left: 108px;
-}
-
-.fada-pergaminho::after {
-    right: 34px;
+        rgba(201, 164, 106, 0.3);
 }
 
 
@@ -1488,65 +1541,110 @@ body {
 
 @keyframes voo-real-da-fada {
 
+    /* 1 — SURGE PEQUENA */
     0% {
         left: -180px;
-        top: 68%;
+        top: 72%;
+
         opacity: 0;
-        transform: scale(.38) rotate(-8deg);
+
+        transform:
+            scale(.28)
+            rotate(-8deg);
     }
 
-    8% {
+
+    /* 2 — GANHA VELOCIDADE */
+    12% {
+        left: 4%;
+        top: 61%;
+
+        opacity: 1;
+
+        transform:
+            scale(.42)
+            rotate(5deg);
+    }
+
+
+    /* 3 — TRAJETÓRIA CURVA */
+    28% {
+        left: 18%;
+        top: 47%;
+
+        transform:
+            scale(.58)
+            rotate(-5deg);
+    }
+
+    43% {
+        left: 36%;
+        top: 35%;
+
+        transform:
+            scale(.73)
+            rotate(4deg);
+    }
+
+
+    /* 4 — APROXIMA-SE DA TELA */
+    58% {
+        left: 53%;
+        top: 29%;
+
+        transform:
+            scale(.88)
+            rotate(-3deg);
+    }
+
+
+    /* 5 — REDUZ VELOCIDADE */
+    70% {
+        left: 67%;
+        top: 34%;
+
+        transform:
+            scale(1)
+            rotate(3deg);
+    }
+
+
+    /* 6 — CHEGA COM O PERGAMINHO */
+    82% {
+        left: 72%;
+        top: 42%;
+
+        transform:
+            scale(1.08)
+            rotate(2deg);
+    }
+
+
+    /* 7 — PARA DIANTE DO USUÁRIO */
+    90% {
+        left: 50%;
+        top: 48%;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.15)
+            rotate(0deg);
+
         opacity: 1;
     }
 
-    20% {
-        left: 2%;
-        top: 58%;
-        transform: scale(.48) rotate(6deg);
-    }
 
-    34% {
-        left: 17%;
-        top: 45%;
-        transform: scale(.62) rotate(-6deg);
-    }
-
-    48% {
-        left: 35%;
-        top: 35%;
-        transform: scale(.76) rotate(5deg);
-    }
-
-    62% {
-        left: 52%;
-        top: 29%;
-        transform: scale(.88) rotate(-4deg);
-    }
-
-    74% {
-        left: 67%;
-        top: 32%;
-        transform: scale(.98) rotate(4deg);
-    }
-
-    84% {
-        left: 80%;
-        top: 42%;
-        transform: scale(1.04) rotate(7deg);
-    }
-
-    92% {
-        left: 91%;
-        top: 53%;
-        transform: scale(1.08) rotate(10deg);
-        opacity: .9;
-    }
-
+    /* 8 — PERMANECE PARA ABRIR O PERGAMINHO */
     100% {
-        left: 108%;
-        top: 62%;
-        transform: scale(1.12) rotate(12deg);
-        opacity: 0;
+        left: 50%;
+        top: 48%;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.15)
+            rotate(0deg);
+
+        opacity: 1;
     }
 }
    
@@ -1599,12 +1697,43 @@ body {
 
     0% {
         width: 18px;
-        opacity: .7;
+
+        opacity: .75;
+
+        transform:
+            rotate(-8deg)
+            scaleY(.9);
     }
 
-    100% {
-        width: 42px;
+
+    35% {
+        width: 120px;
+
         opacity: 1;
+
+        transform:
+            rotate(-3deg)
+            scaleY(1);
+    }
+
+
+    70% {
+        width: 190px;
+
+        transform:
+            rotate(0deg)
+            scaleY(1);
+    }
+
+
+    100% {
+        width: 250px;
+
+        opacity: 1;
+
+        transform:
+            rotate(0deg)
+            scaleY(1);
     }
 }
 
