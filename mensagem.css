@@ -477,7 +477,7 @@ body {
         );
 }
 
-.globo-etiqueta.colombia, {
+.globo-etiqueta.colombia {
     transform:
         translate(
             calc(-100% + var(--offset-x) + 90px),
@@ -485,7 +485,7 @@ body {
         );
 }
 
-.globo-etiqueta.brasil, {
+.globo-etiqueta.brasil {
 
  transform:
         translate(
