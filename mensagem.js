@@ -1148,12 +1148,20 @@ async function criarGlobo() {
             )
 
             .atmosphereColor(
-                "#c9a46a"
-            )
+    "#8fc9ff"
+)
 
-            .atmosphereAltitude(
-                0.12
-            );
+.atmosphereAltitude(
+    0.16
+
+   .lights([
+    new THREE.AmbientLight(
+        0xffffff,
+        1.25
+    )
+])
+   
+);
 
 
     /* =================================================
@@ -1198,168 +1206,172 @@ async function criarGlobo() {
         .htmlAltitude(0.025)
 
         .htmlElement(
-            ponto => {
+    ponto => {
 
-                const marcador =
-                    document.createElement("div");
+        const marcador =
+            document.createElement("div");
 
-                marcador.style.position =
-                    "relative";
-
-                marcador.style.width =
-                    "34px";
-
-                marcador.style.height =
-                    "48px";
-
-                marcador.style.pointerEvents =
-                    "auto";
-
-                marcador.style.cursor =
-                    "pointer";
-
-                marcador.style.transform =
-                    "translate(-50%, -50%)";
+        marcador.className =
+            "globo-marcador";
 
 
-                /* FEIXE */
+        const config =
+            CONFIG_GLOBO[
+                chavePais(ponto.pais)
+            ];
 
-                const feixe =
-                    document.createElement("div");
-
-                feixe.style.position =
-                    "absolute";
-
-                feixe.style.left =
-                    "50%";
-
-                feixe.style.bottom =
-                    "50%";
-
-                feixe.style.width =
-                    "1px";
-
-                feixe.style.height =
-                    "38px";
-
-                feixe.style.transform =
-                    "translateX(-50%) rotate(28deg)";
-
-                feixe.style.transformOrigin =
-                    "bottom center";
-
-                feixe.style.background =
-                    "linear-gradient(" +
-                    "to top," +
-                    "rgba(225,179,109,0.70)," +
-                    "rgba(225,179,109,0)" +
-                    ")";
-
-                feixe.style.boxShadow =
-                    "0 0 5px rgba(225,179,109,0.35)";
+        if (!config) {
+            return marcador;
+        }
 
 
-                /* AURA */
+        /* =================================================
+           LUZ
+        ================================================== */
 
-                const aura =
-                    document.createElement("div");
+        const luz =
+            document.createElement("div");
 
-                aura.style.position =
-                    "absolute";
-
-                aura.style.left =
-                    "50%";
-
-                aura.style.top =
-                    "50%";
-
-                aura.style.width =
-                    "18px";
-
-                aura.style.height =
-                    "18px";
-
-                aura.style.transform =
-                    "translate(-50%, -50%)";
-
-                aura.style.borderRadius =
-                    "50%";
-
-                aura.style.background =
-                    "radial-gradient(" +
-                    "circle," +
-                    "rgba(255,248,223,0.95) 0%," +
-                    "rgba(225,179,109,0.65) 20%," +
-                    "rgba(225,179,109,0.25) 42%," +
-                    "rgba(225,179,109,0) 72%" +
-                    ")";
-
-                aura.style.boxShadow =
-                    "0 0 6px rgba(255,241,196,0.8)," +
-                    "0 0 14px rgba(225,179,109,0.65)";
+        luz.className =
+            "globo-luz";
 
 
-                /* NÚCLEO */
+        /* =================================================
+           LINHA
+        ================================================== */
 
-                const nucleo =
-                    document.createElement("div");
+        const linha =
+            document.createElement("div");
 
-                nucleo.style.position =
-                    "absolute";
+        linha.className =
+            "globo-linha";
 
-                nucleo.style.left =
-                    "50%";
-
-                nucleo.style.top =
-                    "50%";
-
-                nucleo.style.width =
-                    "5px";
-
-                nucleo.style.height =
-                    "5px";
-
-                nucleo.style.transform =
-                    "translate(-50%, -50%)";
-
-                nucleo.style.borderRadius =
-                    "50%";
-
-                nucleo.style.background =
-                    "#fff8df";
-
-                nucleo.style.boxShadow =
-                    "0 0 4px #fff8df," +
-                    "0 0 9px #e1b36d";
+        linha.style.setProperty(
+            "--linha-tamanho",
+            `${config.linha}px`
+        );
 
 
-                marcador.appendChild(feixe);
+        /* =================================================
+           ETIQUETA
+        ================================================== */
 
-                marcador.appendChild(aura);
+        const etiqueta =
+            document.createElement("div");
 
-                marcador.appendChild(nucleo);
+        etiqueta.className =
+            `globo-etiqueta ${config.lado}`;
 
 
-                /* CLIQUE */
+        /* =================================================
+           BANDEIRA
+        ================================================== */
 
-                marcador.addEventListener(
-                    "click",
-                    evento => {
+        const bandeira =
+            document.createElement("span");
 
-                        evento.stopPropagation();
+        bandeira.className =
+            "globo-bandeira";
 
-                        abrirPais(
-                            ponto.pais
-                        );
+        bandeira.textContent =
+            config.bandeira;
 
-                    }
+
+        /* =================================================
+           TEXTOS
+        ================================================== */
+
+        const textos =
+            document.createElement("div");
+
+        textos.className =
+            "globo-textos";
+
+
+        const nome =
+            document.createElement("div");
+
+        nome.className =
+            "globo-nome";
+
+        nome.textContent =
+            config.en;
+
+
+        const nomeCoreano =
+            document.createElement("div");
+
+        nomeCoreano.className =
+            "globo-nome-coreano";
+
+        nomeCoreano.textContent =
+            config.ko;
+
+
+        textos.appendChild(nome);
+
+        textos.appendChild(nomeCoreano);
+
+
+        etiqueta.appendChild(bandeira);
+
+        etiqueta.appendChild(textos);
+
+
+        marcador.appendChild(linha);
+
+        marcador.appendChild(luz);
+
+        marcador.appendChild(etiqueta);
+
+
+        /* =================================================
+           POSIÇÃO DA ETIQUETA
+        ================================================== */
+
+        if (config.lado === "esquerda") {
+
+            linha.style.transform =
+                "rotate(180deg)";
+
+            etiqueta.style.transform =
+                "translate(-100%, -50%)";
+
+        }
+
+        if (config.lado === "direita") {
+
+            linha.style.transform =
+                "rotate(0deg)";
+
+            etiqueta.style.transform =
+                "translate(0, -50%)";
+
+        }
+
+
+        /* =================================================
+           CLIQUE
+        ================================================== */
+
+        marcador.addEventListener(
+            "click",
+            evento => {
+
+                evento.stopPropagation();
+
+                abrirPais(
+                    ponto.pais
                 );
 
-
-                return marcador;
-
             }
-        )
+        );
+
+
+        return marcador;
+
+    }
+)
 
         .htmlElementVisibilityModifier(
             (elemento, visivel) => {
@@ -1378,27 +1390,24 @@ async function criarGlobo() {
     ================================================== */
 
     mundoGlobo.pointOfView(
-        {
-            lat: 10,
-            lng: -35,
-            altitude: 2.15
-        },
-        0
-    );
+    {
+        lat: 12,
+        lng: -20,
+        altitude: 2.35
+    },
+    0
+);
 
 
     /* =================================================
        CONTROLE POR TOQUE
     ================================================== */
 
-    mundoGlobo.controls()
-        .enableZoom = false;
+   mundoGlobo.controls()
+    .enableZoom = false;
 
-    mundoGlobo.controls()
-        .autoRotate = true;
-
-    mundoGlobo.controls()
-        .autoRotateSpeed = 0.35;
+mundoGlobo.controls()
+    .autoRotate = false;
 
 
     /* =================================================
