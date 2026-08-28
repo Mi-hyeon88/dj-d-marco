@@ -790,52 +790,6 @@ contadorMensagens.textContent =
 
 }
 
-
-    /* =================================================
-       REINICIAR ANIMAÇÃO
-    ================================================== */
-
-    estadoMensagem.classList.remove(
-        "carregando-fada"
-    );
-
-    void estadoMensagem.offsetWidth;
-
-    estadoMensagem.classList.add(
-        "carregando-fada"
-    );
-
-
-    /* =================================================
-       REINICIAR ELEMENTOS ANIMADOS
-    ================================================== */
-
-    [fada, papel, poeira].forEach(elemento => {
-
-        elemento.style.animation = "none";
-
-        void elemento.offsetWidth;
-
-        elemento.style.animation = "";
-
-    });
-
-
-    /* =================================================
-       MOMENTO EM QUE A MENSAGEM É REVELADA
-    ================================================== */
-
-    setTimeout(() => {
-
-        estadoMensagem.classList.remove(
-            "carregando-fada"
-        );
-
-    }, 7200);
-
-}
-
-
    
     /* =====================================================
        MENSAGEM ANTERIOR
