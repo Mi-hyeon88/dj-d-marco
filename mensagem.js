@@ -762,8 +762,6 @@ contadorMensagens.textContent =
 
         mostrarEstado("mensagem");
 
-iniciarFada();
-
     }
 
     }
@@ -791,30 +789,6 @@ iniciarFada();
     prepararMensagem();
 
 }
-
-
-
-   /* =====================================================
-   FADA ANTES DA MENSAGEM
-===================================================== */
-
-function iniciarFada() {
-
-    const estadoMensagem =
-        document.querySelector(".estado-mensagem");
-
-    if (!estadoMensagem) return;
-
-    const fada =
-        estadoMensagem.querySelector(".fada");
-
-    const papel =
-        estadoMensagem.querySelector(".fada-pergaminho");
-
-    const poeira =
-        estadoMensagem.querySelector(".po-fada");
-
-    if (!fada || !papel || !poeira) return;
 
 
     /* =================================================
@@ -883,8 +857,6 @@ function iniciarFada() {
         prepararMensagem();
 
        mostrarEstado("mensagem");
-
-iniciarFada();
 
     }
 
