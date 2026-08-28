@@ -805,11 +805,51 @@ function iniciarFada() {
 
     if (!estadoMensagem) return;
 
+    const fada =
+        estadoMensagem.querySelector(".fada");
+
+    const papel =
+        estadoMensagem.querySelector(".fada-pergaminho");
+
+    const poeira =
+        estadoMensagem.querySelector(".po-fada");
+
+    if (!fada || !papel || !poeira) return;
+
+
+    /* =================================================
+       REINICIAR ANIMAÇÃO
+    ================================================== */
+
+    estadoMensagem.classList.remove(
+        "carregando-fada"
+    );
+
+    void estadoMensagem.offsetWidth;
 
     estadoMensagem.classList.add(
         "carregando-fada"
     );
 
+
+    /* =================================================
+       REINICIAR ELEMENTOS ANIMADOS
+    ================================================== */
+
+    [fada, papel, poeira].forEach(elemento => {
+
+        elemento.style.animation = "none";
+
+        void elemento.offsetWidth;
+
+        elemento.style.animation = "";
+
+    });
+
+
+    /* =================================================
+       MOMENTO EM QUE A MENSAGEM É REVELADA
+    ================================================== */
 
     setTimeout(() => {
 
@@ -817,7 +857,7 @@ function iniciarFada() {
             "carregando-fada"
         );
 
-    }, 1300);
+    }, 2700);
 
 }
 
