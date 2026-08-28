@@ -1187,6 +1187,50 @@ body {
 
 
 /* =====================================================
+   FADA — PARTES ANIMÁVEIS
+===================================================== */
+
+.fada-asas {
+    transform-origin: 50% 65%;
+}
+
+.fada-asa-grupo {
+    transform-box: fill-box;
+    transform-origin: 100% 100%;
+}
+
+.fada-asa-esquerda {
+    transform-origin: 100% 100%;
+}
+
+.fada-asa-direita {
+    transform-origin: 0% 100%;
+}
+
+.fada-asa-esquerda,
+.fada-asa-direita {
+    animation:
+        bater-asas
+        0.55s
+        ease-in-out
+        infinite;
+}
+
+.fada-corpo-grupo {
+    transform-origin: 50% 50%;
+}
+
+.fada-cabeca-grupo {
+    transform-origin: 50% 50%;
+}
+
+.fada-braco,
+.fada-perna {
+    vector-effect: non-scaling-stroke;
+}
+
+
+/* =====================================================
    CORPO — SOMBRA
 ===================================================== */
 
@@ -1469,12 +1513,12 @@ body {
     0%,
     100% {
         transform:
-            scaleY(1);
+            rotate(0deg);
     }
 
     50% {
         transform:
-            scaleY(.82);
+            rotate(9deg);
     }
 }
 
