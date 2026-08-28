@@ -1060,7 +1060,10 @@ const CONFIG_GLOBO = {
         ko: "브라질",
         bandeira: "🇧🇷",
         lado: "esquerda",
-        linha: 115
+        linha: 115,
+        angulo: 0,
+        offsetX: 0,
+        offsetY: 0
     },
 
     colombia: {
@@ -1068,7 +1071,10 @@ const CONFIG_GLOBO = {
         ko: "콜롬비아",
         bandeira: "🇨🇴",
         lado: "esquerda",
-        linha: 125
+        linha: 125,
+        angulo: -12,
+        offsetX: 0,
+        offsetY: -35
     },
 
     argentina: {
@@ -1076,7 +1082,10 @@ const CONFIG_GLOBO = {
         ko: "아르헨티나",
         bandeira: "🇦🇷",
         lado: "esquerda",
-        linha: 105
+        linha: 105,
+        angulo: 12,
+        offsetX: 0,
+        offsetY: 35
     },
 
     alemanha: {
@@ -1084,7 +1093,10 @@ const CONFIG_GLOBO = {
         ko: "독일",
         bandeira: "🇩🇪",
         lado: "direita",
-        linha: 105
+        linha: 105,
+        angulo: -25,
+        offsetX: 0,
+        offsetY: -35
     },
 
     polonia: {
@@ -1092,7 +1104,10 @@ const CONFIG_GLOBO = {
         ko: "폴란드",
         bandeira: "🇵🇱",
         lado: "direita",
-        linha: 120
+        linha: 120,
+        angulo: 25,
+        offsetX: 0,
+        offsetY: 35
     },
 
     filipinas: {
@@ -1100,11 +1115,15 @@ const CONFIG_GLOBO = {
         ko: "필리핀",
         bandeira: "🇵🇭",
         lado: "direita",
-        linha: 130
+        linha: 130,
+        angulo: 0,
+        offsetX: 0,
+        offsetY: 0
     }
 
 };
 
+   
    
    /* =====================================================
    GLOBO
@@ -1242,8 +1261,13 @@ async function criarGlobo() {
         linha.style.setProperty(
             "--linha-tamanho",
             `${config.linha}px`
+
+           linha.style.transform =
+    `rotate(${config.angulo}deg)`;
+       
         );
 
+   
 
         /* =================================================
            ETIQUETA
@@ -1255,6 +1279,18 @@ async function criarGlobo() {
         etiqueta.className =
             `globo-etiqueta ${config.lado}`;
 
+   etiqueta.style.setProperty(
+    "--offset-x",
+    `${config.offsetX}px`
+);
+
+etiqueta.style.setProperty(
+    "--offset-y",
+    `${config.offsetY}px`
+   
+);
+
+   
 
         /* =================================================
            BANDEIRA
@@ -1317,30 +1353,6 @@ async function criarGlobo() {
 
         marcador.appendChild(etiqueta);
 
-
-        /* =================================================
-           POSIÇÃO DA ETIQUETA
-        ================================================== */
-
-        if (config.lado === "esquerda") {
-
-            linha.style.transform =
-                "rotate(180deg)";
-
-            etiqueta.style.transform =
-                "translate(-100%, -50%)";
-
-        }
-
-        if (config.lado === "direita") {
-
-            linha.style.transform =
-                "rotate(0deg)";
-
-            etiqueta.style.transform =
-                "translate(0, -50%)";
-
-        }
 
 
         /* =================================================
