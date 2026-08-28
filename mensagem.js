@@ -857,7 +857,7 @@ function iniciarFada() {
             "carregando-fada"
         );
 
-    }, 2700);
+    }, 7200);
 
 }
 
