@@ -53,6 +53,12 @@ const listaMensagens =
     const globo =
         document.querySelector(".globo");
 
+   const fadaCena =
+    document.querySelector("#fadaCena");
+
+const mensagemCarta =
+    document.querySelector("#mensagemCarta");
+
    const mensagemVoltar =
     document.querySelector(".mensagens-voltar");
 
@@ -760,13 +766,39 @@ contadorMensagens.textContent =
             ? `${numeroAtual} of ${totalMensagens}`
             : `${numeroAtual} de ${totalMensagens}`;
 
-        mostrarEstado("mensagem");
+mostrarEstado("mensagem");
+
+animarFada();
 
     }
 
     }
    
 
+   /* =====================================================
+   ANIMAÇÃO DA FADA
+===================================================== */
+
+function animarFada() {
+
+    if (!fadaCena) return;
+
+    fadaCena.classList.remove("viva");
+
+    if (mensagemCarta) {
+        mensagemCarta.style.animation = "none";
+    }
+
+    void fadaCena.offsetWidth;
+
+    if (mensagemCarta) {
+        mensagemCarta.style.animation = "";
+    }
+
+    fadaCena.classList.add("viva");
+}
+
+   
     /* =====================================================
        PRÓXIMA MENSAGEM
     ====================================================== */
