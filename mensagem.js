@@ -323,7 +323,7 @@ function aplicarIdioma() {
 
         "reino unido": "reino unido",
         "united kingdom": "reino unido",
-        uk: "reino unido"
+        uk: "reino unido",
 
        filipinas: "filipinas",
 philippines: "filipinas",
@@ -1154,13 +1154,6 @@ async function criarGlobo() {
 .atmosphereAltitude(
     0.16
 
-   .lights([
-    new THREE.AmbientLight(
-        0xffffff,
-        1.25
-    )
-])
-   
 );
 
 
@@ -1781,173 +1774,6 @@ mostrarEstado(
 
 criarGlobo();
 
-   .htmlElement(
-    ponto => {
-
-        const marcador =
-            document.createElement("div");
-
-        marcador.className =
-            "globo-marcador";
-
-
-        const config =
-            CONFIG_GLOBO[
-                chavePais(ponto.pais)
-            ];
-
-        if (!config) {
-            return marcador;
-        }
-
-
-        /* =================================================
-           LUZ
-        ================================================== */
-
-        const luz =
-            document.createElement("div");
-
-        luz.className =
-            "globo-luz";
-
-
-        /* =================================================
-           LINHA
-        ================================================== */
-
-        const linha =
-            document.createElement("div");
-
-        linha.className =
-            "globo-linha";
-
-        linha.style.setProperty(
-            "--linha-tamanho",
-            `${config.linha}px`
-        );
-
-
-        /* =================================================
-           ETIQUETA
-        ================================================== */
-
-        const etiqueta =
-            document.createElement("div");
-
-        etiqueta.className =
-            `globo-etiqueta ${config.lado}`;
-
-
-        /* =================================================
-           BANDEIRA
-        ================================================== */
-
-        const bandeira =
-            document.createElement("span");
-
-        bandeira.className =
-            "globo-bandeira";
-
-        bandeira.textContent =
-            config.bandeira;
-
-
-        /* =================================================
-           TEXTOS
-        ================================================== */
-
-        const textos =
-            document.createElement("div");
-
-        textos.className =
-            "globo-textos";
-
-
-        const nome =
-            document.createElement("div");
-
-        nome.className =
-            "globo-nome";
-
-        nome.textContent =
-            config.en;
-
-
-        const nomeCoreano =
-            document.createElement("div");
-
-        nomeCoreano.className =
-            "globo-nome-coreano";
-
-        nomeCoreano.textContent =
-            config.ko;
-
-
-        textos.appendChild(nome);
-
-        textos.appendChild(nomeCoreano);
-
-
-        etiqueta.appendChild(bandeira);
-
-        etiqueta.appendChild(textos);
-
-
-        marcador.appendChild(linha);
-
-        marcador.appendChild(luz);
-
-        marcador.appendChild(etiqueta);
-
-
-        /* =================================================
-           POSIÇÃO DA ETIQUETA
-        ================================================== */
-
-        if (config.lado === "esquerda") {
-
-            linha.style.transform =
-                "rotate(180deg)";
-
-            etiqueta.style.transform =
-                "translate(-100%, -50%)";
-
-        }
-
-        if (config.lado === "direita") {
-
-            linha.style.transform =
-                "rotate(0deg)";
-
-            etiqueta.style.transform =
-                "translate(0, -50%)";
-
-        }
-
-
-        /* =================================================
-           CLIQUE
-        ================================================== */
-
-        marcador.addEventListener(
-            "click",
-            evento => {
-
-                evento.stopPropagation();
-
-                abrirPais(
-                    ponto.pais
-                );
-
-            }
-        );
-
-
-        return marcador;
-
-    }
-)
 
 /* =====================================================
    CARREGAR MENSAGENS
