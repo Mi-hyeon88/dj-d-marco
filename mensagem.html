@@ -189,16 +189,84 @@
         data-estado="mensagem"
     >
 
-        <div
+  <div
     class="fada-carregando"
     aria-hidden="true"
 >
+    <div class="rastro-fada"></div>
+
     <div class="fada">
-        <span class="fada-cabeca"></span>
-        <span class="fada-corpo"></span>
-        <span class="fada-asa fada-asa-esquerda"></span>
-        <span class="fada-asa fada-asa-direita"></span>
-        <span class="fada-papel"></span>
+
+        <svg
+            class="fada-silhueta"
+            viewBox="0 0 120 160"
+            aria-hidden="true"
+        >
+            <!-- asas -->
+            <path
+                class="asa"
+                d="M55 45
+                   C32 8, 8 18, 18 52
+                   C25 70, 43 67, 55 55 Z"
+            />
+
+            <path
+                class="asa"
+                d="M65 45
+                   C88 8, 112 18, 102 52
+                   C95 70, 77 67, 65 55 Z"
+            />
+
+            <!-- corpo -->
+            <path
+                class="corpo"
+                d="M58 39
+                   C50 47, 49 62, 55 77
+                   C58 86, 52 98, 43 112
+                   C52 108, 60 101, 64 91
+                   C69 101, 77 108, 87 112
+                   C77 96, 70 84, 67 74
+                   C72 60, 70 46, 62 39 Z"
+            />
+
+            <!-- cabeça -->
+            <circle
+                class="cabeca"
+                cx="60"
+                cy="28"
+                r="9"
+            />
+
+            <!-- braço -->
+            <path
+                class="braco"
+                d="M66 58 C76 62, 83 59, 91 51"
+            />
+
+            <!-- mão -->
+            <circle
+                class="mao"
+                cx="92"
+                cy="50"
+                r="2.5"
+            />
+
+            <!-- pernas -->
+            <path
+                class="perna"
+                d="M57 88 C49 104, 39 116, 31 127"
+            />
+
+            <path
+                class="perna"
+                d="M64 88 C69 103, 77 114, 87 121"
+            />
+        </svg>
+
+        <div class="fada-pergaminho">
+            <span></span>
+        </div>
+
     </div>
 
     <div class="po-fada"></div>
