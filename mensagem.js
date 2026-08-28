@@ -1261,7 +1261,8 @@ async function criarGlobo() {
         linha.style.setProperty(
             "--linha-tamanho",
             `${config.linha}px`
-
+);
+       
            linha.style.transform =
     `rotate(${config.angulo}deg)`;
        
