@@ -1221,20 +1221,25 @@ async function criarGlobo() {
     ponto => {
 
         const marcador =
-            document.createElement("div");
+    document.createElement("div");
 
-        marcador.className =
-            "globo-marcador";
+marcador.className =
+    "globo-marcador";
 
+const config =
+    CONFIG_GLOBO[
+        chavePais(ponto.pais)
+    ];
 
-        const config =
-            CONFIG_GLOBO[
-                chavePais(ponto.pais)
-            ];
+if (!config) {
+    return marcador;
+}
 
-        if (!config) {
-            return marcador;
-        }
+marcador.style.setProperty(
+    "--linha-tamanho",
+    `${config.linha}px`
+);
+       
 
 
         /* =================================================
