@@ -439,19 +439,19 @@ body {
 }
 
 .globo-etiqueta.esquerda {
-    left: var(--label-x, -180px);
+    left: calc(
+        -1 * var(--linha-tamanho)
+    );
+
+    transform:
+        translate(-100%, -50%);
 }
 
 .globo-etiqueta.direita {
-    left: var(--label-x, 35px);
-}
+    left: var(--linha-tamanho);
 
-.globo-etiqueta.acima {
-    left: var(--label-x, -20px);
-}
-
-.globo-etiqueta.abaixo {
-    left: var(--label-x, -20px);
+    transform:
+        translate(0, -50%);
 }
 
 /* =====================================================
