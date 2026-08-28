@@ -1060,7 +1060,7 @@ const CONFIG_GLOBO = {
         ko: "브라질",
         bandeira: "🇧🇷",
         lado: "esquerda",
-        linha: 115,
+        linha: 50,
         angulo: 0,
         offsetX: 0,
         offsetY: 0
@@ -1071,7 +1071,7 @@ const CONFIG_GLOBO = {
         ko: "콜롬비아",
         bandeira: "🇨🇴",
         lado: "esquerda",
-        linha: 125,
+        linha: 58,
         angulo: -12,
         offsetX: 0,
         offsetY: -35
@@ -1082,7 +1082,7 @@ const CONFIG_GLOBO = {
         ko: "아르헨티나",
         bandeira: "🇦🇷",
         lado: "esquerda",
-        linha: 105,
+        linha: 50,
         angulo: 12,
         offsetX: 0,
         offsetY: 35
@@ -1093,7 +1093,7 @@ const CONFIG_GLOBO = {
         ko: "독일",
         bandeira: "🇩🇪",
         lado: "direita",
-        linha: 105,
+        linha: 50,
         angulo: -25,
         offsetX: 0,
         offsetY: -35
@@ -1104,7 +1104,7 @@ const CONFIG_GLOBO = {
         ko: "폴란드",
         bandeira: "🇵🇱",
         lado: "direita",
-        linha: 120,
+        linha: 58,
         angulo: 25,
         offsetX: 0,
         offsetY: 35
@@ -1115,7 +1115,7 @@ const CONFIG_GLOBO = {
         ko: "필리핀",
         bandeira: "🇵🇭",
         lado: "direita",
-        linha: 130,
+        linha: 60,
         angulo: 0,
         offsetX: 0,
         offsetY: 0
