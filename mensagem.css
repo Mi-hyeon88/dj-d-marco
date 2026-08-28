@@ -1217,7 +1217,13 @@ body {
 }
 
 .fada-corpo-grupo {
-    transform-origin: 50% 50%;
+    transform-origin: 50% 55%;
+
+    animation:
+        movimento-corpo-fada
+        1.1s
+        ease-in-out
+        infinite;
 }
 
 .fada-cabeca-grupo {
@@ -1227,6 +1233,46 @@ body {
 .fada-braco,
 .fada-perna {
     vector-effect: non-scaling-stroke;
+}
+
+@keyframes movimento-corpo-fada {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-1.5px)
+            rotate(-1deg);
+    }
+}
+
+.fada-vestido {
+    transform-origin: 50% 50%;
+
+    animation:
+        movimento-vestido-fada
+        1.1s
+        ease-in-out
+        infinite;
+}
+
+@keyframes movimento-vestido-fada {
+
+    0%,
+    100% {
+        transform:
+            translateX(0);
+    }
+
+    50% {
+        transform:
+            translateX(-2px);
+    }
 }
 
 
