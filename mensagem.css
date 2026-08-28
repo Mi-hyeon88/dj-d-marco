@@ -1089,35 +1089,36 @@ body {
 
 
 /* =========================================================
-   FADA — CARREGAMENTO DA MENSAGEM
+   FADA — MENSAGEIRA DA MURAL
 ========================================================= */
 
 .fada-carregando {
     position: absolute;
-
     inset: 0;
 
     z-index: 200;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
+
+    overflow: hidden;
 
     pointer-events: none;
 
     opacity: 0;
-
     visibility: hidden;
 }
 
-.estado-mensagem.carregando-fada
-.fada-carregando {
-
+.estado-mensagem.carregando-fada .fada-carregando {
     opacity: 1;
-
     visibility: visible;
 }
+
+
+/* =====================================================
+   CARTA DURANTE A ENTREGA
+===================================================== */
 
 .estado-mensagem.carregando-fada .carta,
 .estado-mensagem.carregando-fada .mensagem-controles,
@@ -1129,143 +1130,113 @@ body {
 .estado-mensagem .mensagem-controles,
 .estado-mensagem .estado-voltar {
     transition:
-        opacity 0.45s ease;
+        opacity 0.55s ease;
 }
 
 
-
 /* =====================================================
-   CORPO DA FADA
+   FADA
 ===================================================== */
 
 .fada {
-    position: relative;
+    position: absolute;
 
-    width: 90px;
-    height: 120px;
+    left: -90px;
+    top: 57%;
+
+    width: 105px;
+    height: 140px;
+
+    z-index: 4;
+
+    opacity: 0;
 
     filter:
         drop-shadow(
-            0 0 8px
-            rgba(225, 179, 109, 0.55)
+            0 0 5px
+            rgba(225, 179, 109, 0.35)
         );
 
     animation:
-        fada-flutuar
-        2s
-        ease-in-out
-        infinite;
+        fada-voo-entrega
+        2.25s
+        cubic-bezier(.22,.61,.36,1)
+        forwards;
 }
 
 
 /* =====================================================
-   CABEÇA
+   SILHUETA
 ===================================================== */
 
-.fada-cabeca {
+.fada-silhueta {
+    width: 100%;
+    height: 100%;
 
-    position: absolute;
-
-    left: 50%;
-    top: 18px;
-
-    width: 12px;
-    height: 12px;
-
-    transform:
-        translateX(-50%);
-
-    border-radius: 50%;
-
-    background:
-        rgba(225, 179, 109, 0.55);
-
-    box-shadow:
-        0 0 9px
-        rgba(225, 179, 109, 0.65);
+    overflow: visible;
 }
 
+.fada-silhueta .asa {
+    fill:
+        rgba(201, 164, 106, 0.08);
 
-/* =====================================================
-   CORPO
-===================================================== */
+    stroke:
+        rgba(225, 179, 109, 0.72);
 
-.fada-corpo {
+    stroke-width: 1.15;
 
-    position: absolute;
-
-    left: 50%;
-    top: 31px;
-
-    width: 10px;
-    height: 48px;
-
-    transform:
-        translateX(-50%)
-        rotate(4deg);
-
-    border-radius:
-        50% 50% 45% 45%;
-
-    background:
-        rgba(201, 164, 106, 0.38);
-
-    box-shadow:
-        0 0 10px
-        rgba(225, 179, 109, 0.4);
-}
-
-
-/* =====================================================
-   ASAS
-===================================================== */
-
-.fada-asa {
-
-    position: absolute;
-
-    top: 34px;
-
-    width: 32px;
-    height: 45px;
-
-    border-radius:
-        70% 30% 70% 30%;
-
-    background:
-        radial-gradient(
-            ellipse,
-            rgba(238, 228, 216, 0.25),
-            rgba(225, 179, 109, 0.08),
-            transparent 72%
+    filter:
+        drop-shadow(
+            0 0 4px
+            rgba(225, 179, 109, 0.35)
         );
 
-    border:
-        1px solid
-        rgba(225, 179, 109, 0.22);
-
-    box-shadow:
-        0 0 10px
-        rgba(225, 179, 109, 0.22);
+    transform-origin: center;
 }
 
+.fada-silhueta .corpo {
+    fill:
+        rgba(225, 179, 109, 0.78);
 
-.fada-asa-esquerda {
-
-    right: 51%;
-
-    transform:
-        rotate(-24deg);
+    filter:
+        drop-shadow(
+            0 0 5px
+            rgba(225, 179, 109, 0.55)
+        );
 }
 
+.fada-silhueta .cabeca {
+    fill:
+        rgba(225, 179, 109, 0.82);
 
-.fada-asa-direita {
+    filter:
+        drop-shadow(
+            0 0 5px
+            rgba(225, 179, 109, 0.55)
+        );
+}
 
-    left: 51%;
+.fada-silhueta .braco,
+.fada-silhueta .perna {
+    fill: none;
 
-    transform:
-        scaleX(-1)
-        rotate(-24deg);
+    stroke:
+        rgba(225, 179, 109, 0.78);
+
+    stroke-width: 3;
+
+    stroke-linecap: round;
+
+    filter:
+        drop-shadow(
+            0 0 4px
+            rgba(225, 179, 109, 0.45)
+        );
+}
+
+.fada-silhueta .mao {
+    fill:
+        rgba(225, 179, 109, 0.8);
 }
 
 
@@ -1273,28 +1244,107 @@ body {
    PAPEL ENROLADO
 ===================================================== */
 
-.fada-papel {
-
+.fada-pergaminho {
     position: absolute;
 
-    left: 61%;
-
+    left: 73px;
     top: 58px;
 
-    width: 24px;
-    height: 6px;
+    width: 27px;
+    height: 7px;
 
     border-radius: 5px;
 
     background:
-        rgba(238, 228, 216, 0.62);
+        linear-gradient(
+            90deg,
+            rgba(238, 228, 216, 0.45),
+            rgba(238, 228, 216, 0.85)
+        );
 
     transform:
-        rotate(-20deg);
+        rotate(-22deg);
+
+    transform-origin: left center;
 
     box-shadow:
         0 0 6px
         rgba(238, 228, 216, 0.35);
+
+    animation:
+        abrir-pergaminho
+        0.65s
+        ease-out
+        1.42s
+        forwards;
+}
+
+.fada-pergaminho::before,
+.fada-pergaminho::after {
+    content: "";
+
+    position: absolute;
+
+    top: -2px;
+
+    width: 11px;
+    height: 11px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(238, 228, 216, 0.55);
+
+    background:
+        rgba(201, 164, 106, 0.22);
+}
+
+.fada-pergaminho::before {
+    left: -4px;
+}
+
+.fada-pergaminho::after {
+    right: -4px;
+}
+
+
+/* =====================================================
+   RASTRO
+===================================================== */
+
+.rastro-fada {
+    position: absolute;
+
+    width: 230px;
+    height: 150px;
+
+    left: -150px;
+    top: 60%;
+
+    z-index: 1;
+
+    opacity: 0;
+
+    transform:
+        rotate(-24deg);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(225, 179, 109, 0.16) 0%,
+            rgba(225, 179, 109, 0.07) 30%,
+            transparent 70%
+        );
+
+    filter:
+        blur(5px);
+
+    animation:
+        rastro-fada
+        2.25s
+        ease-out
+        forwards;
 }
 
 
@@ -1303,76 +1353,176 @@ body {
 ===================================================== */
 
 .po-fada {
-
     position: absolute;
 
-    width: 180px;
-    height: 180px;
+    left: 8%;
+    top: 48%;
 
-    border-radius: 50%;
+    width: 420px;
+    height: 280px;
+
+    z-index: 2;
+
+    opacity: 0;
 
     background:
         radial-gradient(
-            circle,
-            rgba(255, 248, 223, 0.18) 0%,
-            rgba(225, 179, 109, 0.10) 28%,
-            transparent 68%
+            circle at 25% 65%,
+            rgba(255, 248, 223, 0.9) 0 1px,
+            transparent 2px
+        ),
+        radial-gradient(
+            circle at 40% 45%,
+            rgba(225, 179, 109, 0.85) 0 1px,
+            transparent 2px
+        ),
+        radial-gradient(
+            circle at 58% 55%,
+            rgba(255, 248, 223, 0.75) 0 1px,
+            transparent 2px
+        ),
+        radial-gradient(
+            circle at 72% 30%,
+            rgba(225, 179, 109, 0.7) 0 1px,
+            transparent 2px
         );
 
     animation:
-        poeira-fada
-        1.8s
+        poeira-fada-entrega
+        2.25s
         ease-out
-        infinite;
+        forwards;
 }
 
 
 /* =====================================================
-   ANIMAÇÕES
+   VOO DA FADA
 ===================================================== */
 
-@keyframes fada-flutuar {
+@keyframes fada-voo-entrega {
 
-    0%,
-    100% {
+    0% {
+        left: -90px;
+        top: 62%;
+
+        opacity: 0;
 
         transform:
-            translateY(4px)
+            scale(0.55)
+            rotate(-8deg);
+    }
+
+    12% {
+        opacity: 1;
+    }
+
+    48% {
+        left: 42%;
+        top: 48%;
+
+        transform:
+            scale(0.78)
+            rotate(2deg);
+    }
+
+    72% {
+        left: 50%;
+        top: 42%;
+
+        transform:
+            translateX(-50%)
+            scale(1.02)
             rotate(-1deg);
     }
 
-    50% {
+    100% {
+        left: 50%;
+        top: 42%;
+
+        opacity: 1;
 
         transform:
-            translateY(-7px)
-            rotate(1deg);
+            translateX(-50%)
+            scale(1)
+            rotate(0deg);
     }
 }
 
 
-@keyframes poeira-fada {
+/* =====================================================
+   ABERTURA DO PERGAMINHO
+===================================================== */
+
+@keyframes abrir-pergaminho {
 
     0% {
-
-        transform:
-            scale(0.55)
-            rotate(0deg);
-
-        opacity: 0;
-    }
-
-    35% {
-
-        opacity: 0.9;
+        width: 27px;
+        opacity: 0.65;
     }
 
     100% {
+        width: 72px;
+        opacity: 1;
+    }
+}
 
-        transform:
-            scale(1.2)
-            rotate(25deg);
 
+/* =====================================================
+   RASTRO
+===================================================== */
+
+@keyframes rastro-fada {
+
+    0% {
         opacity: 0;
+        transform:
+            translateX(-100px)
+            rotate(-24deg)
+            scale(0.5);
+    }
+
+    25% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translateX(260px)
+            rotate(-24deg)
+            scale(1.15);
+    }
+}
+
+
+/* =====================================================
+   PARTÍCULAS
+===================================================== */
+
+@keyframes poeira-fada-entrega {
+
+    0% {
+        opacity: 0;
+        transform:
+            translateX(-120px)
+            translateY(30px)
+            scale(0.5);
+    }
+
+    20% {
+        opacity: 0.9;
+    }
+
+    65% {
+        opacity: 0.7;
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translateX(250px)
+            translateY(-45px)
+            scale(1.2);
     }
 }
 
