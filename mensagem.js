@@ -1074,7 +1074,7 @@ const CONFIG_GLOBO = {
         linha: 58,
         angulo: -12,
         offsetX: 0,
-        offsetY: -35
+        offsetY: 0
     },
 
     argentina: {
@@ -1085,7 +1085,7 @@ const CONFIG_GLOBO = {
         linha: 50,
         angulo: 12,
         offsetX: 0,
-        offsetY: 35
+        offsetY: 0
     },
 
     alemanha: {
