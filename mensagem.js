@@ -1220,11 +1220,12 @@ async function criarGlobo() {
         .htmlElement(
     ponto => {
 
-        const marcador =
+       const marcador =
     document.createElement("div");
 
 marcador.className =
     "globo-marcador";
+
 
 const config =
     CONFIG_GLOBO[
@@ -1234,6 +1235,16 @@ const config =
 if (!config) {
     return marcador;
 }
+
+
+/* =================================================
+   TAMANHO DA LINHA — HERDADO PELA ETIQUETA
+================================================= */
+
+marcador.style.setProperty(
+    "--linha-tamanho",
+    `${config.linha}px`
+);
 
 marcador.style.setProperty(
     "--linha-tamanho",
