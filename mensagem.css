@@ -1784,3 +1784,529 @@ body {
     }
 
 }
+
+/* =========================================================
+   FADA — VIDA NA MENSAGEM
+========================================================= */
+
+.estado-mensagem {
+    position: absolute;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at 50% 48%,
+            rgba(201, 164, 106, 0.07),
+            transparent 38%
+        ),
+        #030303;
+}
+
+
+/* =========================================================
+   CENA
+========================================================= */
+
+.fada-cena {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   VOO
+========================================================= */
+
+.fada-voo {
+    position: absolute;
+
+    left: -260px;
+    top: 42%;
+
+    width: 210px;
+    height: 210px;
+
+    opacity: 0;
+
+    transform:
+        translate3d(0, 0, 0)
+        rotate(-4deg);
+
+    will-change:
+        transform,
+        opacity;
+
+    filter:
+        drop-shadow(
+            0 0 18px
+            rgba(225, 179, 109, 0.20)
+        );
+}
+
+
+/* =========================================================
+   FADA
+========================================================= */
+
+.fada-personagem {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    opacity: 0.82;
+
+    filter:
+        brightness(1.05)
+        contrast(1.05);
+
+    user-select: none;
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   RASTRO DE PÓ
+========================================================= */
+
+.fada-rastro {
+    position: absolute;
+
+    left: -95px;
+    top: 52%;
+
+    width: 150px;
+    height: 80px;
+
+    background-image:
+        url("poedefada.png");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    opacity: 0;
+
+    transform:
+        translateY(-50%)
+        scale(0.45);
+
+    filter:
+        brightness(1.25)
+        blur(0.2px);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   FADA VIVA
+========================================================= */
+
+.fada-cena.viva .fada-voo {
+    animation:
+        fada-entrada
+        4.8s
+        cubic-bezier(.22,.61,.36,1)
+        forwards;
+}
+
+.fada-cena.viva .fada-personagem {
+    animation:
+        fada-pulsar
+        2.4s
+        ease-in-out
+        4.8s
+        forwards;
+}
+
+.fada-cena.viva .fada-rastro {
+    animation:
+        fada-po
+        4.2s
+        ease-out
+        forwards;
+}
+
+
+/* =========================================================
+   CARTA — ENTRA DEPOIS DA FADA
+========================================================= */
+
+.mensagem-carta-final {
+    position: relative;
+
+    z-index: 5;
+
+    width: min(650px, 86vw);
+    max-height: calc(100svh - 170px);
+
+    margin: auto;
+
+    padding: 25px 25px 20px;
+
+    overflow-y: auto;
+
+    color: var(--creme);
+
+    opacity: 0;
+
+    transform:
+        translateY(18px)
+        scale(0.985);
+
+    pointer-events: none;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        var(--dourado)
+        transparent;
+}
+
+.estado-mensagem.ativo
+.mensagem-carta-final {
+    animation:
+        carta-aparecer
+        1.2s
+        cubic-bezier(.22,.61,.36,1)
+        2.8s
+        forwards;
+
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   CABEÇALHO DA CARTA
+========================================================= */
+
+.mensagem-carta-final
+.carta-cabecalho {
+    text-align: center;
+}
+
+
+.mensagem-carta-final
+.carta-pais {
+    color: var(--dourado);
+
+    font-size: 26px;
+
+    font-weight: 400;
+
+    letter-spacing: 2px;
+}
+
+
+.mensagem-carta-final
+.carta-nome {
+    margin-top: 8px;
+
+    color: var(--cinza);
+
+    font-size: 13px;
+}
+
+
+.mensagem-carta-final
+.carta-divisor {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    margin:
+        17px 0
+        25px;
+
+    color: var(--dourado);
+}
+
+
+.mensagem-carta-final
+.carta-divisor::before,
+.mensagem-carta-final
+.carta-divisor::after {
+    content: "";
+
+    width: 90px;
+    height: 1px;
+
+    background:
+        rgba(201, 164, 106, 0.38);
+}
+
+
+/* =========================================================
+   TEXTO
+========================================================= */
+
+.mensagem-carta-final
+.carta-texto {
+    white-space: pre-line;
+
+    color: var(--creme);
+
+    font-size: 18px;
+
+    line-height: 1.85;
+
+    text-align: left;
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.mensagem-carta-final
+.carta-final {
+    margin-top: 28px;
+
+    color: var(--dourado);
+
+    text-align: center;
+
+    font-size: 24px;
+
+    opacity: 0.8;
+}
+
+
+/* =========================================================
+   CONTROLES
+========================================================= */
+
+.mensagem-carta-final
+.mensagem-controles {
+    width: 100%;
+
+    margin-top: 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.mensagem-carta-final
+.mensagem-controles button {
+    border: 0;
+
+    padding: 8px;
+
+    background: transparent;
+
+    color: var(--dourado);
+
+    font-family: inherit;
+
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
+
+.mensagem-carta-final
+.mensagem-controles span {
+    color: var(--cinza);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   ANIMAÇÃO — VOO
+========================================================= */
+
+@keyframes fada-entrada {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate3d(-120px, 40px, 0)
+            rotate(-10deg)
+            scale(0.72);
+    }
+
+    12% {
+        opacity: 0.9;
+    }
+
+    38% {
+        transform:
+            translate3d(28vw, -18px, 0)
+            rotate(4deg)
+            scale(0.88);
+    }
+
+    62% {
+        transform:
+            translate3d(53vw, 12px, 0)
+            rotate(-2deg)
+            scale(0.92);
+    }
+
+    82% {
+        opacity: 0.78;
+
+        transform:
+            translate3d(72vw, -8px, 0)
+            rotate(3deg)
+            scale(0.86);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate3d(110vw, -25px, 0)
+            rotate(7deg)
+            scale(0.70);
+    }
+}
+
+
+/* =========================================================
+   ANIMAÇÃO — RESPIRAÇÃO
+========================================================= */
+
+@keyframes fada-pulsar {
+
+    0%,
+    100% {
+        transform: scale(0.96);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+
+/* =========================================================
+   ANIMAÇÃO — PÓ
+========================================================= */
+
+@keyframes fada-po {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(-50%)
+            scale(0.25);
+    }
+
+    15% {
+        opacity: 0.75;
+    }
+
+    55% {
+        opacity: 0.5;
+
+        transform:
+            translateY(-50%)
+            scale(0.85);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translateY(-50%)
+            scale(1.35);
+    }
+}
+
+
+/* =========================================================
+   ANIMAÇÃO — CARTA
+========================================================= */
+
+@keyframes carta-aparecer {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(18px)
+            scale(0.985);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .fada-voo {
+        width: 145px;
+        height: 145px;
+
+        top: 38%;
+    }
+
+    .fada-rastro {
+        left: -65px;
+
+        width: 105px;
+        height: 60px;
+    }
+
+    .mensagem-carta-final {
+        width: 90vw;
+
+        max-height:
+            calc(100svh - 130px);
+
+        padding:
+            18px
+            8px
+            18px;
+    }
+
+    .mensagem-carta-final
+    .carta-pais {
+        font-size: 23px;
+    }
+
+    .mensagem-carta-final
+    .carta-texto {
+        font-size: 15px;
+
+        line-height: 1.75;
+    }
+
+    .mensagem-carta-final
+    .carta-divisor::before,
+    .mensagem-carta-final
+    .carta-divisor::after {
+        width: 55px;
+    }
+
+}
