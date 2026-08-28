@@ -480,7 +480,7 @@ body {
 .globo-etiqueta.colombia {
     transform:
         translate(
-            calc(-100% + var(--offset-x) + 90px),
+            calc(-100% + var(--offset-x) + 70px),
             calc(-50% + var(--offset-y))
         );
 }
@@ -496,7 +496,7 @@ body {
 .globo-etiqueta.argentina {
     transform:
         translate(
-            calc(-100% + var(--offset-x) + 90px),
+            calc(-100% + var(--offset-x) + 70px),
             calc(-50% + var(--offset-y))
         );
 }
