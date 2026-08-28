@@ -1245,13 +1245,7 @@ marcador.style.setProperty(
     "--linha-tamanho",
     `${config.linha}px`
 );
-
-marcador.style.setProperty(
-    "--linha-tamanho",
-    `${config.linha}px`
-);
-       
-
+      
 
         /* =================================================
            LUZ
@@ -1269,18 +1263,23 @@ marcador.style.setProperty(
         ================================================== */
 
         const linha =
-            document.createElement("div");
+    document.createElement("div");
 
-        linha.className =
-            "globo-linha";
+linha.className =
+    "globo-linha";
 
-        linha.style.setProperty(
-            "--linha-tamanho",
-            `${config.linha}px`
+linha.style.setProperty(
+    "--linha-tamanho",
+    `${config.linha}px`
 );
-       
-           linha.style.transform =
-    `rotate(${config.angulo}deg)`;
+
+const anguloLinha =
+    config.lado === "esquerda"
+        ? 180 + config.angulo
+        : config.angulo;
+
+linha.style.transform =
+    `rotate(${anguloLinha}deg)`;
    
 
         /* =================================================
