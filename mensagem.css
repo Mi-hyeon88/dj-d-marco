@@ -477,6 +477,16 @@ body {
         );
 }
 
+.globo-etiqueta.colombia,
+.globo-etiqueta.brasil,
+.globo-etiqueta.argentina {
+    transform:
+        translate(
+            calc(-100% + var(--offset-x) + 12px),
+            calc(-50% + var(--offset-y))
+        );
+}
+
 
 /* =====================================================
    BANDEIRA
