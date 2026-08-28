@@ -1410,11 +1410,11 @@ body {
 }
 
 .fada-pergaminho::before {
-    left: -3px;
+    left: 108px;
 }
 
 .fada-pergaminho::after {
-    right: -3px;
+    right: 34px;
 }
 
 
@@ -1486,68 +1486,89 @@ body {
    VOO
 ===================================================== */
 
-@keyframes voo-da-fada {
+@keyframes voo-real-da-fada {
 
     0% {
-
-        left: -100px;
-        top: 63%;
+        left: -180px;
+        top: 70%;
 
         opacity: 0;
 
         transform:
-            scale(.55)
-            rotate(-7deg);
+            scale(0.42)
+            rotate(-10deg);
     }
 
-    12% {
+    8% {
         opacity: 1;
     }
 
-    35% {
-
-        left: 20%;
-        top: 54%;
+    22% {
+        left: 8%;
+        top: 61%;
 
         transform:
-            scale(.68)
-            rotate(3deg);
+            scale(0.52)
+            rotate(5deg);
     }
 
-    60% {
-
-        left: 42%;
-        top: 46%;
+    38% {
+        left: 24%;
+        top: 48%;
 
         transform:
-            scale(.84)
+            scale(0.66)
+            rotate(-4deg);
+    }
+
+    54% {
+        left: 43%;
+        top: 38%;
+
+        transform:
+            scale(0.82)
+            rotate(4deg);
+    }
+
+    68% {
+        left: 58%;
+        top: 34%;
+
+        transform:
+            scale(0.94)
             rotate(-2deg);
     }
 
     82% {
-
-        left: 50%;
-        top: 41%;
+        left: 66%;
+        top: 37%;
 
         transform:
-            translateX(-50%)
+            scale(1)
+            rotate(2deg);
+    }
+
+    92% {
+        left: 67%;
+        top: 39%;
+
+        transform:
             scale(1)
             rotate(0deg);
     }
 
     100% {
-
-        left: 50%;
-        top: 41%;
+        left: 67%;
+        top: 39%;
 
         opacity: 1;
 
         transform:
-            translateX(-50%)
             scale(1)
             rotate(0deg);
     }
 }
+   
 
 
 /* =====================================================
