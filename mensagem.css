@@ -432,6 +432,8 @@ body {
 
     gap: 9px;
 
+    width: max-content;
+
     min-width: max-content;
 
     white-space: nowrap;
@@ -449,9 +451,7 @@ body {
 .globo-etiqueta.esquerda {
 
     left:
-        calc(
-            -1 * var(--linha-tamanho)
-        );
+        calc(-1 * var(--linha-tamanho));
 
     transform:
         translate(
@@ -1660,7 +1660,7 @@ body {
    .globo-instrucao {
     position: absolute;
 
-    top: 205px;
+    top: 178px;
     left: 50%;
 
     transform: translateX(-50%);
@@ -1693,7 +1693,7 @@ body {
     width: 86vw;
     height: 86vw;
 
-    margin-top: 55px;
+    margin-top: 72px;
 
     overflow: visible;
 }
@@ -1715,10 +1715,16 @@ body {
     height: 14px;
 }
 
-
+.globo-etiqueta {
     gap: 7px;
 
-    min-width: 110px;
+    min-width: max-content;
+}
+
+.globo-nome {
+    font-size: 9px;
+
+    letter-spacing: 2px;
 }
    
 
