@@ -482,7 +482,7 @@ body {
 .globo-etiqueta.argentina {
     transform:
         translate(
-            calc(-100% + var(--offset-x) + 50px),
+            calc(-100% + var(--offset-x) + 40px),
             calc(-50% + var(--offset-y))
         );
 }
