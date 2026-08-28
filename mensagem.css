@@ -31,6 +31,10 @@ body {
     background: var(--preto);
 }
 
+html {
+   overscroll-behavior-y: auto;
+   
+
 body {
     color: var(--creme);
 
