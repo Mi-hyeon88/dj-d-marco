@@ -1287,12 +1287,12 @@ linha.style.transform =
         ================================================== */
 
         const etiqueta =
-            document.createElement("div");
+    document.createElement("div");
 
-        etiqueta.className =
-            `globo-etiqueta ${config.lado}`;
+etiqueta.className =
+    `globo-etiqueta ${config.lado} ${chavePais(ponto.pais)}`;
 
-   etiqueta.style.setProperty(
+etiqueta.style.setProperty(
     "--offset-x",
     `${config.offsetX}px`
 );
@@ -1300,9 +1300,7 @@ linha.style.transform =
 etiqueta.style.setProperty(
     "--offset-y",
     `${config.offsetY}px`
-   
 );
-
    
 
         /* =================================================
