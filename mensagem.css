@@ -288,24 +288,27 @@ body {
 
     justify-content: flex-start;
 
-    padding-top: 125px;
+    padding-top: 90px;
 }
+
 
 .globo {
     position: relative;
 
-    width: min(760px, 96vw);
+    width: min(680px, 88vw);
 
-    height: min(760px, 96vw);
+    height: min(680px, 88vw);
 
-    margin-top: 35px;
+    margin-top: 0;
 
     overflow: visible;
 }
 
+
 .globo > div {
     overflow: visible !important;
 }
+
 
 .globo canvas {
     display: block;
@@ -1429,10 +1432,10 @@ body {
 }
 
 .globo {
-    width: 86vw;
-    height: 86vw;
+    width: 88vw;
+    height: 88vw;
 
-    margin-top: 72px;
+    margin-top: 35px;
 
     overflow: visible;
 }
