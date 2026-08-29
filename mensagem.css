@@ -1848,279 +1848,171 @@ body {
 
 
 /* =========================================================
-   CORPO + ASAS
+   FADA — UMA ÚNICA IMAGEM ANIMADA
 ========================================================= */
 
-.fada-frames {
-    position: absolute;
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-    overflow: visible;
-
-    isolation: isolate;
-}
-
-
-/* =========================================================
-   CORPO DA FADA
-========================================================= */
-
-.fada-base {
+.fada-voo {
     position: absolute;
 
-    inset: 0;
+    left: 0;
+    top: 0;
 
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-
-    opacity: 1;
-
-    user-select: none;
-    pointer-events: none;
-
-    z-index: 1;
-
-    mix-blend-mode: screen;
-
-    filter:
-        brightness(1.35)
-        contrast(1.55);
-}
-
-
-/* =========================================================
-   ASAS
-========================================================= */
-
-.fada-frames .asa {
-    position: absolute;
-
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
+    width: 230px;
+    height: 160px;
 
     opacity: 0;
 
-    user-select: none;
+    z-index: 20;
+
     pointer-events: none;
 
-    z-index: 2;
+    will-change:
+        transform,
+        opacity;
 
-    /*
-     * Remove visualmente o fundo escuro
-     * de cada frame das asas.
-     */
-    mix-blend-mode: screen;
+    filter:
+        drop-shadow(
+            0 0 12px
+            rgba(225, 179, 109, 0.28)
+        );
 }
 
 
 /* =========================================================
-   BATIMENTO — QUATRO POSIÇÕES
+   IMAGEM DA FADA
 ========================================================= */
 
-.fada-cena.viva .asa-esquerda-01,
-.fada-cena.viva .asa-direita-01 {
-    animation:
-        fada-asa-01
-        0.8s
-        steps(1, end)
-        infinite;
-}
+#fadaAnimada {
+    display: block;
 
+    width: 100%;
+    height: 100%;
 
-.fada-cena.viva .asa-esquerda-02,
-.fada-cena.viva .asa-direita-02 {
-    animation:
-        fada-asa-02
-        0.8s
-        steps(1, end)
-        infinite;
-}
+    object-fit: contain;
 
-
-.fada-cena.viva .asa-esquerda-03,
-.fada-cena.viva .asa-direita-03 {
-    animation:
-        fada-asa-03
-        0.8s
-        steps(1, end)
-        infinite;
-}
-
-
-.fada-cena.viva .asa-esquerda-04,
-.fada-cena.viva .asa-direita-04 {
-    animation:
-        fada-asa-04
-        0.8s
-        steps(1, end)
-        infinite;
+    user-select: none;
+    pointer-events: none;
 }
 
 
 /* =========================================================
-   FRAME 01
-========================================================= */
-
-@keyframes fada-asa-01 {
-
-    0%,
-    24.9% {
-        opacity: 1;
-    }
-
-    25%,
-    100% {
-        opacity: 0;
-    }
-}
-
-
-/* =========================================================
-   FRAME 02
-========================================================= */
-
-@keyframes fada-asa-02 {
-
-    0%,
-    24.9% {
-        opacity: 0;
-    }
-
-    25%,
-    49.9% {
-        opacity: 1;
-    }
-
-    50%,
-    100% {
-        opacity: 0;
-    }
-}
-
-
-/* =========================================================
-   FRAME 03
-========================================================= */
-
-@keyframes fada-asa-03 {
-
-    0%,
-    49.9% {
-        opacity: 0;
-    }
-
-    50%,
-    74.9% {
-        opacity: 1;
-    }
-
-    75%,
-    100% {
-        opacity: 0;
-    }
-}
-
-
-/* =========================================================
-   FRAME 04
-========================================================= */
-
-@keyframes fada-asa-04 {
-
-    0%,
-    74.9% {
-        opacity: 0;
-    }
-
-    75%,
-    99.9% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
-}
-
-
-/* =========================================================
-   MOVIMENTO DA FADA
+   VOO
 ========================================================= */
 
 .fada-cena.viva .fada-voo {
+
     animation:
-        fada-entrada
-        4.8s
+        voo-fada-inteira
+        5.8s
         cubic-bezier(.22,.61,.36,1)
         forwards;
 }
 
 
 /* =========================================================
-   TRAJETÓRIA
+   TRAJETÓRIA DA FADA
 ========================================================= */
 
-@keyframes fada-entrada {
+@keyframes voo-fada-inteira {
 
+    /* entra pela esquerda */
     0% {
         opacity: 0;
 
         transform:
-            translate3d(-80px, 45px, 0)
-            rotate(-8deg)
-            scale(.72);
+            translate3d(
+                -280px,
+                80px,
+                0
+            )
+            rotate(-7deg)
+            scale(.48);
     }
 
-    10% {
+
+    /* aparece */
+    8% {
         opacity: 1;
     }
 
-    28% {
-        transform:
-            translate3d(20vw, -18px, 0)
-            rotate(4deg)
-            scale(.88);
-    }
 
-    48% {
+    /* começa a subir */
+    22% {
         transform:
-            translate3d(43vw, 15px, 0)
-            rotate(-3deg)
-            scale(.94);
-    }
-
-    68% {
-        transform:
-            translate3d(65vw, -10px, 0)
+            translate3d(
+                12vw,
+                10px,
+                0
+            )
             rotate(3deg)
-            scale(.88);
+            scale(.62);
     }
 
-    84% {
-        opacity: 1;
 
+    /* centro da trajetória */
+    40% {
         transform:
-            translate3d(82vw, 5px, 0)
-            rotate(-2deg)
-            scale(.82);
+            translate3d(
+                31vw,
+                -35px,
+                0
+            )
+            rotate(-3deg)
+            scale(.74);
     }
 
+
+    /* aproximação */
+    58% {
+        transform:
+            translate3d(
+                51vw,
+                5px,
+                0
+            )
+            rotate(3deg)
+            scale(.86);
+    }
+
+
+    /* chega perto do centro */
+    72% {
+        transform:
+            translate3d(
+                67vw,
+                -18px,
+                0
+            )
+            rotate(-2deg)
+            scale(.96);
+    }
+
+
+    /* pequena desaceleração */
+    84% {
+        transform:
+            translate3d(
+                72vw,
+                5px,
+                0
+            )
+            rotate(1deg)
+            scale(1);
+    }
+
+
+    /* desaparece */
     100% {
         opacity: 0;
 
         transform:
-            translate3d(110vw, -25px, 0)
-            rotate(7deg)
-            scale(.70);
+            translate3d(
+                110vw,
+                -30px,
+                0
+            )
+            rotate(5deg)
+            scale(.82);
     }
 }
 
