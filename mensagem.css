@@ -422,9 +422,6 @@ body {
     pointer-events: none;
 }
 
-/* =====================================================
-   ETIQUETA
-===================================================== */
 
 /* =====================================================
    ETIQUETAS DOS PAÍSES
@@ -1844,8 +1841,8 @@ body {
 
     filter:
         drop-shadow(
-            0 0 18px
-            rgba(225, 179, 109, 0.25)
+            0 0 10px
+            rgba(225, 179, 109, 0.30)
         );
 }
 
@@ -1862,10 +1859,14 @@ body {
     height: 100%;
 
     overflow: visible;
+
+    isolation: isolate;
 }
 
 
-/* Corpo */
+/* =========================================================
+   CORPO DA FADA
+========================================================= */
 
 .fada-base {
     position: absolute;
@@ -1883,10 +1884,18 @@ body {
     pointer-events: none;
 
     z-index: 1;
+
+    /*
+     * Faz o preto da imagem desaparecer
+     * visualmente sobre o fundo preto da cena.
+     */
+    mix-blend-mode: screen;
 }
 
 
-/* Asas */
+/* =========================================================
+   ASAS
+========================================================= */
 
 .fada-frames .asa {
     position: absolute;
@@ -1904,6 +1913,12 @@ body {
     pointer-events: none;
 
     z-index: 2;
+
+    /*
+     * Remove visualmente o fundo escuro
+     * de cada frame das asas.
+     */
+    mix-blend-mode: screen;
 }
 
 
