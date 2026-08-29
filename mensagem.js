@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const API_URL =
         "https://script.google.com/macros/s/AKfycbyj28gI2WD-ssp9hO-rtZ94_gMXfjOVDaBUXZcnOZKUBLSXHSqkJhGsKqbyiBbb-2vE/exec";
 
+
     /* =====================================================
        ELEMENTOS
     ====================================================== */
@@ -15,250 +16,284 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll(".estado");
 
     const listaPaises =
-        document.querySelector(".lista-paises");
+        document.querySelector("#listaPaises");
 
-   const tituloPais =
-    document.querySelector("#paisNome");
+    const tituloPais =
+        document.querySelector("#paisNome");
 
-const listaMensagens =
-    document.querySelector("#listaMensagens");
+    const listaMensagens =
+        document.querySelector("#listaMensagens");
 
     const cartaPais =
-        document.querySelector(".carta-pais");
+        document.querySelector("#cartaPais");
 
     const cartaNome =
-        document.querySelector(".carta-nome");
+        document.querySelector("#cartaNome");
 
     const cartaTexto =
-        document.querySelector(".carta-texto");
+        document.querySelector("#cartaTexto");
 
     const contadorMensagens =
         document.querySelector(".mensagem-controles span");
 
     const carregando =
-        document.querySelector(".carregando");
+        document.querySelector("#carregando");
 
     const erro =
-        document.querySelector(".erro");
+        document.querySelector("#erro");
 
     const tentarNovamente =
-        document.getElementById("tentarNovamente");
+        document.querySelector("#tentarNovamente");
 
     const mensagemAnteriorBotao =
-        document.getElementById("mensagemAnterior");
+        document.querySelector("#mensagemAnterior");
 
     const mensagemProximaBotao =
-        document.getElementById("mensagemProxima");
+        document.querySelector("#mensagemProxima");
 
     const globo =
-        document.querySelector(".globo");
+        document.querySelector("#globo");
 
-   const fadaCena =
-    document.querySelector("#fadaCena");
+    const fadaCena =
+        document.querySelector("#fadaCena");
 
-const mensagemCarta =
-    document.querySelector("#mensagemCarta");
+    const mensagemCarta =
+        document.querySelector("#mensagemCarta");
 
-   const mensagemVoltar =
-    document.querySelector(".mensagens-voltar");
+    const mensagemVoltar =
+        document.querySelector(".mensagens-voltar");
 
-let mundoGlobo = null;
-let indiceCoordenadasGlobo = {};
-   
 
-    /* =====================================================
-       DADOS
-    ====================================================== */
+    let mundoGlobo = null;
+
+    let indiceCoordenadasGlobo = {};
 
     let mensagens = [];
+
     let paisAtual = "";
+
     let mensagensPais = [];
+
     let indiceMensagem = 0;
 
-/* =====================================================
-   IDIOMA
-===================================================== */
 
-const idiomaAtual =
-    localStorage.getItem("idiomaDMarco") || "ko";
+    /* =====================================================
+       IDIOMA
+    ====================================================== */
+
+    const idiomaAtual =
+        localStorage.getItem("idiomaDMarco") || "ko";
 
 
-const traducoes = {
+    const traducoes = {
 
-    ko: {
-        tituloMural: "벽화",
+        ko: {
 
-        subtitulo: "세계 곳곳에서 온 메시지",
+            tituloMural: "벽화",
 
-        instrucaoGlobo:
-            "글로브를 움직여 나라를 둘러보세요.<br>빛나는 곳을 눌러 메시지를 확인하세요.",
+            subtitulo:
+                "세계 곳곳에서 온 메시지",
 
-        instrucaoPais:
-            "나라를 눌러<br>메시지를 확인하세요 ♡",
+            instrucaoGlobo:
+                "글로브를 움직여 나라를 둘러보세요.<br>빛나는 곳을 눌러 메시지를 확인하세요.",
 
-       listaMensagensTitulo:
-    "당신을 위한 메시지",
-       
-        paraVoce:
-            "당신을 위해,",
+            instrucaoPais:
+                "나라를 눌러<br>메시지를 확인하세요 ♡",
 
-        anterior:
-            "이전",
+            listaMensagensTitulo:
+                "당신을 위한 메시지",
 
-        proxima:
-            "다음",
+            paraVoce:
+                "당신을 위해,",
 
-        erro:
-            "메시지를 불러오지 못했습니다.",
+            anterior:
+                "이전",
 
-        tentarNovamente:
-            "다시 시도",
+            proxima:
+                "다음",
 
-        de:
-            "보낸 사람",
+            erro:
+                "메시지를 불러오지 못했습니다.",
 
-        contador: "개"
-    },
+            tentarNovamente:
+                "다시 시도",
 
-    pt: {
-    tituloMural: "Mural",
+            de:
+                "보낸 사람",
 
-    subtitulo:
-        "Mensagens ao redor do mundo",
-       
-        instrucaoGlobo:
-            "Mova o globo para explorar os países.<br>Toque nas luzes para ver as mensagens.",
+            contador:
+                "개"
+        },
 
-        instrucaoPais:
-            "Toque em um país para ver<br>as mensagens ♡",
 
-       listaMensagensTitulo:
-    "Mensagens para você",
+        pt: {
 
-        paraVoce:
-            "Para você,",
+            tituloMural:
+                "Mural",
 
-        anterior:
-            "Anterior",
+            subtitulo:
+                "Mensagens ao redor do mundo",
 
-        proxima:
-            "Próxima",
+            instrucaoGlobo:
+                "Mova o globo para explorar os países.<br>Toque nas luzes para ver as mensagens.",
 
-        erro:
-            "Não foi possível carregar as mensagens.",
+            instrucaoPais:
+                "Toque em um país para ver<br>as mensagens ♡",
 
-        tentarNovamente:
-            "Tentar novamente",
+            listaMensagensTitulo:
+                "Mensagens para você",
 
-        de:
-            "De",
+            paraVoce:
+                "Para você,",
 
-        contador: "mensagens"
-    },
+            anterior:
+                "Anterior",
 
-    en: {
-    tituloMural: "Mural",
+            proxima:
+                "Próxima",
 
-    subtitulo:
-        "Messages from around the world",
+            erro:
+                "Não foi possível carregar as mensagens.",
 
-        instrucaoGlobo:
-            "Move the globe to explore the countries.<br>Tap the lights to see the messages.",
+            tentarNovamente:
+                "Tentar novamente",
 
-        instrucaoPais:
-            "Tap a country to see<br>the messages ♡",
+            de:
+                "De",
 
-       listaMensagensTitulo:
-    "Messages for you",
+            contador:
+                "mensagens"
+        },
 
-        paraVoce:
-            "For you,",
 
-        anterior:
-            "Previous",
+        en: {
 
-        proxima:
-            "Next",
+            tituloMural:
+                "Mural",
 
-        erro:
-            "Could not load the messages.",
+            subtitulo:
+                "Messages from around the world",
 
-        tentarNovamente:
-            "Try again",
+            instrucaoGlobo:
+                "Move the globe to explore the countries.<br>Tap the lights to see the messages.",
 
-        de:
-            "From",
+            instrucaoPais:
+                "Tap a country to see<br>the messages ♡",
 
-        contador: "messages"
+            listaMensagensTitulo:
+                "Messages for you",
+
+            paraVoce:
+                "For you,",
+
+            anterior:
+                "Previous",
+
+            proxima:
+                "Next",
+
+            erro:
+                "Could not load the messages.",
+
+            tentarNovamente:
+                "Try again",
+
+            de:
+                "From",
+
+            contador:
+                "messages"
+        }
+
+    };
+
+
+    function aplicarIdioma() {
+
+        const traducao =
+            traducoes[idiomaAtual] ||
+            traducoes.ko;
+
+
+        document.documentElement.lang =
+            idiomaAtual === "pt"
+                ? "pt-BR"
+                : idiomaAtual === "ko"
+                    ? "ko"
+                    : "en";
+
+
+        document
+            .querySelectorAll("[data-i18n]")
+            .forEach(elemento => {
+
+                const chave =
+                    elemento.dataset.i18n;
+
+                if (
+                    traducao[chave] !== undefined
+                ) {
+
+                    elemento.innerHTML =
+                        traducao[chave];
+
+                }
+
+            });
+
     }
 
-};
 
-
-function aplicarIdioma() {
-
-    const traducao =
-        traducoes[idiomaAtual] ||
-        traducoes.ko;
-
-
-    document.documentElement.lang =
-        idiomaAtual === "pt"
-            ? "pt-BR"
-            : idiomaAtual === "ko"
-                ? "ko"
-                : "en";
-
-
-    document
-        .querySelectorAll("[data-i18n]")
-        .forEach(elemento => {
-
-            const chave =
-                elemento.dataset.i18n;
-
-            if (
-                traducao[chave] !== undefined
-            ) {
-
-                elemento.innerHTML =
-                    traducao[chave];
-
-            }
-
-        });
-
-}
-
-   
     /* =====================================================
-       ESTADO
+       ESTADOS
     ====================================================== */
 
     function mostrarEstado(nome) {
 
-    if (mensagemVoltar) {
+        if (mensagemVoltar) {
 
-        mensagemVoltar.style.visibility =
-            nome === "mural"
-                ? "visible"
-                : "hidden";
+            const estaNoMural =
+                nome === "mural";
 
-        mensagemVoltar.style.pointerEvents =
-            nome === "mural"
-                ? "auto"
-                : "none";
+            mensagemVoltar.style.visibility =
+                estaNoMural
+                    ? "visible"
+                    : "hidden";
 
-    }
+            mensagemVoltar.style.pointerEvents =
+                estaNoMural
+                    ? "auto"
+                    : "none";
 
-    estados.forEach(estado => {
+        }
 
-        estado.classList.toggle(
-            "ativo",
-            estado.dataset.estado === nome
-        );
 
-    });
+        estados.forEach(estado => {
+
+            estado.classList.toggle(
+                "ativo",
+                estado.dataset.estado === nome
+            );
+
+        });
+
+
+        /*
+         * Quando voltamos para o mural,
+         * o Globe.gl precisa ser recalculado.
+         */
+        if (
+            nome === "mural" &&
+            mundoGlobo
+        ) {
+
+            requestAnimationFrame(() => {
+
+                ajustarGlobo();
+
+            });
+
+        }
 
     }
 
@@ -280,7 +315,7 @@ function aplicarIdioma() {
 
 
     /* =====================================================
-       ALIASES CONHECIDOS
+       ALIASES
     ====================================================== */
 
     const aliases = {
@@ -288,55 +323,102 @@ function aplicarIdioma() {
         brasil: "brasil",
         brazil: "brasil",
 
-        "coreia do sul": "coreia do sul",
-        coreia: "coreia do sul",
-        korea: "coreia do sul",
-        "south korea": "coreia do sul",
+        "coreia do sul":
+            "coreia do sul",
 
-        japao: "japao",
-        japan: "japao",
+        coreia:
+            "coreia do sul",
 
-        "estados unidos": "estados unidos",
-        "united states": "estados unidos",
-        usa: "estados unidos",
-        eua: "estados unidos",
+        korea:
+            "coreia do sul",
 
-        franca: "franca",
-        france: "franca",
+        "south korea":
+            "coreia do sul",
 
-        portugal: "portugal",
+        japao:
+            "japao",
 
-        mexico: "mexico",
+        japan:
+            "japao",
 
-        alemanha: "alemanha",
-        germany: "alemanha",
+        "estados unidos":
+            "estados unidos",
 
-        argentina: "argentina",
+        "united states":
+            "estados unidos",
 
-        chile: "chile",
+        usa:
+            "estados unidos",
 
-        colombia: "colombia",
+        eua:
+            "estados unidos",
 
-        peru: "peru",
+        franca:
+            "franca",
 
-        canada: "canada",
+        france:
+            "franca",
 
-        italia: "italia",
-        italy: "italia",
+        portugal:
+            "portugal",
 
-        espanha: "espanha",
-        spain: "espanha",
+        mexico:
+            "mexico",
 
-        "reino unido": "reino unido",
-        "united kingdom": "reino unido",
-        uk: "reino unido",
+        alemanha:
+            "alemanha",
 
-       filipinas: "filipinas",
-philippines: "filipinas",
+        germany:
+            "alemanha",
 
-polonia: "polonia",
-poland: "polonia",
-       
+        argentina:
+            "argentina",
+
+        chile:
+            "chile",
+
+        colombia:
+            "colombia",
+
+        peru:
+            "peru",
+
+        canada:
+            "canada",
+
+        italia:
+            "italia",
+
+        italy:
+            "italia",
+
+        espanha:
+            "espanha",
+
+        spain:
+            "espanha",
+
+        "reino unido":
+            "reino unido",
+
+        "united kingdom":
+            "reino unido",
+
+        uk:
+            "reino unido",
+
+        filipinas:
+            "filipinas",
+
+        philippines:
+            "filipinas",
+
+        polonia:
+            "polonia",
+
+        poland:
+            "polonia"
+
     };
 
 
@@ -345,146 +427,189 @@ poland: "polonia",
         const normalizada =
             normalizarPais(pais);
 
-        return aliases[normalizada] ||
-               normalizada;
+        return (
+            aliases[normalizada] ||
+            normalizada
+        );
 
     }
 
 
     /* =====================================================
-       NOME PARA EXIBIÇÃO
+       NOME DO PAÍS
     ====================================================== */
 
     function nomePais(pais) {
 
-    const nomes = {
+        const nomes = {
 
-        brasil: {
-            ko: "브라질",
-            pt: "Brasil",
-            en: "Brazil"
-        },
+            brasil: {
 
-        "coreia do sul": {
-            ko: "대한민국",
-            pt: "Coreia do Sul",
-            en: "South Korea"
-        },
+                ko: "브라질",
+                pt: "Brasil",
+                en: "Brazil"
 
-        japao: {
-            ko: "일본",
-            pt: "Japão",
-            en: "Japan"
-        },
+            },
 
-        "estados unidos": {
-            ko: "미국",
-            pt: "Estados Unidos",
-            en: "United States"
-        },
+            "coreia do sul": {
 
-        franca: {
-            ko: "프랑스",
-            pt: "França",
-            en: "France"
-        },
+                ko: "대한민국",
+                pt: "Coreia do Sul",
+                en: "South Korea"
 
-        portugal: {
-            ko: "포르투갈",
-            pt: "Portugal",
-            en: "Portugal"
-        },
+            },
 
-        mexico: {
-            ko: "멕시코",
-            pt: "México",
-            en: "Mexico"
-        },
+            japao: {
 
-        alemanha: {
-            ko: "독일",
-            pt: "Alemanha",
-            en: "Germany"
-        },
+                ko: "일본",
+                pt: "Japão",
+                en: "Japan"
 
-        argentina: {
-            ko: "아르헨티나",
-            pt: "Argentina",
-            en: "Argentina"
-        },
+            },
 
-        chile: {
-            ko: "칠레",
-            pt: "Chile",
-            en: "Chile"
-        },
+            "estados unidos": {
 
-        colombia: {
-            ko: "콜롬비아",
-            pt: "Colômbia",
-            en: "Colombia"
-        },
+                ko: "미국",
+                pt: "Estados Unidos",
+                en: "United States"
 
-        peru: {
-            ko: "페루",
-            pt: "Peru",
-            en: "Peru"
-        },
+            },
 
-        canada: {
-            ko: "캐나다",
-            pt: "Canadá",
-            en: "Canada"
-        },
+            franca: {
 
-        italia: {
-            ko: "이탈리아",
-            pt: "Itália",
-            en: "Italy"
-        },
+                ko: "프랑스",
+                pt: "França",
+                en: "France"
 
-        espanha: {
-            ko: "스페인",
-            pt: "Espanha",
-            en: "Spain"
-        },
+            },
 
-       filipinas: {
-    ko: "필리핀",
-    pt: "Filipinas",
-    en: "Philippines"
-},
+            portugal: {
 
-polonia: {
-    ko: "폴란드",
-    pt: "Polônia",
-    en: "Poland"
-},
+                ko: "포르투갈",
+                pt: "Portugal",
+                en: "Portugal"
 
-        "reino unido": {
-            ko: "영국",
-            pt: "Reino Unido",
-            en: "United Kingdom"
+            },
+
+            mexico: {
+
+                ko: "멕시코",
+                pt: "México",
+                en: "Mexico"
+
+            },
+
+            alemanha: {
+
+                ko: "독일",
+                pt: "Alemanha",
+                en: "Germany"
+
+            },
+
+            argentina: {
+
+                ko: "아르헨티나",
+                pt: "Argentina",
+                en: "Argentina"
+
+            },
+
+            chile: {
+
+                ko: "칠레",
+                pt: "Chile",
+                en: "Chile"
+
+            },
+
+            colombia: {
+
+                ko: "콜롬비아",
+                pt: "Colômbia",
+                en: "Colombia"
+
+            },
+
+            peru: {
+
+                ko: "페루",
+                pt: "Peru",
+                en: "Peru"
+
+            },
+
+            canada: {
+
+                ko: "캐나다",
+                pt: "Canadá",
+                en: "Canada"
+
+            },
+
+            italia: {
+
+                ko: "이탈리아",
+                pt: "Itália",
+                en: "Italy"
+
+            },
+
+            espanha: {
+
+                ko: "스페인",
+                pt: "Espanha",
+                en: "Spain"
+
+            },
+
+            filipinas: {
+
+                ko: "필리핀",
+                pt: "Filipinas",
+                en: "Philippines"
+
+            },
+
+            polonia: {
+
+                ko: "폴란드",
+                pt: "Polônia",
+                en: "Poland"
+
+            },
+
+            "reino unido": {
+
+                ko: "영국",
+                pt: "Reino Unido",
+                en: "United Kingdom"
+
+            }
+
+        };
+
+
+        const chave =
+            chavePais(pais);
+
+        const idioma =
+            traducoes[idiomaAtual]
+                ? idiomaAtual
+                : "ko";
+
+
+        if (
+            nomes[chave] &&
+            nomes[chave][idioma]
+        ) {
+
+            return nomes[chave][idioma];
+
         }
 
-    };
 
-
-    const chave =
-        chavePais(pais);
-
-    const idioma =
-        traducoes[idiomaAtual]
-            ? idiomaAtual
-            : "ko";
-
-
-    return (
-        nomes[chave] &&
-        nomes[chave][idioma]
-    )
-        ? nomes[chave][idioma]
-        : String(
+        return String(
             pais ||
             (
                 idioma === "ko"
@@ -497,13 +622,15 @@ polonia: {
 
     }
 
+
     /* =====================================================
-       AGRUPAR MENSAGENS POR PAÍS
+       AGRUPAR MENSAGENS
     ====================================================== */
 
     function agruparPaises() {
 
         const grupos = {};
+
 
         mensagens.forEach(mensagem => {
 
@@ -512,13 +639,20 @@ polonia: {
 
             if (!pais) return;
 
+
             if (!grupos[pais]) {
+
                 grupos[pais] = [];
+
             }
 
-            grupos[pais].push(mensagem);
+
+            grupos[pais].push(
+                mensagem
+            );
 
         });
+
 
         return grupos;
 
@@ -533,32 +667,47 @@ polonia: {
 
         if (!listaPaises) return;
 
+
         listaPaises.innerHTML = "";
+
 
         const grupos =
             agruparPaises();
+
 
         const paises =
             Object.keys(grupos)
                 .sort((a, b) =>
                     nomePais(a).localeCompare(
                         nomePais(b),
-                        "pt-BR"
+                        idiomaAtual === "ko"
+                            ? "ko"
+                            : "pt-BR"
                     )
                 );
+
 
         paises.forEach(pais => {
 
             const botao =
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
 
-            botao.type = "button";
+
+            botao.type =
+                "button";
+
 
             botao.className =
                 "pais-item";
 
+
             botao.innerHTML = `
-                <span class="pais-pin">⌖</span>
+
+                <span class="pais-pin">
+                    ⌖
+                </span>
 
                 <span class="pais-nome">
                     ${nomePais(pais)}
@@ -573,108 +722,119 @@ polonia: {
                 <span class="pais-seta">
                     ›
                 </span>
+
             `;
+
 
             botao.addEventListener(
                 "click",
                 () => abrirPais(pais)
             );
 
-            listaPaises.appendChild(botao);
+
+            listaPaises.appendChild(
+                botao
+            );
 
         });
 
     }
 
 
-   /* =====================================================
-   LISTA DE MENSAGENS DO PAÍS
-===================================================== */
+    /* =====================================================
+       LISTA DE MENSAGENS
+    ====================================================== */
 
-function criarListaMensagens() {
+    function criarListaMensagens() {
 
-    if (!listaMensagens) return;
-
-    listaMensagens.innerHTML = "";
+        if (!listaMensagens) return;
 
 
-    mensagensPais.forEach(
-        (mensagem, indice) => {
-
-            const botao =
-                document.createElement("button");
-
-            botao.type = "button";
-
-            botao.className =
-                "mensagem-item";
+        listaMensagens.innerHTML = "";
 
 
-            const numero =
-                String(indice + 1)
-                    .padStart(2, "0");
+        mensagensPais.forEach(
+            (mensagem, indice) => {
 
-
-            const nome =
-                mensagem.nome
-                    ? mensagem.nome
-                    : (
-                        idiomaAtual === "ko"
-                            ? "익명"
-                            : idiomaAtual === "en"
-                                ? "Anonymous"
-                                : "Anônimo"
+                const botao =
+                    document.createElement(
+                        "button"
                     );
 
 
-            botao.innerHTML = `
-
-                <span class="mensagem-numero">
-                    ${numero}
-                </span>
-
-                <span class="mensagem-item-conteudo">
-
-                    <strong>
-                        ${nome}
-                    </strong>
-
-                    <small>
-    ${textoMensagem(mensagem)}
-</small>
-
-                </span>
-
-                <span class="mensagem-item-seta">
-                    ›
-                </span>
-
-            `;
+                botao.type =
+                    "button";
 
 
-            botao.addEventListener(
-                "click",
-                () => {
-
-                    indiceMensagem =
-                        indice;
-
-                    prepararMensagem();
-
-                }
-            );
+                botao.className =
+                    "mensagem-item";
 
 
-            listaMensagens.appendChild(
-                botao
-            );
+                const numero =
+                    String(indice + 1)
+                        .padStart(2, "0");
 
-        }
-    );
 
-}
+                const nome =
+                    mensagem.nome
+                        ? mensagem.nome
+                        : (
+                            idiomaAtual === "ko"
+                                ? "익명"
+                                : idiomaAtual === "en"
+                                    ? "Anonymous"
+                                    : "Anônimo"
+                        );
 
-   
+
+                botao.innerHTML = `
+
+                    <span class="mensagem-numero">
+                        ${numero}
+                    </span>
+
+                    <span class="mensagem-item-conteudo">
+
+                        <strong>
+                            ${nome}
+                        </strong>
+
+                        <small>
+                            ${textoMensagem(mensagem)}
+                        </small>
+
+                    </span>
+
+                    <span class="mensagem-item-seta">
+                        ›
+                    </span>
+
+                `;
+
+
+                botao.addEventListener(
+                    "click",
+                    () => {
+
+                        indiceMensagem =
+                            indice;
+
+                        prepararMensagem();
+
+                    }
+                );
+
+
+                listaMensagens.appendChild(
+                    botao
+                );
+
+            }
+        );
+
+    }
+
+
     /* =====================================================
        ABRIR PAÍS
     ====================================================== */
@@ -684,31 +844,38 @@ function criarListaMensagens() {
         const grupos =
             agruparPaises();
 
+
         mensagensPais =
             grupos[chavePais(pais)] || [];
+
 
         if (!mensagensPais.length) {
             return;
         }
 
+
         paisAtual =
             chavePais(pais);
+
 
         indiceMensagem =
             0;
 
-       if (tituloPais) {
 
-    tituloPais.textContent =
-        nomePais(paisAtual);
+        if (tituloPais) {
 
-}
+            tituloPais.textContent =
+                nomePais(paisAtual);
 
-
-criarListaMensagens();
+        }
 
 
-mostrarEstado("pais");
+        criarListaMensagens();
+
+
+        mostrarEstado(
+            "pais"
+        );
 
     }
 
@@ -722,7 +889,9 @@ mostrarEstado("pais");
         const mensagem =
             mensagensPais[indiceMensagem];
 
+
         if (!mensagem) return;
+
 
         if (cartaPais) {
 
@@ -731,153 +900,193 @@ mostrarEstado("pais");
 
         }
 
+
         if (cartaNome) {
 
-    const traducao =
-        traducoes[idiomaAtual] ||
-        traducoes.ko;
+            const traducao =
+                traducoes[idiomaAtual] ||
+                traducoes.ko;
 
-    cartaNome.textContent =
-        mensagem.nome
-            ? `${traducao.de} ${mensagem.nome}`
-            : "";
+
+            cartaNome.textContent =
+                mensagem.nome
+                    ? `${traducao.de} ${mensagem.nome}`
+                    : "";
 
         }
+
 
         if (cartaTexto) {
 
-    cartaTexto.textContent =
-        textoMensagem(mensagem);
+            cartaTexto.textContent =
+                textoMensagem(mensagem);
 
         }
 
+
         if (contadorMensagens) {
 
-          const numeroAtual =
-    indiceMensagem + 1;
+            const numeroAtual =
+                indiceMensagem + 1;
 
-const totalMensagens =
-    mensagensPais.length;
+            const totalMensagens =
+                mensagensPais.length;
 
-contadorMensagens.textContent =
-    idiomaAtual === "ko"
-        ? `${numeroAtual} / ${totalMensagens}`
-        : idiomaAtual === "en"
-            ? `${numeroAtual} of ${totalMensagens}`
-            : `${numeroAtual} de ${totalMensagens}`;
 
-mostrarEstado("mensagem");
+            contadorMensagens.textContent =
+                idiomaAtual === "ko"
+                    ? `${numeroAtual} / ${totalMensagens}`
+                    : idiomaAtual === "en"
+                        ? `${numeroAtual} of ${totalMensagens}`
+                        : `${numeroAtual} de ${totalMensagens}`;
 
-animarFada();
+        }
+
+
+        mostrarEstado(
+            "mensagem"
+        );
+
+
+        animarFada();
 
     }
-       
-    }
-   
 
-   /* =====================================================
-   ANIMAÇÃO DA FADA
-===================================================== */
 
-function animarFada() {
-
-    if (!fadaCena) return;
-
-    fadaCena.classList.remove("viva");
-
-    if (mensagemCarta) {
-        mensagemCarta.style.animation = "none";
-    }
-
-    void fadaCena.offsetWidth;
-
-    if (mensagemCarta) {
-        mensagemCarta.style.animation = "";
-    }
-
-    fadaCena.classList.add("viva");
-}
-
-   
     /* =====================================================
-       PRÓXIMA MENSAGEM
+       ANIMAÇÃO DA FADA
+    ====================================================== */
+
+    function animarFada() {
+
+        if (!fadaCena) return;
+
+
+        fadaCena.classList.remove(
+            "viva"
+        );
+
+
+        if (mensagemCarta) {
+
+            mensagemCarta.style.animation =
+                "none";
+
+        }
+
+
+        void fadaCena.offsetWidth;
+
+
+        if (mensagemCarta) {
+
+            mensagemCarta.style.animation =
+                "";
+
+        }
+
+
+        fadaCena.classList.add(
+            "viva"
+        );
+
+    }
+
+
+    /* =====================================================
+       PRÓXIMA
     ====================================================== */
 
     function proximaMensagem() {
 
-        if (!mensagensPais.length) return;
+        if (!mensagensPais.length) {
+            return;
+        }
+
 
         indiceMensagem++;
+
 
         if (
             indiceMensagem >=
             mensagensPais.length
         ) {
 
-            indiceMensagem = 0;
+            indiceMensagem =
+                0;
 
-       }
+        }
 
-    prepararMensagem();
 
-}
+        prepararMensagem();
 
-   
+    }
+
+
     /* =====================================================
-       MENSAGEM ANTERIOR
+       ANTERIOR
     ====================================================== */
 
     function mensagemAnterior() {
 
-        if (!mensagensPais.length) return;
+        if (!mensagensPais.length) {
+            return;
+        }
+
 
         indiceMensagem--;
 
-        if (indiceMensagem < 0) {
+
+        if (
+            indiceMensagem < 0
+        ) {
 
             indiceMensagem =
                 mensagensPais.length - 1;
 
         }
 
-        prepararMensagem();
 
-       mostrarEstado("mensagem");
+        prepararMensagem();
 
     }
 
 
     /* =====================================================
-   VOLTAR ENTRE ESTADOS
-===================================================== */
+       VOLTAR
+    ====================================================== */
 
-const botoesVoltar =
-    document.querySelectorAll(
-        "[data-voltar]"
-    );
+    document
+        .querySelectorAll("[data-voltar]")
+        .forEach(botao => {
 
-botoesVoltar.forEach(botao => {
+            botao.addEventListener(
+                "click",
+                evento => {
 
-    botao.addEventListener(
-        "click",
-        evento => {
+                    evento.preventDefault();
+                    evento.stopImmediatePropagation();
 
-            evento.preventDefault();
-            evento.stopImmediatePropagation();
 
-            const destino =
-                botao.getAttribute(
-                    "data-voltar"
-                );
+                    const destino =
+                        botao.getAttribute(
+                            "data-voltar"
+                        );
 
-            if (!destino) return;
 
-            mostrarEstado(destino);
+                    if (!destino) {
+                        return;
+                    }
 
-        }
-    );
 
-});
+                    mostrarEstado(
+                        destino
+                    );
+
+                }
+            );
+
+        });
 
 
     /* =====================================================
@@ -893,6 +1102,7 @@ botoesVoltar.forEach(botao => {
 
     }
 
+
     if (mensagemProximaBotao) {
 
         mensagemProximaBotao.addEventListener(
@@ -904,7 +1114,7 @@ botoesVoltar.forEach(botao => {
 
 
     /* =====================================================
-       COORDENADAS DOS PAÍSES
+       COORDENADAS
     ====================================================== */
 
     async function carregarCoordenadas() {
@@ -914,6 +1124,7 @@ botoesVoltar.forEach(botao => {
                 "https://countriesnow.space/api/v0.1/countries/positions"
             );
 
+
         if (!resposta.ok) {
 
             throw new Error(
@@ -922,8 +1133,10 @@ botoesVoltar.forEach(botao => {
 
         }
 
+
         const resultado =
             await resposta.json();
+
 
         if (
             !resultado ||
@@ -936,20 +1149,23 @@ botoesVoltar.forEach(botao => {
 
         }
 
+
         return resultado.data;
 
     }
 
 
     /* =====================================================
-       CRIAR ÍNDICE DE COORDENADAS
+       ÍNDICE DE COORDENADAS
     ====================================================== */
 
     function criarIndiceCoordenadas(dados) {
 
         const indice = {};
 
+
         let displayNames = null;
+
 
         try {
 
@@ -963,7 +1179,8 @@ botoesVoltar.forEach(botao => {
 
         } catch (erro) {
 
-            displayNames = null;
+            displayNames =
+                null;
 
         }
 
@@ -972,11 +1189,14 @@ botoesVoltar.forEach(botao => {
 
             if (
                 !item ||
-                !item.lat ||
+                item.lat === undefined ||
                 item.long === undefined
             ) {
+
                 return;
+
             }
+
 
             const coordenada = {
 
@@ -990,31 +1210,36 @@ botoesVoltar.forEach(botao => {
 
 
             if (
-                !Number.isFinite(coordenada.lat) ||
-                !Number.isFinite(coordenada.lng)
+                !Number.isFinite(
+                    coordenada.lat
+                ) ||
+                !Number.isFinite(
+                    coordenada.lng
+                )
             ) {
+
                 return;
+
             }
 
-
-            /* Nome original da API */
 
             if (item.name) {
 
                 indice[
                     chavePais(item.name)
-                ] = coordenada;
+                ] =
+                    coordenada;
 
             }
 
-
-            /* Código ISO */
 
             if (item.iso2) {
 
                 indice[
                     chavePais(item.iso2)
-                ] = coordenada;
+                ] =
+                    coordenada;
+
 
                 if (displayNames) {
 
@@ -1025,11 +1250,13 @@ botoesVoltar.forEach(botao => {
                                 item.iso2
                             );
 
+
                         if (nomePT) {
 
                             indice[
                                 chavePais(nomePT)
-                            ] = coordenada;
+                            ] =
+                                coordenada;
 
                         }
 
@@ -1047,595 +1274,1016 @@ botoesVoltar.forEach(botao => {
     }
 
 
-   /* =====================================================
-   CONFIGURAÇÃO VISUAL DOS PAÍSES
-===================================================== */
-
-const CONFIG_GLOBO = {
-
-    brasil: {
-        en: "BRAZIL",
-        ko: "브라질",
-        bandeira: "🇧🇷",
-        lado: "esquerda",
-        linha: 50,
-        angulo: 0,
-        offsetX: 0,
-        offsetY: 0
-    },
-
-    colombia: {
-        en: "COLOMBIA",
-        ko: "콜롬비아",
-        bandeira: "🇨🇴",
-        lado: "esquerda",
-        linha: 58,
-        angulo: -12,
-        offsetX: 0,
-        offsetY: 0
-    },
-
-    argentina: {
-        en: "ARGENTINA",
-        ko: "아르헨티나",
-        bandeira: "🇦🇷",
-        lado: "esquerda",
-        linha: 50,
-        angulo: 12,
-        offsetX: 0,
-        offsetY: 0
-    },
-
-    alemanha: {
-        en: "GERMANY",
-        ko: "독일",
-        bandeira: "🇩🇪",
-        lado: "direita",
-        linha: 50,
-        angulo: -25,
-        offsetX: 0,
-        offsetY: -35
-    },
-
-    polonia: {
-        en: "POLAND",
-        ko: "폴란드",
-        bandeira: "🇵🇱",
-        lado: "direita",
-        linha: 58,
-        angulo: 25,
-        offsetX: 0,
-        offsetY: 35
-    },
-
-    filipinas: {
-        en: "PHILIPPINES",
-        ko: "필리핀",
-        bandeira: "🇵🇭",
-        lado: "direita",
-        linha: 60,
-        angulo: 0,
-        offsetX: 0,
-        offsetY: 0
-    }
-
-};
-
-   
-   
-   /* =====================================================
-   GLOBO
-===================================================== */
-
-async function criarGlobo() {
-
-    if (!globo) return;
-
-    globo.innerHTML = "";
-
-    /* =================================================
-       CRIAR O GLOBO IMEDIATAMENTE
-    ================================================== */
-
-    mundoGlobo =
-        Globe()(globo)
+    /* =====================================================
+       CONFIGURAÇÃO VISUAL
+    ====================================================== */
 
-            .width(
-                globo.clientWidth
-            )
-
-            .height(
-                globo.clientHeight
-            )
-
-            .backgroundColor(
-                "rgba(0,0,0,0)"
-            )
+    const CONFIG_GLOBO = {
 
-            .globeImageUrl(
-                "https://unpkg.com/three-globe/example/img/earth-night.jpg"
-            )
+        brasil: {
 
-            .bumpImageUrl(
-                "https://unpkg.com/three-globe/example/img/earth-topology.png"
-            )
+            en: "BRAZIL",
+            ko: "브라질",
+            bandeira: "🇧🇷",
 
-            .showAtmosphere(
-                true
-            )
+            lado: "esquerda",
 
-            .atmosphereColor(
-    "#8fc9ff"
-)
+            linha: 50,
 
-.atmosphereAltitude(
-    0.16
+            angulo: 0,
 
-);
+            offsetX: 0,
+            offsetY: 0
 
+        },
 
-    /* =================================================
-       CONFIGURAÇÃO DOS PONTOS
-    ================================================== */
 
-    mundoGlobo
-        .pointsData([])
+        colombia: {
 
-        .pointLat("lat")
+            en: "COLOMBIA",
+            ko: "콜롬비아",
+            bandeira: "🇨🇴",
 
-        .pointLng("lng")
+            lado: "esquerda",
 
-        .pointAltitude(0.02)
+            linha: 58,
 
-        .pointRadius(0)
+            angulo: -12,
 
-        .pointColor(
-            () => "rgba(0,0,0,0)"
-        )
+            offsetX: 0,
+            offsetY: 0
 
-        .pointLabel(
-            ponto =>
-                nomePais(
-                    ponto.pais
-                )
-        );
+        },
 
 
-    /* =================================================
-       LUZ DOS PAÍSES
-    ================================================== */
+        argentina: {
 
-    mundoGlobo
+            en: "ARGENTINA",
+            ko: "아르헨티나",
+            bandeira: "🇦🇷",
 
-        .htmlElementsData([])
+            lado: "esquerda",
 
-        .htmlLat("lat")
+            linha: 50,
 
-        .htmlLng("lng")
+            angulo: 12,
 
-        .htmlAltitude(0.025)
+            offsetX: 0,
+            offsetY: 0
 
-        .htmlElement(
-    ponto => {
+        },
 
-       const marcador =
-    document.createElement("div");
 
-marcador.className =
-    "globo-marcador";
+        alemanha: {
 
+            en: "GERMANY",
+            ko: "독일",
+            bandeira: "🇩🇪",
 
-const config =
-    CONFIG_GLOBO[
-        chavePais(ponto.pais)
-    ];
+            lado: "direita",
 
-if (!config) {
-    return marcador;
-}
+            linha: 50,
 
+            angulo: -25,
 
-/* =================================================
-   TAMANHO DA LINHA — HERDADO PELA ETIQUETA
-================================================= */
+            offsetX: 0,
+            offsetY: -35
 
-marcador.style.setProperty(
-    "--linha-tamanho",
-    `${config.linha}px`
-);
-      
+        },
 
-        /* =================================================
-           LUZ
-        ================================================== */
 
-        const luz =
-            document.createElement("div");
+        polonia: {
 
-        luz.className =
-            "globo-luz";
+            en: "POLAND",
+            ko: "폴란드",
+            bandeira: "🇵🇱",
 
+            lado: "direita",
 
-        /* =================================================
-           LINHA
-        ================================================== */
+            linha: 58,
 
-        const linha =
-    document.createElement("div");
+            angulo: 25,
 
-linha.className =
-    "globo-linha";
+            offsetX: 0,
+            offsetY: 35
 
-linha.style.setProperty(
-    "--linha-tamanho",
-    `${config.linha}px`
-);
+        },
 
-const anguloLinha =
-    config.lado === "esquerda"
-        ? 180 + config.angulo
-        : config.angulo;
 
-linha.style.transform =
-    `rotate(${anguloLinha}deg)`;
-   
+        filipinas: {
 
-        /* =================================================
-           ETIQUETA
-        ================================================== */
+            en: "PHILIPPINES",
+            ko: "필리핀",
+            bandeira: "🇵🇭",
 
-        const etiqueta =
-    document.createElement("div");
+            lado: "direita",
 
-etiqueta.className =
-    `globo-etiqueta ${config.lado} ${chavePais(ponto.pais)}`;
+            linha: 60,
 
-etiqueta.style.setProperty(
-    "--offset-x",
-    `${config.offsetX}px`
-);
+            angulo: 0,
 
-etiqueta.style.setProperty(
-    "--offset-y",
-    `${config.offsetY}px`
-);
-   
+            offsetX: 0,
+            offsetY: 0
 
-        /* =================================================
-           BANDEIRA
-        ================================================== */
+        }
 
-        const bandeira =
-            document.createElement("span");
+    };
 
-        bandeira.className =
-            "globo-bandeira";
 
-        bandeira.textContent =
-            config.bandeira;
-
-
-        /* =================================================
-           TEXTOS
-        ================================================== */
-
-        const textos =
-            document.createElement("div");
-
-        textos.className =
-            "globo-textos";
-
-
-        const nome =
-            document.createElement("div");
-
-        nome.className =
-            "globo-nome";
-
-        nome.textContent =
-            config.en;
-
-
-        const nomeCoreano =
-            document.createElement("div");
-
-        nomeCoreano.className =
-            "globo-nome-coreano";
-
-        nomeCoreano.textContent =
-            config.ko;
-
-
-        textos.appendChild(nome);
-
-        textos.appendChild(nomeCoreano);
-
-
-        etiqueta.appendChild(bandeira);
-
-        etiqueta.appendChild(textos);
-
-
-        marcador.appendChild(linha);
-
-        marcador.appendChild(luz);
-
-        marcador.appendChild(etiqueta);
-
-
-
-        /* =================================================
-           CLIQUE
-        ================================================== */
-
-        marcador.addEventListener(
-            "click",
-            evento => {
-
-                evento.stopPropagation();
-
-                abrirPais(
-                    ponto.pais
-                );
-
-            }
-        );
-
-
-        return marcador;
-
-    }
-)
-
-        .htmlElementVisibilityModifier(
-            (elemento, visivel) => {
-
-                elemento.style.opacity =
-                    visivel ? "1" : "0";
-
-            }
-        )
-
-        .htmlTransitionDuration(0);
-
-
-    /* =================================================
-       POSIÇÃO INICIAL
-    ================================================== */
-
-    mundoGlobo.pointOfView(
-    {
-        lat: 12,
-        lng: -20,
-        altitude: 2.35
-    },
-    0
-);
-
-
-    /* =================================================
-       CONTROLE POR TOQUE
-    ================================================== */
-
-   mundoGlobo.controls()
-    .enableZoom = false;
-
-mundoGlobo.controls()
-    .autoRotate = false;
-
-
-    /* =================================================
-       RESPONSIVO
-    ================================================== */
+    /* =====================================================
+       DIMENSIONAR GLOBO
+    ====================================================== */
 
     function ajustarGlobo() {
 
-        if (!mundoGlobo) return;
+        if (
+            !mundoGlobo ||
+            !globo
+        ) {
+
+            return;
+
+        }
+
+
+        const largura =
+            globo.clientWidth;
+
+
+        const altura =
+            globo.clientHeight;
+
+
+        if (
+            largura <= 0 ||
+            altura <= 0
+        ) {
+
+            return;
+
+        }
+
 
         mundoGlobo
-            .width(
-                globo.clientWidth
-            )
-            .height(
-                globo.clientHeight
+            .width(largura)
+            .height(altura);
+
+
+        /*
+         * Força o canvas a acompanhar
+         * exatamente o tamanho real
+         * do container.
+         */
+
+        const canvas =
+            globo.querySelector(
+                "canvas"
             );
+
+
+        if (canvas) {
+
+            canvas.style.width =
+                "100%";
+
+            canvas.style.height =
+                "100%";
+
+        }
 
     }
 
-    window.addEventListener(
-        "resize",
-        ajustarGlobo
-    );
+
+    /* =====================================================
+       CRIAR GLOBO
+    ====================================================== */
+
+    async function criarGlobo() {
+
+        if (!globo) {
+            return;
+        }
 
 
-    /* =================================================
-       CARREGAR COORDENADAS EM PARALELO
-    ================================================== */
+        /*
+         * Limpa qualquer instância anterior.
+         */
 
-    try {
+        globo.innerHTML = "";
 
-        const dadosCoordenadas =
-            await carregarCoordenadas();
 
-        indiceCoordenadasGlobo =
-            criarIndiceCoordenadas(
-                dadosCoordenadas
+        /*
+         * Garante dimensões reais antes
+         * de inicializar o Globe.gl.
+         */
+
+        const larguraInicial =
+            Math.max(
+                globo.clientWidth,
+                280
             );
 
-        atualizarPontosGlobo();
 
-    } catch (erro) {
-
-        console.error(
-            "Erro ao carregar coordenadas:",
-            erro
-        );
-
-    }
-
-}
+        const alturaInicial =
+            Math.max(
+                globo.clientHeight,
+                280
+            );
 
 
-/* =====================================================
-   ATUALIZAR PONTOS DO GLOBO
-===================================================== */
+        /*
+         * Verificação de segurança.
+         */
 
-function atualizarPontosGlobo() {
+        if (
+            typeof Globe !==
+            "function"
+        ) {
 
-    if (!mundoGlobo) return;
+            console.error(
+                "Globe.gl não foi carregado."
+            );
 
-    const grupos =
-        agruparPaises();
+            return;
 
-    const pontos = [];
-
-    Object.keys(grupos)
-        .forEach(pais => {
-
-            let coordenada =
-                indiceCoordenadasGlobo[
-                    chavePais(pais)
-                ];
+        }
 
 
-            if (!coordenada) {
+        /* =================================================
+           GLOBO
+        ================================================== */
 
-                coordenada =
-                    indiceCoordenadasGlobo[
-                        chavePais(
-                            nomePais(pais)
-                        )
-                    ];
+        mundoGlobo =
+            Globe()(globo)
 
-            }
+                .width(
+                    larguraInicial
+                )
 
+                .height(
+                    alturaInicial
+                )
 
-            if (!coordenada) {
+                .backgroundColor(
+                    "rgba(0,0,0,0)"
+                )
 
-                console.warn(
-                    "País sem coordenada:",
-                    pais
+                .globeImageUrl(
+                    "https://unpkg.com/three-globe/example/img/earth-night.jpg"
+                )
+
+                .bumpImageUrl(
+                    "https://unpkg.com/three-globe/example/img/earth-topology.png"
+                )
+
+                .showAtmosphere(
+                    true
+                )
+
+                .atmosphereColor(
+                    "#8fc9ff"
+                )
+
+                .atmosphereAltitude(
+                    0.16
                 );
 
-                return;
 
-            }
+        /* =================================================
+           PONTOS
+        ================================================== */
+
+        mundoGlobo
+
+            .pointsData([])
+
+            .pointLat(
+                "lat"
+            )
+
+            .pointLng(
+                "lng"
+            )
+
+            .pointAltitude(
+                0.02
+            )
+
+            .pointRadius(
+                0
+            )
+
+            .pointColor(
+                () =>
+                    "rgba(0,0,0,0)"
+            )
+
+            .pointLabel(
+                ponto =>
+                    nomePais(
+                        ponto.pais
+                    )
+            );
 
 
-            pontos.push({
+        /* =================================================
+           MARCADORES HTML
+        ================================================== */
 
-                pais: pais,
+        mundoGlobo
 
-                lat:
-                    coordenada.lat,
+            .htmlElementsData([])
 
-                lng:
-                    coordenada.lng,
+            .htmlLat(
+                "lat"
+            )
 
-                quantidade:
-                    grupos[pais].length
+            .htmlLng(
+                "lng"
+            )
 
-            });
+            .htmlAltitude(
+                0.025
+            )
+
+            .htmlElement(
+                ponto => {
+
+                    const marcador =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    marcador.className =
+                        "globo-marcador";
+
+
+                    const config =
+                        CONFIG_GLOBO[
+                            chavePais(
+                                ponto.pais
+                            )
+                        ];
+
+
+                    /*
+                     * País sem configuração:
+                     * não mostra etiqueta.
+                     */
+
+                    if (!config) {
+
+                        return marcador;
+
+                    }
+
+
+                    /* =================================================
+                       TAMANHO DA LINHA
+                    ================================================== */
+
+                    marcador.style.setProperty(
+                        "--linha-tamanho",
+                        `${config.linha}px`
+                    );
+
+
+                    /* =================================================
+                       LUZ
+                    ================================================== */
+
+                    const luz =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    luz.className =
+                        "globo-luz";
+
+
+                    /* =================================================
+                       LINHA
+                    ================================================== */
+
+                    const linha =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    linha.className =
+                        "globo-linha";
+
+
+                    linha.style.setProperty(
+                        "--linha-tamanho",
+                        `${config.linha}px`
+                    );
+
+
+                    const anguloLinha =
+                        config.lado === "esquerda"
+                            ? 180 + config.angulo
+                            : config.angulo;
+
+
+                    linha.style.transform =
+                        `rotate(${anguloLinha}deg)`;
+
+
+                    /* =================================================
+                       ETIQUETA
+                    ================================================== */
+
+                    const etiqueta =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    etiqueta.className =
+                        `globo-etiqueta ${config.lado} ${chavePais(ponto.pais)}`;
+
+
+                    etiqueta.style.setProperty(
+                        "--offset-x",
+                        `${config.offsetX}px`
+                    );
+
+
+                    etiqueta.style.setProperty(
+                        "--offset-y",
+                        `${config.offsetY}px`
+                    );
+
+
+                    /* =================================================
+                       BANDEIRA
+                    ================================================== */
+
+                    const bandeira =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    bandeira.className =
+                        "globo-bandeira";
+
+
+                    bandeira.textContent =
+                        config.bandeira;
+
+
+                    /* =================================================
+                       TEXTOS
+                    ================================================== */
+
+                    const textos =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    textos.className =
+                        "globo-textos";
+
+
+                    const nome =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    nome.className =
+                        "globo-nome";
+
+
+                    nome.textContent =
+                        config.en;
+
+
+                    const nomeCoreano =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    nomeCoreano.className =
+                        "globo-nome-coreano";
+
+
+                    nomeCoreano.textContent =
+                        config.ko;
+
+
+                    textos.appendChild(
+                        nome
+                    );
+
+
+                    textos.appendChild(
+                        nomeCoreano
+                    );
+
+
+                    etiqueta.appendChild(
+                        bandeira
+                    );
+
+
+                    etiqueta.appendChild(
+                        textos
+                    );
+
+
+                    marcador.appendChild(
+                        linha
+                    );
+
+
+                    marcador.appendChild(
+                        luz
+                    );
+
+
+                    marcador.appendChild(
+                        etiqueta
+                    );
+
+
+                    /* =================================================
+                       CLIQUE
+                    ================================================== */
+
+                    marcador.addEventListener(
+                        "click",
+                        evento => {
+
+                            evento.stopPropagation();
+
+                            abrirPais(
+                                ponto.pais
+                            );
+
+                        }
+                    );
+
+
+                    return marcador;
+
+                }
+            )
+
+            .htmlElementVisibilityModifier(
+                (elemento, visivel) => {
+
+                    elemento.style.opacity =
+                        visivel
+                            ? "1"
+                            : "0";
+
+                }
+            )
+
+            .htmlTransitionDuration(
+                0
+            );
+
+
+        /* =================================================
+           POSIÇÃO INICIAL
+        ================================================== */
+
+        mundoGlobo.pointOfView(
+            {
+                lat: 12,
+                lng: -20,
+                altitude: 2.35
+            },
+            0
+        );
+
+
+        /* =================================================
+           CONTROLES
+        ================================================== */
+
+        const controles =
+            mundoGlobo.controls();
+
+
+        controles.enableZoom =
+            false;
+
+
+        controles.enablePan =
+            false;
+
+
+        controles.autoRotate =
+            false;
+
+
+        controles.enableDamping =
+            true;
+
+
+        /* =================================================
+           REDIMENSIONAMENTO
+        ================================================== */
+
+        requestAnimationFrame(() => {
+
+            ajustarGlobo();
 
         });
 
 
-    mundoGlobo
-        .pointsData(pontos)
+        setTimeout(() => {
 
-        .htmlElementsData(pontos);
+            ajustarGlobo();
 
-}
+        }, 100);
 
 
-   /* =====================================================
-   ESCOLHER MENSAGEM PELO IDIOMA
-===================================================== */
+        setTimeout(() => {
 
-function textoMensagem(mensagem) {
+            ajustarGlobo();
 
-    if (!mensagem) {
-        return "";
+        }, 500);
+
+
+        /* =================================================
+           RESIZE
+        ================================================== */
+
+        window.addEventListener(
+            "resize",
+            ajustarGlobo
+        );
+
+
+        /*
+         * Mudanças de orientação no celular.
+         */
+
+        window.addEventListener(
+            "orientationchange",
+            () => {
+
+                setTimeout(
+                    ajustarGlobo,
+                    250
+                );
+
+            }
+        );
+
+
+        /* =================================================
+           COORDENADAS
+        ================================================== */
+
+        try {
+
+            const dadosCoordenadas =
+                await carregarCoordenadas();
+
+
+            indiceCoordenadasGlobo =
+                criarIndiceCoordenadas(
+                    dadosCoordenadas
+                );
+
+
+            atualizarPontosGlobo();
+
+
+        } catch (erro) {
+
+            console.error(
+                "Erro ao carregar coordenadas:",
+                erro
+            );
+
+        }
+
     }
 
-    /* COREANO — usa a tradução */
-    if (idiomaAtual === "ko") {
+
+    /* =====================================================
+       ATUALIZAR PONTOS
+    ====================================================== */
+
+    function atualizarPontosGlobo() {
+
+        if (!mundoGlobo) {
+            return;
+        }
+
+
+        const grupos =
+            agruparPaises();
+
+
+        const pontos = [];
+
+
+        Object.keys(grupos)
+            .forEach(pais => {
+
+                let coordenada =
+                    indiceCoordenadasGlobo[
+                        chavePais(pais)
+                    ];
+
+
+                if (!coordenada) {
+
+                    coordenada =
+                        indiceCoordenadasGlobo[
+                            chavePais(
+                                nomePais(pais)
+                            )
+                        ];
+
+                }
+
+
+                if (!coordenada) {
+
+                    console.warn(
+                        "País sem coordenada:",
+                        pais
+                    );
+
+                    return;
+
+                }
+
+
+                pontos.push({
+
+                    pais:
+
+                        pais,
+
+                    lat:
+
+                        coordenada.lat,
+
+                    lng:
+
+                        coordenada.lng,
+
+                    quantidade:
+
+                        grupos[pais].length
+
+                });
+
+            });
+
+
+        mundoGlobo
+            .pointsData(
+                pontos
+            )
+            .htmlElementsData(
+                pontos
+            );
+
+
+        /*
+         * Recalcula depois de inserir
+         * os marcadores.
+         */
+
+        requestAnimationFrame(() => {
+
+            ajustarGlobo();
+
+        });
+
+    }
+
+
+    /* =====================================================
+       TEXTO DA MENSAGEM
+    ====================================================== */
+
+    function textoMensagem(
+        mensagem
+    ) {
+
+        if (!mensagem) {
+            return "";
+        }
+
+
+        if (
+            idiomaAtual === "ko"
+        ) {
+
+            return String(
+
+                mensagem.mensagem_coreano ||
+                mensagem.mensagem_original ||
+                mensagem.mensagem ||
+                ""
+
+            ).trim();
+
+        }
+
 
         return String(
-            mensagem.mensagem_coreano ||
+
             mensagem.mensagem_original ||
             mensagem.mensagem ||
             ""
+
         ).trim();
 
     }
 
-    /* PORTUGUÊS E INGLÊS — mantém a mensagem original */
-    return String(
-        mensagem.mensagem_original ||
-        mensagem.mensagem ||
-        ""
-    ).trim();
 
-}
-   
+    /* =====================================================
+       CARREGAR MENSAGENS
+    ====================================================== */
 
-/* =====================================================
-   CARREGAR MENSAGENS DA PLANILHA
-===================================================== */
+    function carregarMensagens() {
 
-function carregarMensagens() {
-
-    const nomeCallback =
-        "dmMarcoMensagens_" +
-        Date.now();
+        const nomeCallback =
+            "dmMarcoMensagens_" +
+            Date.now();
 
 
-    const script =
-        document.createElement(
-            "script"
+        const script =
+            document.createElement(
+                "script"
+            );
+
+
+        window[nomeCallback] =
+            function(dados) {
+
+                try {
+
+                    if (
+                        !dados ||
+                        !Array.isArray(
+                            dados.mensagens
+                        )
+                    ) {
+
+                        throw new Error(
+                            "Formato de dados inválido."
+                        );
+
+                    }
+
+
+                    mensagens =
+                        dados.mensagens.filter(
+                            item =>
+                                item &&
+                                item.pais &&
+                                textoMensagem(item)
+                        );
+
+
+                    criarListaPaises();
+
+
+                    atualizarPontosGlobo();
+
+
+                    if (carregando) {
+
+                        carregando.remove();
+
+                    }
+
+
+                    if (erro) {
+
+                        erro.hidden =
+                            true;
+
+                        erro.style.display =
+                            "none";
+
+                    }
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Erro ao processar mensagens:",
+                        error
+                    );
+
+
+                    tratarFalhaAPI();
+
+                }
+
+
+                delete window[
+                    nomeCallback
+                ];
+
+
+                script.remove();
+
+            };
+
+
+        script.src =
+            API_URL +
+            "?callback=" +
+            encodeURIComponent(
+                nomeCallback
+            );
+
+
+        script.onerror =
+            function() {
+
+                console.error(
+                    "Não foi possível acessar a API."
+                );
+
+
+                tratarFalhaAPI();
+
+
+                delete window[
+                    nomeCallback
+                ];
+
+
+                script.remove();
+
+            };
+
+
+        document.head.appendChild(
+            script
+        );
+
+    }
+
+
+    /* =====================================================
+       FALHA
+    ====================================================== */
+
+    function tratarFalhaAPI() {
+
+        /*
+         * O globo permanece disponível.
+         * A falha da API não deve apagar o mural.
+         */
+
+        mostrarEstado(
+            "mural"
         );
 
 
-    window[nomeCallback] =
-        function(dados) {
+        if (carregando) {
 
-            try {
+            carregando.remove();
 
-                if (
-                    !dados ||
-                    !Array.isArray(
-                        dados.mensagens
-                    )
-                ) {
-
-                    throw new Error(
-                        "Formato de dados inválido."
-                    );
-
-                }
+        }
 
 
-                mensagens =
-    dados.mensagens.filter(
-        item =>
-            item &&
-            item.pais &&
-            textoMensagem(item)
-    );
+        if (erro) {
+
+            erro.hidden =
+                true;
+
+            erro.style.display =
+                "none";
+
+        }
+
+    }
 
 
-                criarListaPaises();
+    /* =====================================================
+       TENTAR NOVAMENTE
+    ====================================================== */
 
-atualizarPontosGlobo();
+    if (tentarNovamente) {
 
-
-                if (carregando) {
-
-                    carregando.remove();
-
-                }
-
+        tentarNovamente.addEventListener(
+            "click",
+            () => {
 
                 if (erro) {
 
@@ -1647,77 +2295,18 @@ atualizarPontosGlobo();
 
                 }
 
-            } catch (error) {
 
-                console.error(
-                    "Erro ao processar mensagens:",
-                    error
-                );
-
-                tratarFalhaAPI();
+                carregarMensagens();
 
             }
-
-
-            delete window[
-                nomeCallback
-            ];
-
-            script.remove();
-
-        };
-
-
-    script.src =
-        API_URL +
-        "?callback=" +
-        encodeURIComponent(
-            nomeCallback
         );
-
-
-    script.onerror =
-        function() {
-
-            console.error(
-                "Não foi possível acessar a API."
-            );
-
-            tratarFalhaAPI();
-
-            delete window[
-                nomeCallback
-            ];
-
-            script.remove();
-
-        };
-
-
-    document.head.appendChild(
-        script
-    );
-
-}
-
-
-/* =====================================================
-   FALHA DA API
-===================================================== */
-
-function tratarFalhaAPI() {
-
-    mostrarEstado(
-        "mural"
-    );
-
-
-    if (carregando) {
-
-        carregando.remove();
 
     }
 
+
+    /* =====================================================
+       INICIALIZAÇÃO
+    ====================================================== */
 
     if (erro) {
 
@@ -1729,77 +2318,30 @@ function tratarFalhaAPI() {
 
     }
 
-}
+
+    if (carregando) {
+
+        carregando.remove();
+
+    }
 
 
-/* =====================================================
-   TENTAR NOVAMENTE
-===================================================== */
+    aplicarIdioma();
 
-if (tentarNovamente) {
 
-    tentarNovamente.addEventListener(
-        "click",
-        () => {
-
-            if (erro) {
-
-                erro.hidden =
-                    true;
-
-                erro.style.display =
-                    "none";
-
-            }
-
-            carregarMensagens();
-
-        }
+    mostrarEstado(
+        "mural"
     );
 
-}
+
+    /*
+     * PRIMEIRO cria o globo.
+     * DEPOIS carrega a API.
+     */
+
+    criarGlobo();
 
 
-/* =====================================================
-   INICIALIZAÇÃO
-===================================================== */
-
-if (erro) {
-
-    erro.hidden =
-        true;
-
-    erro.style.display =
-        "none";
-
-}
-
-
-if (carregando) {
-
-    carregando.remove();
-
-}
-
-
-mostrarEstado(
-    "mural"
-);
-
-   aplicarIdioma();
-
-
-/* =====================================================
-   MOSTRAR O GLOBO PRIMEIRO
-===================================================== */
-
-criarGlobo();
-
-
-/* =====================================================
-   CARREGAR MENSAGENS
-===================================================== */
-
-carregarMensagens();
+    carregarMensagens();
 
 });
