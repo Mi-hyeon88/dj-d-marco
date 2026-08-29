@@ -953,45 +953,151 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =====================================================
-       ANIMAÇÃO DA FADA
-    ====================================================== */
+   /* =====================================================
+   ANIMAÇÃO DA FADA
+===================================================== */
 
-    function animarFada() {
+const fadaAnimada =
+    document.querySelector("#fadaAnimada");
 
-        if (!fadaCena) return;
+
+const framesFada = [
+
+    "fada-01.png",
+    "fada-02.png",
+    "fada-03.png",
+    "fada-04.png",
+    "fada-05.png",
+    "fada-06.png",
+    "fada-07.png",
+    "fada-08.png",
+    "fada-09.png",
+    "fada-10.png",
+    "fada-11.png",
+    "fada-12.png"
+
+];
 
 
-        fadaCena.classList.remove(
-            "viva"
+let intervaloFada =
+    null;
+
+
+let frameFada =
+    0;
+
+
+function iniciarFramesFada() {
+
+    if (!fadaAnimada) {
+        return;
+    }
+
+
+    pararFramesFada();
+
+
+    frameFada = 0;
+
+
+    fadaAnimada.src =
+        framesFada[0];
+
+
+    intervaloFada =
+        setInterval(() => {
+
+            frameFada++;
+
+            if (
+                frameFada >=
+                framesFada.length
+            ) {
+
+                frameFada = 0;
+
+            }
+
+
+            fadaAnimada.src =
+                framesFada[
+                    frameFada
+                ];
+
+        }, 100);
+
+}
+
+
+function pararFramesFada() {
+
+    if (intervaloFada) {
+
+        clearInterval(
+            intervaloFada
         );
 
-
-        if (mensagemCarta) {
-
-            mensagemCarta.style.animation =
-                "none";
-
-        }
-
-
-        void fadaCena.offsetWidth;
-
-
-        if (mensagemCarta) {
-
-            mensagemCarta.style.animation =
-                "";
-
-        }
-
-
-        fadaCena.classList.add(
-            "viva"
-        );
+        intervaloFada =
+            null;
 
     }
 
+}
+
+
+function animarFada() {
+
+    if (!fadaCena) {
+        return;
+    }
+
+
+    /* reinicia o voo */
+
+    fadaCena.classList.remove(
+        "viva"
+    );
+
+
+    /* reinicia a carta */
+
+    if (mensagemCarta) {
+
+        mensagemCarta.style.animation =
+            "none";
+
+    }
+
+
+    /*
+     * Força o navegador a reconhecer
+     * o reinício da animação.
+     */
+
+    void fadaCena.offsetWidth;
+
+
+    if (mensagemCarta) {
+
+        mensagemCarta.style.animation =
+            "";
+
+    }
+
+
+    /* começa a animação dos frames */
+
+    iniciarFramesFada();
+
+
+    /* começa o voo */
+
+    fadaCena.classList.add(
+        "viva"
+    );
+
+}
+   
 
     /* =====================================================
        PRÓXIMA
