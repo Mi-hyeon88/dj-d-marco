@@ -1885,11 +1885,11 @@ body {
 
     z-index: 1;
 
-    /*
-     * Faz o preto da imagem desaparecer
-     * visualmente sobre o fundo preto da cena.
-     */
     mix-blend-mode: screen;
+
+    filter:
+        brightness(1.35)
+        contrast(1.55);
 }
 
 
