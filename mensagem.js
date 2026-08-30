@@ -1,8 +1,13 @@
 /* =========================================================
    D.MARCO — MENSAGENS
+   MURAL + GLOBO + FADA + PERGAMINHO
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    /* =====================================================
+       API
+    ====================================================== */
 
     const API_URL =
         "https://script.google.com/macros/s/AKfycbyj28gI2WD-ssp9hO-rtZ94_gMXfjOVDaBUXZcnOZKUBLSXHSqkJhGsKqbyiBbb-2vE/exec";
@@ -63,68 +68,34 @@ document.addEventListener("DOMContentLoaded", () => {
     const mensagemVoltar =
         document.querySelector(".mensagens-voltar");
 
+
     /* =====================================================
-       PERGAMINHO — CRIADO SOBRE A CARTA
+       ESTADO
     ====================================================== */
-
-    let pergaminho = null;
-    let pergaminhoFolha = null;
-
-    function prepararPergaminho() {
-
-        if (!mensagemCarta) return;
-
-        if (!pergaminho) {
-
-            const estadoMensagem =
-                document.querySelector(".estado-mensagem");
-
-            pergaminho =
-                document.createElement("div");
-
-            pergaminho.className =
-                "pergaminho";
-
-            pergaminhoFolha =
-                document.createElement("div");
-
-            pergaminhoFolha.className =
-                "pergaminho-folha";
-
-            pergaminhoFolha.setAttribute(
-                "aria-hidden",
-                "true"
-            );
-
-            pergaminho.appendChild(
-                pergaminhoFolha
-            );
-
-            estadoMensagem.insertBefore(
-                pergaminho,
-                mensagemCarta
-            );
-
-            pergaminho.appendChild(
-                mensagemCarta
-            );
-        }
-    }
-
-    prepararPergaminho();
-
 
     let mundoGlobo = null;
 
-    let indiceCoordenadasGlobo = {};
-
     let mensagens = [];
-
-    let paisAtual = "";
 
     let mensagensPais = [];
 
+    let paisAtual = "";
+
     let indiceMensagem = 0;
+
+    let indiceCoordenadasGlobo = {};
+
+    let intervaloFada = null;
+
+    let frameFada = 0;
+
+    let temposAnimacao = [];
+
+    let animacaoId = 0;
+
+    let pergaminho = null;
+
+    let pergaminhoFolha = null;
 
 
     /* =====================================================
@@ -139,7 +110,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         ko: {
 
-            tituloMural: "벽화",
+            tituloMural:
+                "벽화",
 
             subtitulo:
                 "세계 곳곳에서 온 메시지",
@@ -152,9 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             listaMensagensTitulo:
                 "당신을 위한 메시지",
-
-            paraVoce:
-                "당신을 위해,",
 
             anterior:
                 "이전",
@@ -169,10 +138,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 "다시 시도",
 
             de:
-                "보낸 사람",
+                "보낸 사람"
 
-            contador:
-                "개"
         },
 
 
@@ -193,9 +160,6 @@ document.addEventListener("DOMContentLoaded", () => {
             listaMensagensTitulo:
                 "Mensagens para você",
 
-            paraVoce:
-                "Para você,",
-
             anterior:
                 "Anterior",
 
@@ -209,10 +173,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 "Tentar novamente",
 
             de:
-                "De",
+                "De"
 
-            contador:
-                "mensagens"
         },
 
 
@@ -233,9 +195,6 @@ document.addEventListener("DOMContentLoaded", () => {
             listaMensagensTitulo:
                 "Messages for you",
 
-            paraVoce:
-                "For you,",
-
             anterior:
                 "Previous",
 
@@ -249,10 +208,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 "Try again",
 
             de:
-                "From",
+                "From"
 
-            contador:
-                "messages"
         }
 
     };
@@ -295,28 +252,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       ESTADOS
+       ESTADOS DA PÁGINA
     ====================================================== */
 
     function mostrarEstado(nome) {
-
-        if (mensagemVoltar) {
-
-            const estaNoMural =
-                nome === "mural";
-
-            mensagemVoltar.style.visibility =
-                estaNoMural
-                    ? "visible"
-                    : "hidden";
-
-            mensagemVoltar.style.pointerEvents =
-                estaNoMural
-                    ? "auto"
-                    : "none";
-
-        }
-
 
         estados.forEach(estado => {
 
@@ -328,10 +267,24 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
-        /*
-         * Quando voltamos para o mural,
-         * o Globe.gl precisa ser recalculado.
-         */
+        if (mensagemVoltar) {
+
+            const mural =
+                nome === "mural";
+
+            mensagemVoltar.style.visibility =
+                mural
+                    ? "visible"
+                    : "hidden";
+
+            mensagemVoltar.style.pointerEvents =
+                mural
+                    ? "auto"
+                    : "none";
+
+        }
+
+
         if (
             nome === "mural" &&
             mundoGlobo
@@ -349,7 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       NORMALIZAR PAÍS
+       NORMALIZAÇÃO
     ====================================================== */
 
     function normalizarPais(pais) {
@@ -364,19 +317,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =====================================================
-       ALIASES
-    ====================================================== */
-
     const aliases = {
 
-        brasil: "brasil",
-        brazil: "brasil",
+        brasil:
+            "brasil",
 
-        "coreia do sul":
-            "coreia do sul",
+        brazil:
+            "brasil",
 
         coreia:
+            "coreia do sul",
+
+        "coreia do sul":
             "coreia do sul",
 
         korea:
@@ -486,201 +438,293 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       NOME DO PAÍS
+       NOMES DOS PAÍSES
     ====================================================== */
 
+    const nomesPaises = {
+
+        brasil: {
+            ko: "브라질",
+            pt: "Brasil",
+            en: "Brazil"
+        },
+
+        "coreia do sul": {
+            ko: "대한민국",
+            pt: "Coreia do Sul",
+            en: "South Korea"
+        },
+
+        japao: {
+            ko: "일본",
+            pt: "Japão",
+            en: "Japan"
+        },
+
+        "estados unidos": {
+            ko: "미국",
+            pt: "Estados Unidos",
+            en: "United States"
+        },
+
+        franca: {
+            ko: "프랑스",
+            pt: "França",
+            en: "France"
+        },
+
+        portugal: {
+            ko: "포르투갈",
+            pt: "Portugal",
+            en: "Portugal"
+        },
+
+        mexico: {
+            ko: "멕시코",
+            pt: "México",
+            en: "Mexico"
+        },
+
+        alemanha: {
+            ko: "독일",
+            pt: "Alemanha",
+            en: "Germany"
+        },
+
+        argentina: {
+            ko: "아르헨티나",
+            pt: "Argentina",
+            en: "Argentina"
+        },
+
+        chile: {
+            ko: "칠레",
+            pt: "Chile",
+            en: "Chile"
+        },
+
+        colombia: {
+            ko: "콜롬비아",
+            pt: "Colômbia",
+            en: "Colombia"
+        },
+
+        peru: {
+            ko: "페루",
+            pt: "Peru",
+            en: "Peru"
+        },
+
+        canada: {
+            ko: "캐나다",
+            pt: "Canadá",
+            en: "Canada"
+        },
+
+        italia: {
+            ko: "이탈리아",
+            pt: "Itália",
+            en: "Italy"
+        },
+
+        espanha: {
+            ko: "스페인",
+            pt: "Espanha",
+            en: "Spain"
+        },
+
+        filipinas: {
+            ko: "필리핀",
+            pt: "Filipinas",
+            en: "Philippines"
+        },
+
+        polonia: {
+            ko: "폴란드",
+            pt: "Polônia",
+            en: "Poland"
+        },
+
+        "reino unido": {
+            ko: "영국",
+            pt: "Reino Unido",
+            en: "United Kingdom"
+        }
+
+    };
+
+
     function nomePais(pais) {
-
-        const nomes = {
-
-            brasil: {
-
-                ko: "브라질",
-                pt: "Brasil",
-                en: "Brazil"
-
-            },
-
-            "coreia do sul": {
-
-                ko: "대한민국",
-                pt: "Coreia do Sul",
-                en: "South Korea"
-
-            },
-
-            japao: {
-
-                ko: "일본",
-                pt: "Japão",
-                en: "Japan"
-
-            },
-
-            "estados unidos": {
-
-                ko: "미국",
-                pt: "Estados Unidos",
-                en: "United States"
-
-            },
-
-            franca: {
-
-                ko: "프랑스",
-                pt: "França",
-                en: "France"
-
-            },
-
-            portugal: {
-
-                ko: "포르투갈",
-                pt: "Portugal",
-                en: "Portugal"
-
-            },
-
-            mexico: {
-
-                ko: "멕시코",
-                pt: "México",
-                en: "Mexico"
-
-            },
-
-            alemanha: {
-
-                ko: "독일",
-                pt: "Alemanha",
-                en: "Germany"
-
-            },
-
-            argentina: {
-
-                ko: "아르헨티나",
-                pt: "Argentina",
-                en: "Argentina"
-
-            },
-
-            chile: {
-
-                ko: "칠레",
-                pt: "Chile",
-                en: "Chile"
-
-            },
-
-            colombia: {
-
-                ko: "콜롬비아",
-                pt: "Colômbia",
-                en: "Colombia"
-
-            },
-
-            peru: {
-
-                ko: "페루",
-                pt: "Peru",
-                en: "Peru"
-
-            },
-
-            canada: {
-
-                ko: "캐나다",
-                pt: "Canadá",
-                en: "Canada"
-
-            },
-
-            italia: {
-
-                ko: "이탈리아",
-                pt: "Itália",
-                en: "Italy"
-
-            },
-
-            espanha: {
-
-                ko: "스페인",
-                pt: "Espanha",
-                en: "Spain"
-
-            },
-
-            filipinas: {
-
-                ko: "필리핀",
-                pt: "Filipinas",
-                en: "Philippines"
-
-            },
-
-            polonia: {
-
-                ko: "폴란드",
-                pt: "Polônia",
-                en: "Poland"
-
-            },
-
-            "reino unido": {
-
-                ko: "영국",
-                pt: "Reino Unido",
-                en: "United Kingdom"
-
-            }
-
-        };
-
 
         const chave =
             chavePais(pais);
 
-        const idioma =
-            traducoes[idiomaAtual]
-                ? idiomaAtual
-                : "ko";
+        const dados =
+            nomesPaises[chave];
 
+        if (dados) {
 
-        if (
-            nomes[chave] &&
-            nomes[chave][idioma]
-        ) {
-
-            return nomes[chave][idioma];
+            return (
+                dados[idiomaAtual] ||
+                dados.ko
+            );
 
         }
 
 
-        return String(
-            pais ||
-            (
-                idioma === "ko"
-                    ? "기타 국가"
-                    : idioma === "en"
-                        ? "Other countries"
-                        : "Outros países"
-            )
-        );
+        return String(pais || "");
 
     }
 
 
     /* =====================================================
-       AGRUPAR MENSAGENS
+       CONFIGURAÇÃO DOS MARCADORES DO GLOBO
+    ====================================================== */
+
+    const CONFIG_GLOBO = {
+
+        brasil: {
+            en: "BRAZIL",
+            ko: "브라질",
+            bandeira: "🇧🇷",
+            lado: "esquerda",
+            linha: 62,
+            angulo: 15,
+            offsetX: 0,
+            offsetY: 0
+        },
+
+        "coreia do sul": {
+            en: "SOUTH KOREA",
+            ko: "대한민국",
+            bandeira: "🇰🇷",
+            lado: "direita",
+            linha: 62,
+            angulo: -10,
+            offsetX: 0,
+            offsetY: 0
+        },
+
+        japao: {
+            en: "JAPAN",
+            ko: "일본",
+            bandeira: "🇯🇵",
+            lado: "direita",
+            linha: 55,
+            angulo: 12,
+            offsetX: 0,
+            offsetY: 0
+        },
+
+        "estados unidos": {
+            en: "UNITED STATES",
+            ko: "미국",
+            bandeira: "🇺🇸",
+            lado: "esquerda",
+            linha: 60,
+            angulo: -15,
+            offsetX: 0,
+            offsetY: 0
+        },
+
+        franca: {
+            en: "FRANCE",
+            ko: "프랑스",
+            bandeira: "🇫🇷",
+            lado: "direita",
+            linha: 48,
+            angulo: -20,
+            offsetX: 0,
+            offsetY: -25
+        },
+
+        portugal: {
+            en: "PORTUGAL",
+            ko: "포르투갈",
+            bandeira: "🇵🇹",
+            lado: "esquerda",
+            linha: 45,
+            angulo: 20,
+            offsetX: 0,
+            offsetY: 20
+        },
+
+        mexico: {
+            en: "MEXICO",
+            ko: "멕시코",
+            bandeira: "🇲🇽",
+            lado: "esquerda",
+            linha: 55,
+            angulo: -15,
+            offsetX: 0,
+            offsetY: 0
+        },
+
+        chile: {
+            en: "CHILE",
+            ko: "칠레",
+            bandeira: "🇨🇱",
+            lado: "esquerda",
+            linha: 50,
+            angulo: 10,
+            offsetX: 0,
+            offsetY: 0
+        },
+
+        argentina: {
+            en: "ARGENTINA",
+            ko: "아르헨티나",
+            bandeira: "🇦🇷",
+            lado: "esquerda",
+            linha: 50,
+            angulo: 12,
+            offsetX: 0,
+            offsetY: 0
+        },
+
+        alemanha: {
+            en: "GERMANY",
+            ko: "독일",
+            bandeira: "🇩🇪",
+            lado: "direita",
+            linha: 50,
+            angulo: -25,
+            offsetX: 0,
+            offsetY: -35
+        },
+
+        polonia: {
+            en: "POLAND",
+            ko: "폴란드",
+            bandeira: "🇵🇱",
+            lado: "direita",
+            linha: 58,
+            angulo: 25,
+            offsetX: 0,
+            offsetY: 35
+        },
+
+        filipinas: {
+            en: "PHILIPPINES",
+            ko: "필리핀",
+            bandeira: "🇵🇭",
+            lado: "direita",
+            linha: 60,
+            angulo: 0,
+            offsetX: 0,
+            offsetY: 0
+        }
+
+    };
+
+
+    /* =====================================================
+       AGRUPAR PAÍSES
     ====================================================== */
 
     function agruparPaises() {
 
         const grupos = {};
-
 
         mensagens.forEach(mensagem => {
 
@@ -689,13 +733,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!pais) return;
 
-
             if (!grupos[pais]) {
 
                 grupos[pais] = [];
 
             }
-
 
             grupos[pais].push(
                 mensagem
@@ -703,8 +745,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
         });
 
-
         return grupos;
+
+    }
+
+
+    /* =====================================================
+       TEXTO DA MENSAGEM
+    ====================================================== */
+
+    function textoMensagem(mensagem) {
+
+        if (!mensagem) {
+            return "";
+        }
+
+
+        if (idiomaAtual === "ko") {
+
+            return String(
+                mensagem.mensagem_coreano ||
+                mensagem.mensagem_original ||
+                mensagem.mensagem ||
+                ""
+            ).trim();
+
+        }
+
+
+        return String(
+            mensagem.mensagem_original ||
+            mensagem.mensagem ||
+            ""
+        ).trim();
 
     }
 
@@ -715,7 +788,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function criarListaPaises() {
 
-        if (!listaPaises) return;
+        if (!listaPaises) {
+            return;
+        }
 
 
         listaPaises.innerHTML = "";
@@ -740,9 +815,7 @@ document.addEventListener("DOMContentLoaded", () => {
         paises.forEach(pais => {
 
             const botao =
-                document.createElement(
-                    "button"
-                );
+                document.createElement("button");
 
 
             botao.type =
@@ -797,7 +870,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function criarListaMensagens() {
 
-        if (!listaMensagens) return;
+        if (!listaMensagens) {
+            return;
+        }
 
 
         listaMensagens.innerHTML = "";
@@ -807,9 +882,7 @@ document.addEventListener("DOMContentLoaded", () => {
             (mensagem, indice) => {
 
                 const botao =
-                    document.createElement(
-                        "button"
-                    );
+                    document.createElement("button");
 
 
                 botao.type =
@@ -826,15 +899,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                 const nome =
-                    mensagem.nome
-                        ? mensagem.nome
-                        : (
-                            idiomaAtual === "ko"
-                                ? "익명"
-                                : idiomaAtual === "en"
-                                    ? "Anonymous"
-                                    : "Anônimo"
-                        );
+                    mensagem.nome ||
+                    (
+                        idiomaAtual === "ko"
+                            ? "익명"
+                            : idiomaAtual === "en"
+                                ? "Anonymous"
+                                : "Anônimo"
+                    );
 
 
                 botao.innerHTML = `
@@ -931,6 +1003,73 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
+       PREPARAR PERGAMINHO
+    ====================================================== */
+
+    function prepararPergaminho() {
+
+        if (!mensagemCarta) {
+            return;
+        }
+
+
+        if (pergaminho) {
+            return;
+        }
+
+
+        const estadoMensagem =
+            document.querySelector(
+                ".estado-mensagem"
+            );
+
+
+        if (!estadoMensagem) {
+            return;
+        }
+
+
+        pergaminho =
+            document.createElement("div");
+
+
+        pergaminho.className =
+            "pergaminho";
+
+
+        pergaminhoFolha =
+            document.createElement("div");
+
+
+        pergaminhoFolha.className =
+            "pergaminho-folha";
+
+
+        pergaminhoFolha.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+
+        pergaminho.appendChild(
+            pergaminhoFolha
+        );
+
+
+        estadoMensagem.insertBefore(
+            pergaminho,
+            mensagemCarta
+        );
+
+
+        pergaminho.appendChild(
+            mensagemCarta
+        );
+
+    }
+
+
+    /* =====================================================
        PREPARAR MENSAGEM
     ====================================================== */
 
@@ -940,7 +1079,9 @@ document.addEventListener("DOMContentLoaded", () => {
             mensagensPais[indiceMensagem];
 
 
-        if (!mensagem) return;
+        if (!mensagem) {
+            return;
+        }
 
 
         if (cartaPais) {
@@ -976,19 +1117,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (contadorMensagens) {
 
-            const numeroAtual =
-                indiceMensagem + 1;
-
-            const totalMensagens =
-                mensagensPais.length;
-
-
             contadorMensagens.textContent =
-                idiomaAtual === "ko"
-                    ? `${numeroAtual} / ${totalMensagens}`
-                    : idiomaAtual === "en"
-                        ? `${numeroAtual} of ${totalMensagens}`
-                        : `${numeroAtual} de ${totalMensagens}`;
+                `${indiceMensagem + 1} / ${mensagensPais.length}`;
 
         }
 
@@ -1003,268 +1133,378 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-   /* =====================================================
-   ANIMAÇÃO DA FADA + PERGAMINHO
-===================================================== */
+    /* =====================================================
+       FRAMES DA FADA
+    ====================================================== */
 
-const fadaAnimada =
-    document.querySelector("#fadaAnimada");
-
-
-const framesFada = [
-
-    "fada-01.png",
-    "fada-02.png",
-    "fada-03.png",
-    "fada-04.png",
-    "fada-05.png",
-    "fada-06.png",
-    "fada-07.png",
-    "fada-08.png",
-    "fada-09.png",
-    "fada-10.png",
-    "fada-11.png",
-    "fada-12.png"
-
-];
+    const fadaAnimada =
+        document.querySelector("#fadaAnimada");
 
 
-let intervaloFada = null;
-let frameFada = 0;
-let tempoFada = [];
-let animacaoMensagemId = 0;
+    const framesFada = [
+
+        "fada-01.png",
+        "fada-02.png",
+        "fada-03.png",
+        "fada-04.png",
+        "fada-05.png",
+        "fada-06.png",
+        "fada-07.png",
+        "fada-08.png",
+        "fada-09.png",
+        "fada-10.png",
+        "fada-11.png",
+        "fada-12.png"
+
+    ];
 
 
-function iniciarFramesFada() {
+    /* =====================================================
+       PRÉ-CARREGAR FRAMES
+    ====================================================== */
 
-    if (!fadaAnimada) {
-        return;
+    function carregarFramesFada() {
+
+        framesFada.forEach(
+            arquivo => {
+
+                const imagem =
+                    new Image();
+
+                imagem.src =
+                    arquivo;
+
+            }
+        );
+
     }
 
 
-    pararFramesFada();
+    /* =====================================================
+       INICIAR FRAMES
+    ====================================================== */
+
+    function iniciarFramesFada() {
+
+        if (!fadaAnimada) {
+            return;
+        }
 
 
-    frameFada = 0;
+        pararFramesFada();
 
 
-    fadaAnimada.src =
-        framesFada[0];
+        frameFada =
+            0;
 
 
-    intervaloFada =
-        setInterval(() => {
-
-            frameFada++;
-
-            if (
-                frameFada >=
-                framesFada.length
-            ) {
-
-                frameFada = 0;
-
-            }
+        fadaAnimada.src =
+            framesFada[0];
 
 
-            fadaAnimada.src =
-                framesFada[
-                    frameFada
-                ];
+        intervaloFada =
+            setInterval(
+                () => {
 
-        }, 90);
+                    frameFada++;
 
-}
+                    if (
+                        frameFada >=
+                        framesFada.length
+                    ) {
+
+                        frameFada =
+                            0;
+
+                    }
 
 
-function pararFramesFada() {
+                    fadaAnimada.src =
+                        framesFada[
+                            frameFada
+                        ];
 
-    if (intervaloFada) {
+                },
+                90
+            );
+
+    }
+
+
+    /* =====================================================
+       PARAR FRAMES
+    ====================================================== */
+
+    function pararFramesFada() {
+
+        if (!intervaloFada) {
+            return;
+        }
+
 
         clearInterval(
             intervaloFada
         );
+
 
         intervaloFada =
             null;
 
     }
 
-}
 
+    /* =====================================================
+       LIMPAR ANIMAÇÃO
+    ====================================================== */
 
-function limparAnimacaoMensagem() {
+    function limparAnimacaoMensagem() {
 
-    tempoFada.forEach(
-        tempo => clearTimeout(tempo)
-    );
-
-    tempoFada = [];
-
-    pararFramesFada();
-
-    if (fadaCena) {
-
-        fadaCena.classList.remove(
-            "viva"
+        temposAnimacao.forEach(
+            tempo =>
+                clearTimeout(tempo)
         );
 
-        fadaCena.classList.remove(
-            "fada-chegou"
-        );
 
-    }
-
-    if (pergaminho) {
-
-        pergaminho.classList.remove(
-            "abrindo"
-        );
-
-        pergaminho.classList.remove(
-            "aberto"
-        );
-
-    }
-
-    if (mensagemCarta) {
-
-        mensagemCarta.classList.remove(
-            "carta-visivel"
-        );
-
-        mensagemCarta.scrollTop = 0;
-
-    }
-
-}
+        temposAnimacao =
+            [];
 
 
-function animarFada() {
-
-    if (!fadaCena) {
-        return;
-    }
+        pararFramesFada();
 
 
-    animacaoMensagemId++;
+        if (fadaCena) {
 
-
-    limparAnimacaoMensagem();
-
-
-    void fadaCena.offsetWidth;
-
-
-    prepararPergaminho();
-
-
-    /*
-     * FADA:
-     * entra pequena,
-     * voa pela tela,
-     * aproxima-se do usuário,
-     * aumenta bastante e chega à frente.
-     */
-
-    iniciarFramesFada();
-
-
-    fadaCena.classList.add(
-        "viva"
-    );
-
-
-    /*
-     * Aproximadamente no momento em que
-     * a fada chega à frente, o pergaminho
-     * começa a surgir.
-     */
-
-    tempoFada.push(
-        setTimeout(() => {
-
-            if (
-                !pergaminho ||
-                !fadaCena.classList.contains("viva")
-            ) {
-                return;
-            }
-
-            pergaminho.classList.add(
-                "abrindo"
+            fadaCena.classList.remove(
+                "viva"
             );
 
-        }, 3500)
-    );
+            fadaCena.classList.remove(
+                "fada-chegou"
+            );
+
+        }
 
 
-    /*
-     * Pergaminho totalmente aberto.
-     */
-
-    tempoFada.push(
-        setTimeout(() => {
-
-            if (!pergaminho) {
-                return;
-            }
+        if (pergaminho) {
 
             pergaminho.classList.remove(
                 "abrindo"
             );
 
-            pergaminho.classList.add(
+            pergaminho.classList.remove(
                 "aberto"
             );
 
-        }, 4750)
-    );
+        }
 
 
-    /*
-     * Só depois do pergaminho aberto
-     * a mensagem aparece dentro dele.
-     */
+        if (mensagemCarta) {
 
-    tempoFada.push(
-        setTimeout(() => {
-
-            if (!mensagemCarta) {
-                return;
-            }
-
-            mensagemCarta.classList.add(
+            mensagemCarta.classList.remove(
                 "carta-visivel"
             );
 
-        }, 5200)
-    );
+            mensagemCarta.scrollTop =
+                0;
 
+        }
 
-    /*
-     * Depois da entrega, a fada sai.
-     * O pergaminho e a mensagem permanecem.
-     */
+    }
 
-    tempoFada.push(
-        setTimeout(() => {
-
-            if (fadaCena) {
-
-                fadaCena.classList.add(
-                    "fada-chegou"
-                );
-
-            }
-
-        }, 4650)
-    );
-
-}
 
     /* =====================================================
-       PRÓXIMA
+       ANIMAÇÃO COMPLETA
+    ====================================================== */
+
+    function animarFada() {
+
+        if (!fadaCena) {
+            return;
+        }
+
+
+        animacaoId++;
+
+
+        const idAtual =
+            animacaoId;
+
+
+        limparAnimacaoMensagem();
+
+
+        void fadaCena.offsetWidth;
+
+
+        prepararPergaminho();
+
+
+        /*
+         * SEQUÊNCIA:
+         *
+         * 1 — Fada aparece.
+         * 2 — Fada voa.
+         * 3 — Aproxima-se.
+         * 4 — Faz a entrega.
+         * 5 — Pergaminho começa a abrir.
+         * 6 — Fada parte.
+         * 7 — Pergaminho termina de abrir.
+         * 8 — Mensagem aparece.
+         */
+
+
+        iniciarFramesFada();
+
+
+        fadaCena.classList.add(
+            "viva"
+        );
+
+
+        /* =================================================
+           PERGAMINHO COMEÇA A ABRIR
+        ================================================== */
+
+        temposAnimacao.push(
+
+            setTimeout(
+                () => {
+
+                    if (
+                        idAtual !==
+                        animacaoId
+                    ) {
+                        return;
+                    }
+
+
+                    if (!pergaminho) {
+                        return;
+                    }
+
+
+                    pergaminho.classList.add(
+                        "abrindo"
+                    );
+
+                },
+                3900
+            )
+
+        );
+
+
+        /* =================================================
+           FADA SAI
+        ================================================== */
+
+        temposAnimacao.push(
+
+            setTimeout(
+                () => {
+
+                    if (
+                        idAtual !==
+                        animacaoId
+                    ) {
+                        return;
+                    }
+
+
+                    if (!fadaCena) {
+                        return;
+                    }
+
+
+                    fadaCena.classList.add(
+                        "fada-chegou"
+                    );
+
+                },
+                4550
+            )
+
+        );
+
+
+        /* =================================================
+           PERGAMINHO ABERTO
+        ================================================== */
+
+        temposAnimacao.push(
+
+            setTimeout(
+                () => {
+
+                    if (
+                        idAtual !==
+                        animacaoId
+                    ) {
+                        return;
+                    }
+
+
+                    if (!pergaminho) {
+                        return;
+                    }
+
+
+                    pergaminho.classList.remove(
+                        "abrindo"
+                    );
+
+
+                    pergaminho.classList.add(
+                        "aberto"
+                    );
+
+                },
+                5350
+            )
+
+        );
+
+
+        /* =================================================
+           MOSTRAR MENSAGEM
+        ================================================== */
+
+        temposAnimacao.push(
+
+            setTimeout(
+                () => {
+
+                    if (
+                        idAtual !==
+                        animacaoId
+                    ) {
+                        return;
+                    }
+
+
+                    if (!mensagemCarta) {
+                        return;
+                    }
+
+
+                    mensagemCarta.classList.add(
+                        "carta-visivel"
+                    );
+
+
+                    pararFramesFada();
+
+                },
+                5450
+            )
+
+        );
+
+    }
+
+
+    /* =====================================================
+       PRÓXIMA MENSAGEM
     ====================================================== */
 
     function proximaMensagem() {
@@ -1294,7 +1534,7 @@ function animarFada() {
 
 
     /* =====================================================
-       ANTERIOR
+       MENSAGEM ANTERIOR
     ====================================================== */
 
     function mensagemAnterior() {
@@ -1323,7 +1563,7 @@ function animarFada() {
 
 
     /* =====================================================
-       VOLTAR
+       BOTÕES VOLTAR
     ====================================================== */
 
     document
@@ -1335,7 +1575,8 @@ function animarFada() {
                 evento => {
 
                     evento.preventDefault();
-                    evento.stopImmediatePropagation();
+
+                    evento.stopPropagation();
 
 
                     const destino =
@@ -1349,6 +1590,9 @@ function animarFada() {
                     }
 
 
+                    limparAnimacaoMensagem();
+
+
                     mostrarEstado(
                         destino
                     );
@@ -1360,7 +1604,7 @@ function animarFada() {
 
 
     /* =====================================================
-       BOTÕES DA CARTA
+       BOTÕES DA MENSAGEM
     ====================================================== */
 
     if (mensagemAnteriorBotao) {
@@ -1384,7 +1628,7 @@ function animarFada() {
 
 
     /* =====================================================
-       COORDENADAS
+       COORDENADAS DO GLOBO
     ====================================================== */
 
     async function carregarCoordenadas() {
@@ -1410,7 +1654,9 @@ function animarFada() {
 
         if (
             !resultado ||
-            !Array.isArray(resultado.data)
+            !Array.isArray(
+                resultado.data
+            )
         ) {
 
             throw new Error(
@@ -1426,7 +1672,7 @@ function animarFada() {
 
 
     /* =====================================================
-       ÍNDICE DE COORDENADAS
+       ÍNDICE DAS COORDENADAS
     ====================================================== */
 
     function criarIndiceCoordenadas(dados) {
@@ -1434,7 +1680,8 @@ function animarFada() {
         const indice = {};
 
 
-        let displayNames = null;
+        let displayNames =
+            null;
 
 
         try {
@@ -1447,7 +1694,7 @@ function animarFada() {
                     }
                 );
 
-        } catch (erro) {
+        } catch (error) {
 
             displayNames =
                 null;
@@ -1468,29 +1715,28 @@ function animarFada() {
             }
 
 
-            const coordenada = {
+            const lat =
+                Number(item.lat);
 
-                lat:
-                    Number(item.lat),
 
-                lng:
-                    Number(item.long)
-
-            };
+            const lng =
+                Number(item.long);
 
 
             if (
-                !Number.isFinite(
-                    coordenada.lat
-                ) ||
-                !Number.isFinite(
-                    coordenada.lng
-                )
+                !Number.isFinite(lat) ||
+                !Number.isFinite(lng)
             ) {
 
                 return;
 
             }
+
+
+            const coordenada = {
+                lat,
+                lng
+            };
 
 
             if (item.name) {
@@ -1515,22 +1761,22 @@ function animarFada() {
 
                     try {
 
-                        const nomePT =
+                        const nome =
                             displayNames.of(
                                 item.iso2
                             );
 
 
-                        if (nomePT) {
+                        if (nome) {
 
                             indice[
-                                chavePais(nomePT)
+                                chavePais(nome)
                             ] =
                                 coordenada;
 
                         }
 
-                    } catch (erro) {}
+                    } catch (error) {}
 
                 }
 
@@ -1545,123 +1791,7 @@ function animarFada() {
 
 
     /* =====================================================
-       CONFIGURAÇÃO VISUAL
-    ====================================================== */
-
-    const CONFIG_GLOBO = {
-
-        brasil: {
-
-            en: "BRAZIL",
-            ko: "브라질",
-            bandeira: "🇧🇷",
-
-            lado: "esquerda",
-
-            linha: 50,
-
-            angulo: 0,
-
-            offsetX: 0,
-            offsetY: 0
-
-        },
-
-
-        colombia: {
-
-            en: "COLOMBIA",
-            ko: "콜롬비아",
-            bandeira: "🇨🇴",
-
-            lado: "esquerda",
-
-            linha: 58,
-
-            angulo: -12,
-
-            offsetX: 0,
-            offsetY: 0
-
-        },
-
-
-        argentina: {
-
-            en: "ARGENTINA",
-            ko: "아르헨티나",
-            bandeira: "🇦🇷",
-
-            lado: "esquerda",
-
-            linha: 50,
-
-            angulo: 12,
-
-            offsetX: 0,
-            offsetY: 0
-
-        },
-
-
-        alemanha: {
-
-            en: "GERMANY",
-            ko: "독일",
-            bandeira: "🇩🇪",
-
-            lado: "direita",
-
-            linha: 50,
-
-            angulo: -25,
-
-            offsetX: 0,
-            offsetY: -35
-
-        },
-
-
-        polonia: {
-
-            en: "POLAND",
-            ko: "폴란드",
-            bandeira: "🇵🇱",
-
-            lado: "direita",
-
-            linha: 58,
-
-            angulo: 25,
-
-            offsetX: 0,
-            offsetY: 35
-
-        },
-
-
-        filipinas: {
-
-            en: "PHILIPPINES",
-            ko: "필리핀",
-            bandeira: "🇵🇭",
-
-            lado: "direita",
-
-            linha: 60,
-
-            angulo: 0,
-
-            offsetX: 0,
-            offsetY: 0
-
-        }
-
-    };
-
-
-    /* =====================================================
-       DIMENSIONAR GLOBO
+       AJUSTAR GLOBO
     ====================================================== */
 
     function ajustarGlobo() {
@@ -1699,12 +1829,6 @@ function animarFada() {
             .height(altura);
 
 
-        /*
-         * Força o canvas a acompanhar
-         * exatamente o tamanho real
-         * do container.
-         */
-
         const canvas =
             globo.querySelector(
                 "canvas"
@@ -1735,36 +1859,6 @@ function animarFada() {
         }
 
 
-        /*
-         * Limpa qualquer instância anterior.
-         */
-
-        globo.innerHTML = "";
-
-
-        /*
-         * Garante dimensões reais antes
-         * de inicializar o Globe.gl.
-         */
-
-        const larguraInicial =
-            Math.max(
-                globo.clientWidth,
-                280
-            );
-
-
-        const alturaInicial =
-            Math.max(
-                globo.clientHeight,
-                280
-            );
-
-
-        /*
-         * Verificação de segurança.
-         */
-
         if (
             typeof Globe !==
             "function"
@@ -1779,19 +1873,33 @@ function animarFada() {
         }
 
 
-        /* =================================================
-           GLOBO
-        ================================================== */
+        globo.innerHTML =
+            "";
+
+
+        const largura =
+            Math.max(
+                globo.clientWidth,
+                280
+            );
+
+
+        const altura =
+            Math.max(
+                globo.clientHeight,
+                280
+            );
+
 
         mundoGlobo =
             Globe()(globo)
 
                 .width(
-                    larguraInicial
+                    largura
                 )
 
                 .height(
-                    alturaInicial
+                    altura
                 )
 
                 .backgroundColor(
@@ -1846,18 +1954,11 @@ function animarFada() {
             .pointColor(
                 () =>
                     "rgba(0,0,0,0)"
-            )
-
-            .pointLabel(
-                ponto =>
-                    nomePais(
-                        ponto.pais
-                    )
             );
 
 
         /* =================================================
-           MARCADORES HTML
+           MARCADORES
         ================================================== */
 
         mundoGlobo
@@ -1897,40 +1998,11 @@ function animarFada() {
                         ];
 
 
-                    /*
-                     * País sem configuração:
-                     * não mostra etiqueta.
-                     */
-
                     if (!config) {
 
                         return marcador;
 
                     }
-
-
-                    /* =================================================
-                       TAMANHO DA LINHA
-                    ================================================== */
-
-                    marcador.style.setProperty(
-                        "--linha-tamanho",
-                        `${config.linha}px`
-                    );
-
-
-                    /* =================================================
-                       LUZ
-                    ================================================== */
-
-                    const luz =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    luz.className =
-                        "globo-luz";
 
 
                     /* =================================================
@@ -1953,14 +2025,30 @@ function animarFada() {
                     );
 
 
-                    const anguloLinha =
-                        config.lado === "esquerda"
-                            ? 180 + config.angulo
+                    const angulo =
+                        config.lado ===
+                        "esquerda"
+                            ? 180 +
+                              config.angulo
                             : config.angulo;
 
 
                     linha.style.transform =
-                        `rotate(${anguloLinha}deg)`;
+                        `rotate(${angulo}deg)`;
+
+
+                    /* =================================================
+                       LUZ
+                    ================================================== */
+
+                    const luz =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    luz.className =
+                        "globo-luz";
 
 
                     /* =================================================
@@ -2094,6 +2182,7 @@ function animarFada() {
 
                             evento.stopPropagation();
 
+
                             abrirPais(
                                 ponto.pais
                             );
@@ -2108,7 +2197,10 @@ function animarFada() {
             )
 
             .htmlElementVisibilityModifier(
-                (elemento, visivel) => {
+                (
+                    elemento,
+                    visivel
+                ) => {
 
                     elemento.style.opacity =
                         visivel
@@ -2165,40 +2257,28 @@ function animarFada() {
            REDIMENSIONAMENTO
         ================================================== */
 
-        requestAnimationFrame(() => {
-
-            ajustarGlobo();
-
-        });
+        requestAnimationFrame(
+            ajustarGlobo
+        );
 
 
-        setTimeout(() => {
-
-            ajustarGlobo();
-
-        }, 100);
-
-
-        setTimeout(() => {
-
-            ajustarGlobo();
-
-        }, 500);
+        setTimeout(
+            ajustarGlobo,
+            100
+        );
 
 
-        /* =================================================
-           RESIZE
-        ================================================== */
+        setTimeout(
+            ajustarGlobo,
+            500
+        );
+
 
         window.addEventListener(
             "resize",
             ajustarGlobo
         );
 
-
-        /*
-         * Mudanças de orientação no celular.
-         */
 
         window.addEventListener(
             "orientationchange",
@@ -2219,24 +2299,23 @@ function animarFada() {
 
         try {
 
-            const dadosCoordenadas =
+            const dados =
                 await carregarCoordenadas();
 
 
             indiceCoordenadasGlobo =
                 criarIndiceCoordenadas(
-                    dadosCoordenadas
+                    dados
                 );
 
 
             atualizarPontosGlobo();
 
-
-        } catch (erro) {
+        } catch (error) {
 
             console.error(
                 "Erro ao carregar coordenadas:",
-                erro
+                error
             );
 
         }
@@ -2297,20 +2376,15 @@ function animarFada() {
 
                 pontos.push({
 
-                    pais:
-
-                        pais,
+                    pais,
 
                     lat:
-
                         coordenada.lat,
 
                     lng:
-
                         coordenada.lng,
 
                     quantidade:
-
                         grupos[pais].length
 
                 });
@@ -2327,56 +2401,9 @@ function animarFada() {
             );
 
 
-        /*
-         * Recalcula depois de inserir
-         * os marcadores.
-         */
-
-        requestAnimationFrame(() => {
-
-            ajustarGlobo();
-
-        });
-
-    }
-
-
-    /* =====================================================
-       TEXTO DA MENSAGEM
-    ====================================================== */
-
-    function textoMensagem(
-        mensagem
-    ) {
-
-        if (!mensagem) {
-            return "";
-        }
-
-
-        if (
-            idiomaAtual === "ko"
-        ) {
-
-            return String(
-
-                mensagem.mensagem_coreano ||
-                mensagem.mensagem_original ||
-                mensagem.mensagem ||
-                ""
-
-            ).trim();
-
-        }
-
-
-        return String(
-
-            mensagem.mensagem_original ||
-            mensagem.mensagem ||
-            ""
-
-        ).trim();
+        requestAnimationFrame(
+            ajustarGlobo
+        );
 
     }
 
@@ -2387,7 +2414,7 @@ function animarFada() {
 
     function carregarMensagens() {
 
-        const nomeCallback =
+        const callback =
             "dmMarcoMensagens_" +
             Date.now();
 
@@ -2398,8 +2425,8 @@ function animarFada() {
             );
 
 
-        window[nomeCallback] =
-            function(dados) {
+        window[callback] =
+            dados => {
 
                 try {
 
@@ -2449,7 +2476,6 @@ function animarFada() {
 
                     }
 
-
                 } catch (error) {
 
                     console.error(
@@ -2457,15 +2483,12 @@ function animarFada() {
                         error
                     );
 
-
                     tratarFalhaAPI();
 
                 }
 
 
-                delete window[
-                    nomeCallback
-                ];
+                delete window[callback];
 
 
                 script.remove();
@@ -2477,12 +2500,12 @@ function animarFada() {
             API_URL +
             "?callback=" +
             encodeURIComponent(
-                nomeCallback
+                callback
             );
 
 
         script.onerror =
-            function() {
+            () => {
 
                 console.error(
                     "Não foi possível acessar a API."
@@ -2492,9 +2515,7 @@ function animarFada() {
                 tratarFalhaAPI();
 
 
-                delete window[
-                    nomeCallback
-                ];
+                delete window[callback];
 
 
                 script.remove();
@@ -2510,20 +2531,10 @@ function animarFada() {
 
 
     /* =====================================================
-       FALHA
+       FALHA DA API
     ====================================================== */
 
     function tratarFalhaAPI() {
-
-        /*
-         * O globo permanece disponível.
-         * A falha da API não deve apagar o mural.
-         */
-
-        mostrarEstado(
-            "mural"
-        );
-
 
         if (carregando) {
 
@@ -2531,6 +2542,10 @@ function animarFada() {
 
         }
 
+
+        /*
+         * NÃO esconder o globo.
+         */
 
         if (erro) {
 
@@ -2541,6 +2556,11 @@ function animarFada() {
                 "none";
 
         }
+
+
+        mostrarEstado(
+            "mural"
+        );
 
     }
 
@@ -2555,17 +2575,6 @@ function animarFada() {
             "click",
             () => {
 
-                if (erro) {
-
-                    erro.hidden =
-                        true;
-
-                    erro.style.display =
-                        "none";
-
-                }
-
-
                 carregarMensagens();
 
             }
@@ -2577,6 +2586,13 @@ function animarFada() {
     /* =====================================================
        INICIALIZAÇÃO
     ====================================================== */
+
+    prepararPergaminho();
+
+    aplicarIdioma();
+
+    carregarFramesFada();
+
 
     if (erro) {
 
@@ -2596,18 +2612,10 @@ function animarFada() {
     }
 
 
-    aplicarIdioma();
-
-
     mostrarEstado(
         "mural"
     );
 
-
-    /*
-     * PRIMEIRO cria o globo.
-     * DEPOIS carrega a API.
-     */
 
     criarGlobo();
 
