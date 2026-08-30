@@ -1316,191 +1316,159 @@ document.addEventListener("DOMContentLoaded", () => {
        ANIMAÇÃO COMPLETA
     ====================================================== */
 
-    function animarFada() {
+   function animarFada() {
 
-        if (!fadaCena) {
-            return;
-        }
-
-
-        animacaoId++;
-
-
-        const idAtual =
-            animacaoId;
-
-
-        limparAnimacaoMensagem();
-
-
-        void fadaCena.offsetWidth;
-
-
-        prepararPergaminho();
-
-
-        /*
-         * SEQUÊNCIA:
-         *
-         * 1 — Fada aparece.
-         * 2 — Fada voa.
-         * 3 — Aproxima-se.
-         * 4 — Faz a entrega.
-         * 5 — Pergaminho começa a abrir.
-         * 6 — Fada parte.
-         * 7 — Pergaminho termina de abrir.
-         * 8 — Mensagem aparece.
-         */
-
-
-        iniciarFramesFada();
-
-
-        fadaCena.classList.add(
-            "viva"
-        );
-
-
-        /* =================================================
-           PERGAMINHO COMEÇA A ABRIR
-        ================================================== */
-
-        temposAnimacao.push(
-
-            setTimeout(
-                () => {
-
-                    if (
-                        idAtual !==
-                        animacaoId
-                    ) {
-                        return;
-                    }
-
-
-                    if (!pergaminho) {
-                        return;
-                    }
-
-
-                    pergaminho.classList.add(
-                        "abrindo"
-                    );
-
-                },
-                3900
-            )
-
-        );
-
-
-        /* =================================================
-           FADA SAI
-        ================================================== */
-
-        temposAnimacao.push(
-
-            setTimeout(
-                () => {
-
-                    if (
-                        idAtual !==
-                        animacaoId
-                    ) {
-                        return;
-                    }
-
-
-                    if (!fadaCena) {
-                        return;
-                    }
-
-
-                    fadaCena.classList.add(
-                        "fada-chegou"
-                    );
-
-                },
-                4550
-            )
-
-        );
-
-
-        /* =================================================
-           PERGAMINHO ABERTO
-        ================================================== */
-
-        temposAnimacao.push(
-
-            setTimeout(
-                () => {
-
-                    if (
-                        idAtual !==
-                        animacaoId
-                    ) {
-                        return;
-                    }
-
-
-                    if (!pergaminho) {
-                        return;
-                    }
-
-
-                    pergaminho.classList.remove(
-                        "abrindo"
-                    );
-
-
-                    pergaminho.classList.add(
-                        "aberto"
-                    );
-
-                },
-                5350
-            )
-
-        );
-
-
-        /* =================================================
-           MOSTRAR MENSAGEM
-        ================================================== */
-
-        temposAnimacao.push(
-
-            setTimeout(
-                () => {
-
-                    if (
-                        idAtual !==
-                        animacaoId
-                    ) {
-                        return;
-                    }
-
-
-                    if (!mensagemCarta) {
-                        return;
-                    }
-
-
-                    mensagemCarta.classList.add(
-                        "carta-visivel"
-                    );
-
-
-                    pararFramesFada();
-
-                },
-                5450
-            )
-
-        );
-
+    if (!fadaCena) {
+        return;
     }
+
+
+    animacaoId++;
+
+
+    const idAtual =
+        animacaoId;
+
+
+    limparAnimacaoMensagem();
+
+
+    void fadaCena.offsetWidth;
+
+
+    prepararPergaminho();
+
+
+    /*
+     * SEQUÊNCIA
+     *
+     * 1 — fada entra pequena
+     * 2 — aproxima-se
+     * 3 — cresce
+     * 4 — chega ao ponto de entrega
+     * 5 — pergaminho começa a abrir
+     * 6 — fada parte
+     * 7 — pergaminho termina
+     * 8 — mensagem aparece
+     */
+
+
+    iniciarFramesFada();
+
+
+    fadaCena.classList.add(
+        "viva"
+    );
+
+
+    /* =================================================
+       PERGAMINHO COMEÇA A ABRIR
+    ================================================== */
+
+    temposAnimacao.push(
+
+        setTimeout(
+            () => {
+
+                if (
+                    idAtual !==
+                    animacaoId
+                ) {
+                    return;
+                }
+
+
+                if (!pergaminho) {
+                    return;
+                }
+
+
+                pergaminho.classList.add(
+                    "abrindo"
+                );
+
+            },
+            3250
+        )
+
+    );
+
+
+    /* =================================================
+       PERGAMINHO TERMINOU DE ABRIR
+    ================================================== */
+
+    temposAnimacao.push(
+
+        setTimeout(
+            () => {
+
+                if (
+                    idAtual !==
+                    animacaoId
+                ) {
+                    return;
+                }
+
+
+                if (!pergaminho) {
+                    return;
+                }
+
+
+                pergaminho.classList.remove(
+                    "abrindo"
+                );
+
+
+                pergaminho.classList.add(
+                    "aberto"
+                );
+
+            },
+            4700
+        )
+
+    );
+
+
+    /* =================================================
+       MOSTRAR MENSAGEM
+    ================================================== */
+
+    temposAnimacao.push(
+
+        setTimeout(
+            () => {
+
+                if (
+                    idAtual !==
+                    animacaoId
+                ) {
+                    return;
+                }
+
+
+                if (!mensagemCarta) {
+                    return;
+                }
+
+
+                mensagemCarta.classList.add(
+                    "carta-visivel"
+                );
+
+
+                pararFramesFada();
+
+            },
+            4850
+        )
+
+    );
+
+}
+
 
 
     /* =====================================================
