@@ -63,6 +63,56 @@ document.addEventListener("DOMContentLoaded", () => {
     const mensagemVoltar =
         document.querySelector(".mensagens-voltar");
 
+    /* =====================================================
+       PERGAMINHO — CRIADO SOBRE A CARTA
+    ====================================================== */
+
+    let pergaminho = null;
+    let pergaminhoFolha = null;
+
+    function prepararPergaminho() {
+
+        if (!mensagemCarta) return;
+
+        if (!pergaminho) {
+
+            const estadoMensagem =
+                document.querySelector(".estado-mensagem");
+
+            pergaminho =
+                document.createElement("div");
+
+            pergaminho.className =
+                "pergaminho";
+
+            pergaminhoFolha =
+                document.createElement("div");
+
+            pergaminhoFolha.className =
+                "pergaminho-folha";
+
+            pergaminhoFolha.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            pergaminho.appendChild(
+                pergaminhoFolha
+            );
+
+            estadoMensagem.insertBefore(
+                pergaminho,
+                mensagemCarta
+            );
+
+            pergaminho.appendChild(
+                mensagemCarta
+            );
+        }
+    }
+
+    prepararPergaminho();
+
 
     let mundoGlobo = null;
 
@@ -954,7 +1004,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
    /* =====================================================
-   ANIMAÇÃO DA FADA
+   ANIMAÇÃO DA FADA + PERGAMINHO
 ===================================================== */
 
 const fadaAnimada =
@@ -979,12 +1029,10 @@ const framesFada = [
 ];
 
 
-let intervaloFada =
-    null;
-
-
-let frameFada =
-    0;
+let intervaloFada = null;
+let frameFada = 0;
+let tempoFada = [];
+let animacaoMensagemId = 0;
 
 
 function iniciarFramesFada() {
@@ -1024,7 +1072,7 @@ function iniciarFramesFada() {
                     frameFada
                 ];
 
-        }, 100);
+        }, 90);
 
 }
 
@@ -1045,6 +1093,53 @@ function pararFramesFada() {
 }
 
 
+function limparAnimacaoMensagem() {
+
+    tempoFada.forEach(
+        tempo => clearTimeout(tempo)
+    );
+
+    tempoFada = [];
+
+    pararFramesFada();
+
+    if (fadaCena) {
+
+        fadaCena.classList.remove(
+            "viva"
+        );
+
+        fadaCena.classList.remove(
+            "fada-chegou"
+        );
+
+    }
+
+    if (pergaminho) {
+
+        pergaminho.classList.remove(
+            "abrindo"
+        );
+
+        pergaminho.classList.remove(
+            "aberto"
+        );
+
+    }
+
+    if (mensagemCarta) {
+
+        mensagemCarta.classList.remove(
+            "carta-visivel"
+        );
+
+        mensagemCarta.scrollTop = 0;
+
+    }
+
+}
+
+
 function animarFada() {
 
     if (!fadaCena) {
@@ -1052,52 +1147,121 @@ function animarFada() {
     }
 
 
-    /* reinicia o voo */
-
-    fadaCena.classList.remove(
-        "viva"
-    );
+    animacaoMensagemId++;
 
 
-    /* reinicia a carta */
+    limparAnimacaoMensagem();
 
-    if (mensagemCarta) {
-
-        mensagemCarta.style.animation =
-            "none";
-
-    }
-
-
-    /*
-     * Força o navegador a reconhecer
-     * o reinício da animação.
-     */
 
     void fadaCena.offsetWidth;
 
 
-    if (mensagemCarta) {
-
-        mensagemCarta.style.animation =
-            "";
-
-    }
+    prepararPergaminho();
 
 
-    /* começa a animação dos frames */
+    /*
+     * FADA:
+     * entra pequena,
+     * voa pela tela,
+     * aproxima-se do usuário,
+     * aumenta bastante e chega à frente.
+     */
 
     iniciarFramesFada();
 
-
-    /* começa o voo */
 
     fadaCena.classList.add(
         "viva"
     );
 
+
+    /*
+     * Aproximadamente no momento em que
+     * a fada chega à frente, o pergaminho
+     * começa a surgir.
+     */
+
+    tempoFada.push(
+        setTimeout(() => {
+
+            if (
+                !pergaminho ||
+                !fadaCena.classList.contains("viva")
+            ) {
+                return;
+            }
+
+            pergaminho.classList.add(
+                "abrindo"
+            );
+
+        }, 3500)
+    );
+
+
+    /*
+     * Pergaminho totalmente aberto.
+     */
+
+    tempoFada.push(
+        setTimeout(() => {
+
+            if (!pergaminho) {
+                return;
+            }
+
+            pergaminho.classList.remove(
+                "abrindo"
+            );
+
+            pergaminho.classList.add(
+                "aberto"
+            );
+
+        }, 4750)
+    );
+
+
+    /*
+     * Só depois do pergaminho aberto
+     * a mensagem aparece dentro dele.
+     */
+
+    tempoFada.push(
+        setTimeout(() => {
+
+            if (!mensagemCarta) {
+                return;
+            }
+
+            mensagemCarta.classList.add(
+                "carta-visivel"
+            );
+
+        }, 5200)
+    );
+
+
+    /*
+     * Depois da entrega, a fada sai.
+     * O pergaminho e a mensagem permanecem.
+     */
+
+    tempoFada.push(
+        setTimeout(() => {
+
+            if (fadaCena) {
+
+                fadaCena.classList.add(
+                    "fada-chegou"
+                );
+
+            }
+
+        }, 4650)
+    );
+
 }
-   
 
     /* =====================================================
        PRÓXIMA
