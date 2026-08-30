@@ -1361,33 +1361,58 @@ body {
     }
 
 .mensagens-titulo {
-   top: 18px;
+    top: 16px;
+
+    left: 50%;
+
+    width: max-content;
+    max-width: calc(100vw - 100px);
+
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
 }
-   
-    .mensagens-titulo span {
-        font-size: 20px;
 
-        letter-spacing: 1.5px;
+.mensagens-titulo span {
+    font-size: 20px;
 
-       transform: none;
-    }
+    letter-spacing: 1.5px;
 
-    .mensagens-titulo i {
-        margin-top: 2px;
+    line-height: 1;
+}
 
-        font-size: 9px;
+.mensagens-titulo i {
+    margin-top: 4px;
 
-       transform: translateY(15px)
-    }
+    font-size: 9px;
 
-    .mensagens-titulo small {
-        margin-top: 13px;
+    line-height: 1;
 
-        font-size: 15px;
+    transform: none;
+}
 
-       transform: none;
-    }
+.mensagens-titulo small {
+    margin-top: 6px;
 
+    max-width: 100%;
+
+    color: var(--creme);
+
+    font-size: 10px;
+
+    line-height: 1.2;
+
+    letter-spacing: 0;
+
+    white-space: nowrap;
+
+    transform: none;
+}
 
     .mensagens-musica {
         width: 30px;
@@ -1785,14 +1810,19 @@ body {
 
 }
 
-
 /* =========================================================
-   FADA — VIDA NA MENSAGEM
+   FADA + PERGAMINHO — CENA FINAL
 ========================================================= */
 
 .estado-mensagem {
     position: absolute;
+
     overflow: hidden;
+
+    isolation: isolate;
+
+    perspective: 1000px;
+    perspective-origin: 50% 52%;
 
     background:
         radial-gradient(
@@ -1810,32 +1840,39 @@ body {
 
 .fada-cena {
     position: absolute;
-    inset: 0;
 
-    z-index: 1;
+    inset: 88px 0 0 0;
 
-    overflow: hidden;
+    z-index: 20;
+
+    overflow: visible;
 
     pointer-events: none;
+
+    transform-style: preserve-3d;
 }
 
 
 /* =========================================================
-   FADA — IMAGEM INTEIRA
+   FADA
 ========================================================= */
 
 .fada-voo {
     position: absolute;
 
-    left: 0;
-    top: 0;
+    left: 50%;
+    top: 54%;
 
-    width: 270px;
-    height: 190px;
+    width: 175px;
+    height: auto;
+
+    aspect-ratio: 384 / 317;
 
     opacity: 0;
 
-    z-index: 20;
+    z-index: 30;
+
+    transform-origin: center center;
 
     pointer-events: none;
 
@@ -1844,17 +1881,13 @@ body {
         opacity;
 
     filter:
-        brightness(1.35)
+        brightness(1.30)
         drop-shadow(
-            0 0 14px
-            rgba(225, 179, 109, 0.42)
+            0 0 15px
+            rgba(225, 179, 109, 0.45)
         );
 }
 
-
-/* =========================================================
-   IMAGEM
-========================================================= */
 
 #fadaAnimada {
     display: block;
@@ -1870,1654 +1903,154 @@ body {
 
 
 /* =========================================================
-   INICIA O VOO
+   VOO
 ========================================================= */
 
 .fada-cena.viva .fada-voo {
 
-    animation:
-        voo-fada-inteira
-        6.2s
-        cubic-bezier(.22,.61,.36,1)
-        forwards;
-}
-
-
-/* =========================================================
-   TRAJETÓRIA
-========================================================= */
-
-@keyframes voo-fada-inteira {
-
-    /* entrada */
-
-    0% {
-        opacity: 0;
-
-        transform:
-            translate3d(
-                -300px,
-                90px,
-                0
-            )
-            rotate(-7deg)
-            scale(.52);
-    }
-
-
-    /* aparece */
-
-    8% {
-        opacity: 1;
-    }
-
-
-    /* começa a subir */
-
-    22% {
-        transform:
-            translate3d(
-                4vw,
-                25px,
-                0
-            )
-            rotate(3deg)
-            scale(.68);
-    }
-
-
-    /* primeiro movimento */
-
-    38% {
-        transform:
-            translate3d(
-                23vw,
-                -20px,
-                0
-            )
-            rotate(-3deg)
-            scale(.82);
-    }
-
-
-    /* centro */
-
-    52% {
-        transform:
-            translate3d(
-                40vw,
-                15px,
-                0
-            )
-            rotate(3deg)
-            scale(.94);
-    }
-
-
-    /* pequena oscilação */
-
-    66% {
-        transform:
-            translate3d(
-                55vw,
-                -8px,
-                0
-            )
-            rotate(-2deg)
-            scale(1);
-    }
-
-
-    /* desacelera */
-
-    80% {
-        transform:
-            translate3d(
-                68vw,
-                15px,
-                0
-            )
-            rotate(2deg)
-            scale(.98);
-    }
-
-
-    /* saída */
-
-    100% {
-        opacity: 0;
-
-        transform:
-            translate3d(
-                112vw,
-                -35px,
-                0
-            )
-            rotate(5deg)
-            scale(.88);
-    }
-}
-
-
-/* =========================================================
-   PÓ DE FADA
-========================================================= */
-
-.fada-rastro {
-    position: absolute;
-
-    left: -75px;
-    top: 50%;
-
-    width: 150px;
-    height: 80px;
-
-    background-image:
-        url("poedefada.png");
-
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    filter:
-        brightness(1.35);
-}
-
-
-.fada-cena.viva .fada-rastro {
-
-    animation:
-        fada-po
-        4.8s
-        ease-out
-        forwards;
-}
-
-
-@keyframes fada-po {
-
-    0% {
-        opacity: 0;
-
-        transform:
-            translateY(-50%)
-            scale(.2);
-    }
-
-    12% {
-        opacity: .95;
-    }
-
-    45% {
-        opacity: .7;
-
-        transform:
-            translateY(-50%)
-            scale(.85);
-    }
-
-    75% {
-        opacity: .42;
-
-        transform:
-            translateY(-50%)
-            scale(1.15);
-    }
-
-    100% {
-        opacity: 0;
-
-        transform:
-            translateY(-50%)
-            scale(1.5);
-    }
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 700px) {
-
-    .fada-voo {
-
-        width: 270px;
-        height: 190px;
-
-        top: 0;
-
-        filter:
-            brightness(1.45)
-            drop-shadow(
-                0 0 16px
-                rgba(225, 179, 109, 0.48)
-            );
-    }
-
-
-    .fada-rastro {
-
-        left: -65px;
-
-        width: 115px;
-        height: 65px;
-    }
-
-}
-
-
-/* =========================================================
-   TELAS MUITO PEQUENAS
-========================================================= */
-
-@media (max-width: 380px) {
-
-    .fada-voo {
-
-        width: 245px;
-        height: 172px;
-    }
-
-}
-
-
-/* =========================================================
-   CARTA — ENTRA DEPOIS DA FADA
-========================================================= */
-
-.mensagem-carta-final {
-    position: relative;
-
-    z-index: 5;
-
-    width: min(650px, 86vw);
-    max-height: calc(100svh - 170px);
-
-    margin: auto;
-
-    padding: 25px 25px 20px;
-
-    overflow-y: auto;
-
-    color: var(--creme);
-
-    opacity: 0;
-
-    transform:
-        translateY(18px)
-        scale(0.985);
-
-    pointer-events: none;
-
-    scrollbar-width: thin;
-
-    scrollbar-color:
-        var(--dourado)
-        transparent;
-}
-
-.estado-mensagem.ativo
-.mensagem-carta-final {
-    animation:
-        carta-aparecer
-        1.2s
-        cubic-bezier(.22,.61,.36,1)
-        4.8s
-        forwards;
-
-    pointer-events: auto;
-}
-
-
-/* =========================================================
-   CABEÇALHO DA CARTA
-========================================================= */
-
-.mensagem-carta-final
-.carta-cabecalho {
-    text-align: center;
-}
-
-
-.mensagem-carta-final
-.carta-pais {
-    color: var(--dourado);
-
-    font-size: 26px;
-
-    font-weight: 400;
-
-    letter-spacing: 2px;
-}
-
-
-.mensagem-carta-final
-.carta-nome {
-    margin-top: 8px;
-
-    color: var(--cinza);
-
-    font-size: 13px;
-}
-
-
-.mensagem-carta-final
-.carta-divisor {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 10px;
-
-    margin:
-        17px 0
-        25px;
-
-    color: var(--dourado);
-}
-
-
-.mensagem-carta-final
-.carta-divisor::before,
-.mensagem-carta-final
-.carta-divisor::after {
-    content: "";
-
-    width: 90px;
-    height: 1px;
-
-    background:
-        rgba(201, 164, 106, 0.38);
-}
-
-
-/* =========================================================
-   TEXTO
-========================================================= */
-
-.mensagem-carta-final
-.carta-texto {
-    white-space: pre-line;
-
-    color: var(--creme);
-
-    font-size: 18px;
-
-    line-height: 1.85;
-
-    text-align: left;
-}
-
-
-/* =========================================================
-   FINAL
-========================================================= */
-
-.mensagem-carta-final
-.carta-final {
-    margin-top: 28px;
-
-    color: var(--dourado);
-
-    text-align: center;
-
-    font-size: 24px;
-
-    opacity: 0.8;
-}
-
-
-/* =========================================================
-   CONTROLES
-========================================================= */
-
-.mensagem-carta-final
-.mensagem-controles {
-    width: 100%;
-
-    margin-top: 18px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: space-between;
-}
-
-
-.mensagem-carta-final
-.mensagem-controles button {
-    border: 0;
-
-    padding: 8px;
-
-    background: transparent;
-
-    color: var(--dourado);
-
-    font-family: inherit;
-
-    font-size: 18px;
-
-    cursor: pointer;
-}
-
-
-.mensagem-carta-final
-.mensagem-controles span {
-    color: var(--cinza);
-
-    font-size: 12px;
-}
-
-
-/* =========================================================
-   ANIMAÇÃO — CARTA
-========================================================= */
-
-@keyframes carta-aparecer {
-
-    0% {
-        opacity: 0;
-
-        transform:
-            translateY(18px)
-            scale(0.985);
-    }
-
-    100% {
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 700px) {
-
-    .fada-voo {
-        width: 145px;
-        height: 145px;
-
-        top: 38%;
-    }
-
-    .fada-rastro {
-        left: -65px;
-
-        width: 105px;
-        height: 60px;
-    }
-
-    .mensagem-carta-final {
-        width: 90vw;
-
-        max-height:
-            calc(100svh - 130px);
-
-        padding:
-            18px
-            8px
-            18px;
-    }
-
-    .mensagem-carta-final
-    .carta-pais {
-        font-size: 23px;
-    }
-
-    .mensagem-carta-final
-    .carta-texto {
-        font-size: 15px;
-
-        line-height: 1.75;
-    }
-
-    .mensagem-carta-final
-    .carta-divisor::before,
-    .mensagem-carta-final
-    .carta-divisor::after {
-        width: 55px;
-    }
-
-}
-
-/* =========================================================
-   NOVA CENA — FADA ENTREGA O PERGAMINHO
-   Sequência:
-   1. fada entra pequena
-   2. aproxima-se e cresce
-   3. pergaminho abre
-   4. mensagem aparece dentro dele
-========================================================= */
-
-.estado-mensagem {
-    isolation: isolate;
-}
-
-
-/* =========================================================
-   FADA
-========================================================= */
-
-.fada-cena {
-    z-index: 20;
-}
-
-
-.fada-voo {
-    width: 230px;
-    height: auto;
-    aspect-ratio: 384 / 317;
-
-    top: 0;
-    left: 0;
-
-    opacity: 0;
-
-    transform-origin: center center;
-
-    filter:
-        brightness(1.35)
-        drop-shadow(
-            0 0 18px
-            rgba(225, 179, 109, 0.48)
-        );
-}
-
-
-#fadaAnimada {
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-}
-
-
-/*
- * O movimento termina grande, na região central.
- * A escala final é propositalmente maior:
- * a sensação é de aproximação à frente da tela.
- */
-
-.fada-cena.viva .fada-voo {
-    animation:
-        voo-fada-entrega
-        4.8s
-        cubic-bezier(.18,.68,.25,1)
-        forwards;
-}
-
-
-@keyframes voo-fada-entrega {
-
-    0% {
-        opacity: 0;
-
-        transform:
-            translate3d(
-                -35vw,
-                24vh,
-                0
-            )
-            rotate(-8deg)
-            scale(.32);
-    }
-
-
-    7% {
-        opacity: 1;
-    }
-
-
-    20% {
-        transform:
-            translate3d(
-                -18vw,
-                17vh,
-                0
-            )
-            rotate(-3deg)
-            scale(.55);
-    }
-
-
-    38% {
-        transform:
-            translate3d(
-                -5vw,
-                8vh,
-                0
-            )
-            rotate(2deg)
-            scale(.86);
-    }
-
-
-    56% {
-        transform:
-            translate3d(
-                2vw,
-                0,
-                0
-            )
-            rotate(-1deg)
-            scale(1.20);
-    }
-
-
-    70% {
-        transform:
-            translate3d(
-                0,
-                -2vh,
-                0
-            )
-            rotate(1deg)
-            scale(1.55);
-    }
-
-
-    84% {
-        opacity: 1;
-
-        transform:
-            translate3d(
-                1vw,
-                0,
-                0
-            )
-            rotate(0deg)
-            scale(1.78);
-    }
-
-
-    92% {
-        opacity: .82;
-
-        transform:
-            translate3d(
-                2vw,
-                1vh,
-                0
-            )
-            rotate(1deg)
-            scale(1.72);
-    }
-
-
-    100% {
-        opacity: 0;
-
-        transform:
-            translate3d(
-                8vw,
-                -1vh,
-                0
-            )
-            rotate(3deg)
-            scale(1.58);
-    }
-
-}
-
-
-/* =========================================================
-   PÓ DE FADA
-========================================================= */
-
-.fada-rastro {
-    z-index: 15;
-
-    left: -75px;
-
-    width: 150px;
-    height: 80px;
-}
-
-
-.fada-cena.viva .fada-rastro {
-    animation:
-        fada-po
-        4.2s
-        ease-out
-        forwards;
-}
-
-
-/* =========================================================
-   PERGAMINHO
-========================================================= */
-
-.pergaminho {
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    z-index: 10;
-
-    width: min(88vw, 650px);
-    height: min(70svh, 650px);
-
-    transform:
-        translate(-50%, -50%)
-        scaleX(.035)
-        scaleY(.18);
-
-    transform-origin: center center;
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    overflow: hidden;
-
-    border-radius:
-        48% /
-        12%;
-
-    /*
-     * Textura feita em CSS para o papel
-     * não depender de outra imagem.
-     */
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            rgba(255, 239, 199, 0.98) 0%,
-            rgba(222, 184, 119, 0.96) 58%,
-            rgba(145, 98, 47, 0.98) 100%
-        );
-
-    box-shadow:
-        0 0 0 2px rgba(225,179,109,.25),
-        0 12px 45px rgba(0,0,0,.85),
-        inset 0 0 55px rgba(91,55,20,.38);
-
-    will-change:
-        transform,
-        opacity;
-}
-
-
-.pergaminho::before,
-.pergaminho::after {
-    content: "";
-
-    position: absolute;
-
-    left: 50%;
-
-    width: 108%;
-
-    height: 24px;
-
-    transform:
-        translateX(-50%);
-
-    z-index: 3;
-
-    border-radius: 50%;
-
-    background:
-        linear-gradient(
-            180deg,
-            #9c6b38,
-            #d6ad70 38%,
-            #8b5b2c
-        );
-
-    box-shadow:
-        0 3px 12px rgba(0,0,0,.55);
-}
-
-
-.pergaminho::before {
-    top: -8px;
-}
-
-
-.pergaminho::after {
-    bottom: -8px;
-}
-
-
-/* =========================================================
-   ABERTURA
-========================================================= */
-
-.pergaminho.abrindo {
-    opacity: 1;
-
-    animation:
-        pergaminho-abrir
-        1.25s
-        cubic-bezier(.16,.72,.22,1)
-        forwards;
-}
-
-
-.pergaminho.aberto {
-    opacity: 1;
-
-    transform:
-        translate(-50%, -50%)
-        scaleX(1)
-        scaleY(1);
-}
-
-
-@keyframes pergaminho-abrir {
-
-    0% {
-        opacity: 0;
-
-        transform:
-            translate(-50%, -50%)
-            scaleX(.035)
-            scaleY(.18);
-
-        border-radius:
-            48% /
-            12%;
-    }
-
-
-    35% {
-        opacity: 1;
-
-        transform:
-            translate(-50%, -50%)
-            scaleX(.42)
-            scaleY(.62);
-    }
-
-
-    70% {
-        transform:
-            translate(-50%, -50%)
-            scaleX(.82)
-            scaleY(.92);
-
-        border-radius:
-            12% /
-            5%;
-    }
-
-
-    100% {
-        opacity: 1;
-
-        transform:
-            translate(-50%, -50%)
-            scaleX(1)
-            scaleY(1);
-
-        border-radius:
-            7% /
-            3%;
-    }
-
-}
-
-
-/* =========================================================
-   CARTA DENTRO DO PERGAMINHO
-========================================================= */
-
-.mensagem-carta-final {
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    z-index: 2;
-
-    width: calc(100% - 70px);
-    max-width: none;
-
-    height: calc(100% - 55px);
-    max-height: none;
-
-    margin: 0;
-
-    padding:
-        42px
-        35px
-        30px;
-
-    transform:
-        translate(-50%, -50%)
-        scale(.98);
-
-    opacity: 0;
-
-    overflow-y: auto;
-
-    background: transparent;
-
-    scrollbar-color:
-        rgba(116,75,34,.7)
-        transparent;
-
-    pointer-events: none;
-
-    transition:
-        opacity .55s ease,
-        transform .55s cubic-bezier(.22,.61,.36,1);
-}
-
-
-/*
- * Cancela a animação antiga da carta.
- * Agora quem determina a entrada é o pergaminho.
- */
-
-.estado-mensagem.ativo
-.mensagem-carta-final {
-    animation: none;
-}
-
-
-.mensagem-carta-final.carta-visivel {
-    opacity: 1;
-
-    transform:
-        translate(-50%, -50%)
-        scale(1);
-
-    pointer-events: auto;
-}
-
-
-/* Texto escuro sobre o papel */
-
-.mensagem-carta-final
-.carta-pais {
-    color: #5b3b20;
-}
-
-
-.mensagem-carta-final
-.carta-nome {
-    color: #76583a;
-}
-
-
-.mensagem-carta-final
-.carta-divisor {
-    color: #8c6238;
-}
-
-
-.mensagem-carta-final
-.carta-divisor::before,
-.mensagem-carta-final
-.carta-divisor::after {
-    background:
-        rgba(116, 75, 34, .42);
-}
-
-
-.mensagem-carta-final
-.carta-texto {
-    color: #382516;
-
-    text-shadow:
-        0 1px 0 rgba(255,255,255,.12);
-}
-
-
-.mensagem-carta-final
-.carta-final {
-    color: #76502a;
-}
-
-
-.mensagem-carta-final
-.mensagem-controles button {
-    color: #6e4725;
-}
-
-
-.mensagem-carta-final
-.mensagem-controles span {
-    color: #76583a;
-}
-
-
-/* =========================================================
-   QUANDO A FADA TERMINA
-========================================================= */
-
-.fada-cena.viva .fada-voo {
-    pointer-events: none;
-}
-
-
-.fada-cena.fada-chegou .fada-voo {
-    opacity: 0 !important;
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 700px) {
-
-    .fada-voo {
-        width: 170px;
-        height: auto;
-
-        top: 0;
-    }
-
-
-    .pergaminho {
-        width: 92vw;
-        height: min(68svh, 610px);
-    }
-
-
-    .mensagem-carta-final {
-        width: calc(100% - 38px);
-        height: calc(100% - 45px);
-
-        padding:
-            32px
-            20px
-            24px;
-    }
-
-
-    .mensagem-carta-final
-    .carta-pais {
-        font-size: 22px;
-    }
-
-
-    .mensagem-carta-final
-    .carta-texto {
-        font-size: 14px;
-
-        line-height: 1.75;
-    }
-
-
-    .mensagem-carta-final
-    .carta-divisor {
-        margin:
-            12px 0
-            20px;
-    }
-
-
-    .mensagem-carta-final
-    .carta-divisor::before,
-    .mensagem-carta-final
-    .carta-divisor::after {
-        width: 55px;
-    }
-
-}
-
-
-@media (max-width: 380px) {
-
-    .fada-voo {
-        width: 155px;
-    }
-
-
-    .pergaminho {
-        width: 94vw;
-        height: 70svh;
-    }
-
-
-    .mensagem-carta-final {
-        width: calc(100% - 30px);
-        height: calc(100% - 38px);
-
-        padding:
-            28px
-            16px
-            20px;
-    }
-
-
-    .mensagem-carta-final
-    .carta-texto {
-        font-size: 12px;
-
-        line-height: 1.7;
-    }
-
-}
-
-/* =========================================================
-   AJUSTE FINAL — ENTREGA DA FADA + PERGAMINHO
-   Esta seção sobrescreve apenas a animação final.
-========================================================= */
-
-.estado-mensagem {
-    perspective: 1100px;
-    perspective-origin: 50% 50%;
-}
-
-/* A fada começa distante e termina literalmente no centro,
-   maior, para criar a sensação de aproximação à frente da tela. */
-.fada-cena {
-    z-index: 20;
-    overflow: visible;
-}
-
-.fada-voo {
-    left: 50%;
-    top: 50%;
-
-    width: 230px;
-    height: auto;
-    aspect-ratio: 384 / 317;
-
-    transform-origin: center center;
-
-    z-index: 30;
-
-    will-change: transform, opacity;
-}
-
-.fada-cena.viva .fada-voo {
-    animation:
-        voo-fada-frente
-        5.2s
-        cubic-bezier(.18,.72,.22,1)
-        forwards;
-}
-
-@keyframes voo-fada-frente {
-
-    /* distante, entrando pela esquerda */
-    0% {
-        opacity: 0;
-
-        transform:
-            translate3d(
-                calc(-50% - 36vw),
-                calc(-50% + 23vh),
-                -180px
-            )
-            rotate(-9deg)
-            scale(.28);
-    }
-
-    /* aparece */
-    8% {
-        opacity: 1;
-    }
-
-    /* aproximação */
-    25% {
-        transform:
-            translate3d(
-                calc(-50% - 19vw),
-                calc(-50% + 13vh),
-                -70px
-            )
-            rotate(-4deg)
-            scale(.55);
-    }
-
-    /* entra na frente */
-    45% {
-        transform:
-            translate3d(
-                calc(-50% - 6vw),
-                calc(-50% + 4vh),
-                40px
-            )
-            rotate(2deg)
-            scale(.95);
-    }
-
-    /* chega ao centro */
-    62% {
-        transform:
-            translate3d(
-                -50%,
-                -50%,
-                150px
-            )
-            rotate(-1deg)
-            scale(1.55);
-    }
-
-    /* aproxima ainda mais do usuário */
-    76% {
-        transform:
-            translate3d(
-                -50%,
-                -50%,
-                250px
-            )
-            rotate(1deg)
-            scale(2.25);
-    }
-
-    /* ponto máximo — fada na frente da tela */
-    86% {
-        opacity: 1;
-
-        transform:
-            translate3d(
-                -50%,
-                -50%,
-                320px
-            )
-            rotate(0deg)
-            scale(2.65);
-    }
-
-    /* segura por um instante enquanto o pergaminho abre */
-    91% {
-        opacity: .96;
-
-        transform:
-            translate3d(
-                -50%,
-                -50%,
-                300px
-            )
-            rotate(0deg)
-            scale(2.55);
-    }
-
-    /* desaparece depois da entrega */
-    100% {
-        opacity: 0;
-
-        transform:
-            translate3d(
-                calc(-50% + 8vw),
-                calc(-50% - 3vh),
-                220px
-            )
-            rotate(4deg)
-            scale(2.20);
-    }
-}
-
-
-/* =========================================================
-   PERGAMINHO
-========================================================= */
-
-.pergaminho {
-    z-index: 10;
-
-    transform:
-        translate(-50%, -50%)
-        scaleX(.025)
-        scaleY(.12);
-
-    transform-origin: center center;
-
-    opacity: 0;
-
-    border-radius:
-        50% /
-        14%;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            rgba(255, 241, 205, .99) 0%,
-            rgba(232, 200, 143, .98) 53%,
-            rgba(158, 108, 55, .99) 100%
-        );
-
-    box-shadow:
-        0 0 0 2px rgba(225,179,109,.30),
-        0 18px 55px rgba(0,0,0,.90),
-        inset 0 0 60px rgba(91,55,20,.40);
-}
-
-.pergaminho::before,
-.pergaminho::after {
-    height: 28px;
-    width: 112%;
-}
-
-.pergaminho.abrindo {
-    opacity: 1;
-
-    animation:
-        pergaminho-abrir-final
-        1.45s
-        cubic-bezier(.16,.72,.20,1)
-        forwards;
-}
-
-.pergaminho.aberto {
-    opacity: 1;
-
-    transform:
-        translate(-50%, -50%)
-        scaleX(1)
-        scaleY(1);
-}
-
-@keyframes pergaminho-abrir-final {
-
-    0% {
-        opacity: 0;
-
-        transform:
-            translate(-50%, -50%)
-            scaleX(.025)
-            scaleY(.12);
-
-        border-radius:
-            50% /
-            14%;
-    }
-
-    25% {
-        opacity: 1;
-
-        transform:
-            translate(-50%, -50%)
-            scaleX(.24)
-            scaleY(.34);
-    }
-
-    55% {
-        transform:
-            translate(-50%, -50%)
-            scaleX(.62)
-            scaleY(.72);
-
-        border-radius:
-            18% /
-            7%;
-    }
-
-    80% {
-        transform:
-            translate(-50%, -50%)
-            scaleX(.91)
-            scaleY(.96);
-
-        border-radius:
-            9% /
-            4%;
-    }
-
-    100% {
-        opacity: 1;
-
-        transform:
-            translate(-50%, -50%)
-            scaleX(1)
-            scaleY(1);
-
-        border-radius:
-            7% /
-            3%;
-    }
-}
-
-
-/* A mensagem só existe visualmente depois que o pergaminho termina de abrir. */
-.mensagem-carta-final {
-    z-index: 2;
-}
-
-.mensagem-carta-final.carta-visivel {
-    opacity: 1;
-
-    transform:
-        translate(-50%, -50%)
-        scale(1);
-
-    pointer-events: auto;
-}
-
-
-/* =========================================================
-   MOBILE — MESMA COREOGRAFIA, PROPORÇÃO MENOR
-========================================================= */
-
-@media (max-width: 700px) {
-
-    .fada-voo {
-        width: 170px;
-    }
-
-    .pergaminho {
-        width: 92vw;
-        height: min(68svh, 610px);
-    }
-
-    .mensagem-carta-final {
-        width: calc(100% - 38px);
-        height: calc(100% - 45px);
-
-        padding:
-            32px
-            20px
-            24px;
-    }
-
-    .mensagem-carta-final .carta-pais {
-        font-size: 22px;
-    }
-
-    .mensagem-carta-final .carta-texto {
-        font-size: 14px;
-        line-height: 1.75;
-    }
-}
-
-@media (max-width: 380px) {
-
-    .fada-voo {
-        width: 155px;
-    }
-
-    .pergaminho {
-        width: 94vw;
-        height: 70svh;
-    }
-
-    .mensagem-carta-final {
-        width: calc(100% - 30px);
-        height: calc(100% - 38px);
-
-        padding:
-            28px
-            16px
-            20px;
-    }
-
-    .mensagem-carta-final .carta-texto {
-        font-size: 12px;
-        line-height: 1.7;
-    }
-}
-
-
-/* =========================================================
-   CENA FINAL — COREOGRAFIA CORRIGIDA
-========================================================= */
-
-.mensagens-topo {
-    z-index: 1000;
-}
-
-.estado-mensagem {
-    z-index: 1;
-    overflow: hidden;
-    perspective: 1000px;
-    perspective-origin: 50% 55%;
-}
-
-.fada-cena {
-    position: absolute;
-    inset: 88px 0 0 0;
-    z-index: 10;
-    overflow: visible;
-    pointer-events: none;
-}
-
-.fada-voo {
-    left: 50%;
-    top: 54%;
-
-    width: 175px;
-    height: auto;
-    aspect-ratio: 384 / 317;
-
-    opacity: 0;
-    z-index: 20;
-
-    transform-origin: 50% 50%;
-
-    filter:
-        brightness(1.28)
-        drop-shadow(
-            0 0 14px
-            rgba(225, 179, 109, .42)
-        );
-}
-
-.fada-cena.viva .fada-voo {
     animation:
         fada-aproximacao
-        5.4s
+        4.6s
         cubic-bezier(.20,.72,.22,1)
         forwards;
 }
 
+
 @keyframes fada-aproximacao {
 
-    /* longe, entrando pela esquerda */
+    /* -----------------------------------------
+       0 — muito distante
+    ----------------------------------------- */
+
     0% {
         opacity: 0;
 
         transform:
             translate3d(
-                calc(-50% - 44vw),
-                16vh,
-                -180px
+                calc(-50% - 42vw),
+                17vh,
+                -140px
             )
             rotate(-8deg)
             scale(.30);
     }
 
-    9% {
+
+    /* -----------------------------------------
+       1 — aparece
+    ----------------------------------------- */
+
+    8% {
         opacity: 1;
     }
 
-    /* voo suave */
+
+    /* -----------------------------------------
+       2 — aproximação inicial
+    ----------------------------------------- */
+
     24% {
         transform:
             translate3d(
-                calc(-50% - 23vw),
+                calc(-50% - 22vw),
                 10vh,
-                -100px
+                -70px
             )
             rotate(-4deg)
             scale(.48);
     }
 
+
+    /* -----------------------------------------
+       3 — entra no centro
+    ----------------------------------------- */
+
     42% {
         transform:
             translate3d(
-                calc(-50% - 9vw),
-                5vh,
-                -20px
+                calc(-50% - 8vw),
+                4vh,
+                0
             )
-            rotate(1deg)
-            scale(.70);
+            rotate(2deg)
+            scale(.72);
     }
 
-    /* aproxima-se da frente */
+
+    /* -----------------------------------------
+       4 — aproxima-se do usuário
+    ----------------------------------------- */
+
     58% {
         transform:
             translate3d(
                 -50%,
                 0,
-                90px
+                70px
             )
             rotate(-1deg)
             scale(1.02);
     }
 
-    /* ponto de entrega — grande, mas sem cobrir a tela */
-    72% {
+
+    /* -----------------------------------------
+       5 — ponto de entrega
+    ----------------------------------------- */
+
+    70% {
         opacity: 1;
 
         transform:
             translate3d(
                 -50%,
                 0,
-                180px
+                120px
             )
             rotate(0deg)
-            scale(1.34);
+            scale(1.22);
     }
 
-    /* segura enquanto o pergaminho nasce */
-    82% {
+
+    /* -----------------------------------------
+       6 — segura enquanto entrega
+    ----------------------------------------- */
+
+    80% {
         opacity: 1;
 
         transform:
             translate3d(
                 -50%,
                 0,
-                210px
+                135px
             )
             rotate(1deg)
-            scale(1.42);
+            scale(1.28);
     }
 
-    /* sai para trás/lateral */
+
+    /* -----------------------------------------
+       7 — vai embora
+    ----------------------------------------- */
+
     100% {
         opacity: 0;
 
         transform:
             translate3d(
-                calc(-50% + 24vw),
+                calc(-50% + 20vw),
                 -4vh,
-                120px
+                70px
             )
             rotate(4deg)
-            scale(1.12);
+            scale(1.05);
     }
+
 }
 
-/* A fada nunca cobre os elementos do cabeçalho. */
-.mensagens-topo,
-.mensagens-topo * {
-    position: relative;
-}
 
 /* =========================================================
-   PERGAMINHO — FORMA REAL DE PERGAMINHO
+   PERGAMINHO
 ========================================================= */
 
 .pergaminho {
@@ -3529,6 +2062,7 @@ body {
     z-index: 15;
 
     width: min(88vw, 620px);
+
     height: min(61svh, 570px);
 
     transform:
@@ -3539,6 +2073,7 @@ body {
     transform-origin: center center;
 
     opacity: 0;
+
     pointer-events: none;
 
     overflow: hidden;
@@ -3563,7 +2098,11 @@ body {
         opacity;
 }
 
-/* Rolos superior e inferior */
+
+/* =========================================================
+   ROLOS DO PERGAMINHO
+========================================================= */
+
 .pergaminho::before,
 .pergaminho::after {
     content: "";
@@ -3573,9 +2112,11 @@ body {
     left: 50%;
 
     width: calc(100% + 26px);
+
     height: 30px;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     z-index: 20;
 
@@ -3595,22 +2136,112 @@ body {
         0 4px 12px rgba(0,0,0,.60);
 }
 
+
 .pergaminho::before {
     top: -9px;
 }
+
 
 .pergaminho::after {
     bottom: -9px;
 }
 
-/* Conteúdo dentro da folha */
+
+/* =========================================================
+   ABERTURA
+========================================================= */
+
+.pergaminho.abrindo {
+
+    opacity: 1;
+
+    animation:
+        pergaminho-desenrolar
+        1.35s
+        cubic-bezier(.16,.72,.20,1)
+        forwards;
+}
+
+
+.pergaminho.aberto {
+
+    opacity: 1;
+
+    transform:
+        translate(-50%, -50%)
+        scaleX(1)
+        scaleY(1);
+}
+
+
+@keyframes pergaminho-desenrolar {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scaleX(.025)
+            scaleY(.08);
+    }
+
+
+    28% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scaleX(.22)
+            scaleY(.30);
+    }
+
+
+    58% {
+        transform:
+            translate(-50%, -50%)
+            scaleX(.66)
+            scaleY(.72);
+    }
+
+
+    82% {
+        transform:
+            translate(-50%, -50%)
+            scaleX(.92)
+            scaleY(.94);
+    }
+
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scaleX(1)
+            scaleY(1);
+    }
+
+}
+
+
+/* =========================================================
+   CARTA DENTRO DO PERGAMINHO
+========================================================= */
+
 .pergaminho .mensagem-carta-final {
+
     position: absolute;
 
-    inset: 30px 0 30px 0;
+    inset:
+        30px
+        0
+        30px
+        0;
 
     width: auto;
     height: auto;
+
+    max-width: none;
     max-height: none;
 
     margin: 0;
@@ -3628,133 +2259,116 @@ body {
 
     z-index: 10;
 
-    color: #3b2918;
-}
-
-/* Não deixar a animação antiga da carta disparar sozinha. */
-.estado-mensagem.ativo .mensagem-carta-final {
-    animation: none !important;
     pointer-events: none;
+
+    color: #3b2918;
+
+    scrollbar-color:
+        rgba(116,75,34,.7)
+        transparent;
 }
 
-/* Abre o pergaminho */
-.pergaminho.abrindo {
-    opacity: 1;
 
-    animation:
-        pergaminho-desenrolar
-        1.35s
-        cubic-bezier(.16,.72,.20,1)
-        forwards;
+/* Impede a animação antiga da carta */
+
+.estado-mensagem.ativo
+.mensagem-carta-final {
+
+    animation: none !important;
 }
 
-@keyframes pergaminho-desenrolar {
 
-    0% {
-        opacity: 0;
+/* =========================================================
+   TEXTO DA CARTA
+========================================================= */
 
-        transform:
-            translate(-50%, -50%)
-            scaleX(.025)
-            scaleY(.08);
-    }
-
-    28% {
-        opacity: 1;
-
-        transform:
-            translate(-50%, -50%)
-            scaleX(.22)
-            scaleY(.30);
-    }
-
-    58% {
-        transform:
-            translate(-50%, -50%)
-            scaleX(.66)
-            scaleY(.72);
-    }
-
-    82% {
-        transform:
-            translate(-50%, -50%)
-            scaleX(.92)
-            scaleY(.94);
-    }
-
-    100% {
-        opacity: 1;
-
-        transform:
-            translate(-50%, -50%)
-            scaleX(1)
-            scaleY(1);
-    }
+.pergaminho .carta-pais {
+    color: #8f6a38;
 }
 
-.pergaminho.aberto {
-    opacity: 1;
 
-    transform:
-        translate(-50%, -50%)
-        scaleX(1)
-        scaleY(1);
+.pergaminho .carta-nome {
+    color: #76583a;
 }
 
-/* Mensagem entra somente no final */
-.pergaminho .mensagem-carta-final.carta-visivel {
+
+.pergaminho .carta-texto {
+
+    color: #4b3824;
+
+    text-shadow:
+        0 1px 0
+        rgba(255,255,255,.12);
+}
+
+
+.pergaminho .carta-divisor {
+    color: #9b713b;
+}
+
+
+.pergaminho .carta-divisor::before,
+.pergaminho .carta-divisor::after {
+
+    background:
+        rgba(126, 88, 42, .38);
+}
+
+
+.pergaminho .carta-final {
+    color: #9b713b;
+}
+
+
+.pergaminho .mensagem-controles button {
+    color: #8f6a38;
+}
+
+
+.pergaminho .mensagem-controles span {
+    color: #76583a;
+}
+
+
+/* =========================================================
+   MENSAGEM APARECE
+========================================================= */
+
+.pergaminho
+.mensagem-carta-final.carta-visivel {
+
     opacity: 1;
 
     transform: none;
+
+    pointer-events: auto;
 
     animation:
         mensagem-no-pergaminho
         .65s
         ease-out
         forwards;
-
-    pointer-events: auto;
 }
+
 
 @keyframes mensagem-no-pergaminho {
 
     from {
         opacity: 0;
-        transform: translateY(10px);
+
+        transform:
+            translateY(10px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
     }
+
 }
 
-/* Visual da escrita sobre o papel */
-.pergaminho .carta-pais {
-    color: #8f6a38;
-}
-
-.pergaminho .carta-nome,
-.pergaminho .carta-texto {
-    color: #4b3824;
-}
-
-.pergaminho .carta-divisor {
-    color: #9b713b;
-}
-
-.pergaminho .carta-divisor::before,
-.pergaminho .carta-divisor::after {
-    background: rgba(126, 88, 42, .38);
-}
-
-.pergaminho .carta-final {
-    color: #9b713b;
-}
-
-.pergaminho .mensagem-controles button {
-    color: #8f6a38;
-}
 
 /* =========================================================
    MOBILE
@@ -3763,22 +2377,37 @@ body {
 @media (max-width: 700px) {
 
     .fada-cena {
-        inset: 88px 0 0 0;
+        inset:
+            72px
+            0
+            0
+            0;
     }
+
 
     .fada-voo {
         width: 165px;
+
         top: 55%;
     }
+
 
     .pergaminho {
         width: 88vw;
+
         height: 61svh;
+
         top: 55%;
     }
 
+
     .pergaminho .mensagem-carta-final {
-        inset: 29px 0 29px 0;
+
+        inset:
+            29px
+            0
+            29px
+            0;
 
         padding:
             22px
@@ -3786,19 +2415,41 @@ body {
             24px;
     }
 
+
     .pergaminho .carta-pais {
         font-size: 22px;
     }
+
 
     .pergaminho .carta-nome {
         font-size: 12px;
     }
 
+
     .pergaminho .carta-texto {
+
         font-size: 14px;
+
         line-height: 1.75;
     }
+
+
+    .pergaminho .carta-divisor {
+
+        margin:
+            12px 0
+            20px;
+    }
+
+
+    .pergaminho .carta-divisor::before,
+    .pergaminho .carta-divisor::after {
+
+        width: 55px;
+    }
+
 }
+
 
 @media (max-width: 380px) {
 
@@ -3806,20 +2457,31 @@ body {
         width: 150px;
     }
 
+
     .pergaminho {
+
         width: 91vw;
+
         height: 64svh;
+
+        top: 55%;
     }
 
+
     .pergaminho .mensagem-carta-final {
+
         padding:
             20px
             16px
             21px;
     }
 
+
     .pergaminho .carta-texto {
+
         font-size: 12px;
+
         line-height: 1.7;
     }
+
 }
