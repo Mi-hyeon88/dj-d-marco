@@ -1,6 +1,6 @@
 /* =========================================================
    D.MARCO — MENSAGENS
-   MURAL + GLOBO + FADA + PERGAMINHO
+   MURAL + GLOBO + FADA
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -61,6 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const fadaCena =
         document.querySelector("#fadaCena");
+
+   const fadaFala =
+    document.querySelector("#fadaFala");
 
    const fadaVoo =
     document.querySelector(".fada-voo");
@@ -1191,49 +1194,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function limparAnimacaoMensagem() {
 
-        temposAnimacao.forEach(
-            tempo =>
-                clearTimeout(tempo)
+    tempoFada.forEach(
+        tempo => clearTimeout(tempo)
+    );
+
+    tempoFada = [];
+
+    pararFramesFada();
+
+    if (fadaCena) {
+
+        fadaCena.classList.remove(
+            "viva"
         );
 
-
-        temposAnimacao =
-            [];
-
-
-        pararFramesFada();
-
-
-        if (fadaCena) {
-
-    fadaCena.classList.remove(
-        "viva"
-    );
-
-    fadaCena.classList.remove(
-        "fada-chegou"
-    );
-
-    fadaCena.classList.remove(
-        "fada-saindo"
-    );
-
-}
-
-
-        if (mensagemCarta) {
-
-            mensagemCarta.classList.remove(
-                "carta-visivel"
-            );
-
-            mensagemCarta.scrollTop =
-                0;
-
-        }
+        fadaCena.classList.remove(
+            "fada-chegou"
+        );
 
     }
 
+    if (fadaFala) {
+
+        fadaFala.classList.remove(
+            "visivel"
+        );
+
+    }
+
+    if (mensagemCarta) {
+
+        mensagemCarta.classList.remove(
+            "carta-visivel"
+        );
+
+        mensagemCarta.scrollTop = 0;
+
+    }
+
+}
+   
 
   /* =====================================================
    ANIMAÇÃO DA FADA + FALA
@@ -1241,21 +1241,134 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function animarFada() {
 
-    if (!fadaCena || !fadaAnimada) {
+    if (!fadaCena) {
         return;
     }
 
 
-    animacaoId++;
+    animacaoMensagemId++;
 
     const idAtual =
-        animacaoId;
+        animacaoMensagemId;
 
 
     limparAnimacaoMensagem();
 
 
     void fadaCena.offsetWidth;
+
+
+    iniciarFramesFada();
+
+
+    fadaCena.classList.add(
+        "viva"
+    );
+
+
+    /*
+     * 1 — fada entra
+     * 2 — aproxima-se
+     * 3 — para na frente
+     * 4 — balão aparece
+     * 5 — fada e balão desaparecem
+     * 6 — mensagem aparece
+     */
+
+
+    /* BALÃO */
+
+    tempoFada.push(
+
+        setTimeout(() => {
+
+            if (
+                idAtual !==
+                animacaoMensagemId
+            ) {
+                return;
+            }
+
+
+            if (fadaFala) {
+
+                fadaFala.classList.add(
+                    "visivel"
+                );
+
+            }
+
+        }, 3600)
+
+    );
+
+
+    /* SAÍDA DA FADA + BALÃO */
+
+    tempoFada.push(
+
+        setTimeout(() => {
+
+            if (
+                idAtual !==
+                animacaoMensagemId
+            ) {
+                return;
+            }
+
+
+            if (fadaFala) {
+
+                fadaFala.classList.remove(
+                    "visivel"
+                );
+
+            }
+
+
+            if (fadaCena) {
+
+                fadaCena.classList.add(
+                    "fada-chegou"
+                );
+
+            }
+
+        }, 5000)
+
+    );
+
+
+    /* MENSAGEM */
+
+    tempoFada.push(
+
+        setTimeout(() => {
+
+            if (
+                idAtual !==
+                animacaoMensagemId
+            ) {
+                return;
+            }
+
+
+            if (mensagemCarta) {
+
+                mensagemCarta.classList.add(
+                    "carta-visivel"
+                );
+
+            }
+
+
+            pararFramesFada();
+
+        }, 5650)
+
+    );
+
+}
 
 
     /* =================================================
