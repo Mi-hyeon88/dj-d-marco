@@ -95,9 +95,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let frameFada = 0;
 
-    let temposAnimacao = [];
+    let tempoFada = [];
 
-    let animacaoId = 0;
+let animacaoMensagemId = 0;
 
 
     /* =====================================================
@@ -1209,7 +1209,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         fadaCena.classList.remove(
-            "fada-chegou"
+            "fada-saindo"
         );
 
     }
@@ -1266,17 +1266,9 @@ function animarFada() {
     );
 
 
-    /*
-     * 1 — fada entra
-     * 2 — aproxima-se
-     * 3 — para na frente
-     * 4 — balão aparece
-     * 5 — fada e balão desaparecem
-     * 6 — mensagem aparece
-     */
-
-
-    /* BALÃO */
+    /* =================================================
+       1 — FADA CHEGA
+    ================================================== */
 
     tempoFada.push(
 
@@ -1303,7 +1295,9 @@ function animarFada() {
     );
 
 
-    /* SAÍDA DA FADA + BALÃO */
+    /* =================================================
+       2 — FADA COMEÇA A SAIR
+    ================================================== */
 
     tempoFada.push(
 
@@ -1329,7 +1323,7 @@ function animarFada() {
             if (fadaCena) {
 
                 fadaCena.classList.add(
-                    "fada-chegou"
+                    "fada-saindo"
                 );
 
             }
@@ -1339,7 +1333,9 @@ function animarFada() {
     );
 
 
-    /* MENSAGEM */
+    /* =================================================
+       3 — CARTA APARECE
+    ================================================== */
 
     tempoFada.push(
 
@@ -1353,6 +1349,9 @@ function animarFada() {
             }
 
 
+            pararFramesFada();
+
+
             if (mensagemCarta) {
 
                 mensagemCarta.classList.add(
@@ -1361,15 +1360,12 @@ function animarFada() {
 
             }
 
-
-            pararFramesFada();
-
-        }, 5650)
+        }, 5750)
 
     );
 
 }
-
+   
 
     /* =====================================================
        PRÓXIMA MENSAGEM
