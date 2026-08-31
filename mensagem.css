@@ -484,7 +484,7 @@ body {
 .globo-etiqueta.colombia {
     transform:
         translate(
-            calc(-100% + var(--offset-x) + 70px),
+            calc(-100% + var(--offset-x) + 45px),
             calc(-50% + var(--offset-y))
         );
 }
@@ -493,14 +493,14 @@ body {
 
  transform:
         translate(
-            calc(-100% + var(--offset-x) + 40px),
+            calc(-100% + var(--offset-x) + 20px),
             calc(-50% + var(--offset-y))
         );
 }
 .globo-etiqueta.argentina {
     transform:
         translate(
-            calc(-100% + var(--offset-x) + 70px),
+            calc(-100% + var(--offset-x) + 40px),
             calc(-50% + var(--offset-y))
         );
 }
@@ -1185,6 +1185,9 @@ body {
 .carta-texto {
     white-space: pre-line;
 
+    overflow-wrap: anywhere;
+    word-break: normal;
+
     font-size: 18px;
 
     line-height: 1.85;
@@ -1424,12 +1427,12 @@ body {
    .globo-instrucao {
     position: absolute;
 
-    top: 178px;
+    top: 168px;
     left: 50%;
 
     transform: translateX(-50%);
 
-    width: 90%;
+    width: 80%;
 
     margin: 0;
 
@@ -1437,11 +1440,15 @@ body {
 
     font-size: 10px;
 
-    line-height: 1.6;
+    line-height: 1.5;
 
     letter-spacing: 0;
 
     text-align: center;
+
+      z-index: 5;
+
+    pointer-events: none;
 }
 
 
@@ -1457,7 +1464,7 @@ body {
     width: 88vw;
     height: 88vw;
 
-    margin-top: 35px;
+    margin-top: 50px;
 
     overflow: visible;
 }
@@ -2235,15 +2242,21 @@ body {
 
         top: 52%;
 
-        width: 88vw;
+        width: 95vw;
+
+       max-width: 92vw;
 
         max-height:
             calc(100svh - 145px);
 
         padding:
             18px
-            8px
+            2px
             18px;
+
+       box-sizing: border-box;
+       
+       overflow-x: hidden;
 
     }
 
