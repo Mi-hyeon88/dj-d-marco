@@ -62,6 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const fadaCena =
         document.querySelector("#fadaCena");
 
+   const fadaVoo =
+    document.querySelector(".fada-voo");
+
     const mensagemCarta =
         document.querySelector("#mensagemCarta");
 
@@ -1203,15 +1206,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (fadaCena) {
 
-            fadaCena.classList.remove(
-                "viva"
-            );
+    fadaCena.classList.remove(
+        "viva"
+    );
 
-            fadaCena.classList.remove(
-                "fada-chegou"
-            );
+    fadaCena.classList.remove(
+        "fada-chegou"
+    );
 
-        }
+    fadaCena.classList.remove(
+        "fada-saindo"
+    );
+
+}
 
 
         if (mensagemCarta) {
