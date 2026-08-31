@@ -999,73 +999,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       PREPARAR PERGAMINHO
-    ====================================================== */
-
-    function prepararPergaminho() {
-
-        if (!mensagemCarta) {
-            return;
-        }
-
-
-        if (pergaminho) {
-            return;
-        }
-
-
-        const estadoMensagem =
-            document.querySelector(
-                ".estado-mensagem"
-            );
-
-
-        if (!estadoMensagem) {
-            return;
-        }
-
-
-        pergaminho =
-            document.createElement("div");
-
-
-        pergaminho.className =
-            "pergaminho";
-
-
-        pergaminhoFolha =
-            document.createElement("div");
-
-
-        pergaminhoFolha.className =
-            "pergaminho-folha";
-
-
-        pergaminhoFolha.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-
-        pergaminho.appendChild(
-            pergaminhoFolha
-        );
-
-
-        estadoMensagem.insertBefore(
-            pergaminho,
-            mensagemCarta
-        );
-
-
-        pergaminho.appendChild(
-            mensagemCarta
-        );
-
-    }
-
-
-    /* =====================================================
        PREPARAR MENSAGEM
     ====================================================== */
 
@@ -1281,19 +1214,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        if (pergaminho) {
-
-            pergaminho.classList.remove(
-                "abrindo"
-            );
-
-            pergaminho.classList.remove(
-                "aberto"
-            );
-
-        }
-
-
         if (mensagemCarta) {
 
             mensagemCarta.classList.remove(
@@ -1308,19 +1228,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =====================================================
-       ANIMAÇÃO COMPLETA
-    ====================================================== */
+  /* =====================================================
+   ANIMAÇÃO DA FADA + FALA
+===================================================== */
 
-   function animarFada() {
+function animarFada() {
 
-    if (!fadaCena) {
+    if (!fadaCena || !fadaAnimada) {
         return;
     }
 
 
     animacaoId++;
-
 
     const idAtual =
         animacaoId;
@@ -1332,22 +1251,44 @@ document.addEventListener("DOMContentLoaded", () => {
     void fadaCena.offsetWidth;
 
 
-    prepararPergaminho();
+    /* =================================================
+       BALÃO DE FALA
+    ================================================== */
+
+    let balaoFala =
+        fadaVoo.querySelector(
+            ".fada-fala"
+        );
 
 
-    /*
-     * SEQUÊNCIA
-     *
-     * 1 — fada entra pequena
-     * 2 — aproxima-se
-     * 3 — cresce
-     * 4 — chega ao ponto de entrega
-     * 5 — pergaminho começa a abrir
-     * 6 — fada parte
-     * 7 — pergaminho termina
-     * 8 — mensagem aparece
-     */
+    if (!balaoFala) {
 
+        balaoFala =
+            document.createElement(
+                "div"
+            );
+
+        balaoFala.className =
+            "fada-fala";
+
+        balaoFala.textContent =
+            "Trouxe uma mensagem para você.";
+
+        fadaVoo.appendChild(
+            balaoFala
+        );
+
+    }
+
+
+    balaoFala.classList.remove(
+        "visivel"
+    );
+
+
+    /* =================================================
+       FADA COMEÇA O VOO
+    ================================================== */
 
     iniciarFramesFada();
 
@@ -1355,6 +1296,105 @@ document.addEventListener("DOMContentLoaded", () => {
     fadaCena.classList.add(
         "viva"
     );
+
+
+    /* =================================================
+       FADA CHEGOU — MOSTRA A FALA
+    ================================================== */
+
+    temposAnimacao.push(
+
+        setTimeout(
+            () => {
+
+                if (
+                    idAtual !==
+                    animacaoId
+                ) {
+                    return;
+                }
+
+
+                balaoFala.classList.add(
+                    "visivel"
+                );
+
+            },
+            4300
+        )
+
+    );
+
+
+    /* =================================================
+       FADA TERMINA A FALA E DESAPARECE
+    ================================================== */
+
+    temposAnimacao.push(
+
+        setTimeout(
+            () => {
+
+                if (
+                    idAtual !==
+                    animacaoId
+                ) {
+                    return;
+                }
+
+
+                balaoFala.classList.remove(
+                    "visivel"
+                );
+
+
+                fadaCena.classList.add(
+                    "fada-saindo"
+                );
+
+
+                pararFramesFada();
+
+            },
+            5700
+        )
+
+    );
+
+
+    /* =================================================
+       MENSAGEM APARECE SOMENTE APÓS A FADA SUMIR
+    ================================================== */
+
+    temposAnimacao.push(
+
+        setTimeout(
+            () => {
+
+                if (
+                    idAtual !==
+                    animacaoId
+                ) {
+                    return;
+                }
+
+
+                if (!mensagemCarta) {
+                    return;
+                }
+
+
+                mensagemCarta.classList.add(
+                    "carta-visivel"
+                );
+
+            },
+            6500
+        )
+
+    );
+
+}   
 
 
     /* =================================================
@@ -2550,8 +2590,6 @@ document.addEventListener("DOMContentLoaded", () => {
     /* =====================================================
        INICIALIZAÇÃO
     ====================================================== */
-
-    prepararPergaminho();
 
     aplicarIdioma();
 
