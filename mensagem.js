@@ -93,10 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let animacaoId = 0;
 
-    let pergaminho = null;
-
-    let pergaminhoFolha = null;
-
 
     /* =====================================================
        IDIOMA
