@@ -2485,3 +2485,427 @@ body {
     }
 
 }
+
+/* =========================================================
+   CENA FINAL — FADA + BALÃO DE FALA
+========================================================= */
+
+.estado-mensagem {
+    overflow: hidden;
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   FADA
+========================================================= */
+
+.fada-cena {
+    position: absolute;
+    inset: 88px 0 0 0;
+
+    z-index: 20;
+
+    overflow: visible;
+
+    pointer-events: none;
+}
+
+
+.fada-voo {
+    left: 50%;
+    top: 54%;
+
+    width: 175px;
+    height: auto;
+
+    aspect-ratio: 384 / 317;
+
+    opacity: 0;
+
+    z-index: 30;
+
+    transform-origin: 50% 50%;
+
+    filter:
+        brightness(1.28)
+        drop-shadow(
+            0 0 14px
+            rgba(225, 179, 109, .42)
+        );
+}
+
+
+/* =========================================================
+   VOO — TERMINA PARADA NA FRENTE DA TELA
+========================================================= */
+
+.fada-cena.viva .fada-voo {
+
+    animation:
+        fada-aproximacao-fala
+        4.3s
+        cubic-bezier(.20,.72,.22,1)
+        forwards;
+
+}
+
+
+@keyframes fada-aproximacao-fala {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translate3d(
+                calc(-50% - 44vw),
+                16vh,
+                -180px
+            )
+            rotate(-8deg)
+            scale(.30);
+
+    }
+
+
+    10% {
+        opacity: 1;
+    }
+
+
+    25% {
+
+        transform:
+            translate3d(
+                calc(-50% - 23vw),
+                10vh,
+                -100px
+            )
+            rotate(-4deg)
+            scale(.48);
+
+    }
+
+
+    42% {
+
+        transform:
+            translate3d(
+                calc(-50% - 9vw),
+                5vh,
+                -20px
+            )
+            rotate(1deg)
+            scale(.70);
+
+    }
+
+
+    58% {
+
+        transform:
+            translate3d(
+                -50%,
+                0,
+                90px
+            )
+            rotate(-1deg)
+            scale(1.02);
+
+    }
+
+
+    76% {
+
+        transform:
+            translate3d(
+                -50%,
+                0,
+                180px
+            )
+            rotate(0deg)
+            scale(1.28);
+
+    }
+
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translate3d(
+                -50%,
+                0,
+                180px
+            )
+            rotate(0deg)
+            scale(1.28);
+
+    }
+
+}
+
+
+/* =========================================================
+   BALÃO DE FALA
+========================================================= */
+
+.fada-fala {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 100%;
+
+    width: max-content;
+    max-width: min(78vw, 330px);
+
+    padding:
+        12px
+        18px;
+
+    transform:
+        translate(-50%, 12px)
+        scale(.92);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    z-index: 50;
+
+    color: #382516;
+
+    background:
+        rgba(245, 232, 207, .97);
+
+    border:
+        1px solid
+        rgba(201, 164, 106, .75);
+
+    border-radius:
+        18px;
+
+    box-shadow:
+        0 8px 28px
+        rgba(0,0,0,.45),
+
+        0 0 14px
+        rgba(225,179,109,.20);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 15px;
+
+    line-height: 1.45;
+
+    text-align: center;
+
+    transition:
+        opacity .45s ease,
+        transform .45s ease;
+
+}
+
+
+/* cauda do balão */
+
+.fada-fala::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -9px;
+
+    width: 17px;
+    height: 17px;
+
+    background:
+        rgba(245, 232, 207, .97);
+
+    border-right:
+        1px solid
+        rgba(201, 164, 106, .75);
+
+    border-bottom:
+        1px solid
+        rgba(201, 164, 106, .75);
+
+    transform:
+        translateX(-50%)
+        rotate(45deg);
+
+}
+
+
+.fada-fala.visivel {
+
+    opacity: 1;
+
+    transform:
+        translate(-50%, 0)
+        scale(1);
+
+}
+
+
+/* =========================================================
+   FADA SAINDO
+========================================================= */
+
+.fada-cena.fada-saindo .fada-voo {
+
+    animation:
+        fada-saida
+        .75s
+        ease-in
+        forwards;
+
+}
+
+
+@keyframes fada-saida {
+
+    from {
+
+        opacity: 1;
+
+        transform:
+            translate3d(
+                -50%,
+                0,
+                180px
+            )
+            rotate(0deg)
+            scale(1.28);
+
+    }
+
+
+    to {
+
+        opacity: 0;
+
+        transform:
+            translate3d(
+                calc(-50% + 12vw),
+                -5vh,
+                100px
+            )
+            rotate(4deg)
+            scale(1.08);
+
+    }
+
+}
+
+
+/* =========================================================
+   PERGAMINHO — DESATIVADO
+========================================================= */
+
+.pergaminho,
+.fada-pergaminho,
+.fada-pergaminho-fechado,
+.fada-pergaminho-texto {
+
+    display: none !important;
+
+}
+
+
+/* =========================================================
+   CARTA
+========================================================= */
+
+.estado-mensagem.ativo
+.mensagem-carta-final {
+
+    animation: none !important;
+
+}
+
+
+.mensagem-carta-final {
+
+    opacity: 0;
+
+    pointer-events: none;
+
+}
+
+
+.mensagem-carta-final.carta-visivel {
+
+    opacity: 1;
+
+    pointer-events: auto;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+
+    transition:
+        opacity .6s ease,
+        transform .6s ease;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .fada-voo {
+
+        width: 165px;
+
+    }
+
+
+    .fada-fala {
+
+        max-width: 76vw;
+
+        padding:
+            10px
+            15px;
+
+        font-size: 13px;
+
+    }
+
+}
+
+
+@media (max-width: 380px) {
+
+    .fada-voo {
+
+        width: 150px;
+
+    }
+
+
+    .fada-fala {
+
+        max-width: 72vw;
+
+        font-size: 12px;
+
+        padding:
+            9px
+            13px;
+
+    }
+
+}
