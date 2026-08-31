@@ -1725,17 +1725,6 @@ body {
             25px;
     }
 
-    .carta {
-        width: 100%;
-
-        max-height: calc(100svh - 175px);
-
-        padding:
-            27px
-            22px
-            22px;
-    }
-
     .carta-pais {
         font-size: 19px;
     }
@@ -1822,11 +1811,12 @@ body {
 
 
 /* =========================================================
-   FADA
+   CENA
 ========================================================= */
 
 .fada-cena {
     position: absolute;
+
     inset: 88px 0 0 0;
 
     z-index: 20;
@@ -1837,13 +1827,19 @@ body {
 }
 
 
+/* =========================================================
+   FADA
+========================================================= */
+
 .fada-voo {
-   position: absolute;
-   
+
+    position: absolute;
+
     left: 50%;
     top: 54%;
 
-    width: 155px;
+    width: 125px;
+
     height: auto;
 
     aspect-ratio: 384 / 317;
@@ -1855,16 +1851,16 @@ body {
     transform-origin: 50% 50%;
 
     filter:
-        brightness(1.28)
+        brightness(1.18)
         drop-shadow(
-            0 0 14px
-            rgba(225, 179, 109, .42)
+            0 0 12px
+            rgba(225, 179, 109, .35)
         );
 }
 
 
 /* =========================================================
-   VOO — TERMINA PARADA NA FRENTE DA TELA
+   ENTRADA DA FADA
 ========================================================= */
 
 .fada-cena.viva .fada-voo {
@@ -1891,13 +1887,15 @@ body {
                 -180px
             )
             rotate(-8deg)
-            scale(.30);
+            scale(.28);
 
     }
 
 
     10% {
+
         opacity: 1;
+
     }
 
 
@@ -1910,7 +1908,7 @@ body {
                 -100px
             )
             rotate(-4deg)
-            scale(.48);
+            scale(.38);
 
     }
 
@@ -1924,7 +1922,7 @@ body {
                 -20px
             )
             rotate(1deg)
-            scale(.70);
+            scale(.52);
 
     }
 
@@ -1938,7 +1936,7 @@ body {
                 90px
             )
             rotate(-1deg)
-            scale(1.02);
+            scale(.68);
 
     }
 
@@ -1952,7 +1950,7 @@ body {
                 180px
             )
             rotate(0deg)
-            scale(1.28);
+            scale(.72);
 
     }
 
@@ -1968,7 +1966,7 @@ body {
                 180px
             )
             rotate(0deg)
-            scale(1.28);
+            scale(.72);
 
     }
 
@@ -1976,7 +1974,7 @@ body {
 
 
 /* =========================================================
-   BALÃO DE FALA
+   BALÃO
 ========================================================= */
 
 .fada-fala {
@@ -1987,14 +1985,16 @@ body {
     bottom: 100%;
 
     width: max-content;
-    max-width: min(78vw, 330px);
+
+    max-width:
+        min(78vw, 330px);
 
     padding:
-        12px
-        18px;
+        11px
+        17px;
 
     transform:
-        translate(-50%, 12px)
+        translate(-50%, 10px)
         scale(.92);
 
     opacity: 0;
@@ -2027,7 +2027,7 @@ body {
         "Times New Roman",
         serif;
 
-    font-size: 15px;
+    font-size: 14px;
 
     line-height: 1.45;
 
@@ -2040,7 +2040,9 @@ body {
 }
 
 
-/* cauda do balão */
+/* =========================================================
+   CAUDA
+========================================================= */
 
 .fada-fala::after {
 
@@ -2049,10 +2051,10 @@ body {
     position: absolute;
 
     left: 50%;
-    bottom: -9px;
+    bottom: -8px;
 
-    width: 17px;
-    height: 17px;
+    width: 15px;
+    height: 15px;
 
     background:
         rgba(245, 232, 207, .97);
@@ -2084,7 +2086,7 @@ body {
 
 
 /* =========================================================
-   FADA SAINDO
+   SAÍDA
 ========================================================= */
 
 .fada-cena.fada-saindo .fada-voo {
@@ -2111,7 +2113,7 @@ body {
                 180px
             )
             rotate(0deg)
-            scale(1.28);
+            scale(.72);
 
     }
 
@@ -2127,7 +2129,7 @@ body {
                 100px
             )
             rotate(4deg)
-            scale(1.08);
+            scale(.58);
 
     }
 
@@ -2135,22 +2137,44 @@ body {
 
 
 /* =========================================================
-   CARTA
+   CARTA FINAL
 ========================================================= */
 
-.estado-mensagem.ativo
 .mensagem-carta-final {
 
-    animation: none !important;
+    position: absolute;
 
-}
+    left: 50%;
+    top: 53%;
 
+    width:
+        min(650px, 88vw);
 
-.mensagem-carta-final {
+    max-height:
+        calc(100svh - 175px);
+
+    overflow-y: auto;
+
+    padding:
+        24px
+        20px
+        20px;
 
     opacity: 0;
 
     pointer-events: none;
+
+    transform:
+        translate(-50%, -50%)
+        scale(.97);
+
+    z-index: 10;
+
+    scrollbar-width: thin;
+
+    transition:
+        opacity .6s ease,
+        transform .6s ease;
 
 }
 
@@ -2165,10 +2189,6 @@ body {
         translate(-50%, -50%)
         scale(1);
 
-    transition:
-        opacity .6s ease,
-        transform .6s ease;
-
 }
 
 
@@ -2178,9 +2198,22 @@ body {
 
 @media (max-width: 700px) {
 
+    .fada-cena {
+
+        inset:
+            72px
+            0
+            0
+            0;
+
+    }
+
+
     .fada-voo {
 
-        width: 145px;
+        width: 105px;
+
+        top: 54%;
 
     }
 
@@ -2190,10 +2223,27 @@ body {
         max-width: 76vw;
 
         padding:
-            10px
-            15px;
+            9px
+            14px;
 
-        font-size: 13px;
+        font-size: 12px;
+
+    }
+
+
+    .mensagem-carta-final {
+
+        top: 52%;
+
+        width: 88vw;
+
+        max-height:
+            calc(100svh - 145px);
+
+        padding:
+            18px
+            8px
+            18px;
 
     }
 
@@ -2204,7 +2254,7 @@ body {
 
     .fada-voo {
 
-        width: 140px;
+        width: 95px;
 
     }
 
@@ -2213,11 +2263,21 @@ body {
 
         max-width: 72vw;
 
-        font-size: 12px;
+        font-size: 11px;
 
         padding:
-            9px
-            13px;
+            8px
+            12px;
+
+    }
+
+
+    .mensagem-carta-final {
+
+        width: 90vw;
+
+        max-height:
+            calc(100svh - 135px);
 
     }
 
